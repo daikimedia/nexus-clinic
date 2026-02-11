@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import { Sparkles, ArrowLeftRight } from "lucide-react";
+import React, { useState, useRef, useCallback } from "react";
+import { motion } from "framer-motion";
+import { Sparkles, GripVertical, ImageOff, MoveHorizontal } from "lucide-react";
 import {
   fadeInUp,
   staggerContainer,
@@ -20,132 +20,215 @@ const ImageComparisonSlider = ({
   afterLabel?: string;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [containerWidth, setContainerWidth] = useState(0);
+  const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const [beforeError, setBeforeError] = useState(false);
+  const [afterError, setAfterError] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState({
+    before: false,
+    after: false,
+  });
 
-  const x = useMotionValue(0);
-  const sliderPosition = useTransform(x, [0, containerWidth], [0, 100]);
+  const updateSliderPosition = useCallback((clientX: number) => {
+    if (!containerRef.current) return;
 
-  React.useEffect(() => {
-    if (containerRef.current) {
-      const updateWidth = () => {
-        setContainerWidth(containerRef.current?.offsetWidth || 0);
-        x.set((containerRef.current?.offsetWidth || 0) / 2);
-      };
-      updateWidth();
-      window.addEventListener("resize", updateWidth);
-      return () => window.removeEventListener("resize", updateWidth);
-    }
-  }, [x]);
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+    setSliderPosition(percentage);
+  }, []);
 
-  const handleDrag = (info: any) => {
-    const container = containerRef.current;
-    if (!container) return;
+  const handleMouseDown = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      setIsDragging(true);
+      updateSliderPosition(e.clientX);
+    },
+    [updateSliderPosition],
+  );
 
-    const rect = container.getBoundingClientRect();
-    let newX = info.point.x - rect.left;
-    newX = Math.max(0, Math.min(newX, containerWidth));
-    x.set(newX);
-  };
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (!isDragging) return;
+      updateSliderPosition(e.clientX);
+    },
+    [isDragging, updateSliderPosition],
+  );
 
-  const handleClick = (event: React.MouseEvent) => {
-    const container = containerRef.current;
-    if (!container) return;
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
 
-    const rect = container.getBoundingClientRect();
-    const clickX = event.clientX - rect.left;
-    x.set(Math.max(0, Math.min(clickX, containerWidth)));
-  };
+  const handleMouseLeave = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      setIsDragging(true);
+      updateSliderPosition(e.touches[0].clientX);
+    },
+    [updateSliderPosition],
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (!isDragging) return;
+      updateSliderPosition(e.touches[0].clientX);
+    },
+    [isDragging, updateSliderPosition],
+  );
+
+  const handleTouchEnd = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      updateSliderPosition(e.clientX);
+    },
+    [updateSliderPosition],
+  );
+
+  const isLoading = !imagesLoaded.before || !imagesLoaded.after;
+  const hasError = beforeError && afterError;
 
   return (
     <div
       ref={containerRef}
-      className="relative aspect-4/5 sm:aspect-square rounded-2xl overflow-hidden cursor-ew-resize select-none group"
+      className="relative aspect-square rounded-2xl overflow-hidden select-none bg-brown/20 cursor-ew-resize group"
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
       onClick={handleClick}
     >
-      {/* Before Image (Background) */}
+      {/* Loading State */}
+      {isLoading && !hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-brown/30 z-30">
+          <div className="w-8 h-8 border-2 border-light/30 border-t-light rounded-full animate-spin" />
+        </div>
+      )}
+
+      {/* Error State */}
+      {hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-brown/50 z-30">
+          <div className="text-center text-light/70">
+            <ImageOff className="w-12 h-12 mx-auto mb-2 opacity-50" />
+            <p className="text-sm font-inter">Failed to load images</p>
+          </div>
+        </div>
+      )}
+
+      {/* Before Image (Background - Full) */}
       <div className="absolute inset-0">
-        <img
-          src={beforeImage}
-          alt={beforeLabel}
-          className="w-full h-full object-cover"
-          draggable={false}
-        />
-        {/* Before Label */}
-        <span className="absolute bottom-4 left-4 px-3 py-1.5 bg-brown/80 backdrop-blur-sm text-light text-xs sm:text-sm rounded-full font-inter font-medium">
-          {beforeLabel}
-        </span>
+        {!beforeError ? (
+          <img
+            src={beforeImage}
+            alt={beforeLabel}
+            className="w-full h-full object-cover"
+            draggable={false}
+            onLoad={() =>
+              setImagesLoaded((prev) => ({ ...prev, before: true }))
+            }
+            onError={() => {
+              setBeforeError(true);
+              setImagesLoaded((prev) => ({ ...prev, before: true }));
+            }}
+          />
+        ) : (
+          <div className="w-full h-full bg-linear-to-br from-taupe/30 to-brown/30 flex items-center justify-center">
+            <ImageOff className="w-16 h-16 text-light/30" />
+          </div>
+        )}
       </div>
 
       {/* After Image (Clipped) */}
-      <motion.div
-        className="absolute inset-0 overflow-hidden"
-        style={{
-          clipPath: useTransform(
-            sliderPosition,
-            (pos) => `inset(0 0 0 ${pos}%)`,
-          ),
-        }}
+      <div
+        className="absolute inset-0"
+        style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }}
       >
-        <img
-          src={afterImage}
-          alt={afterLabel}
-          className="w-full h-full object-cover"
-          draggable={false}
-        />
-        {/* After Label */}
-        <span className="absolute bottom-4 right-4 px-3 py-1.5 bg-wine backdrop-blur-sm text-light text-xs sm:text-sm rounded-full font-inter font-medium">
+        {!afterError ? (
+          <img
+            src={afterImage}
+            alt={afterLabel}
+            className="w-full h-full object-cover"
+            draggable={false}
+            onLoad={() => setImagesLoaded((prev) => ({ ...prev, after: true }))}
+            onError={() => {
+              setAfterError(true);
+              setImagesLoaded((prev) => ({ ...prev, after: true }));
+            }}
+          />
+        ) : (
+          <div className="w-full h-full bg-linear-to-br from-rose/30 to-wine/30 flex items-center justify-center">
+            <ImageOff className="w-16 h-16 text-light/30" />
+          </div>
+        )}
+      </div>
+
+      {/* Labels */}
+      <div className="absolute bottom-4 left-4 z-10">
+        <span className="px-3 py-1.5 bg-brown/80 backdrop-blur-sm text-light text-xs sm:text-sm rounded-full font-inter font-medium">
+          {beforeLabel}
+        </span>
+      </div>
+      <div className="absolute bottom-4 right-4 z-10">
+        <span className="px-3 py-1.5 bg-wine/90 backdrop-blur-sm text-light text-xs sm:text-sm rounded-full font-inter font-medium">
           {afterLabel}
         </span>
-      </motion.div>
+      </div>
 
       {/* Slider Line */}
-      <motion.div
-        className="absolute top-0 bottom-0 w-0.5 bg-light shadow-lg"
-        style={{ left: x }}
+      <div
+        className="absolute top-0 bottom-0 w-0.5 bg-light z-20 pointer-events-none"
+        style={{
+          left: `${sliderPosition}%`,
+          boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+        }}
       />
 
-      {/* Draggable Handle */}
-      <motion.div
-        drag="x"
-        dragConstraints={containerRef}
-        dragElastic={0}
-        dragMomentum={false}
-        onDrag={handleDrag}
-        onDragStart={() => setIsDragging(true)}
-        onDragEnd={() => setIsDragging(false)}
-        className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 z-10 touch-none"
-        style={{ left: x }}
+      {/* Slider Handle */}
+      <div
+        className="absolute top-1/2 z-20 pointer-events-none"
+        style={{
+          left: `${sliderPosition}%`,
+          transform: "translate(-50%, -50%)",
+        }}
       >
-        <motion.div
-          animate={{ scale: isDragging ? 1.2 : 1 }}
-          whileHover={{ scale: 1.1 }}
-          className="w-12 h-12 sm:w-14 sm:h-14 bg-light rounded-full shadow-xl flex items-center justify-center cursor-grab active:cursor-grabbing border-4 border-wine"
+        <div
+          className={`w-12 h-12 sm:w-14 sm:h-14 bg-light rounded-full shadow-xl flex items-center justify-center border-4 border-wine transition-transform duration-150 ${
+            isDragging ? "scale-110" : "scale-100"
+          }`}
         >
-          <ArrowLeftRight className="w-5 h-5 sm:w-6 sm:h-6 text-wine" />
-        </motion.div>
+          <GripVertical className="w-5 h-5 sm:w-6 sm:h-6 text-wine" />
+        </div>
 
         {/* Glow Effect */}
-        <div className="absolute inset-0 w-12 h-12 sm:w-14 sm:h-14 bg-wine/30 rounded-full blur-xl -z-10" />
-      </motion.div>
+        <div className="absolute inset-0 w-12 h-12 sm:w-14 sm:h-14 bg-wine/40 rounded-full blur-xl -z-10" />
+      </div>
 
-      {/* Instructions Overlay (shows on hover) */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isDragging ? 0 : 1 }}
-        className="absolute inset-0 bg-brown/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none flex items-center justify-center"
+      {/* Hover Instructions */}
+      <div
+        className={`absolute inset-0 bg-brown/30 flex items-center justify-center transition-opacity duration-300 pointer-events-none z-10 ${
+          isDragging ? "opacity-0" : "opacity-0 group-hover:opacity-100"
+        }`}
       >
-        <div className="bg-brown/70 backdrop-blur-sm px-4 py-2 rounded-full">
+        <div className="bg-brown/80 backdrop-blur-sm px-4 py-2 rounded-full">
           <p className="text-light text-sm font-inter flex items-center gap-2">
-            <ArrowLeftRight className="w-4 h-4" />
+            <MoveHorizontal className="w-4 h-4" />
             Drag to compare
           </p>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
 
+// Before/After Section Component
 const BeforeAfterSection = () => {
   const transformations = [
     {

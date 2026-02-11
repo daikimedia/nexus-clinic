@@ -10,10 +10,7 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePageNexus />} />
-        <Route
-          path="/ozempic-weight-loss-malaysia"
-          element={<PageOzempicMalaysia />}
-        />
+        <Route path="/ozempic-malaysia" element={<PageOzempicMalaysia />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

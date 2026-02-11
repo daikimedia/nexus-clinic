@@ -6,8 +6,6 @@ import {
   Phone,
   MapPin,
   Clock,
-  Menu,
-  X,
   Sparkles,
   Heart,
   Award,
@@ -18,104 +16,9 @@ import {
   Quote,
   Scan,
 } from "lucide-react";
+import Navbar from "../components/Navbar";
+import { Footer } from "../components/Footer";
 
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-white/80 backdrop-blur-xl shadow-sm" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-20 lg:h-24">
-          {/* Logo */}
-          <motion.a
-            href="#"
-            className="text-2xl lg:text-3xl tracking-tight font-georgia text-brown"
-            whileHover={{ scale: 1.02 }}
-          >
-            <span className="font-normal">NEXUS</span>
-            <span className="font-light text-wine">CLINIC</span>
-          </motion.a>
-
-          {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center space-x-12">
-            {["About", "Services", "Treatments", "Contact"].map((item) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-sm tracking-wide relative group text-brown hover:text-wine transition-colors"
-                whileHover={{ color: "#8C4F58" }}
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-wine group-hover:w-full transition-all duration-300" />
-              </motion.a>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="hidden lg:flex items-center px-6 py-3 rounded-full text-sm tracking-wide border border-brown text-brown hover:bg-brown hover:text-white transition-colors"
-          >
-            Book Now
-          </motion.button>
-
-          {/* Mobile Toggle */}
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-brown"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white/95 backdrop-blur-xl"
-          >
-            <div className="px-6 py-8 space-y-6">
-              {["About", "Services", "Treatments", "Contact"].map((item, i) => (
-                <motion.a
-                  key={item}
-                  href="#"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="block text-2xl font-georgia text-brown"
-                >
-                  {item}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
-  );
-};
-
-// Floating Glass Card Component
 const GlassCard = ({
   children,
   className = "",
@@ -136,71 +39,9 @@ const GlassCard = ({
   </motion.div>
 );
 
-// Circular Progress Component
-const CircularProgress = ({
-  value,
-  label,
-}: {
-  value: number;
-  label: string;
-}) => {
-  const circumference = 2 * Math.PI * 36;
-  const progress = ((100 - value) / 100) * circumference;
-
-  return (
-    <div className="flex flex-col items-center">
-      <div className="relative w-20 h-20">
-        <svg className="w-20 h-20 -rotate-90">
-          <circle
-            cx="40"
-            cy="40"
-            r="36"
-            className="stroke-cream"
-            strokeWidth="4"
-            fill="none"
-          />
-          <motion.circle
-            cx="40"
-            cy="40"
-            r="36"
-            className="stroke-wine"
-            strokeWidth="4"
-            fill="none"
-            strokeLinecap="round"
-            initial={{
-              strokeDasharray: circumference,
-              strokeDashoffset: circumference,
-            }}
-            animate={{ strokeDashoffset: progress }}
-            transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-xl font-semibold text-brown">{value}</span>
-        </div>
-      </div>
-      <span className="text-sm mt-2 font-medium text-taupe">{label}</span>
-    </div>
-  );
-};
-
-// Hero Section
 const HeroSection = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: (e.clientX - rect.left - rect.width / 2) / 50,
-      y: (e.clientY - rect.top - rect.height / 2) / 50,
-    });
-  };
-
   return (
-    <section
-      className="relative min-h-screen pt-24 lg:pt-0 overflow-hidden bg-cream"
-      onMouseMove={handleMouseMove}
-    >
+    <section className="relative min-h-screen pt-24 lg:pt-0 overflow-hidden bg-cream">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-0 right-0 w-200 h-200 rounded-full blur-3xl bg-linear-radial from-rose/20 to-transparent" />
@@ -321,9 +162,6 @@ const HeroSection = () => {
           <div className="order-1 lg:order-2 relative">
             <motion.div
               className="relative"
-              style={{
-                transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`,
-              }}
               transition={{ type: "spring", stiffness: 150, damping: 15 }}
             >
               {/* Main Image */}
@@ -391,14 +229,6 @@ const HeroSection = () => {
                       Scan Your Face
                     </span>
                   </div>
-                </GlassCard>
-
-                {/* Moisture Card */}
-                <GlassCard
-                  className="absolute top-1/3 -left-4 lg:-left-16 p-4 lg:p-5"
-                  delay={1.4}
-                >
-                  <CircularProgress value={75} label="Moisture" />
                 </GlassCard>
 
                 {/* Treatment Gallery Card */}
@@ -471,7 +301,6 @@ const HeroSection = () => {
   );
 };
 
-// Services Bento Grid
 const ServicesSection = () => {
   const services = [
     {
@@ -830,7 +659,6 @@ const TestimonialsSection = () => {
   );
 };
 
-// Contact Section
 const ContactSection = () => {
   return (
     <section id="contact" className="py-24 lg:py-32 bg-brown">
@@ -945,79 +773,11 @@ const ContactSection = () => {
   );
 };
 
-// Footer
-const Footer = () => {
-  return (
-    <footer className="bg-light">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <span className="text-2xl mb-6 block font-georgia text-brown">
-              NEXUS<span className="text-wine">CLINIC</span>
-            </span>
-            <p className="max-w-md mb-6 text-taupe">
-              Advanced aesthetic and medical weight loss clinic in Kuala Lumpur.
-              Where science meets artistry for your natural beauty.
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-6 text-brown">Quick Links</h4>
-            <ul className="space-y-3">
-              {["About Us", "Services", "Treatments", "Blog", "Contact"].map(
-                (link) => (
-                  <li key={link}>
-                    <motion.a
-                      href="#"
-                      whileHover={{ x: 5 }}
-                      className="inline-block text-taupe hover:text-wine transition-colors"
-                    >
-                      {link}
-                    </motion.a>
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-semibold mb-6 text-brown">Contact</h4>
-            <ul className="space-y-3 text-taupe">
-              <li>Wisma UOA II, KL</li>
-              <li>016-702 5699</li>
-              <li>info@nexusclinic.com</li>
-            </ul>
-          </div>
-        </div>
-
-        <div className="border-t border-taupe/30 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-taupe">
-            © 2026 Nexus Clinic. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            {["Privacy Policy", "Terms of Use"].map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="text-sm text-taupe hover:text-wine transition-colors"
-              >
-                {link}
-              </a>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
 export default function HomePageNexus() {
   return (
     <div className="min-h-screen bg-cream font-inter">
-      <Navigation />
+      {/* <Navigation /> */}
+      <Navbar />
       <HeroSection />
       <ServicesSection />
       <WhyChooseSection />
