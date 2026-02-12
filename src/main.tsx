@@ -1,17 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePageNexus from "./pages/HomePage";
 import "./index.css";
-import PageOzempicMalaysia from "./pages/PageOzempicMalaysia";
+import AppRouter from "./routes/AppRouter";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePageNexus />} />
-        <Route path="/ozempic-malaysia" element={<PageOzempicMalaysia />} />
-      </Routes>
-    </BrowserRouter>
+    <AppRouter />
   </StrictMode>,
 );
