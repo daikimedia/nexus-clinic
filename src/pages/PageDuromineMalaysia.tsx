@@ -6,7 +6,6 @@ import {
   Shield,
   CheckCircle2,
   AlertTriangle,
-  Pill,
   Heart,
   Star,
   ArrowRight,
@@ -22,6 +21,8 @@ import {
   fadeInLeft,
   fadeInRight,
   scaleIn,
+  containerVariants,
+  rowVariants,
 } from "../lib/animations";
 import BeforeAfterSection from "../components/BeforeAfter";
 import FAQ from "../components/FAQ";
@@ -453,78 +454,125 @@ const BenefitsSection = () => (
   </section>
 );
 
-const DosageSection = () => (
-  <section className="py-20 md:py-32 bg-cream">
-    <div className="container mx-auto px-4">
+const DosageComparison = () => {
+  const dosages = [
+    {
+      dosage: "15mg",
+      useCase: "Beginners",
+      notes: "Mild effects, fewer side effects",
+      level: "low",
+    },
+    {
+      dosage: "30mg",
+      useCase: "Most common",
+      notes: "Balanced results and tolerance",
+      level: "mid",
+    },
+    {
+      dosage: "40mg",
+      useCase: "Advanced cases",
+      notes: "Strongest dose, requires close monitoring",
+      level: "high",
+    },
+  ];
+
+  const getLevelColor = (level: string) => {
+    switch (level) {
+      case "low":
+        return "bg-taupe/20 border-l-taupe";
+      case "mid":
+        return "bg-rose/20 border-l-rose";
+      case "high":
+        return "bg-wine/20 border-l-wine";
+      default:
+        return "bg-cream";
+    }
+  };
+
+  return (
+    <section className="py-12 px-4 bg-cream">
       <SectionTitle subtitle="Your doctor will recommend the optimal dosage based on your needs">
         Available <span className="text-wine italic">Dosages</span>
       </SectionTitle>
+      <div className="max-w-4xl mx-auto">
+        {/* Desktop Table */}
+        <motion.div
+          className="hidden md:block overflow-hidden rounded-xl shadow-lg"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          <table className="w-full">
+            <thead>
+              <tr className="bg-wine text-light">
+                <th className="px-6 py-4 text-left font-inter font-semibold">
+                  Dosage
+                </th>
+                <th className="px-6 py-4 text-left font-inter font-semibold">
+                  Use Case
+                </th>
+                <th className="px-6 py-4 text-left font-inter font-semibold">
+                  Notes
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {dosages.map((item, index) => (
+                <motion.tr
+                  key={index}
+                  variants={rowVariants}
+                  className={`
+                  ${index % 2 === 0 ? "bg-cream" : "bg-light"}
+                  hover:bg-taupe/20 transition-colors duration-200
+                  border-b border-taupe/20
+                `}
+                >
+                  <td className="px-6 py-4 font-inter font-bold text-wine">
+                    {item.dosage}
+                  </td>
+                  <td className="px-6 py-4 font-inter font-medium text-brown">
+                    {item.useCase}
+                  </td>
+                  <td className="px-6 py-4 font-inter text-brown/80">
+                    {item.notes}
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
+        </motion.div>
 
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-      >
-        {[
-          {
-            dose: "15mg",
-            label: "Beginners",
-            desc: "Mild effects, fewer side effects. Ideal for first-time users.",
-            popular: false,
-          },
-          {
-            dose: "30mg",
-            label: "Most Common",
-            desc: "Balanced results and tolerance. Recommended for most patients.",
-            popular: true,
-          },
-          {
-            dose: "40mg",
-            label: "Advanced",
-            desc: "Strongest dose, requires close monitoring by your doctor.",
-            popular: false,
-          },
-        ].map((item, index) => (
-          <motion.div
-            key={index}
-            variants={fadeInUp}
-            className={`relative rounded-3xl p-8 text-center ${item.popular ? "bg-wine text-cream" : "bg-white border border-taupe/20"}`}
-          >
-            {item.popular && (
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-rose text-cream text-sm px-4 py-1 rounded-full font-inter">
-                Most Popular
-              </span>
-            )}
-            <div
-              className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 ${item.popular ? "bg-white/20" : "bg-wine/10"}`}
+        {/* Mobile Cards */}
+        <motion.div
+          className="md:hidden space-y-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={containerVariants}
+        >
+          {dosages.map((item, index) => (
+            <motion.div
+              key={index}
+              variants={rowVariants}
+              className={`rounded-lg p-4 shadow-md border-l-4 ${getLevelColor(item.level)}`}
             >
-              <Pill
-                className={`w-10 h-10 ${item.popular ? "text-cream" : "text-wine"}`}
-              />
-            </div>
-            <h3
-              className={`font-georgia text-4xl mb-2 ${item.popular ? "text-cream" : "text-brown"}`}
-            >
-              {item.dose}
-            </h3>
-            <p
-              className={`font-inter font-medium mb-4 ${item.popular ? "text-cream/80" : "text-wine"}`}
-            >
-              {item.label}
-            </p>
-            <p
-              className={`font-inter text-sm ${item.popular ? "text-cream/70" : "text-taupe"}`}
-            >
-              {item.desc}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
-    </div>
-  </section>
-);
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-inter font-bold text-wine text-xl">
+                  {item.dosage}
+                </span>
+                <span className="font-inter text-sm font-medium text-rose bg-rose/10 px-3 py-1 rounded-full">
+                  {item.useCase}
+                </span>
+              </div>
+              <p className="font-inter text-brown/80 text-sm">{item.notes}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 const SafetySection = () => (
   <section className="py-20 md:py-32 bg-light">
@@ -763,7 +811,7 @@ const PageDuromineMalaysia = () => {
         <WhoIsItForSection />
         <ComparisonSection />
         <BenefitsSection />
-        <DosageSection />
+        <DosageComparison />
         <SafetySection />
         <TestimonialSection />
         <PricingSection />

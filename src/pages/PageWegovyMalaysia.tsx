@@ -22,6 +22,8 @@ import {
   staggerContainer,
   fadeInLeft,
   fadeInRight,
+  rowVariants,
+  containerVariants,
 } from "../lib/animations";
 import BeforeAfterSection from "../components/BeforeAfter";
 import Navbar from "../components/Navbar";
@@ -60,6 +62,41 @@ const dataFaq = [
   {
     q: "How do I use Wegovy?",
     a: "It's a weekly pen injection in the stomach, thigh, or upper arm. Our medical team will provide complete training and ongoing support.",
+  },
+];
+
+const features = [
+  {
+    feature: "Active Ingredient",
+    mounjaro: "Tirzepatide",
+    ozempic: "Semaglutide",
+    saxenda: "Liraglutide",
+  },
+  {
+    feature: "Frequency",
+    mounjaro: "Once weekly",
+    ozempic: "Once weekly",
+    saxenda: "Daily",
+  },
+  {
+    feature: "Weight Loss Avg",
+    mounjaro: "Up to 22%",
+    ozempic: "Up to 15%",
+    saxenda: "Up to 10%",
+    highlight: "mounjaro",
+  },
+  {
+    feature: "Dual-Hormone Action",
+    mounjaro: "Yes (GIP + GLP-1)",
+    ozempic: "No (GLP-1 only)",
+    saxenda: "No (GLP-1 only)",
+    highlight: "mounjaro",
+  },
+  {
+    feature: "Suitable For",
+    mounjaro: "Obesity, Diabetes, PCOS",
+    ozempic: "Diabetes, Obesity",
+    saxenda: "General Weight Loss",
   },
 ];
 
@@ -511,152 +548,162 @@ export default function PageWegovyMalaysia() {
         <BeforeAfterSection />
 
         {/* Comparison Section */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto px-4">
+        <section className="py-16 px-4 bg-cream">
+          <div
+            className="text-center max-w-2xl mx-auto mb-16"
+            style={{ opacity: "1", transform: "none" }}
+          >
+            <span className="text-wine font-medium tracking-wider uppercase text-sm">
+              Compare Options
+            </span>
+            <h2 className="text-3xl md:text-4xl font-georgia text-brown mt-4">
+              Wegovy vs Other Treatments
+            </h2>
+            <p className="text-taupe mt-4">
+              Find the right solution for your weight loss journey
+            </p>
+          </div>
+          <div className="max-w-5xl mx-auto">
+            {/* Desktop Table */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="hidden md:block overflow-x-auto rounded-xl shadow-lg"
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              className="text-center max-w-2xl mx-auto mb-16"
+              variants={containerVariants}
             >
-              <span className="text-wine font-medium tracking-wider uppercase text-sm">
-                Compare Options
-              </span>
-              <h2 className="text-3xl md:text-4xl font-georgia text-brown mt-4">
-                Wegovy vs Other Treatments
-              </h2>
-              <p className="text-taupe mt-4">
-                Find the right solution for your weight loss journey
-              </p>
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-wine text-light">
+                    <th className="px-6 py-4 text-left font-inter font-semibold">
+                      Feature
+                    </th>
+                    <th className="px-6 py-4 text-center font-inter font-semibold">
+                      Mounjaro
+                    </th>
+                    <th className="px-6 py-4 text-center font-inter font-semibold">
+                      Ozempic
+                    </th>
+                    <th className="px-6 py-4 text-center font-inter font-semibold">
+                      Saxenda
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {features.map((item, index) => (
+                    <motion.tr
+                      key={index}
+                      variants={rowVariants}
+                      className={`
+                  ${index % 2 === 0 ? "bg-light" : "bg-cream"}
+                  hover:bg-taupe/20 transition-colors duration-200
+                  border-b border-taupe/20
+                `}
+                    >
+                      <td className="px-6 py-4 font-inter font-semibold text-brown">
+                        {item.feature}
+                      </td>
+                      <td
+                        className={`px-6 py-4 font-inter text-center ${item.highlight === "mounjaro" ? "text-wine font-bold bg-wine/10" : "text-brown/80"}`}
+                      >
+                        {item.mounjaro}
+                      </td>
+                      <td className="px-6 py-4 font-inter text-center text-brown/80">
+                        {item.ozempic}
+                      </td>
+                      <td className="px-6 py-4 font-inter text-center text-brown/80">
+                        {item.saxenda}
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
             </motion.div>
 
+            {/* Mobile Cards */}
             <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
+              className="md:hidden space-y-4"
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              className="max-w-5xl mx-auto"
+              variants={containerVariants}
             >
-              {/* Comparison Cards */}
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    name: "Wegovy",
-                    highlight: true,
-                    ingredient: "Semaglutide",
-                    frequency: "Once weekly",
-                    weightLoss: "Up to 15%",
-                    action: "GLP-1 Only",
-                    suitability: "Obesity, General Weight Loss",
-                  },
-                  {
-                    name: "Mounjaro",
-                    highlight: false,
-                    ingredient: "Tirzepatide",
-                    frequency: "Once weekly",
-                    weightLoss: "Up to 22%",
-                    action: "GIP + GLP-1",
-                    suitability: "Obesity, Diabetes, PCOS",
-                  },
-                  {
-                    name: "Saxenda",
-                    highlight: false,
-                    ingredient: "Liraglutide",
-                    frequency: "Daily",
-                    weightLoss: "Up to 10%",
-                    action: "GLP-1 Only",
-                    suitability: "General Weight Loss",
-                  },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    variants={fadeInUp}
-                    className={`relative rounded-2xl p-6 ${
-                      item.highlight
-                        ? "bg-linear-to-br from-wine to-rose text-white shadow-2xl shadow-wine/30 scale-105 z-10"
-                        : "bg-cream/50 border border-taupe/20"
-                    }`}
-                    whileHover={{ y: -5 }}
-                  >
-                    {item.highlight && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brown text-white px-4 py-1 rounded-full text-sm font-medium">
-                        Recommended
-                      </div>
-                    )}
-
-                    <h3
-                      className={`text-2xl font-georgia mb-6 ${item.highlight ? "text-white" : "text-brown"}`}
-                    >
-                      {item.name}
-                    </h3>
-
-                    <div className="space-y-4">
-                      {[
-                        { label: "Active Ingredient", value: item.ingredient },
-                        { label: "Frequency", value: item.frequency },
-                        { label: "Avg Weight Loss", value: item.weightLoss },
-                        { label: "Hormone Action", value: item.action },
-                        { label: "Suitable For", value: item.suitability },
-                      ].map((row, j) => (
-                        <div
-                          key={j}
-                          className={`flex justify-between items-center py-2 border-b ${
-                            item.highlight
-                              ? "border-white/20"
-                              : "border-taupe/20"
-                          }`}
-                        >
-                          <span
-                            className={
-                              item.highlight ? "text-white/70" : "text-taupe"
-                            }
-                          >
-                            {row.label}
-                          </span>
-                          <span
-                            className={`font-medium ${item.highlight ? "text-white" : "text-brown"}`}
-                          >
-                            {row.value}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <motion.button
-                      className={`w-full mt-6 py-3 rounded-xl font-medium transition-colors ${
-                        item.highlight
-                          ? "bg-white text-wine hover:bg-cream"
-                          : "bg-wine text-white hover:bg-wine/90"
-                      }`}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      Learn More
-                    </motion.button>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Help CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mt-12"
-            >
-              <p className="text-taupe mb-4">
-                Not sure which is right for you?
-              </p>
-              <motion.a
-                href="https://wa.link/q64h1l"
-                className="inline-flex items-center gap-2 text-wine font-medium hover:gap-3 transition-all"
-                whileHover={{ x: 5 }}
+              {/* Mounjaro Card */}
+              <motion.div
+                variants={rowVariants}
+                className="bg-wine/10 rounded-xl p-5 shadow-md border-l-4 border-wine"
               >
-                Speak with our specialists
-                <ArrowRight className="w-5 h-5" />
-              </motion.a>
+                <h4 className="font-inter font-bold text-wine text-xl mb-3">
+                  Mounjaro
+                </h4>
+                <div className="space-y-2 text-sm">
+                  {features.map((item, idx) => (
+                    <p key={idx}>
+                      <span className="text-taupe">{item.feature}:</span>{" "}
+                      <span
+                        className={`${item.highlight === "mounjaro" ? "text-wine font-bold" : "text-brown/80"}`}
+                      >
+                        {item.mounjaro}
+                      </span>
+                    </p>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Ozempic Card */}
+              <motion.div
+                variants={rowVariants}
+                className="bg-light rounded-xl p-5 shadow-md border-l-4 border-rose"
+              >
+                <h4 className="font-inter font-bold text-brown text-xl mb-3">
+                  Ozempic
+                </h4>
+                <div className="space-y-2 text-sm">
+                  {features.map((item, idx) => (
+                    <p key={idx}>
+                      <span className="text-taupe">{item.feature}:</span>{" "}
+                      <span className="text-brown/80">{item.ozempic}</span>
+                    </p>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Saxenda Card */}
+              <motion.div
+                variants={rowVariants}
+                className="bg-light rounded-xl p-5 shadow-md border-l-4 border-taupe"
+              >
+                <h4 className="font-inter font-bold text-brown text-xl mb-3">
+                  Saxenda
+                </h4>
+                <div className="space-y-2 text-sm">
+                  {features.map((item, idx) => (
+                    <p key={idx}>
+                      <span className="text-taupe">{item.feature}:</span>{" "}
+                      <span className="text-brown/80">{item.saxenda}</span>
+                    </p>
+                  ))}
+                </div>
+              </motion.div>
             </motion.div>
+
+            {/* CTA Footer */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="mt-8 text-center text-brown font-inter"
+            >
+              Want help deciding which one is best for you?{" "}
+              <a
+                href="/contact-us"
+                className="text-wine hover:text-rose underline font-semibold transition-colors"
+              >
+                Speak to our specialists
+              </a>{" "}
+              today.
+            </motion.p>
           </div>
         </section>
 
