@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import PageFatFreezingMalaysia from "../pages/PageFatFreezingMalaysia";
+import PageBodyContouring from "../pages/PageBodyContouring";
+import PageFraqtional from "../pages/PageFractionalLaser";
 
 const HomePageNexus = lazy(() => import("../pages/HomePage"));
 const PageOzempicMalaysia = lazy(() => import("../pages/PageOzempicMalaysia"));
@@ -23,6 +26,18 @@ export default function AppRouter() {
           <Route
             path="/hcg-weight-loss-malaysia"
             element={<PageHCGMalaysia />}
+          />
+          <Route
+            path="/fat-freezing-treatment"
+            element={<PageFatFreezingMalaysia />}
+          />
+          <Route
+            path="/body-contouring-malaysia"
+            element={<PageBodyContouring />}
+          />
+          <Route
+            path="/fraqtional-laser-resurfacing"
+            element={<PageFraqtional />}
           />
         </Routes>
       </Suspense>
