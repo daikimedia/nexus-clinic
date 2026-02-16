@@ -515,7 +515,7 @@ const PagePRPTreatment = () => {
 
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-glass backdrop-blur-md rounded-3xl p-8 lg:p-10 border border-cream/20">
-                  <h3 className="font-georgia text-2xl text-light mb-6">
+                  <h3 className="font-georgia text-2xl text-wine mb-6">
                     Areas Treated
                   </h3>
                   <div className="space-y-4">
@@ -526,13 +526,13 @@ const PagePRPTreatment = () => {
                         className="flex items-start gap-4 p-4 rounded-2xl bg-cream/5 hover:bg-cream/10 transition-colors"
                       >
                         <div className="w-10 h-10 rounded-xl bg-cream/20 flex items-center justify-center shrink-0">
-                          <Sparkles className="w-5 h-5 text-cream" />
+                          <Sparkles className="w-5 h-5 text-wine" />
                         </div>
                         <div>
-                          <h4 className="text-cream font-medium mb-1">
+                          <h4 className="text-wine font-medium mb-1">
                             {item.area}
                           </h4>
-                          <p className="text-cream/60 text-sm">{item.desc}</p>
+                          <p className="text-wine/60 text-sm">{item.desc}</p>
                         </div>
                       </motion.div>
                     ))}
