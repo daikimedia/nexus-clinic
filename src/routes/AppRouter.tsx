@@ -3,6 +3,9 @@ import { lazy, Suspense } from "react";
 import PageFatFreezingMalaysia from "../pages/PageFatFreezingMalaysia";
 import PageBodyContouring from "../pages/PageBodyContouring";
 import PageFraqtional from "../pages/PageFractionalLaser";
+import PageLEDPhototherapy from "../pages/PageLedPhototherapy";
+import PagePRPTreatment from "../pages/PagePrpPreg";
+import PageSubcision from "../pages/PageSubcision";
 
 const HomePageNexus = lazy(() => import("../pages/HomePage"));
 const PageOzempicMalaysia = lazy(() => import("../pages/PageOzempicMalaysia"));
@@ -39,6 +42,9 @@ export default function AppRouter() {
             path="/fraqtional-laser-resurfacing"
             element={<PageFraqtional />}
           />
+          <Route path="/led-phototherapy" element={<PageLEDPhototherapy />} />
+          <Route path="/prp-regenerative" element={<PagePRPTreatment />} />
+          <Route path="/subcision" element={<PageSubcision />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
