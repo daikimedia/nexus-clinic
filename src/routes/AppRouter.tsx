@@ -14,10 +14,8 @@ const PageMidlite = lazy(() => import("../pages/PageMidlite"));
 const PageMicroderMabrasion = lazy(
   () => import("../pages/PageMicroderMabrasion"),
 );
-const PageBotoxTreatment = lazy(() => import("../pages/PageBotoxTreatment"));
 const PageDermalFiler = lazy(() => import("../pages/PageDermalFiler"));
 const PageSkinPeelLED = lazy(() => import("../pages/PageSkinPeelLED"));
-const PageNonSugarical = lazy(() => import("../pages/PageNonSugarical"));
 const PageActiveAcne = lazy(() => import("../pages/PageActiveAcne"));
 
 const HomePageNexus = lazy(() => import("../pages/HomePage"));
