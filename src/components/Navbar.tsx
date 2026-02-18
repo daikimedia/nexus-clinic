@@ -42,6 +42,24 @@ const navItems = [
     },
   },
   {
+    label: "Skin Treatments",
+    href: "#",
+    submenu: {
+      weightLoss: [
+        "Acne Treatment KL",
+        "Acne Scar Treatment KL",
+        "Pigmentation Treatment KL",
+        "Melasma Treatment KL",
+        "Mole Removal KL",
+        "HydraFacial KL",
+        "Pico Laser KL",
+        "Dark Eye Circle Treatment KL",
+        "Skin Whitening Treatment KL",
+        "Eczema Treatment KL",
+      ],
+    },
+  },
+  {
     label: "Aesthetic Treatments",
     href: "#",
     submenu: {
