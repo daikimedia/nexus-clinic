@@ -47,10 +47,10 @@ const navItems = [
     },
   },
   {
-    label: "Skin Treatments",
+    label: "Aesthetic Treatments",
     href: "#",
     submenu: {
-      weightLoss: [
+      skin: [
         "Acne Treatment KL",
         "Acne Scar Treatment KL",
         "Pigmentation Treatment KL",
@@ -62,19 +62,6 @@ const navItems = [
         "Skin Whitening Treatment KL",
         "Eczema Treatment KL",
       ],
-    },
-  },
-  {
-    label: "Aesthetic Treatments",
-    href: "#",
-    submenu: {
-      skin: [
-        "Acne & Acne Scars",
-        "Pigmentation / Age Spots",
-        "Dark Spot Removal",
-        "Skin Lightening",
-        "Milia / Mole / Wart Removal",
-      ],
       face: [
         "Botox",
         "Wrinkle & Fine Line Removal",
@@ -85,10 +72,14 @@ const navItems = [
       ],
       hair: [
         "Hair Transplant",
-        "Hair Loss Treatments",
-        "Hair Mesotherapy",
-        "PRP for Hair",
-        "Stem Cell Therapy for Hair Loss",
+        "Fue Hair Transplant",
+        "PRP Hair Treatment",
+        "Hair Loss Treatment",
+        "Beard Transplant",
+        "Mesotherapy Hair Loss",
+        "Exosome Hair Treatment",
+        "Minoxidil Treatment",
+        "Finasteride",
       ],
       body: [
         "Stretch Marks",

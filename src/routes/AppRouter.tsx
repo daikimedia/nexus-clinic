@@ -96,6 +96,40 @@ const SimaglutideLanding = lazy(
   () => import("../pages/weightlossTreatment/SimaglutideInjection"),
 );
 
+// Hair Treatment
+
+const HairTransplantLanding = lazy(
+  () => import("../pages/hairTreatment/HairTransplant"),
+);
+
+const FUEHairTransplant = lazy(
+  () => import("../pages/hairTreatment/FUEHairTransplant"),
+);
+
+const PRPLandingPage = lazy(() => import("../pages/hairTreatment/PRPHair"));
+
+const HairLossTreatment = lazy(
+  () => import("../pages/hairTreatment/HairLossTreatment"),
+);
+
+const BeardLanding = lazy(
+  () => import("../pages/hairTreatment/BeardTreatment"),
+);
+
+const HairMesotherapyLanding = lazy(
+  () => import("../pages/hairTreatment/HairMesotherapy"),
+);
+
+const ExosomeLanding = lazy(() => import("../pages/hairTreatment/ExosomeHair"));
+
+const MinoxidilLanding = lazy(
+  () => import("../pages/hairTreatment/MinoxidilTreatment"),
+);
+
+const FinasterideLanding = lazy(
+  () => import("../pages/hairTreatment/Finasteride"),
+);
+
 export default function AppRouter() {
   return (
     <BrowserRouter>
@@ -184,6 +218,20 @@ export default function AppRouter() {
             path="/semaglutide-malaysia"
             element={<SimaglutideLanding />}
           />
+
+          {/* HAIR TREATMENT */}
+          <Route path="/hair-transplant/" element={<HairTransplantLanding />} />
+          <Route path="/fue-hair-transplant/" element={<FUEHairTransplant />} />
+          <Route path="/prp-hair-treatment/" element={<PRPLandingPage />} />
+          <Route path="/hair-loss-treatment/" element={<HairLossTreatment />} />
+          <Route path="/beard-transplant/" element={<BeardLanding />} />
+          <Route
+            path="/mesotherapy-hair-loss/"
+            element={<HairMesotherapyLanding />}
+          />
+          <Route path="/exosome-hair-treatment/" element={<ExosomeLanding />} />
+          <Route path="/minoxidil-treatment/" element={<MinoxidilLanding />} />
+          <Route path="/finasteride/" element={<FinasterideLanding />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
