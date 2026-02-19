@@ -1,31 +1,32 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+
 const AcneLandingPage = lazy(
-  () => import("../pages/newTreatment/AcneTreatment"),
+  () => import("../pages/skinTreatment/AcneTreatment"),
 );
 const AcneScarLanding = lazy(
-  () => import("../pages/newTreatment/AcneScarTreatment"),
+  () => import("../pages/skinTreatment/AcneScarTreatment"),
 );
 const PigmentationLanding = lazy(
-  () => import("../pages/newTreatment/PigmentationTreatment"),
+  () => import("../pages/skinTreatment/PigmentationTreatment"),
 );
 const MelasmaLanding = lazy(
-  () => import("../pages/newTreatment/MelasmaTreatment"),
+  () => import("../pages/skinTreatment/MelasmaTreatment"),
 );
 const MoleRemovalLanding = lazy(
-  () => import("../pages/newTreatment/MoleRemoval"),
+  () => import("../pages/skinTreatment/MoleRemoval"),
 );
 const HydraFacialLandingPage = lazy(
-  () => import("../pages/newTreatment/Hrdrafracial"),
+  () => import("../pages/skinTreatment/Hrdrafracial"),
 );
-const PicoLaserLanding = lazy(() => import("../pages/newTreatment/PicoLaser"));
+const PicoLaserLanding = lazy(() => import("../pages/skinTreatment/PicoLaser"));
 const DarkEyeCircleLanding = lazy(
-  () => import("../pages/newTreatment/DarkEyeCircleTreatment"),
+  () => import("../pages/skinTreatment/DarkEyeCircleTreatment"),
 );
 const SkinWhiteningLanding = lazy(
-  () => import("../pages/newTreatment/SkinWhitening"),
+  () => import("../pages/skinTreatment/SkinWhitening"),
 );
-const EczemaLandingPage = lazy(() => import("../pages/newTreatment/Eczema"));
+const EczemaLandingPage = lazy(() => import("../pages/skinTreatment/Eczema"));
 const PageFatFreezingMalaysia = lazy(
   () => import("../pages/PageFatFreezingMalaysia"),
 );
@@ -45,12 +46,54 @@ const PageSkinPeelLED = lazy(() => import("../pages/PageSkinPeelLED"));
 const PageActiveAcne = lazy(() => import("../pages/PageActiveAcne"));
 
 const HomePageNexus = lazy(() => import("../pages/HomePage"));
-const PageOzempicMalaysia = lazy(() => import("../pages/PageOzempicMalaysia"));
-const PageWegovyMalaysia = lazy(() => import("../pages/PageWegovyMalaysia"));
+const PageOzempicMalaysia = lazy(
+  () => import("../pages/weightlossTreatment/PageOzempicMalaysia"),
+);
+const PageWegovyMalaysia = lazy(
+  () => import("../pages/weightlossTreatment/PageWegovyMalaysia"),
+);
 const PageSaxendaMalaysia = lazy(() => import("../pages/PageSexandaMalaysia"));
-const PageHCGMalaysia = lazy(() => import("../pages/PageHCGMalaysia"));
+
+// WeightLOSS
+const CoolSculptingLanding = lazy(
+  () => import("../pages/weightlossTreatment/Coolsculpting"),
+);
 const PageDuromineMalaysia = lazy(
-  () => import("../pages/PageDuromineMalaysia"),
+  () => import("../pages/weightlossTreatment/Duromine"),
+);
+
+const FatFreezingLanding = lazy(
+  () => import("../pages/weightlossTreatment/FatFreezing"),
+);
+
+const DoctorMonitoredLanding = lazy(
+  () => import("../pages/weightlossTreatment/DoctorMonitored"),
+);
+
+const HCGWeightLossLanding = lazy(
+  () => import("../pages/weightlossTreatment/HCG"),
+);
+
+const DuromineLandingPage = lazy(
+  () => import("../pages/weightlossTreatment/Duromine"),
+);
+
+const GLP1LandingPage = lazy(() => import("../pages/weightlossTreatment/GLP"));
+
+const ZepboundLanding = lazy(
+  () => import("../pages/weightlossTreatment/ZepBound"),
+);
+
+const MounjaroLanding = lazy(
+  () => import("../pages/weightlossTreatment/Mounjaro"),
+);
+
+const TirzepatideLanding = lazy(
+  () => import("../pages/weightlossTreatment/Tirzepatide"),
+);
+
+const SimaglutideLanding = lazy(
+  () => import("../pages/weightlossTreatment/SimaglutideInjection"),
 );
 
 export default function AppRouter() {
@@ -59,14 +102,8 @@ export default function AppRouter() {
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<HomePageNexus />} />
-          <Route path="/ozempic-malaysia" element={<PageOzempicMalaysia />} />
-          <Route path="/wegovy-malaysia" element={<PageWegovyMalaysia />} />
           <Route path="/saxenda-malaysia" element={<PageSaxendaMalaysia />} />
           <Route path="/duromine-malaysia" element={<PageDuromineMalaysia />} />
-          <Route
-            path="/hcg-weight-loss-malaysia"
-            element={<PageHCGMalaysia />}
-          />
           <Route
             path="/fat-freezing-treatment"
             element={<PageFatFreezingMalaysia />}
@@ -112,6 +149,41 @@ export default function AppRouter() {
             element={<SkinWhiteningLanding />}
           />
           <Route path="eczema-treatment-kl/" element={<EczemaLandingPage />} />
+
+          {/* WEIGHT LOSS PAGES */}
+          <Route path="/ozempic-malaysia" element={<PageOzempicMalaysia />} />
+          <Route path="/wegovy-malaysia" element={<PageWegovyMalaysia />} />
+          <Route
+            path="/coolsculpting-malaysia/"
+            element={<CoolSculptingLanding />}
+          />
+          <Route
+            path="/fat-freezing-malaysia/"
+            element={<FatFreezingLanding />}
+          />
+          <Route
+            path="/doctor-monitored-malaysia/"
+            element={<DoctorMonitoredLanding />}
+          />
+          <Route
+            path="/hcg-weight-loss-malaysia/"
+            element={<HCGWeightLossLanding />}
+          />
+          <Route path="/duromine-malaysia/" element={<DuromineLandingPage />} />
+          <Route
+            path="/glp-1-programme-malaysia/"
+            element={<GLP1LandingPage />}
+          />
+          <Route path="/zepbound-malaysia/" element={<ZepboundLanding />} />
+          <Route path="/mounjaro-malaysia/" element={<MounjaroLanding />} />
+          <Route
+            path="/tirzepatide-malaysia/"
+            element={<TirzepatideLanding />}
+          />
+          <Route
+            path="/semaglutide-malaysia"
+            element={<SimaglutideLanding />}
+          />
         </Routes>
       </Suspense>
     </BrowserRouter>

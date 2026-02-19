@@ -24,10 +24,10 @@ import {
   fadeInRight,
   scaleIn,
   floatAnimation,
-} from "../lib/animations";
-import BeforeAfterSection from "../components/BeforeAfter";
-import Navbar from "../components/Navbar";
-import { Footer } from "../components/Footer";
+} from "../../lib/animations";
+import BeforeAfterSection from "../../components/BeforeAfter";
+import Navbar from "../../components/Navbar";
+import { Footer } from "../../components/Footer";
 
 const PageOzempicMalaysia = () => {
   const treatments = [

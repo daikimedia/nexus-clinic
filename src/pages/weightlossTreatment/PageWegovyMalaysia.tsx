@@ -24,11 +24,11 @@ import {
   fadeInRight,
   rowVariants,
   containerVariants,
-} from "../lib/animations";
-import BeforeAfterSection from "../components/BeforeAfter";
-import Navbar from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import FAQ from "../components/FAQ";
+} from "../../lib/animations";
+import BeforeAfterSection from "../../components/BeforeAfter";
+import Navbar from "../../components/Navbar";
+import { Footer } from "../../components/Footer";
+import FAQ from "../../components/FAQ";
 
 const pulseGlow = {
   initial: { boxShadow: "0 0 0 0 rgba(140, 79, 88, 0.4)" },
