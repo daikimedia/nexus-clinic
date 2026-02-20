@@ -1,6 +1,31 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
+const Blogs = lazy(() => import("../pages/Blog"));
+const Products = lazy(() => import("../pages/Products"));
+const Loading = lazy(() => import("../components/Loading"));
+
+const DermalFillersLanding = lazy(
+  () => import("../pages/faceTreatment/DermalFiller"),
+);
+
+const LipFillerLanding = lazy(() => import("../pages/faceTreatment/LipFiller"));
+
+const ChinFillerLanding = lazy(
+  () => import("../pages/faceTreatment/ChinFiller"),
+);
+
+const JawlineFillerLanding = lazy(
+  () => import("../pages/faceTreatment/JawlineFiller"),
+);
+
+const NoseThreadLiftLanding = lazy(
+  () => import("../pages/faceTreatment/NoseTreadLift"),
+);
+
+const MasseterBotoxPage = lazy(
+  () => import("../pages/faceTreatment/MasseterBotox"),
+);
 const AcneLandingPage = lazy(
   () => import("../pages/skinTreatment/AcneTreatment"),
 );
@@ -133,11 +158,13 @@ const FinasterideLanding = lazy(
 export default function AppRouter() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<HomePageNexus />} />
           <Route path="/saxenda-malaysia" element={<PageSaxendaMalaysia />} />
           <Route path="/duromine-malaysia" element={<PageDuromineMalaysia />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/blogs" element={<Blogs />} />
           <Route
             path="/fat-freezing-treatment"
             element={<PageFatFreezingMalaysia />}
@@ -183,7 +210,6 @@ export default function AppRouter() {
             element={<SkinWhiteningLanding />}
           />
           <Route path="eczema-treatment-kl/" element={<EczemaLandingPage />} />
-
           {/* WEIGHT LOSS PAGES */}
           <Route path="/ozempic-malaysia" element={<PageOzempicMalaysia />} />
           <Route path="/wegovy-malaysia" element={<PageWegovyMalaysia />} />
@@ -218,7 +244,6 @@ export default function AppRouter() {
             path="/semaglutide-malaysia"
             element={<SimaglutideLanding />}
           />
-
           {/* HAIR TREATMENT */}
           <Route path="/hair-transplant/" element={<HairTransplantLanding />} />
           <Route path="/fue-hair-transplant/" element={<FUEHairTransplant />} />
@@ -232,6 +257,16 @@ export default function AppRouter() {
           <Route path="/exosome-hair-treatment/" element={<ExosomeLanding />} />
           <Route path="/minoxidil-treatment/" element={<MinoxidilLanding />} />
           <Route path="/finasteride/" element={<FinasterideLanding />} />
+          //FACE TREATMENT
+          <Route path="/dermal-filler/" element={<DermalFillersLanding />} />
+          <Route path="/lip-filler/" element={<LipFillerLanding />} />
+          <Route path="/chin-filler/" element={<ChinFillerLanding />} />
+          <Route path="/jawline-filler/" element={<JawlineFillerLanding />} />
+          <Route
+            path="/nose-thread-lift/"
+            element={<NoseThreadLiftLanding />}
+          />
+          <Route path="/masseter-botox/" element={<MasseterBotoxPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

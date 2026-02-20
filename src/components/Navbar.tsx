@@ -63,12 +63,12 @@ const navItems = [
         "Eczema Treatment KL",
       ],
       face: [
-        "Botox",
-        "Wrinkle & Fine Line Removal",
-        "Facial Sculpting / Contouring",
-        "Non-surgical Face Lift",
-        "Face Contouring",
-        "Cheek Augmentation",
+        "Dermal Filler",
+        "Lip Filler",
+        "Chin Filler",
+        "Jawline Filler",
+        "Nose Thread Lift",
+        "Masseter Botox",
       ],
       hair: [
         "Hair Transplant",
@@ -81,13 +81,13 @@ const navItems = [
         "Minoxidil Treatment",
         "Finasteride",
       ],
-      body: [
-        "Stretch Marks",
-        "Body Contouring",
-        "Emsculpt - Muscle Toning & Fat Loss",
-        "Vanquish ME - Fat Reduction",
-        "Clatuu - Fat Freezing",
-      ],
+      // body: [
+      //   "Stretch Marks",
+      //   "Body Contouring",
+      //   "Emsculpt - Muscle Toning & Fat Loss",
+      //   "Vanquish ME - Fat Reduction",
+      //   "Clatuu - Fat Freezing",
+      // ],
     },
   },
   { label: "Products", href: "/products" },
@@ -108,7 +108,7 @@ const categoryLabels: Record<string, string> = {
   skin: "Skin",
   face: "Face",
   hair: "Hair",
-  body: "Body",
+  // body: "Body",
 };
 
 const Navbar = () => {
@@ -370,10 +370,10 @@ const Navbar = () => {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setIsLangOpen(!isLangOpen)}
-                  className={`flex items-center gap-2 px-3 py-2.5 rounded-full transition-all duration-300 ${
+                  className={`flex cursor-pointer items-center gap-2 px-3 py-2.5 rounded-full transition-all duration-300 ${
                     isScrolled
                       ? "text-brown hover:bg-cream"
-                      : "text-light/90 hover:text-light hover:bg-light/10"
+                      : "text-brown/90 hover:text-brown hover:bg-light/10"
                   }`}
                 >
                   <Globe size={16} />
