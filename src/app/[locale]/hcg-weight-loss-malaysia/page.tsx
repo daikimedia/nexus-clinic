@@ -1,5 +1,6 @@
 import HCGWeightLossLanding from "@/src/views/weightlossTreatment/HCG";
 
-export default function Page() {
-  return <HCGWeightLossLanding />;
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return <HCGWeightLossLanding locale={locale} />;
 }
