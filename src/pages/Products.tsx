@@ -424,14 +424,28 @@ export default function Products() {
                   <div className="pt-2 border-t border-light/10">
                     <div className="flex items-center gap-3">
                       <div className="flex -space-x-2">
-                        {["S", "A", "D", "R"].map((l, i) => (
-                          <div
-                            key={i}
-                            className="w-7 h-7 rounded-full bg-linear-to-br from-wine to-brown border-2 border-brown flex items-center justify-center text-[10px] text-light font-bold"
-                          >
-                            {l}
-                          </div>
-                        ))}
+                        <div className="flex -space-x-4 rtl:space-x-reverse">
+                          <img
+                            className="w-10 h-10 border-2 border-buffer rounded-full"
+                            src="/images/profile1.png"
+                            alt="p1"
+                          />
+                          <img
+                            className="w-10 h-10 border-2 border-buffer rounded-full"
+                            src="/images/profile2.png"
+                            alt="p2"
+                          />
+                          <img
+                            className="w-10 h-10 border-2 border-buffer rounded-full"
+                            src="/images/profile3.png"
+                            alt="p3"
+                          />
+                          <img
+                            className="w-10 h-10 border-2 border-buffer rounded-full"
+                            src="/images/profile4.png"
+                            alt="p4"
+                          />
+                        </div>
                       </div>
                       <p className="text-cream/70 text-xs leading-tight">
                         50,000+ patients

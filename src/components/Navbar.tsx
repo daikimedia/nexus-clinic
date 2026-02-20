@@ -223,9 +223,11 @@ const Navbar = () => {
               whileTap={{ scale: 0.98 }}
               className="shrink-0 relative z-10"
             >
-              <span className="text-2xl mb-6 block font-georgia text-brown">
-                NEXUS<span className="text-wine">CLINIC</span>
-              </span>
+              <img
+                src="/images/logo.png"
+                alt="Nexus Clinic Logo"
+                className="h-24 md:h-32 w-auto"
+              />
             </motion.a>
 
             {/* Desktop Navigation */}

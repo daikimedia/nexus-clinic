@@ -188,12 +188,28 @@ const PageOzempicMalaysia = () => {
                   className="flex items-center gap-6 pt-4"
                 >
                   <div className="flex -space-x-3">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
-                        key={i}
-                        className="w-10 h-10 rounded-full bg-linear-to-br from-rose to-wine border-2 border-light"
+                    <div className="flex -space-x-4 rtl:space-x-reverse">
+                      <img
+                        className="w-10 h-10 border-2 border-buffer rounded-full"
+                        src="/images/profile1.png"
+                        alt="p1"
                       />
-                    ))}
+                      <img
+                        className="w-10 h-10 border-2 border-buffer rounded-full"
+                        src="/images/profile2.png"
+                        alt="p2"
+                      />
+                      <img
+                        className="w-10 h-10 border-2 border-buffer rounded-full"
+                        src="/images/profile3.png"
+                        alt="p3"
+                      />
+                      <img
+                        className="w-10 h-10 border-2 border-buffer rounded-full"
+                        src="/images/profile4.png"
+                        alt="p4"
+                      />
+                    </div>
                   </div>
                   <div>
                     <div className="flex items-center gap-1 text-wine">

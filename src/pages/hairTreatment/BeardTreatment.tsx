@@ -98,12 +98,28 @@ export default function BeardLanding() {
                   className="flex items-center gap-8 pt-8"
                 >
                   <div className="flex -space-x-2">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div
-                        key={i}
-                        className="w-10 h-10 rounded-full bg-taupe border-2 border-white"
-                      ></div>
-                    ))}
+                    <div className="flex -space-x-4 rtl:space-x-reverse">
+                      <img
+                        className="w-10 h-10 border-2 border-buffer rounded-full"
+                        src="/images/profile1.png"
+                        alt="p1"
+                      />
+                      <img
+                        className="w-10 h-10 border-2 border-buffer rounded-full"
+                        src="/images/profile2.png"
+                        alt="p2"
+                      />
+                      <img
+                        className="w-10 h-10 border-2 border-buffer rounded-full"
+                        src="/images/profile3.png"
+                        alt="p3"
+                      />
+                      <img
+                        className="w-10 h-10 border-2 border-buffer rounded-full"
+                        src="/images/profile4.png"
+                        alt="p4"
+                      />
+                    </div>
                   </div>
                   <div className="text-brown">
                     <span className="font-bold text-2xl">2000+</span>

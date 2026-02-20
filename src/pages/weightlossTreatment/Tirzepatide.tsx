@@ -160,12 +160,28 @@ const TirzepatideLanding = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
                         <div className="flex -space-x-2">
-                          {[1, 2, 3].map((i) => (
-                            <div
-                              key={i}
-                              className="w-8 h-8 rounded-full bg-taupe/20 border-2 border-white"
+                          <div className="flex -space-x-4 rtl:space-x-reverse">
+                            <img
+                              className="w-10 h-10 border-2 border-buffer rounded-full"
+                              src="/images/profile1.png"
+                              alt="p1"
                             />
-                          ))}
+                            <img
+                              className="w-10 h-10 border-2 border-buffer rounded-full"
+                              src="/images/profile2.png"
+                              alt="p2"
+                            />
+                            <img
+                              className="w-10 h-10 border-2 border-buffer rounded-full"
+                              src="/images/profile3.png"
+                              alt="p3"
+                            />
+                            <img
+                              className="w-10 h-10 border-2 border-buffer rounded-full"
+                              src="/images/profile4.png"
+                              alt="p4"
+                            />
+                          </div>
                         </div>
                         <span className="text-sm text-brown">
                           +200 patients
