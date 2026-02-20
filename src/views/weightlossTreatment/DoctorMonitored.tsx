@@ -28,26 +28,19 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-export default function DoctorMonitoredLanding() {
+export default function DoctorMonitoredLanding({ locale = fallbackLng }: { locale?: string }) {
+  const { t } = useTranslation(locale, "doctorMonitored");
+
   const faqs = [
-    {
-      q: "What is doctor monitored weight loss?",
-      a: "A medically supervised plan where a doctor checks health risks, tracks progress, and adjusts your plan over time.",
-    },
-    {
-      q: "Who qualifies in Malaysia?",
-      a: "Using Asian BMI cut-offs: overweight at 23, obesity at 27.5, plus health risks assessment.",
-    },
-    {
-      q: "Are weight loss injections safe?",
-      a: "When prescribed and monitored by a doctor, yes. Never self-source or self-dose.",
-    },
-    {
-      q: "How soon will I see results?",
-      a: "Appetite changes first, weight loss starts within weeks and improves over months.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
   ];
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-cream to-white">
@@ -65,20 +58,19 @@ export default function DoctorMonitoredLanding() {
                 <div className="inline-flex items-center gap-2 bg-wine/10 px-4 py-2 rounded-full">
                   <Shield className="w-4 h-4 text-wine" />
                   <span className="text-sm font-medium text-wine">
-                    Medically Supervised in KL
+                    {t("hero.badge")}
                   </span>
                 </div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-brown leading-tight">
-                  Lose weight with a plan that's built around
+                  {t("hero.title1")}
                   <span className="text-wine block">
-                    your body, not guesswork
+                    {t("hero.title2")}
                   </span>
                 </h1>
 
                 <p className="text-lg text-taupe max-w-lg">
-                  Doctor monitored weight loss combining medical checks,
-                  realistic habits, and safe options when you qualify.
+                  {t("hero.description")}
                 </p>
 
                 <div className="flex flex-wrap gap-4">
@@ -87,14 +79,14 @@ export default function DoctorMonitoredLanding() {
                     whileTap={{ scale: 0.98 }}
                     className="bg-wine text-white px-8 py-4 rounded-full font-medium hover:bg-rose transition-all shadow-lg shadow-wine/20"
                   >
-                    Book Your Consultation
+                    {t("hero.bookConsultation")}
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="border-2 border-wine text-wine px-8 py-4 rounded-full font-medium hover:bg-wine/5 transition-all"
                   >
-                    Learn More
+                    {t("hero.learnMore")}
                   </motion.button>
                 </div>
 
@@ -104,10 +96,10 @@ export default function DoctorMonitoredLanding() {
                   className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8"
                 >
                   {[
-                    { icon: UserCheck, text: "Doctor Supervised" },
-                    { icon: FileText, text: "Personalised Plan" },
-                    { icon: Activity, text: "Ongoing Monitoring" },
-                    { icon: MapPin, text: "Jalan Pinang, KL" },
+                    { icon: UserCheck, text: t("hero.trust1") },
+                    { icon: FileText, text: t("hero.trust2") },
+                    { icon: Activity, text: t("hero.trust3") },
+                    { icon: MapPin, text: t("hero.trust4") },
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-2">
                       <div className="bg-white/70 backdrop-blur-sm p-2 rounded-lg">
@@ -123,30 +115,14 @@ export default function DoctorMonitoredLanding() {
                 <div className="relative z-10 bg-light rounded-3xl p-8 shadow-2xl">
                   <div className="space-y-6">
                     <h3 className="text-2xl font-serif text-brown">
-                      Your Journey Starts Here
+                      {t("hero.journeyTitle")}
                     </h3>
                     <div className="space-y-4">
                       {[
-                        {
-                          step: "01",
-                          title: "Medical Screening",
-                          desc: "BMI & health risk assessment",
-                        },
-                        {
-                          step: "02",
-                          title: "Body Analysis",
-                          desc: "Comprehensive measurements",
-                        },
-                        {
-                          step: "03",
-                          title: "Personalised Plan",
-                          desc: "Tailored strategy",
-                        },
-                        {
-                          step: "04",
-                          title: "Regular Follow-ups",
-                          desc: "Ongoing adjustments",
-                        },
+                        { step: "01", title: t("hero.step1"), desc: t("hero.step1Desc") },
+                        { step: "02", title: t("hero.step2"), desc: t("hero.step2Desc") },
+                        { step: "03", title: t("hero.step3"), desc: t("hero.step3Desc") },
+                        { step: "04", title: t("hero.step4"), desc: t("hero.step4Desc") },
                       ].map((item, index) => (
                         <motion.div
                           key={index}
@@ -190,35 +166,18 @@ export default function DoctorMonitoredLanding() {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-serif text-brown mb-6">
-                What "doctor monitored weight loss" really means
+                {t("whatIs.title")}
               </h2>
               <p className="text-lg text-taupe">
-                Not a crash diet, detox, or a one-time injection. It's a
-                medically supervised plan where a doctor checks your health
-                risks, tracks progress, and adjusts strategy.
+                {t("whatIs.description")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                {
-                  icon: Scale,
-                  title: "Asian BMI Guidelines",
-                  desc: "Overweight at BMI 23, Obesity at BMI 27.5",
-                  stat: "23+",
-                },
-                {
-                  icon: Heart,
-                  title: "Health Risk Screening",
-                  desc: "Blood pressure, cholesterol, and metabolic markers",
-                  stat: "100%",
-                },
-                {
-                  icon: Target,
-                  title: "Sustainable Results",
-                  desc: "Focus on fat loss, not just scale weight",
-                  stat: "14.9%",
-                },
+                { icon: Scale, title: t("whatIs.card1Title"), desc: t("whatIs.card1Desc"), stat: t("whatIs.card1Stat") },
+                { icon: Heart, title: t("whatIs.card2Title"), desc: t("whatIs.card2Desc"), stat: t("whatIs.card2Stat") },
+                { icon: Target, title: t("whatIs.card3Title"), desc: t("whatIs.card3Desc"), stat: t("whatIs.card3Stat") },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -256,14 +215,14 @@ export default function DoctorMonitoredLanding() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-serif text-brown">
-                  Why many people in Kuala Lumpur choose medical help
+                  {t("whyKL.title")}
                 </h2>
                 <div className="space-y-4">
                   {[
-                    "Long workdays and late dinners",
-                    "Grab food and stress eating",
-                    "Poor sleep affecting metabolism",
-                    "Hormonal challenges (PCOS, thyroid)",
+                    t("whyKL.reason1"),
+                    t("whyKL.reason2"),
+                    t("whyKL.reason3"),
+                    t("whyKL.reason4"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -276,9 +235,7 @@ export default function DoctorMonitoredLanding() {
                   ))}
                 </div>
                 <p className="text-taupe text-lg">
-                  Weight gain isn't just about willpower. Hormones, insulin
-                  resistance, medications, and stress can push appetite and
-                  cravings higher.
+                  {t("whyKL.description")}
                 </p>
               </motion.div>
 
@@ -287,15 +244,15 @@ export default function DoctorMonitoredLanding() {
                 className="bg-white rounded-3xl p-8 shadow-xl"
               >
                 <h3 className="text-2xl font-serif text-brown mb-6">
-                  Is this for you?
+                  {t("whyKL.isThisForYou")}
                 </h3>
                 <div className="space-y-4">
                   {[
-                    "BMI 27.5+ (Asian obesity cut-off)",
-                    "BMI 23+ with health risks",
-                    "Struggle with intense hunger or cravings",
-                    "PCOS, thyroid, or insulin resistance",
-                    "Repeated weight regain cycles",
+                    t("whyKL.check1"),
+                    t("whyKL.check2"),
+                    t("whyKL.check3"),
+                    t("whyKL.check4"),
+                    t("whyKL.check5"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -325,45 +282,20 @@ export default function DoctorMonitoredLanding() {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-serif text-brown mb-6">
-                What happens at Nexus Clinic Kuala Lumpur
+                {t("process.title")}
               </h2>
               <p className="text-lg text-taupe">
-                Step by step, with no guesswork
+                {t("process.subtitle")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-5 gap-4">
               {[
-                {
-                  icon: FileText,
-                  step: "01",
-                  title: "Consultation",
-                  desc: "Talk through your history",
-                },
-                {
-                  icon: Ruler,
-                  step: "02",
-                  title: "Measurements",
-                  desc: "BMI & waist analysis",
-                },
-                {
-                  icon: Droplet,
-                  step: "03",
-                  title: "Risk Check",
-                  desc: "Lab tests if needed",
-                },
-                {
-                  icon: Sparkles,
-                  step: "04",
-                  title: "Build Plan",
-                  desc: "Food, movement, support",
-                },
-                {
-                  icon: Calendar,
-                  step: "05",
-                  title: "Follow-ups",
-                  desc: "Adjust & optimize",
-                },
+                { icon: FileText, step: "01", title: t("process.step1Title"), desc: t("process.step1Desc") },
+                { icon: Ruler, step: "02", title: t("process.step2Title"), desc: t("process.step2Desc") },
+                { icon: Droplet, step: "03", title: t("process.step3Title"), desc: t("process.step3Desc") },
+                { icon: Sparkles, step: "04", title: t("process.step4Title"), desc: t("process.step4Desc") },
+                { icon: Calendar, step: "05", title: t("process.step5Title"), desc: t("process.step5Desc") },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -403,48 +335,47 @@ export default function DoctorMonitoredLanding() {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-serif text-brown mb-6">
-                Treatment options inside your plan
+                {t("treatments.title")}
               </h2>
               <p className="text-lg text-taupe">
-                Not everyone needs medication. When appropriate, it makes the
-                first phase easier.
+                {t("treatments.description")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Lifestyle Based",
+                  title: t("treatments.lifestyle"),
                   icon: Apple,
                   color: "from-green-500/20",
                   items: [
-                    "Calorie strategy",
-                    "Protein targets",
-                    "Fibre focus",
-                    "Movement planning",
+                    t("treatments.lifestyleItem1"),
+                    t("treatments.lifestyleItem2"),
+                    t("treatments.lifestyleItem3"),
+                    t("treatments.lifestyleItem4"),
                   ],
                 },
                 {
-                  title: "Prescription Support",
+                  title: t("treatments.prescription"),
                   icon: Droplet,
                   color: "from-wine/20",
                   items: [
-                    "GLP-1 medications",
-                    "Appetite control",
-                    "Metabolic support",
-                    "Regular monitoring",
+                    t("treatments.prescriptionItem1"),
+                    t("treatments.prescriptionItem2"),
+                    t("treatments.prescriptionItem3"),
+                    t("treatments.prescriptionItem4"),
                   ],
                   highlight: true,
                 },
                 {
-                  title: "Body Contouring",
+                  title: t("treatments.contouring"),
                   icon: Sparkles,
                   color: "from-purple-500/20",
                   items: [
-                    "Fat freezing",
-                    "Waist shaping",
-                    "Stubborn pockets",
-                    "Non-surgical",
+                    t("treatments.contouringItem1"),
+                    t("treatments.contouringItem2"),
+                    t("treatments.contouringItem3"),
+                    t("treatments.contouringItem4"),
                   ],
                 },
               ].map((item, index) => (
@@ -458,7 +389,7 @@ export default function DoctorMonitoredLanding() {
                 >
                   {item.highlight && (
                     <div className="absolute top-0 right-0 bg-wine text-white px-4 py-1 rounded-bl-2xl text-sm">
-                      Most Popular
+                      {t("treatments.mostPopular")}
                     </div>
                   )}
                   <div
@@ -494,10 +425,8 @@ export default function DoctorMonitoredLanding() {
               <div className="flex items-start gap-3">
                 <AlertCircle className="w-5 h-5 text-wine shrink-0 mt-0.5" />
                 <p className="text-sm text-brown">
-                  <span className="font-semibold">Important:</span> These
-                  medicines require a medical assessment and prescription. They
-                  are not "quick fixes." Always disclose GLP-1 use before any
-                  surgery due to aspiration risks under anesthesia.
+                  <span className="font-semibold">Important:</span>{" "}
+                  {t("treatments.importantNote")}
                 </p>
               </div>
             </motion.div>
@@ -515,20 +444,18 @@ export default function DoctorMonitoredLanding() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-serif text-brown">
-                  What results can you expect?
+                  {t("results.title")}
                 </h2>
                 <p className="text-lg text-taupe">
-                  Weight loss is gradual. Clinical trials show average loss
-                  around 14.9% at 68 weeks with semaglutide and lifestyle
-                  changes.
+                  {t("results.description")}
                 </p>
 
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { label: "Starting BMI", value: "30+", icon: Scale },
-                    { label: "Avg. Loss", value: "14.9%", icon: TrendingUp },
-                    { label: "Timeframe", value: "68 weeks", icon: Clock },
-                    { label: "Maintenance", value: "Ongoing", icon: Heart },
+                    { label: t("results.stat1Label"), value: t("results.stat1Value"), icon: Scale },
+                    { label: t("results.stat2Label"), value: t("results.stat2Value"), icon: TrendingUp },
+                    { label: t("results.stat3Label"), value: t("results.stat3Value"), icon: Clock },
+                    { label: t("results.stat4Label"), value: t("results.stat4Value"), icon: Heart },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -546,15 +473,15 @@ export default function DoctorMonitoredLanding() {
 
                 <div className="bg-cream p-6 rounded-2xl">
                   <h4 className="font-medium text-brown mb-3">
-                    Your outcome depends on:
+                    {t("results.dependsOn")}
                   </h4>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      "Starting weight",
-                      "Sleep & stress",
-                      "Food consistency",
-                      "Medication tolerance",
-                      "Follow-up quality",
+                      t("results.depends1"),
+                      t("results.depends2"),
+                      t("results.depends3"),
+                      t("results.depends4"),
+                      t("results.depends5"),
                     ].map((item, index) => (
                       <div
                         key={index}
@@ -571,30 +498,30 @@ export default function DoctorMonitoredLanding() {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-linear-to-br from-wine to-rose rounded-3xl p-8 text-white">
                   <h3 className="text-2xl font-serif mb-6">
-                    Pros & Cons (clear and honest)
+                    {t("results.prosConsTitle")}
                   </h3>
 
                   <div className="space-y-6">
                     <div>
                       <h4 className="font-medium mb-3 flex items-center gap-2">
-                        <CheckCircle2 className="w-5 h-5" /> Benefits
+                        <CheckCircle2 className="w-5 h-5" /> {t("results.benefitsTitle")}
                       </h4>
                       <ul className="space-y-2 text-white/80">
-                        <li>• Safer with medical screening</li>
-                        <li>• Personalised plan</li>
-                        <li>• Support through plateaus</li>
-                        <li>• Options beyond diet alone</li>
+                        <li>• {t("results.benefit1")}</li>
+                        <li>• {t("results.benefit2")}</li>
+                        <li>• {t("results.benefit3")}</li>
+                        <li>• {t("results.benefit4")}</li>
                       </ul>
                     </div>
 
                     <div>
                       <h4 className="font-medium mb-3 flex items-center gap-2">
-                        <AlertCircle className="w-5 h-5" /> Downsides
+                        <AlertCircle className="w-5 h-5" /> {t("results.downsideTitle")}
                       </h4>
                       <ul className="space-y-2 text-white/80">
-                        <li>• Costs more than DIY dieting</li>
-                        <li>• Requires check-ins</li>
-                        <li>• Possible side effects</li>
+                        <li>• {t("results.downside1")}</li>
+                        <li>• {t("results.downside2")}</li>
+                        <li>• {t("results.downside3")}</li>
                       </ul>
                     </div>
                   </div>
@@ -619,32 +546,32 @@ export default function DoctorMonitoredLanding() {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-serif text-brown mb-6">
-                Choose your path
+                {t("comparison.title")}
               </h2>
               <p className="text-lg text-taupe">
-                Medical weight loss vs other options
+                {t("comparison.subtitle")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "Doctor Monitored",
-                  desc: "Overall fat loss, appetite control, metabolic health",
+                  title: t("comparison.option1Title"),
+                  desc: t("comparison.option1Desc"),
                   icon: Heart,
-                  for: "Whole body transformation",
+                  for: t("comparison.option1For"),
                 },
                 {
-                  title: "Fat Freezing",
-                  desc: "Stubborn pockets and shaping",
+                  title: t("comparison.option2Title"),
+                  desc: t("comparison.option2Desc"),
                   icon: Sparkles,
-                  for: "Stable weight, specific areas",
+                  for: t("comparison.option2For"),
                 },
                 {
-                  title: "Bariatric Surgery",
-                  desc: "Severe obesity, complex health risks",
+                  title: t("comparison.option3Title"),
+                  desc: t("comparison.option3Desc"),
                   icon: Activity,
-                  for: "Serious medical cases",
+                  for: t("comparison.option3For"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -661,7 +588,7 @@ export default function DoctorMonitoredLanding() {
                   </h3>
                   <p className="text-taupe text-sm mb-3">{item.desc}</p>
                   <p className="text-xs text-wine font-medium">
-                    Best for: {item.for}
+                    {t("comparison.bestFor")} {item.for}
                   </p>
                 </motion.div>
               ))}
@@ -679,19 +606,18 @@ export default function DoctorMonitoredLanding() {
           >
             <motion.div variants={fadeInUp} className="space-y-6">
               <h2 className="text-3xl md:text-4xl font-serif text-brown">
-                Why Nexus Clinic Kuala Lumpur
+                {t("whyNexus.title")}
               </h2>
               <p className="text-lg text-taupe max-w-2xl mx-auto">
-                A doctor monitored program, not an influencer plan. Clear steps
-                from assessment to maintenance.
+                {t("whyNexus.description")}
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 text-left mt-12">
                 {[
-                  "Medical supervision, not shortcuts",
-                  "Multiple evidence-based options",
-                  "KL location (Jalan Pinang area)",
-                  "Regular follow-ups & adjustments",
+                  t("whyNexus.point1"),
+                  t("whyNexus.point2"),
+                  t("whyNexus.point3"),
+                  t("whyNexus.point4"),
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -709,7 +635,7 @@ export default function DoctorMonitoredLanding() {
                 whileTap={{ scale: 0.95 }}
                 className="mt-8 bg-wine text-white px-12 py-4 rounded-full font-medium text-lg shadow-xl shadow-wine/20 inline-flex items-center gap-2"
               >
-                Book a consultation at Nexus Clinic
+                {t("whyNexus.bookButton")}
                 <ChevronRight className="w-5 h-5" />
               </motion.button>
             </motion.div>
@@ -729,12 +655,10 @@ export default function DoctorMonitoredLanding() {
           >
             <motion.div variants={scaleIn} className="space-y-6">
               <h2 className="text-3xl md:text-4xl font-serif">
-                Ready for a weight loss plan that's monitored, realistic, and
-                safe?
+                {t("cta.title")}
               </h2>
               <p className="text-white/80 text-lg">
-                Start with a proper assessment, then follow a plan designed for
-                your body and lifestyle.
+                {t("cta.description")}
               </p>
               <motion.button
                 whileHover={{
@@ -745,7 +669,7 @@ export default function DoctorMonitoredLanding() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-wine px-12 py-4 rounded-full font-medium text-lg shadow-xl inline-flex items-center gap-2 transition-all"
               >
-                Book Your Consultation Today
+                {t("cta.bookButton")}
                 <ChevronRight className="w-5 h-5" />
               </motion.button>
             </motion.div>

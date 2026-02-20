@@ -29,30 +29,20 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const MounjaroLanding = () => {
+const MounjaroLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "mounjaro");
+
   const faqs = [
-    {
-      q: "Is Mounjaro approved for weight loss?",
-      a: "In the US, Mounjaro is approved for type 2 diabetes, while tirzepatide is approved for chronic weight management under the brand Zepbound. Local indications can differ by country, so your KL doctor should guide you.",
-    },
-    {
-      q: "How much weight can you lose on Mounjaro?",
-      a: "In obesity trials with tirzepatide, many people lost a meaningful percentage of body weight over about 72 weeks. Your result depends on dose tolerance, lifestyle, and health factors.",
-    },
-    {
-      q: "How fast does Mounjaro start working for weight loss?",
-      a: "Many people notice appetite changes in the first few weeks. Visible body changes often take 8 to 12 weeks, and keep building with time and consistency.",
-    },
-    {
-      q: "What happens when you stop Mounjaro?",
-      a: "Many people regain some weight if lifestyle habits are not supported. That is why a long-term plan matters, including nutrition, activity, sleep, and follow-up.",
-    },
-    {
-      q: "How much does Mounjaro cost in Malaysia?",
-      a: "Cost depends on dose and clinic support. Some Malaysia listings show around RM 1,150 for certain strengths, while other providers list higher ranges. Your total cost may include consults, labs, and follow-ups.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
   ];
+
   return (
     <>
       <main className="min-h-screen bg-light font-[--font-inter]">
@@ -79,21 +69,19 @@ const MounjaroLanding = () => {
                   >
                     <Sparkles className="w-4 h-4 text-wine" />
                     <span className="text-sm text-brown">
-                      Dual-Action GIP/GLP-1 Treatment
+                      {t("hero.badge")}
                     </span>
                   </motion.div>
 
                   <h1 className="text-5xl lg:text-6xl font-serif font-bold text-brown leading-tight">
-                    Quiet the cravings.
+                    {t("hero.title1")}
                     <span className="block text-wine">
-                      Reset your momentum.
+                      {t("hero.title2")}
                     </span>
                   </h1>
 
                   <p className="text-lg text-taupe max-w-lg">
-                    Mounjaro helps reduce appetite and "food noise" over time.
-                    Get a doctor-guided plan that fits your body and your
-                    lifestyle.
+                    {t("hero.description")}
                   </p>
                 </div>
 
@@ -103,7 +91,7 @@ const MounjaroLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="bg-wine text-white px-8 py-4 rounded-full font-medium flex items-center gap-2 hover:bg-opacity-90 transition-all"
                   >
-                    Book Your Consultation
+                    {t("hero.bookConsultation")}
                     <ChevronRight className="w-5 h-5" />
                   </motion.button>
                   <motion.button
@@ -111,7 +99,7 @@ const MounjaroLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="border-2 border-wine text-wine px-8 py-4 rounded-full font-medium hover:bg-wine hover:text-white transition-all"
                   >
-                    Learn More
+                    {t("hero.learnMore")}
                   </motion.button>
                 </div>
 
@@ -121,9 +109,9 @@ const MounjaroLanding = () => {
                   className="flex items-center gap-6 pt-8"
                 >
                   {[
-                    { icon: Shield, text: "Doctor Supervised" },
-                    { icon: Clock, text: "Weekly Injection" },
-                    { icon: Target, text: "Personalized Plan" },
+                    { icon: Shield, text: t("hero.badge1") },
+                    { icon: Clock, text: t("hero.badge2") },
+                    { icon: Target, text: t("hero.badge3") },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -144,9 +132,9 @@ const MounjaroLanding = () => {
                       <Syringe className="w-8 h-8 text-wine" />
                       <div>
                         <h3 className="font-serif text-xl text-brown">
-                          Quick Overview
+                          {t("hero.overviewTitle")}
                         </h3>
-                        <p className="text-taupe">Once-weekly injection</p>
+                        <p className="text-taupe">{t("hero.overviewSubtitle")}</p>
                       </div>
                     </div>
 
@@ -155,10 +143,10 @@ const MounjaroLanding = () => {
                         <CheckCircle2 className="w-5 h-5 text-wine mt-1" />
                         <div>
                           <p className="text-brown font-medium">
-                            Dual-action formula
+                            {t("hero.check1Title")}
                           </p>
                           <p className="text-sm text-taupe">
-                            GIP + GLP-1 pathways
+                            {t("hero.check1Desc")}
                           </p>
                         </div>
                       </div>
@@ -166,10 +154,10 @@ const MounjaroLanding = () => {
                         <CheckCircle2 className="w-5 h-5 text-wine mt-1" />
                         <div>
                           <p className="text-brown font-medium">
-                            Clinical results
+                            {t("hero.check2Title")}
                           </p>
                           <p className="text-sm text-taupe">
-                            Significant weight loss over 72 weeks
+                            {t("hero.check2Desc")}
                           </p>
                         </div>
                       </div>
@@ -177,10 +165,10 @@ const MounjaroLanding = () => {
                         <CheckCircle2 className="w-5 h-5 text-wine mt-1" />
                         <div>
                           <p className="text-brown font-medium">
-                            Medical supervision
+                            {t("hero.check3Title")}
                           </p>
                           <p className="text-sm text-taupe">
-                            Regular check-ins & support
+                            {t("hero.check3Desc")}
                           </p>
                         </div>
                       </div>
@@ -205,11 +193,11 @@ const MounjaroLanding = () => {
               className="text-center max-w-2xl mx-auto mb-16"
             >
               <h2 className="text-4xl font-serif font-bold text-brown mb-4">
-                How Mounjaro Supports
-                <span className="text-wine"> Weight Loss</span>
+                {t("howItWorks.title1")}
+                <span className="text-wine"> {t("howItWorks.title2")}</span>
               </h2>
               <p className="text-taupe">
-                Dual-hormone targeting to help you achieve sustainable results
+                {t("howItWorks.subtitle")}
               </p>
             </motion.div>
 
@@ -217,22 +205,20 @@ const MounjaroLanding = () => {
               {[
                 {
                   icon: Brain,
-                  title: "Quiet Food Noise",
-                  description:
-                    "Reduces constant thoughts about food and cravings",
+                  title: t("howItWorks.item1Title"),
+                  description: t("howItWorks.item1Desc"),
                   color: "from-wine to-rose",
                 },
                 {
                   icon: UtensilsCrossed,
-                  title: "Feel Full Sooner",
-                  description: "Slows stomach emptying for longer satiety",
+                  title: t("howItWorks.item2Title"),
+                  description: t("howItWorks.item2Desc"),
                   color: "from-rose to-taupe",
                 },
                 {
                   icon: Zap,
-                  title: "Metabolic Control",
-                  description:
-                    "Dual GIP and GLP-1 activation for better results",
+                  title: t("howItWorks.item3Title"),
+                  description: t("howItWorks.item3Desc"),
                   color: "from-taupe to-wine",
                 },
               ].map((item, index) => (
@@ -268,26 +254,26 @@ const MounjaroLanding = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <h2 className="text-4xl font-serif font-bold text-brown">
-                  Who Mounjaro May Be
-                  <span className="block text-wine">Suitable For</span>
+                  {t("eligibility.title1")}
+                  <span className="block text-wine">{t("eligibility.title2")}</span>
                 </h2>
 
                 <div className="space-y-4">
                   {[
                     {
                       icon: Scale,
-                      text: "BMI 30+",
-                      subtext: "or BMI 27+ with weight-related conditions",
+                      text: t("eligibility.criteria1Text"),
+                      subtext: t("eligibility.criteria1Sub"),
                     },
                     {
                       icon: Heart,
-                      text: "Weight affecting health",
-                      subtext: "Blood pressure, glucose, insulin resistance",
+                      text: t("eligibility.criteria2Text"),
+                      subtext: t("eligibility.criteria2Sub"),
                     },
                     {
                       icon: Activity,
-                      text: "Progress stalled",
-                      subtext: "Despite serious effort and lifestyle changes",
+                      text: t("eligibility.criteria3Text"),
+                      subtext: t("eligibility.criteria3Sub"),
                     },
                   ].map((item, index) => (
                     <motion.div
@@ -311,15 +297,15 @@ const MounjaroLanding = () => {
                 <div className="bg-wine bg-opacity-5 rounded-3xl p-8 border border-wine border-opacity-20">
                   <h3 className="text-2xl font-serif font-bold text-cream/80 mb-6 flex items-center gap-2">
                     <AlertCircle className="w-6 h-6 text-cream/80" />
-                    Important Contraindications
+                    {t("eligibility.contraindicationsTitle")}
                   </h3>
 
                   <div className="space-y-4">
                     {[
-                      "Personal or family history of medullary thyroid carcinoma (MTC)",
-                      "MEN 2 (multiple endocrine neoplasia type 2)",
-                      "Pregnancy or trying to conceive",
-                      "Past pancreatitis or gallbladder disease",
+                      t("eligibility.contra1"),
+                      t("eligibility.contra2"),
+                      t("eligibility.contra3"),
+                      t("eligibility.contra4"),
                     ].map((text, index) => (
                       <motion.div
                         key={index}
@@ -333,7 +319,7 @@ const MounjaroLanding = () => {
                   </div>
 
                   <p className="mt-6 text-sm text-cream italic">
-                    Your plan should always be doctor-led. No shortcuts.
+                    {t("eligibility.contraNote")}
                   </p>
                 </div>
               </motion.div>
@@ -354,11 +340,11 @@ const MounjaroLanding = () => {
               className="text-center max-w-2xl mx-auto mb-16"
             >
               <h2 className="text-4xl font-serif font-bold text-brown mb-4">
-                Your Weight Loss
-                <span className="text-wine"> Journey</span>
+                {t("journey.title1")}
+                <span className="text-wine"> {t("journey.title2")}</span>
               </h2>
               <p className="text-taupe">
-                What to expect at each stage of your treatment
+                {t("journey.subtitle")}
               </p>
             </motion.div>
 
@@ -369,24 +355,21 @@ const MounjaroLanding = () => {
               <div className="space-y-12">
                 {[
                   {
-                    week: "Week 1-4",
-                    title: "Early Changes",
-                    description:
-                      "Subtle appetite changes, reduced mindless snacking",
+                    week: t("journey.stage1Week"),
+                    title: t("journey.stage1Title"),
+                    description: t("journey.stage1Desc"),
                     icon: Clock,
                   },
                   {
-                    week: "Week 8-12",
-                    title: "Visible Results",
-                    description:
-                      "Noticeable body changes, smaller portions feel enough",
+                    week: t("journey.stage2Week"),
+                    title: t("journey.stage2Title"),
+                    description: t("journey.stage2Desc"),
                     icon: TrendingDown,
                   },
                   {
-                    week: "Month 6-12",
-                    title: "Sustainable Progress",
-                    description:
-                      "Significant weight loss, better health markers",
+                    week: t("journey.stage3Week"),
+                    title: t("journey.stage3Title"),
+                    description: t("journey.stage3Desc"),
                     icon: Award,
                   },
                 ].map((item, index) => (
@@ -428,18 +411,18 @@ const MounjaroLanding = () => {
             <div className="grid lg:grid-cols-2 gap-12">
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <h2 className="text-4xl font-serif font-bold text-brown">
-                  Common
-                  <span className="text-[--color-wine"> Side Effects</span>
+                  {t("sideEffects.title1")}
+                  <span className="text-[--color-wine"> {t("sideEffects.title2")}</span>
                 </h2>
 
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { icon: Droplets, text: "Nausea" },
-                    { icon: Activity, text: "Constipation" },
-                    { icon: Droplets, text: "Diarrhea" },
-                    { icon: Activity, text: "Bloating" },
-                    { icon: Droplets, text: "Reflux" },
-                    { icon: Activity, text: "Reduced appetite" },
+                    { icon: Droplets, text: t("sideEffects.effect1") },
+                    { icon: Activity, text: t("sideEffects.effect2") },
+                    { icon: Droplets, text: t("sideEffects.effect3") },
+                    { icon: Activity, text: t("sideEffects.effect4") },
+                    { icon: Droplets, text: t("sideEffects.effect5") },
+                    { icon: Activity, text: t("sideEffects.effect6") },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -454,15 +437,15 @@ const MounjaroLanding = () => {
 
                 <div className="bg-wine bg-opacity-5 p-6 rounded-2xl">
                   <h3 className="font-serif text-xl text-cream mb-3">
-                    Tips to minimize discomfort:
+                    {t("sideEffects.tipsTitle")}
                   </h3>
                   <ul className="space-y-2">
                     {[
-                      "Smaller, more frequent meals",
-                      "Eat slowly and chew thoroughly",
-                      "Increase water and fiber intake",
-                      "Prioritize protein early in the day",
-                      "Avoid greasy foods initially",
+                      t("sideEffects.tip1"),
+                      t("sideEffects.tip2"),
+                      t("sideEffects.tip3"),
+                      t("sideEffects.tip4"),
+                      t("sideEffects.tip5"),
                     ].map((tip, index) => (
                       <li key={index} className="flex items-start gap-2">
                         <CheckCircle2 className="w-4 h-4 text-wine mt-1" />
@@ -477,39 +460,36 @@ const MounjaroLanding = () => {
                 <div className="bg-brown bg-opacity-5 rounded-3xl p-8">
                   <h3 className="text-2xl font-serif font-bold text-brown mb-4 flex items-center gap-2">
                     <AlertCircle className="w-6 h-6 text-wine" />
-                    Important Safety Note
+                    {t("sideEffects.safetyTitle")}
                   </h3>
 
                   <div className="space-y-4">
                     <p className="text-taupe">
-                      GLP-1 medicines can slow stomach emptying. Regulators
-                      highlight aspiration risk during general anesthesia or
-                      deep sedation.
+                      {t("sideEffects.safetyDesc")}
                     </p>
 
                     <div className="bg-white p-4 rounded-xl">
                       <p className="font-medium text-brown mb-2">
-                        If you have a procedure coming up:
+                        {t("sideEffects.procedureTitle")}
                       </p>
                       <ul className="space-y-2">
                         <li className="flex items-start gap-2">
                           <ChevronRight className="w-4 h-4 text-wine mt-1" />
                           <span className="text-taupe">
-                            Tell your doctor and anesthetist early
+                            {t("sideEffects.procedureTip1")}
                           </span>
                         </li>
                         <li className="flex items-start gap-2">
                           <ChevronRight className="w-4 h-4 text-wine mt-1" />
                           <span className="text-taupe">
-                            Follow medical instructions on pausing or prep
+                            {t("sideEffects.procedureTip2")}
                           </span>
                         </li>
                       </ul>
                     </div>
 
                     <p className="text-sm text-taupe italic">
-                      If vomiting is severe, pain is strong, or symptoms feel
-                      scary, do not "push through." Contact your clinician.
+                      {t("sideEffects.emergencyNote")}
                     </p>
                   </div>
                 </div>
@@ -531,34 +511,34 @@ const MounjaroLanding = () => {
               className="text-center max-w-2xl mx-auto mb-16"
             >
               <h2 className="text-4xl font-serif font-bold text-brown mb-4">
-                Mounjaro vs Alternatives
+                {t("comparison.title")}
               </h2>
               <p className="text-taupe">
-                Understanding the differences in GLP-1 treatments
+                {t("comparison.subtitle")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  name: "Ozempic",
-                  type: "Semaglutide",
-                  action: "GLP-1 only",
-                  use: "Diabetes (sometimes off-label for weight loss)",
+                  name: t("comparison.ozempicName"),
+                  type: t("comparison.ozempicType"),
+                  action: t("comparison.ozempicAction"),
+                  use: t("comparison.ozempicUse"),
                   color: "from-taupe to-rose",
                 },
                 {
-                  name: "Wegovy",
-                  type: "Semaglutide",
-                  action: "GLP-1 only",
-                  use: "Chronic weight management",
+                  name: t("comparison.wegovyName"),
+                  type: t("comparison.wegovyType"),
+                  action: t("comparison.wegovyAction"),
+                  use: t("comparison.wegovyUse"),
                   color: "from-rose to-wine",
                 },
                 {
-                  name: "Mounjaro",
-                  type: "Tirzepatide",
-                  action: "Dual GIP + GLP-1",
-                  use: "Stronger weight-loss outcomes",
+                  name: t("comparison.mounjaroName"),
+                  type: t("comparison.mounjaroType"),
+                  action: t("comparison.mounjaroAction"),
+                  use: t("comparison.mounjaroUse"),
                   color: "from-wine to-brown",
                   featured: true,
                 },
@@ -573,7 +553,7 @@ const MounjaroLanding = () => {
                 >
                   {item.featured && (
                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-wine text-white px-4 py-1 rounded-full text-sm">
-                      Featured
+                      {t("comparison.featured")}
                     </div>
                   )}
 
@@ -583,7 +563,7 @@ const MounjaroLanding = () => {
                   <p className="text-sm text-wine mb-3">{item.type}</p>
                   <div className="space-y-2">
                     <p className="text-sm text-brown">
-                      <span className="font-medium">Action:</span> {item.action}
+                      <span className="font-medium">{t("comparison.actionLabel")}</span> {item.action}
                     </p>
                     <p className="text-sm text-taupe">{item.use}</p>
                   </div>
@@ -614,13 +594,11 @@ const MounjaroLanding = () => {
               className="max-w-3xl mx-auto text-center text-white"
             >
               <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-6">
-                Begin Your Journey at
-                <span className="text-cream"> Nexus Clinic Kuala Lumpur</span>
+                {t("cta.title1")}
+                <span className="text-cream"> {t("cta.title2")}</span>
               </h2>
               <p className="text-lg text-cream mb-10 opacity-90">
-                The safest first step is a proper medical consult. We'll help
-                you understand eligibility, expected results, side effects, and
-                a plan you can actually follow.
+                {t("cta.description")}
               </p>
 
               <div className="flex flex-wrap gap-4 justify-center">
@@ -630,7 +608,7 @@ const MounjaroLanding = () => {
                   className="bg-wine text-white px-10 py-5 rounded-full font-medium flex items-center gap-2 hover:bg-opacity-90 transition-all text-lg"
                 >
                   <Calendar className="w-5 h-5" />
-                  Book Your Consultation
+                  {t("cta.bookConsultation")}
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -638,7 +616,7 @@ const MounjaroLanding = () => {
                   className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full font-medium hover:bg-white hover:text-brown transition-all text-lg"
                 >
                   <MessageCircle className="w-5 h-5 inline mr-2" />
-                  Chat with Our Team
+                  {t("cta.chatWithTeam")}
                 </motion.button>
               </div>
             </motion.div>

@@ -1,5 +1,6 @@
 import PageDuromineMalaysia from "@/src/views/weightlossTreatment/Duromine";
 
-export default function Page() {
-  return <PageDuromineMalaysia />;
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return <PageDuromineMalaysia locale={locale} />;
 }
