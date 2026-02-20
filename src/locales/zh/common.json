@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "首页",
+    "weightLoss": "减肥",
+    "aestheticTreatments": "美容治疗",
+    "products": "产品",
+    "blogs": "博客",
+    "bookNow": "立即预约",
+    "bookConsultation": "预约咨询",
+    "selectLanguage": "选择语言"
+  },
+  "footer": {
+    "description": "吉隆坡先进的医学美容与减重诊所。科学与艺术的完美结合，为您展现自然之美。",
+    "quickLinks": "快速链接",
+    "aboutUs": "关于我们",
+    "services": "服务",
+    "treatments": "治疗项目",
+    "blog": "博客",
+    "contact": "联系我们",
+    "contactTitle": "联系我们",
+    "address": "Wisma UOA II, KL",
+    "phone": "016-702 5699",
+    "email": "info@nexusclinic.com",
+    "copyright": "© 2026 Nexus Clinic. 版权所有。",
+    "privacyPolicy": "隐私政策",
+    "termsOfUse": "使用条款"
+  },
+  "common": {
+    "learnMore": "了解更多",
+    "getStarted": "开始",
+    "contactUs": "联系我们",
+    "readMore": "阅读更多",
+    "startTransformation": "开始您的蜕变",
+    "loading": "加载中..."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Home",
+    "weightLoss": "Weight Loss",
+    "aestheticTreatments": "Aesthetic Treatments",
+    "products": "Products",
+    "blogs": "Blogs",
+    "bookNow": "Book Now",
+    "bookConsultation": "Book Your Consultation",
+    "selectLanguage": "Select Language"
+  },
+  "footer": {
+    "description": "Advanced aesthetic and medical weight loss clinic in Kuala Lumpur. Where science meets artistry for your natural beauty.",
+    "quickLinks": "Quick Links",
+    "aboutUs": "About Us",
+    "services": "Services",
+    "treatments": "Treatments",
+    "blog": "Blog",
+    "contact": "Contact",
+    "contactTitle": "Contact",
+    "address": "Wisma UOA II, KL",
+    "phone": "016-702 5699",
+    "email": "info@nexusclinic.com",
+    "copyright": "© 2026 Nexus Clinic. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use"
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "getStarted": "Get Started",
+    "contactUs": "Contact Us",
+    "readMore": "Read More",
+    "startTransformation": "Start Your Transformation",
+    "loading": "Loading..."
+  }
+}

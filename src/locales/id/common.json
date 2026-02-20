@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "weightLoss": "Penurunan Berat Badan",
+    "aestheticTreatments": "Perawatan Estetika",
+    "products": "Produk",
+    "blogs": "Blog",
+    "bookNow": "Pesan Sekarang",
+    "bookConsultation": "Pesan Konsultasi Anda",
+    "selectLanguage": "Pilih Bahasa"
+  },
+  "footer": {
+    "description": "Klinik estetika dan penurunan berat badan medis canggih di Kuala Lumpur. Di mana sains bertemu seni untuk kecantikan alami Anda.",
+    "quickLinks": "Tautan Cepat",
+    "aboutUs": "Tentang Kami",
+    "services": "Layanan",
+    "treatments": "Perawatan",
+    "blog": "Blog",
+    "contact": "Kontak",
+    "contactTitle": "Kontak",
+    "address": "Wisma UOA II, KL",
+    "phone": "016-702 5699",
+    "email": "info@nexusclinic.com",
+    "copyright": "© 2026 Nexus Clinic. Semua hak dilindungi.",
+    "privacyPolicy": "Kebijakan Privasi",
+    "termsOfUse": "Syarat Penggunaan"
+  },
+  "common": {
+    "learnMore": "Pelajari Lebih Lanjut",
+    "getStarted": "Mulai",
+    "contactUs": "Hubungi Kami",
+    "readMore": "Baca Selengkapnya",
+    "startTransformation": "Mulai Transformasi Anda",
+    "loading": "Memuat..."
+  }
+}
