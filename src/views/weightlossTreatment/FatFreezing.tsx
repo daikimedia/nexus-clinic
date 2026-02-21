@@ -28,36 +28,25 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const FatFreezingLanding = () => {
+const FatFreezingLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "fatFreezing");
+
   const faqs = [
-    {
-      q: "Does fat freezing really work?",
-      a: "Yes, for the right person and fat type. Clinical research reports 20-25% reduction in fat layer thickness in treated areas.",
-    },
-    {
-      q: "Is it painful?",
-      a: "Most feel cold and suction at start, then numbness. Afterward, tingling or sensitivity. Generally well-tolerated.",
-    },
-    {
-      q: "How many sessions do I need?",
-      a: "Many see changes after 1 session, but 2-3 sessions are often recommended depending on your goals.",
-    },
-    {
-      q: "Are results permanent?",
-      a: "Treated fat cells are reduced long-term. But if you gain weight, remaining cells can expand.",
-    },
-    {
-      q: "What's the rare risk?",
-      a: "Paradoxical Adipose Hyperplasia (PAH) is rare but possible. We discuss all risks during consultation.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
   ];
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-light to-cream">
         {/* Hero Section */}
         <section className="relative overflow-hidden pt-20 pb-32 px-4">
-          {/* Background Decorative Elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-rose/5 blur-3xl" />
             <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-wine/5 blur-3xl" />
@@ -74,20 +63,18 @@ const FatFreezingLanding = () => {
                 <div className="inline-flex items-center gap-2 bg-wine/10 px-4 py-2 rounded-full">
                   <Sparkles className="w-4 h-4 text-wine" />
                   <span className="text-sm font-inter text-brown">
-                    Doctor-Led Fat Freezing in Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </div>
 
                 <h1 className="font-georgia text-5xl lg:text-6xl text-brown leading-tight">
-                  Freeze stubborn fat.
+                  {t("hero.title1")}
                   <br />
-                  <span className="text-wine">Shape your body.</span>
+                  <span className="text-wine">{t("hero.title2")}</span>
                 </h1>
 
                 <p className="font-inter text-lg text-taupe max-w-lg">
-                  Some fat just refuses to move. Target those "last mile" fat
-                  areas without surgery. Natural-looking results with minimal
-                  downtime.
+                  {t("hero.description")}
                 </p>
 
                 <div className="flex flex-wrap gap-4">
@@ -96,14 +83,14 @@ const FatFreezingLanding = () => {
                     whileTap={{ scale: 0.98 }}
                     className="bg-wine text-white px-8 py-4 rounded-full font-inter text-lg hover:bg-rose transition-all shadow-lg shadow-wine/20"
                   >
-                    Book Your Consultation
+                    {t("hero.bookConsultation")}
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="border-2 border-wine text-wine px-8 py-4 rounded-full font-inter text-lg hover:bg-wine/5 transition-all"
                   >
-                    View Pricing
+                    {t("hero.viewPricing")}
                   </motion.button>
                 </div>
 
@@ -114,10 +101,10 @@ const FatFreezingLanding = () => {
                     </div>
                     <div>
                       <div className="font-georgia text-xl text-brown">
-                        FDA-Cleared
+                        {t("hero.fdaCleared")}
                       </div>
                       <div className="font-inter text-sm text-taupe">
-                        Technology
+                        {t("hero.technology")}
                       </div>
                     </div>
                   </div>
@@ -130,7 +117,7 @@ const FatFreezingLanding = () => {
                         5000+
                       </div>
                       <div className="font-inter text-sm text-taupe">
-                        Happy Clients
+                        {t("hero.happyClients")}
                       </div>
                     </div>
                   </div>
@@ -143,16 +130,16 @@ const FatFreezingLanding = () => {
                     <div className="space-y-6">
                       <div className="flex items-center justify-between">
                         <h3 className="font-georgia text-2xl text-brown">
-                          Trust at a glance
+                          {t("hero.trustTitle")}
                         </h3>
                         <ThermometerSnowflake className="w-8 h-8 text-wine" />
                       </div>
                       <div className="space-y-4">
                         {[
-                          "Doctor-led consultation & screening",
-                          "FDA-cleared cryolipolysis technology",
-                          "Personalised plan for your body",
-                          "Minimal downtime, natural results",
+                          t("hero.trust1"),
+                          t("hero.trust2"),
+                          t("hero.trust3"),
+                          t("hero.trust4"),
                         ].map((item, index) => (
                           <motion.div
                             key={index}
@@ -168,8 +155,7 @@ const FatFreezingLanding = () => {
                       </div>
                       <div className="pt-4 border-t border-taupe/20">
                         <p className="font-inter text-sm text-taupe">
-                          *Results may vary. Consultation required for
-                          suitability.
+                          {t("hero.trustNote")}
                         </p>
                       </div>
                     </div>
@@ -191,7 +177,7 @@ const FatFreezingLanding = () => {
                         20-25%
                       </div>
                       <div className="font-inter text-xs text-taupe">
-                        Average fat reduction
+                        {t("hero.avgReduction")}
                       </div>
                     </div>
                   </div>
@@ -216,7 +202,7 @@ const FatFreezingLanding = () => {
               >
                 <ThermometerSnowflake className="w-4 h-4 text-wine" />
                 <span className="text-sm font-inter text-brown">
-                  Cryolipolysis Explained
+                  {t("whatIs.badge")}
                 </span>
               </motion.div>
 
@@ -224,17 +210,15 @@ const FatFreezingLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                What is fat freezing
-                <span className="text-wine"> (cryolipolysis)?</span>
+                {t("whatIs.title1")}
+                <span className="text-wine"> {t("whatIs.title2")}</span>
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="font-inter text-lg text-taupe"
               >
-                It uses controlled cold to target fat cells under the skin. Fat
-                cells are more sensitive to cold than skin, so the aim is to
-                damage fat cells while keeping the skin safe.
+                {t("whatIs.description")}
               </motion.p>
             </motion.div>
 
@@ -242,18 +226,18 @@ const FatFreezingLanding = () => {
               {[
                 {
                   icon: <Clock className="w-8 h-8" />,
-                  title: "60 Minutes",
-                  desc: "Treatment time per area",
+                  title: t("whatIs.stat1Title"),
+                  desc: t("whatIs.stat1Desc"),
                 },
                 {
                   icon: <Droplets className="w-8 h-8" />,
-                  title: "Gradual Process",
-                  desc: "Body clears fat cells over weeks",
+                  title: t("whatIs.stat2Title"),
+                  desc: t("whatIs.stat2Desc"),
                 },
                 {
                   icon: <Target className="w-8 h-8" />,
-                  title: "Precise Targeting",
-                  desc: "Only affects treated fat cells",
+                  title: t("whatIs.stat3Title"),
+                  desc: t("whatIs.stat3Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -288,8 +272,8 @@ const FatFreezingLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                What fat freezing
-                <span className="text-wine"> can and cannot do</span>
+                {t("canDo.title1")}
+                <span className="text-wine"> {t("canDo.title2")}</span>
               </motion.h2>
             </motion.div>
 
@@ -304,17 +288,17 @@ const FatFreezingLanding = () => {
                     <CheckCircle2 className="w-6 h-6 text-rose" />
                   </div>
                   <h3 className="font-georgia text-2xl text-brown">
-                    It can help with:
+                    {t("canDo.canTitle")}
                   </h3>
                 </div>
                 <div className="space-y-4">
                   {[
-                    "Lower belly pouch that stays after dieting",
-                    "Love handles that don't tone up",
-                    "Inner thighs rubbing",
-                    "Back or bra bulge",
-                    "Upper arms",
-                    "Double chin in suitable cases",
+                    t("canDo.can1"),
+                    t("canDo.can2"),
+                    t("canDo.can3"),
+                    t("canDo.can4"),
+                    t("canDo.can5"),
+                    t("canDo.can6"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -338,15 +322,15 @@ const FatFreezingLanding = () => {
                     <XCircle className="w-6 h-6 text-brown" />
                   </div>
                   <h3 className="font-georgia text-2xl text-brown">
-                    It cannot:
+                    {t("canDo.cannotTitle")}
                   </h3>
                 </div>
                 <div className="space-y-4">
                   {[
-                    "Replace exercise and diet",
-                    "Treat obesity as a primary solution",
-                    "Fix major loose skin by itself",
-                    'Give "instant" results the next day',
+                    t("canDo.cannot1"),
+                    t("canDo.cannot2"),
+                    t("canDo.cannot3"),
+                    t("canDo.cannot4"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -376,21 +360,21 @@ const FatFreezingLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                Areas we treat in
-                <span className="text-wine"> Kuala Lumpur</span>
+                {t("areas.title1")}
+                <span className="text-wine"> {t("areas.title2")}</span>
               </motion.h2>
             </motion.div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { area: "Abdomen", icon: <Activity /> },
-                { area: "Love Handles", icon: <Wind /> },
-                { area: "Back Bulge", icon: <Scissors /> },
-                { area: "Upper Arms", icon: <Heart /> },
-                { area: "Inner Thighs", icon: <Users /> },
-                { area: "Outer Thighs", icon: <Users /> },
-                { area: "Double Chin", icon: <Award /> },
-                { area: "Bra Bulge", icon: <Heart /> },
+                { area: t("areas.area1"), icon: <Activity /> },
+                { area: t("areas.area2"), icon: <Wind /> },
+                { area: t("areas.area3"), icon: <Scissors /> },
+                { area: t("areas.area4"), icon: <Heart /> },
+                { area: t("areas.area5"), icon: <Users /> },
+                { area: t("areas.area6"), icon: <Users /> },
+                { area: t("areas.area7"), icon: <Award /> },
+                { area: t("areas.area8"), icon: <Heart /> },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -423,8 +407,8 @@ const FatFreezingLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                Your treatment
-                <span className="text-wine"> journey</span>
+                {t("journey.title1")}
+                <span className="text-wine"> {t("journey.title2")}</span>
               </motion.h2>
             </motion.div>
 
@@ -432,20 +416,20 @@ const FatFreezingLanding = () => {
               {[
                 {
                   step: "01",
-                  title: "Consultation & Body Mapping",
-                  desc: "We map the area, pick the right applicator, and guide you through realistic results.",
+                  title: t("journey.step1Title"),
+                  desc: t("journey.step1Desc"),
                   icon: <Users />,
                 },
                 {
                   step: "02",
-                  title: "Treatment Day",
-                  desc: "Applicator placement with controlled cooling. Most feel numbness after a few minutes.",
+                  title: t("journey.step2Title"),
+                  desc: t("journey.step2Desc"),
                   icon: <ThermometerSnowflake />,
                 },
                 {
                   step: "03",
-                  title: "Recovery & Results",
-                  desc: "Return to normal activity same day. Results visible in 4-12 weeks.",
+                  title: t("journey.step3Title"),
+                  desc: t("journey.step3Desc"),
                   icon: <Sun />,
                 },
               ].map((item, index) => (
@@ -490,12 +474,11 @@ const FatFreezingLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                When will you
-                <span className="text-wine"> see results?</span>
+                {t("results.title1")}
+                <span className="text-wine"> {t("results.title2")}</span>
               </motion.h2>
               <motion.p variants={fadeInUp} className="font-inter text-taupe">
-                Fat freezing is not instant. It is gradual. Here's what to
-                expect:
+                {t("results.description")}
               </motion.p>
             </motion.div>
 
@@ -504,21 +487,21 @@ const FatFreezingLanding = () => {
               <div className="grid md:grid-cols-3 gap-8">
                 {[
                   {
-                    week: "2-4",
-                    title: "Early Changes",
-                    desc: "Subtle improvements begin",
+                    week: t("results.timeline1Week"),
+                    title: t("results.timeline1Title"),
+                    desc: t("results.timeline1Desc"),
                     icon: <Calendar />,
                   },
                   {
-                    week: "6-8",
-                    title: "Noticeable Results",
-                    desc: "More visible contour change",
+                    week: t("results.timeline2Week"),
+                    title: t("results.timeline2Title"),
+                    desc: t("results.timeline2Desc"),
                     icon: <TrendingUp />,
                   },
                   {
-                    week: "12",
-                    title: "Final Look",
-                    desc: "Full results for that session",
+                    week: t("results.timeline3Week"),
+                    title: t("results.timeline3Title"),
+                    desc: t("results.timeline3Desc"),
                     icon: <Star />,
                   },
                 ].map((item, index) => (
@@ -531,7 +514,7 @@ const FatFreezingLanding = () => {
                       {item.icon}
                     </div>
                     <div className="font-georgia text-3xl text-wine mb-2">
-                      Week {item.week}
+                      {t("results.week")} {item.week}
                     </div>
                     <h3 className="font-georgia text-xl text-brown mb-2">
                       {item.title}
@@ -557,8 +540,8 @@ const FatFreezingLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                Transparent
-                <span className="text-wine"> pricing in KL</span>
+                {t("pricing.title1")}
+                <span className="text-wine"> {t("pricing.title2")}</span>
               </motion.h2>
             </motion.div>
 
@@ -571,45 +554,45 @@ const FatFreezingLanding = () => {
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-6">
                       <h3 className="font-georgia text-2xl text-brown">
-                        Per Session Pricing
+                        {t("pricing.perSession")}
                       </h3>
                       <div className="space-y-4">
                         <div className="flex items-center justify-between pb-4 border-b border-taupe/20">
                           <span className="font-inter text-brown">
-                            Single Area
+                            {t("pricing.singleArea")}
                           </span>
                           <span className="font-georgia text-2xl text-wine">
-                            RM2,500
+                            {t("pricing.singlePrice")}
                           </span>
                         </div>
                         <div className="flex items-center justify-between pb-4 border-b border-taupe/20">
                           <span className="font-inter text-brown">
-                            Multiple Areas
+                            {t("pricing.multipleAreas")}
                           </span>
                           <span className="font-georgia text-2xl text-wine">
-                            RM2,000 - RM4,000
+                            {t("pricing.multiplePrice")}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="font-inter text-brown">
-                            Package Deals
+                            {t("pricing.packageDeals")}
                           </span>
                           <span className="font-georgia text-2xl text-wine">
-                            Contact Us
+                            {t("pricing.packagePrice")}
                           </span>
                         </div>
                       </div>
                     </div>
                     <div className="bg-cream p-6 rounded-2xl">
                       <h4 className="font-georgia text-xl text-brown mb-4">
-                        Price Includes:
+                        {t("pricing.includesTitle")}
                       </h4>
                       <div className="space-y-3">
                         {[
-                          "Doctor consultation",
-                          "FDA-cleared technology",
-                          "Post-treatment care",
-                          "Follow-up assessment",
+                          t("pricing.includes1"),
+                          t("pricing.includes2"),
+                          t("pricing.includes3"),
+                          t("pricing.includes4"),
                         ].map((item, index) => (
                           <div key={index} className="flex items-center gap-2">
                             <CheckCircle2 className="w-4 h-4 text-rose" />
@@ -620,7 +603,7 @@ const FatFreezingLanding = () => {
                         ))}
                       </div>
                       <p className="font-inter text-xs text-taupe mt-4">
-                        *Prices are estimates. Final quote after consultation.
+                        {t("pricing.priceNote")}
                       </p>
                     </div>
                   </div>
@@ -644,22 +627,20 @@ const FatFreezingLanding = () => {
             >
               <div className="bg-light rounded-3xl p-12">
                 <h2 className="font-georgia text-4xl lg:text-5xl text-brown mb-6">
-                  Ready to slim a stubborn area?
+                  {t("cta.title")}
                 </h2>
                 <p className="font-inter text-taupe mb-8 max-w-2xl mx-auto">
-                  If you're tired of fighting the same pocket of fat, fat
-                  freezing may be your next smart move. Safe screening, clear
-                  expectations, natural-looking results.
+                  {t("cta.description")}
                 </p>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="bg-wine text-white px-10 py-5 rounded-full font-inter text-lg hover:bg-rose transition-all shadow-xl shadow-wine/30"
                 >
-                  Schedule Your Consultation
+                  {t("cta.bookButton")}
                 </motion.button>
                 <p className="font-inter text-xs text-taupe mt-4">
-                  *Doctor-led screening ensures you're a suitable candidate
+                  {t("cta.note")}
                 </p>
               </div>
             </motion.div>

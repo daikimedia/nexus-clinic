@@ -29,127 +29,64 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const CoolSculptingLanding = () => {
+const CoolSculptingLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "coolsculpting");
+
   const benefits = [
     {
-      icon: (
-        <Scissors className="w-6 h-6" style={{ color: "var(--color-wine)" }} />
-      ),
-      title: "Non-Surgical",
-      desc: "No needles, no incisions, no scars",
+      icon: <Scissors className="w-6 h-6" style={{ color: "var(--color-wine)" }} />,
+      title: t("benefits.benefit1Title"),
+      desc: t("benefits.benefit1Desc"),
     },
     {
-      icon: (
-        <Clock className="w-6 h-6" style={{ color: "var(--color-wine)" }} />
-      ),
-      title: "No Downtime",
-      desc: "Return to activities immediately",
+      icon: <Clock className="w-6 h-6" style={{ color: "var(--color-wine)" }} />,
+      title: t("benefits.benefit2Title"),
+      desc: t("benefits.benefit2Desc"),
     },
     {
-      icon: (
-        <Target className="w-6 h-6" style={{ color: "var(--color-wine)" }} />
-      ),
-      title: "Targeted Results",
-      desc: "Up to 25% fat reduction per session",
+      icon: <Target className="w-6 h-6" style={{ color: "var(--color-wine)" }} />,
+      title: t("benefits.benefit3Title"),
+      desc: t("benefits.benefit3Desc"),
     },
     {
-      icon: (
-        <Shield className="w-6 h-6" style={{ color: "var(--color-wine)" }} />
-      ),
-      title: "FDA-Cleared",
-      desc: "Safe & clinically proven technology",
+      icon: <Shield className="w-6 h-6" style={{ color: "var(--color-wine)" }} />,
+      title: t("benefits.benefit4Title"),
+      desc: t("benefits.benefit4Desc"),
     },
   ];
 
   const treatmentAreas = [
-    {
-      name: "Abdomen",
-      icon: (
-        <Activity className="w-6 h-6" style={{ color: "var(--color-wine)" }} />
-      ),
-    },
-    {
-      name: "Love Handles",
-      icon: (
-        <Heart className="w-6 h-6" style={{ color: "var(--color-wine)" }} />
-      ),
-    },
-    {
-      name: "Thighs",
-      icon: (
-        <Dumbbell className="w-6 h-6" style={{ color: "var(--color-wine)" }} />
-      ),
-    },
-    {
-      name: "Arms",
-      icon: <Pill className="w-6 h-6" style={{ color: "var(--color-wine)" }} />,
-    },
-    {
-      name: "Chin & Jawline",
-      icon: (
-        <MapPin className="w-6 h-6" style={{ color: "var(--color-wine)" }} />
-      ),
-    },
-    {
-      name: "Back & Bra Fat",
-      icon: (
-        <Target className="w-6 h-6" style={{ color: "var(--color-wine)" }} />
-      ),
-    },
+    { name: t("areas.area1"), icon: <Activity className="w-6 h-6" style={{ color: "var(--color-wine)" }} /> },
+    { name: t("areas.area2"), icon: <Heart className="w-6 h-6" style={{ color: "var(--color-wine)" }} /> },
+    { name: t("areas.area3"), icon: <Dumbbell className="w-6 h-6" style={{ color: "var(--color-wine)" }} /> },
+    { name: t("areas.area4"), icon: <Pill className="w-6 h-6" style={{ color: "var(--color-wine)" }} /> },
+    { name: t("areas.area5"), icon: <MapPin className="w-6 h-6" style={{ color: "var(--color-wine)" }} /> },
+    { name: t("areas.area6"), icon: <Target className="w-6 h-6" style={{ color: "var(--color-wine)" }} /> },
   ];
 
   const stats = [
-    {
-      value: "20-25%",
-      label: "Fat Reduction",
-      icon: <TrendingUp className="w-5 h-5" />,
-    },
-    {
-      value: "30-60",
-      label: "Minute Sessions",
-      icon: <Clock className="w-5 h-5" />,
-    },
-    {
-      value: "4-12",
-      label: "Weeks to Results",
-      icon: <Calendar className="w-5 h-5" />,
-    },
-    {
-      value: "1M+",
-      label: "Treatments Worldwide",
-      icon: <Users className="w-5 h-5" />,
-    },
+    { value: t("hero.stat1Value"), label: t("hero.stat1Label"), icon: <TrendingUp className="w-5 h-5" /> },
+    { value: t("hero.stat2Value"), label: t("hero.stat2Label"), icon: <Clock className="w-5 h-5" /> },
+    { value: t("hero.stat3Value"), label: t("hero.stat3Label"), icon: <Calendar className="w-5 h-5" /> },
+    { value: t("hero.stat4Value"), label: t("hero.stat4Label"), icon: <Users className="w-5 h-5" /> },
   ];
 
   const faqs = [
-    {
-      q: "Does CoolSculpting really work?",
-      a: "Yes. Clinical studies show 20-25% fat reduction in treated areas after one session. Results are permanent as fat cells are eliminated naturally.",
-    },
-    {
-      q: "Is CoolSculpting painful?",
-      a: "Most patients feel intense cold and mild pressure initially, which subsides as the area becomes numb. Many read or relax during treatment.",
-    },
-    {
-      q: "How long do results last?",
-      a: "Results are permanent - treated fat cells are gone forever. Maintaining a stable weight ensures long-lasting outcomes.",
-    },
-    {
-      q: "When will I see results?",
-      a: "Initial changes appear in 4 weeks, with full results visible at 12 weeks as the body naturally eliminates frozen fat cells.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
   ];
 
   const competitors = [
-    {
-      name: "Beverly Wilshire Clinic",
-      highlight: "Premium medical aesthetics",
-    },
-    { name: "Clique Clinic KL", highlight: "Advanced technology focus" },
-    { name: "Premier Clinic", highlight: "Comprehensive care" },
-    { name: "CLEO Clinic", highlight: "Aesthetic expertise" },
-    { name: "Sliq Clinic", highlight: "Modern approaches" },
+    { name: t("competitors.clinic1"), highlight: t("competitors.clinic1Highlight") },
+    { name: t("competitors.clinic2"), highlight: t("competitors.clinic2Highlight") },
+    { name: t("competitors.clinic3"), highlight: t("competitors.clinic3Highlight") },
+    { name: t("competitors.clinic4"), highlight: t("competitors.clinic4Highlight") },
+    { name: t("competitors.clinic5"), highlight: t("competitors.clinic5Highlight") },
   ];
 
   return (
@@ -173,7 +110,6 @@ const CoolSculptingLanding = () => {
               "linear-gradient(135deg, var(--color-cream) 0%, #FFFFFF 100%)",
           }}
         >
-          {/* Glass morphism background elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div
               className="absolute -top-40 -right-40 w-80 h-80 rounded-full"
@@ -204,7 +140,7 @@ const CoolSculptingLanding = () => {
                     className="text-sm"
                     style={{ color: "var(--color-brown)" }}
                   >
-                    Medical-Grade Fat Freezing
+                    {t("hero.badge")}
                   </span>
                 </div>
 
@@ -215,17 +151,15 @@ const CoolSculptingLanding = () => {
                     fontFamily: "var(--font-georgia)",
                   }}
                 >
-                  Freeze Stubborn Fat,
+                  {t("hero.title1")}
                   <br />
                   <span style={{ color: "var(--color-wine)" }}>
-                    Reveal Your Contour
+                    {t("hero.title2")}
                   </span>
                 </h1>
 
                 <p className="text-lg" style={{ color: "var(--color-taupe)" }}>
-                  At Nexus Clinic Kuala Lumpur, advanced fat freezing technology
-                  helps reshape your body naturally. No needles. No downtime.
-                  Just gradual and visible fat reduction.
+                  {t("hero.description")}
                 </p>
 
                 <div className="flex flex-wrap gap-4 pt-4">
@@ -235,7 +169,7 @@ const CoolSculptingLanding = () => {
                     className="px-8 py-4 rounded-full text-white font-medium flex items-center gap-2"
                     style={{ backgroundColor: "var(--color-wine)" }}
                   >
-                    Schedule Consultation
+                    {t("hero.scheduleConsultation")}
                     <ChevronRight className="w-5 h-5" />
                   </motion.button>
 
@@ -250,7 +184,7 @@ const CoolSculptingLanding = () => {
                       border: "1px solid var(--color-taupe)",
                     }}
                   >
-                    View Results
+                    {t("hero.viewResults")}
                   </motion.button>
                 </div>
 
@@ -317,13 +251,13 @@ const CoolSculptingLanding = () => {
                         className="font-semibold"
                         style={{ color: "var(--color-brown)" }}
                       >
-                        Trusted by 5000+
+                        {t("hero.trustedBy")}
                       </div>
                       <div
                         className="text-sm"
                         style={{ color: "var(--color-taupe)" }}
                       >
-                        Patients in Malaysia
+                        {t("hero.patientsIn")}
                       </div>
                     </div>
                   </div>
@@ -354,16 +288,14 @@ const CoolSculptingLanding = () => {
                   fontFamily: "var(--font-georgia)",
                 }}
               >
-                Why Kuala Lumpur Chooses
+                {t("benefits.title1")}
                 <br />
                 <span style={{ color: "var(--color-wine)" }}>
-                  CoolSculpting
+                  {t("benefits.title2")}
                 </span>
               </h2>
               <p className="text-lg" style={{ color: "var(--color-taupe)" }}>
-                Body contouring demand has increased significantly in Kuala
-                Lumpur. People want visible results without surgery or long
-                recovery.
+                {t("benefits.description")}
               </p>
             </motion.div>
 
@@ -427,26 +359,24 @@ const CoolSculptingLanding = () => {
                   fontFamily: "var(--font-georgia)",
                 }}
               >
-                The Science of
+                {t("science.title1")}
                 <br />
-                <span style={{ color: "var(--color-wine)" }}>Fat Freezing</span>
+                <span style={{ color: "var(--color-wine)" }}>{t("science.title2")}</span>
               </h2>
             </motion.div>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <p className="text-lg" style={{ color: "var(--color-taupe)" }}>
-                  CoolSculpting is a fat freezing treatment based on
-                  cryolipolysis - the scientific principle that fat cells are
-                  more sensitive to cold than surrounding tissues.
+                  {t("science.description")}
                 </p>
 
                 <div className="space-y-4">
                   {[
-                    "Controlled cooling targets fat cells without damaging skin",
-                    "Fat cells crystallize and break down naturally",
-                    "Body eliminates frozen fat cells through lymphatic system",
-                    "Results appear gradually over 4-12 weeks",
+                    t("science.step1"),
+                    t("science.step2"),
+                    t("science.step3"),
+                    t("science.step4"),
                   ].map((step, index) => (
                     <motion.div
                       key={index}
@@ -481,7 +411,7 @@ const CoolSculptingLanding = () => {
                         className="text-sm"
                         style={{ color: "var(--color-brown)" }}
                       >
-                        Freezing
+                        {t("science.freezing")}
                       </div>
                     </div>
                     <div
@@ -496,7 +426,7 @@ const CoolSculptingLanding = () => {
                         className="text-sm"
                         style={{ color: "var(--color-brown)" }}
                       >
-                        Crystallization
+                        {t("science.crystallization")}
                       </div>
                     </div>
                   </div>
@@ -513,7 +443,7 @@ const CoolSculptingLanding = () => {
                         className="text-sm"
                         style={{ color: "var(--color-brown)" }}
                       >
-                        Elimination
+                        {t("science.elimination")}
                       </div>
                     </div>
                     <div
@@ -528,7 +458,7 @@ const CoolSculptingLanding = () => {
                         className="text-sm"
                         style={{ color: "var(--color-brown)" }}
                       >
-                        Results
+                        {t("science.results")}
                       </div>
                     </div>
                   </div>
@@ -559,9 +489,9 @@ const CoolSculptingLanding = () => {
                   fontFamily: "var(--font-georgia)",
                 }}
               >
-                Target Any
+                {t("areas.title1")}
                 <br />
-                <span style={{ color: "var(--color-wine)" }}>Problem Area</span>
+                <span style={{ color: "var(--color-wine)" }}>{t("areas.title2")}</span>
               </h2>
             </motion.div>
 
@@ -587,7 +517,7 @@ const CoolSculptingLanding = () => {
                     className="text-sm mt-1"
                     style={{ color: "var(--color-taupe)" }}
                   >
-                    Book Consultation
+                    {t("areas.bookConsultation")}
                   </p>
                 </motion.div>
               ))}
@@ -599,10 +529,10 @@ const CoolSculptingLanding = () => {
               style={{ backgroundColor: "var(--color-rose)", color: "white" }}
             >
               <h3 className="text-2xl font-bold mb-4">
-                Multiple Areas? We've Got You Covered
+                {t("areas.multipleTitle")}
               </h3>
               <p className="mb-6">
-                CoolSculpting can target multiple areas in one treatment plan
+                {t("areas.multipleDesc")}
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -610,7 +540,7 @@ const CoolSculptingLanding = () => {
                 className="px-8 py-3 rounded-full bg-white font-semibold"
                 style={{ color: "var(--color-wine)" }}
               >
-                Design Your Plan
+                {t("areas.designPlan")}
               </motion.button>
             </motion.div>
           </div>
@@ -635,35 +565,19 @@ const CoolSculptingLanding = () => {
                     fontFamily: "var(--font-georgia)",
                   }}
                 >
-                  Why Nexus Clinic
+                  {t("whyNexus.title1")}
                   <br />
                   <span style={{ color: "var(--color-wine)" }}>
-                    Is Different
+                    {t("whyNexus.title2")}
                   </span>
                 </h2>
 
                 <div className="space-y-4">
                   {[
-                    {
-                      icon: <Heart className="w-5 h-5" />,
-                      title: "Doctor-Led Assessment",
-                      desc: "Every plan starts with professional medical consultation",
-                    },
-                    {
-                      icon: <Target className="w-5 h-5" />,
-                      title: "Customized Treatment Plan",
-                      desc: "Designed around your body goals and lifestyle",
-                    },
-                    {
-                      icon: <Sparkles className="w-5 h-5" />,
-                      title: "Advanced Technology",
-                      desc: "Modern applicators for even cooling and better results",
-                    },
-                    {
-                      icon: <Users className="w-5 h-5" />,
-                      title: "Trusted Aesthetic Experts",
-                      desc: "Professional care designed to enhance confidence safely",
-                    },
+                    { icon: <Heart className="w-5 h-5" />, title: t("whyNexus.point1Title"), desc: t("whyNexus.point1Desc") },
+                    { icon: <Target className="w-5 h-5" />, title: t("whyNexus.point2Title"), desc: t("whyNexus.point2Desc") },
+                    { icon: <Sparkles className="w-5 h-5" />, title: t("whyNexus.point3Title"), desc: t("whyNexus.point3Desc") },
+                    { icon: <Users className="w-5 h-5" />, title: t("whyNexus.point4Title"), desc: t("whyNexus.point4Desc") },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -710,7 +624,7 @@ const CoolSculptingLanding = () => {
                         5000+
                       </div>
                       <div style={{ color: "var(--color-taupe)" }}>
-                        Happy Patients
+                        {t("whyNexus.happyPatients")}
                       </div>
                     </div>
                     <div
@@ -724,7 +638,7 @@ const CoolSculptingLanding = () => {
                         15+
                       </div>
                       <div style={{ color: "var(--color-taupe)" }}>
-                        Years Experience
+                        {t("whyNexus.yearsExperience")}
                       </div>
                     </div>
                   </div>
@@ -740,7 +654,7 @@ const CoolSculptingLanding = () => {
                         100%
                       </div>
                       <div style={{ color: "var(--color-taupe)" }}>
-                        Safe Protocols
+                        {t("whyNexus.safeProtocols")}
                       </div>
                     </div>
                     <div
@@ -754,7 +668,7 @@ const CoolSculptingLanding = () => {
                         24/7
                       </div>
                       <div style={{ color: "var(--color-taupe)" }}>
-                        Patient Support
+                        {t("whyNexus.patientSupport")}
                       </div>
                     </div>
                   </div>
@@ -785,34 +699,18 @@ const CoolSculptingLanding = () => {
                   fontFamily: "var(--font-georgia)",
                 }}
               >
-                Your Journey to
+                {t("journey.title1")}
                 <br />
-                <span style={{ color: "var(--color-wine)" }}>a New You</span>
+                <span style={{ color: "var(--color-wine)" }}>{t("journey.title2")}</span>
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                {
-                  step: "01",
-                  title: "Consultation",
-                  desc: "Doctor identifies treatment areas",
-                },
-                {
-                  step: "02",
-                  title: "Treatment",
-                  desc: "30-60 minute cooling session",
-                },
-                {
-                  step: "03",
-                  title: "Natural Process",
-                  desc: "Body eliminates fat cells",
-                },
-                {
-                  step: "04",
-                  title: "Results",
-                  desc: "Visible changes in 4-12 weeks",
-                },
+                { step: "01", title: t("journey.step1Title"), desc: t("journey.step1Desc") },
+                { step: "02", title: t("journey.step2Title"), desc: t("journey.step2Desc") },
+                { step: "03", title: t("journey.step3Title"), desc: t("journey.step3Desc") },
+                { step: "04", title: t("journey.step4Title"), desc: t("journey.step4Desc") },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -866,10 +764,10 @@ const CoolSculptingLanding = () => {
                     fontFamily: "var(--font-georgia)",
                   }}
                 >
-                  Investment in
+                  {t("cost.title1")}
                   <br />
                   <span style={{ color: "var(--color-wine)" }}>
-                    Your Confidence
+                    {t("cost.title2")}
                   </span>
                 </h2>
 
@@ -880,13 +778,13 @@ const CoolSculptingLanding = () => {
                   >
                     <div className="flex justify-between items-center mb-2">
                       <span style={{ color: "var(--color-brown)" }}>
-                        Per Treatment Area
+                        {t("cost.perArea")}
                       </span>
                       <span
                         className="text-2xl font-bold"
                         style={{ color: "var(--color-wine)" }}
                       >
-                        RM1,500 - RM3,000
+                        {t("cost.perAreaPrice")}
                       </span>
                     </div>
                     <div
@@ -906,13 +804,13 @@ const CoolSculptingLanding = () => {
                   >
                     <div className="flex justify-between items-center mb-2">
                       <span style={{ color: "var(--color-brown)" }}>
-                        Average Session
+                        {t("cost.avgSession")}
                       </span>
                       <span
                         className="text-2xl font-bold"
                         style={{ color: "var(--color-wine)" }}
                       >
-                        RM2,000 - RM4,000
+                        {t("cost.avgSessionPrice")}
                       </span>
                     </div>
                     <div
@@ -932,13 +830,13 @@ const CoolSculptingLanding = () => {
                   >
                     <div className="flex justify-between items-center mb-2">
                       <span style={{ color: "var(--color-brown)" }}>
-                        Advanced Plans
+                        {t("cost.advancedPlans")}
                       </span>
                       <span
                         className="text-2xl font-bold"
                         style={{ color: "var(--color-wine)" }}
                       >
-                        RM2,500 - RM6,000
+                        {t("cost.advancedPlansPrice")}
                       </span>
                     </div>
                     <div
@@ -954,8 +852,7 @@ const CoolSculptingLanding = () => {
                 </div>
 
                 <p className="text-sm" style={{ color: "var(--color-taupe)" }}>
-                  *Customized plans available. Consultation helps determine
-                  exact cost.
+                  {t("cost.priceNote")}
                 </p>
               </motion.div>
 
@@ -967,19 +864,19 @@ const CoolSculptingLanding = () => {
                     color: "white",
                   }}
                 >
-                  <h3 className="text-2xl font-bold mb-4">Flexible Options</h3>
+                  <h3 className="text-2xl font-bold mb-4">{t("cost.flexibleOptions")}</h3>
                   <ul className="space-y-3 mb-6">
                     <li className="flex items-center gap-2">
                       <CheckCircle2 className="w-5 h-5" />
-                      <span>Interest-free payment plans</span>
+                      <span>{t("cost.flex1")}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle2 className="w-5 h-5" />
-                      <span>Package discounts available</span>
+                      <span>{t("cost.flex2")}</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <CheckCircle2 className="w-5 h-5" />
-                      <span>Credit card installment options</span>
+                      <span>{t("cost.flex3")}</span>
                     </li>
                   </ul>
                   <motion.button
@@ -988,7 +885,7 @@ const CoolSculptingLanding = () => {
                     className="w-full py-3 rounded-full bg-white font-semibold"
                     style={{ color: "var(--color-wine)" }}
                   >
-                    Get Personalized Quote
+                    {t("cost.getQuote")}
                   </motion.button>
                 </div>
               </motion.div>
@@ -1017,9 +914,9 @@ const CoolSculptingLanding = () => {
                   fontFamily: "var(--font-georgia)",
                 }}
               >
-                Why Patients Choose
+                {t("competitors.title1")}
                 <br />
-                <span style={{ color: "var(--color-wine)" }}>Nexus Clinic</span>
+                <span style={{ color: "var(--color-wine)" }}>{t("competitors.title2")}</span>
               </h2>
             </motion.div>
 
@@ -1029,7 +926,7 @@ const CoolSculptingLanding = () => {
                   className="text-xl font-semibold mb-4"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  Leading KL Clinics
+                  {t("competitors.leadingClinics")}
                 </h3>
                 <div className="space-y-3">
                   {competitors.map((clinic, index) => (
@@ -1057,7 +954,7 @@ const CoolSculptingLanding = () => {
                   className="text-xl font-semibold mb-4"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  Nexus Advantage
+                  {t("competitors.nexusAdvantage")}
                 </h3>
                 <div
                   className="p-8 rounded-3xl"
@@ -1070,27 +967,27 @@ const CoolSculptingLanding = () => {
                     <li className="flex items-start gap-3">
                       <Star className="w-5 h-5 shrink-0 mt-1" />
                       <div>
-                        <strong>Personalized Medical Assessment</strong>
+                        <strong>{t("competitors.adv1Title")}</strong>
                         <p className="text-sm opacity-90">
-                          Doctor-led consultations for every patient
+                          {t("competitors.adv1Desc")}
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
                       <Star className="w-5 h-5 shrink-0 mt-1" />
                       <div>
-                        <strong>Advanced Treatment Planning</strong>
+                        <strong>{t("competitors.adv2Title")}</strong>
                         <p className="text-sm opacity-90">
-                          Customized plans for natural results
+                          {t("competitors.adv2Desc")}
                         </p>
                       </div>
                     </li>
                     <li className="flex items-start gap-3">
                       <Star className="w-5 h-5 shrink-0 mt-1" />
                       <div>
-                        <strong>Trusted Aesthetic Expertise</strong>
+                        <strong>{t("competitors.adv3Title")}</strong>
                         <p className="text-sm opacity-90">
-                          Years of experience in body contouring
+                          {t("competitors.adv3Desc")}
                         </p>
                       </div>
                     </li>
@@ -1125,13 +1022,12 @@ const CoolSculptingLanding = () => {
                 className="text-3xl md:text-4xl font-bold"
                 style={{ fontFamily: "var(--font-georgia)" }}
               >
-                Start Your CoolSculpting Journey
+                {t("cta.title1")}
                 <br />
-                at Nexus Clinic Kuala Lumpur
+                {t("cta.title2")}
               </h2>
               <p className="text-lg opacity-90 max-w-2xl mx-auto">
-                Your transformation begins with a consultation. Discover how
-                CoolSculpting can reshape your body safely and effectively.
+                {t("cta.description")}
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -1139,11 +1035,11 @@ const CoolSculptingLanding = () => {
                 className="px-12 py-4 rounded-full bg-white font-semibold text-lg inline-flex items-center gap-2 mx-auto"
                 style={{ color: "var(--color-wine)" }}
               >
-                Book Your Consultation
+                {t("cta.bookButton")}
                 <ChevronRight className="w-5 h-5" />
               </motion.button>
               <p className="text-sm opacity-75">
-                No obligation. Just expert advice tailored to your goals.
+                {t("cta.note")}
               </p>
             </motion.div>
           </div>

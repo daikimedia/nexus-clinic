@@ -1,5 +1,6 @@
 import ZepboundLanding from "@/src/views/weightlossTreatment/ZepBound";
 
-export default function Page() {
-  return <ZepboundLanding />;
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return <ZepboundLanding locale={locale} />;
 }

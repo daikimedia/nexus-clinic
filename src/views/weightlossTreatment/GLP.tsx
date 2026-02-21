@@ -25,26 +25,19 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const GLP1LandingPage = () => {
+const GLP1LandingPage = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "glp1");
+
   const faqs = [
-    {
-      q: "How does a GLP-1 weight loss programme work?",
-      a: "A GLP-1 programme uses medication that mimics gut hormones involved in fullness. It can reduce appetite, slow stomach emptying, and help you eat less without constant hunger. It works best when paired with lifestyle support, follow-ups, and medical monitoring.",
-    },
-    {
-      q: "How long does it take to see results?",
-      a: "Many people notice appetite changes within the first few weeks. Scale changes usually follow after that. It's normal for weight loss to be faster early, then slow down. Consistency over months matters more than quick weekly drops.",
-    },
-    {
-      q: "Do I need to diet and exercise on a GLP-1 programme?",
-      a: "Yes, but it does not need to be extreme. GLP-1 medicines work best with sustainable nutrition and activity changes. Even a simple plan like higher protein meals, daily steps, and better sleep can improve results. Think 'repeatable', not 'perfect'.",
-    },
-    {
-      q: "Is GLP-1 the same as fat freezing?",
-      a: "No. GLP-1 supports appetite control and overall weight loss. Fat freezing is a body contouring treatment for local fat pockets. Many people choose GLP-1 first to reduce overall fat, then consider contouring later if needed.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
   ];
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-cream to-white font-['Inter'] overflow-hidden">
@@ -54,7 +47,6 @@ const GLP1LandingPage = () => {
           animate="visible"
           className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden"
         >
-          {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-96 h-96 bg-wine rounded-full filter blur-3xl"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-rose rounded-full filter blur-3xl"></div>
@@ -64,7 +56,7 @@ const GLP1LandingPage = () => {
             <motion.div variants={fadeInUp} className="mb-8">
               <span className="inline-flex items-center px-4 py-2 bg-wine/10 rounded-full text-wine font-medium text-sm">
                 <Sparkles className="w-4 h-4 mr-2" />
-                Doctor-Monitored GLP-1 Programme
+                {t("hero.badge")}
               </span>
             </motion.div>
 
@@ -72,19 +64,16 @@ const GLP1LandingPage = () => {
               variants={fadeInUp}
               className="font-['Georgia'] text-5xl md:text-7xl font-bold text-brown mb-6 leading-tight"
             >
-              Quiet the cravings,
+              {t("hero.title1")}
               <br />
-              <span className="text-wine">not your lifestyle</span>
+              <span className="text-wine">{t("hero.title2")}</span>
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl text-taupe max-w-3xl mx-auto mb-10"
             >
-              A doctor-monitored GLP-1 weight loss programme in Kuala Lumpur
-              that helps you feel fuller, eat less, and lose weight steadily.
-              Built around real medical screening, safe dosing, and habits you
-              can keep.
+              {t("hero.description")}
             </motion.p>
 
             <motion.div
@@ -96,7 +85,7 @@ const GLP1LandingPage = () => {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-wine text-white rounded-full font-medium hover:bg-[#7A434B] transition-colors shadow-lg hover:shadow-xl flex items-center justify-center group"
               >
-                Start Your Assessment
+                {t("hero.startAssessment")}
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
@@ -105,7 +94,7 @@ const GLP1LandingPage = () => {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-white text-brown rounded-full font-medium hover:bg-light transition-colors shadow-lg hover:shadow-xl border border-taupe/20"
               >
-                Learn More
+                {t("hero.learnMore")}
               </motion.button>
             </motion.div>
 
@@ -115,10 +104,10 @@ const GLP1LandingPage = () => {
               className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
             >
               {[
-                { icon: Shield, text: "Doctor-Led Care" },
-                { icon: Award, text: "Genuine Medicines" },
-                { icon: Heart, text: "Safety First" },
-                { icon: FileText, text: "Evidence-Based" },
+                { icon: Shield, text: t("hero.trust1") },
+                { icon: Award, text: t("hero.trust2") },
+                { icon: Heart, text: t("hero.trust3") },
+                { icon: FileText, text: t("hero.trust4") },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -146,28 +135,23 @@ const GLP1LandingPage = () => {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <motion.div variants={fadeInLeft}>
                 <span className="text-wine font-medium text-sm uppercase tracking-wider mb-4 block">
-                  Understanding GLP-1
+                  {t("understanding.badge")}
                 </span>
                 <h2 className="font-['Georgia'] text-4xl font-bold text-brown mb-6">
-                  What is a GLP-1 weight loss programme?
+                  {t("understanding.title")}
                 </h2>
                 <p className="text-taupe text-lg mb-6">
-                  A GLP-1 weight loss programme is a medically supervised plan
-                  that may use GLP-1 based medication to help with appetite
-                  control and weight management, plus lifestyle support so
-                  results can last.
+                  {t("understanding.desc1")}
                 </p>
                 <p className="text-taupe text-lg mb-8">
-                  GLP-1 is a natural gut hormone. These medicines work on the
-                  same pathway. They help your brain register fullness more
-                  strongly, slow stomach emptying, and reduce hunger signals.
+                  {t("understanding.desc2")}
                 </p>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-6 py-3 bg-wine text-white rounded-full font-medium hover:bg-[#7A434B] transition-colors inline-flex items-center"
                 >
-                  Discover How It Works
+                  {t("understanding.discoverButton")}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </motion.button>
               </motion.div>
@@ -176,20 +160,14 @@ const GLP1LandingPage = () => {
                 <div className="absolute inset-0 bg-linear-to-br from-wine/20 to-rose/20 rounded-3xl transform rotate-3"></div>
                 <div className="relative bg-white p-8 rounded-3xl shadow-2xl border border-taupe/10">
                   <h3 className="font-['Georgia'] text-2xl font-bold text-brown mb-6">
-                    How GLP-1 Medicines Help
+                    {t("understanding.howTitle")}
                   </h3>
                   <div className="space-y-4">
                     {[
-                      { icon: Coffee, text: "Help you feel full sooner" },
-                      { icon: Clock, text: "Keep you satisfied longer" },
-                      {
-                        icon: Brain,
-                        text: "Reduce cravings and 'snack thinking'",
-                      },
-                      {
-                        icon: Activity,
-                        text: "Support better blood sugar control",
-                      },
+                      { icon: Coffee, text: t("understanding.how1") },
+                      { icon: Clock, text: t("understanding.how2") },
+                      { icon: Brain, text: t("understanding.how3") },
+                      { icon: Activity, text: t("understanding.how4") },
                     ].map((item, index) => (
                       <motion.div
                         key={index}
@@ -221,10 +199,10 @@ const GLP1LandingPage = () => {
           <div className="max-w-7xl mx-auto">
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <span className="text-wine font-medium text-sm uppercase tracking-wider mb-4 block">
-                Who Is It For
+                {t("whoIsItFor.badge")}
               </span>
               <h2 className="font-['Georgia'] text-4xl font-bold text-brown mb-6">
-                Is a GLP-1 programme right for you?
+                {t("whoIsItFor.title")}
               </h2>
             </motion.div>
 
@@ -235,14 +213,14 @@ const GLP1LandingPage = () => {
               >
                 <h3 className="font-['Georgia'] text-2xl font-bold text-brown mb-6 flex items-center">
                   <CheckCircle2 className="w-6 h-6 text-green-500 mr-3" />
-                  Good Fit If:
+                  {t("whoIsItFor.goodFitTitle")}
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "You have tried diet and exercise but your weight keeps returning",
-                    "You feel strong cravings or constant hunger",
-                    "You want a medical plan with monitoring, not guesswork",
-                    "You have weight-related risks (blood sugar, blood pressure, etc.)",
+                    t("whoIsItFor.goodFit1"),
+                    t("whoIsItFor.goodFit2"),
+                    t("whoIsItFor.goodFit3"),
+                    t("whoIsItFor.goodFit4"),
                   ].map((item, index) => (
                     <motion.li
                       key={index}
@@ -262,14 +240,14 @@ const GLP1LandingPage = () => {
               >
                 <h3 className="font-['Georgia'] text-2xl font-bold text-brown mb-6 flex items-center">
                   <AlertCircle className="w-6 h-6 text-wine mr-3" />
-                  Extra Care Needed If:
+                  {t("whoIsItFor.extraCareTitle")}
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Pregnant, trying to conceive, or breastfeeding",
-                    "History of pancreatitis or gallbladder disease",
-                    "Severe reflux or frequent vomiting",
-                    "Taking other medications that affect blood sugar",
+                    t("whoIsItFor.extraCare1"),
+                    t("whoIsItFor.extraCare2"),
+                    t("whoIsItFor.extraCare3"),
+                    t("whoIsItFor.extraCare4"),
                   ].map((item, index) => (
                     <motion.li
                       key={index}
@@ -290,25 +268,24 @@ const GLP1LandingPage = () => {
               className="bg-linear-to-r from-wine to-rose p-8 rounded-3xl text-white"
             >
               <h3 className="font-['Georgia'] text-2xl font-bold mb-4">
-                BMI Guidance for Asian Population
+                {t("whoIsItFor.bmiTitle")}
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
-                  <p className="text-white/80 mb-2">Normal</p>
-                  <p className="text-3xl font-bold">18.5 - 22.9</p>
+                  <p className="text-white/80 mb-2">{t("whoIsItFor.bmiNormal")}</p>
+                  <p className="text-3xl font-bold">{t("whoIsItFor.bmiNormalRange")}</p>
                 </div>
                 <div>
-                  <p className="text-white/80 mb-2">Overweight</p>
-                  <p className="text-3xl font-bold">23.0 - 27.4</p>
+                  <p className="text-white/80 mb-2">{t("whoIsItFor.bmiOverweight")}</p>
+                  <p className="text-3xl font-bold">{t("whoIsItFor.bmiOverweightRange")}</p>
                 </div>
                 <div>
-                  <p className="text-white/80 mb-2">Obesity</p>
-                  <p className="text-3xl font-bold">≥ 27.5</p>
+                  <p className="text-white/80 mb-2">{t("whoIsItFor.bmiObesity")}</p>
+                  <p className="text-3xl font-bold">{t("whoIsItFor.bmiObesityRange")}</p>
                 </div>
               </div>
               <p className="text-white/80 mt-4 text-sm">
-                *Pharmacotherapy is generally positioned as an add-on to
-                lifestyle change, not a standalone solution.
+                {t("whoIsItFor.bmiNote")}
               </p>
             </motion.div>
           </div>
@@ -324,35 +301,19 @@ const GLP1LandingPage = () => {
           <div className="max-w-7xl mx-auto">
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <span className="text-wine font-medium text-sm uppercase tracking-wider mb-4 block">
-                Our Programme
+                {t("programme.badge")}
               </span>
               <h2 className="font-['Georgia'] text-4xl font-bold text-brown mb-6">
-                What's inside a doctor-monitored GLP-1 programme
+                {t("programme.title")}
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                {
-                  icon: FileText,
-                  title: "Medical Assessment",
-                  desc: "Review weight history, hunger patterns, health risks, and baseline measurements",
-                },
-                {
-                  icon: Target,
-                  title: "Medication Plan",
-                  desc: "Personalised option based on your needs - Semaglutide, Liraglutide, or Tirzepatide",
-                },
-                {
-                  icon: Apple,
-                  title: "Food Strategy",
-                  desc: "Repeatable eating habits with Malaysian food - protein, fibre, proper portions",
-                },
-                {
-                  icon: Calendar,
-                  title: "Follow-ups",
-                  desc: "Regular tracking of hunger control, side effects, weight, and energy",
-                },
+                { icon: FileText, title: t("programme.item1Title"), desc: t("programme.item1Desc") },
+                { icon: Target, title: t("programme.item2Title"), desc: t("programme.item2Desc") },
+                { icon: Apple, title: t("programme.item3Title"), desc: t("programme.item3Desc") },
+                { icon: Calendar, title: t("programme.item4Title"), desc: t("programme.item4Desc") },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -384,30 +345,17 @@ const GLP1LandingPage = () => {
             <div className="grid md:grid-cols-2 gap-16">
               <motion.div variants={fadeInLeft}>
                 <h2 className="font-['Georgia'] text-4xl font-bold text-brown mb-6">
-                  What results can you realistically expect?
+                  {t("results.title")}
                 </h2>
                 <p className="text-taupe text-lg mb-8">
-                  Clinical trials show meaningful average weight loss with
-                  proper medication and lifestyle support.
+                  {t("results.description")}
                 </p>
 
                 <div className="space-y-6">
                   {[
-                    {
-                      drug: "Semaglutide 2.4 mg",
-                      time: "68 weeks",
-                      result: "STEP 1 trial",
-                    },
-                    {
-                      drug: "Tirzepatide",
-                      time: "72 weeks",
-                      result: "SURMOUNT-1 trial",
-                    },
-                    {
-                      drug: "Liraglutide 3.0 mg",
-                      time: "56 weeks",
-                      result: "Trial data",
-                    },
+                    { drug: t("results.drug1"), time: t("results.drug1Time"), result: t("results.drug1Result") },
+                    { drug: t("results.drug2"), time: t("results.drug2Time"), result: t("results.drug2Result") },
+                    { drug: t("results.drug3"), time: t("results.drug3Time"), result: t("results.drug3Result") },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -430,35 +378,38 @@ const GLP1LandingPage = () => {
                 <div className="bg-white p-8 rounded-3xl shadow-xl border border-taupe/10">
                   <h3 className="font-['Georgia'] text-2xl font-bold text-brown mb-6 flex items-center">
                     <AlertCircle className="w-6 h-6 text-wine mr-3" />
-                    Common Side Effects
+                    {t("results.sideEffectsTitle")}
                   </h3>
 
                   <div className="grid grid-cols-2 gap-4 mb-8">
-                    {["Nausea", "Diarrhoea", "Vomiting", "Constipation"].map(
-                      (effect, index) => (
-                        <motion.div
-                          key={index}
-                          variants={scaleIn}
-                          className="p-3 bg-cream rounded-xl text-center"
-                        >
-                          <span className="text-brown font-medium">
-                            {effect}
-                          </span>
-                        </motion.div>
-                      ),
-                    )}
+                    {[
+                      t("results.effect1"),
+                      t("results.effect2"),
+                      t("results.effect3"),
+                      t("results.effect4"),
+                    ].map((effect, index) => (
+                      <motion.div
+                        key={index}
+                        variants={scaleIn}
+                        className="p-3 bg-cream rounded-xl text-center"
+                      >
+                        <span className="text-brown font-medium">
+                          {effect}
+                        </span>
+                      </motion.div>
+                    ))}
                   </div>
 
                   <div className="bg-wine/10 p-6 rounded-xl">
                     <h4 className="font-bold text-brown mb-2">
-                      How we manage side effects:
+                      {t("results.manageTitle")}
                     </h4>
                     <ul className="space-y-2">
                       {[
-                        "Start low and increase gradually",
-                        "Coaching on meal size and food choices",
-                        "Checking hydration",
-                        "Reviewing red flags",
+                        t("results.manage1"),
+                        t("results.manage2"),
+                        t("results.manage3"),
+                        t("results.manage4"),
                       ].map((item, index) => (
                         <li
                           key={index}
@@ -474,13 +425,10 @@ const GLP1LandingPage = () => {
                   <div className="mt-6 p-4 bg-yellow-50 rounded-xl border border-yellow-200">
                     <h4 className="font-bold text-yellow-800 mb-2 flex items-center">
                       <AlertCircle className="w-5 h-5 mr-2" />
-                      Important Safety Note:
+                      {t("results.safetyTitle")}
                     </h4>
                     <p className="text-sm text-yellow-700">
-                      Malaysia's NPRA published safety communication on GLP-1
-                      medicines and aspiration risk during general anaesthesia
-                      or deep sedation. Always inform your doctor before any
-                      procedure.
+                      {t("results.safetyDesc")}
                     </p>
                   </div>
                 </div>
@@ -499,7 +447,6 @@ const GLP1LandingPage = () => {
           viewport={{ once: true }}
           className="py-24 px-4 sm:px-6 lg:px-8 bg-linear-to-r from-wine to-rose relative overflow-hidden"
         >
-          {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full filter blur-3xl"></div>
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full filter blur-3xl"></div>
@@ -508,16 +455,13 @@ const GLP1LandingPage = () => {
           <div className="relative max-w-4xl mx-auto text-center">
             <motion.div variants={fadeInUp}>
               <h2 className="font-['Georgia'] text-4xl md:text-5xl font-bold text-white mb-6">
-                Ready to quiet the cravings?
+                {t("cta.title")}
               </h2>
               <p className="text-white/90 text-xl mb-10">
-                If you feel like your appetite is running the show, a
-                doctor-monitored GLP-1 weight loss programme in Kuala Lumpur can
-                give you structure and support.
+                {t("cta.desc1")}
               </p>
               <p className="text-white/80 text-lg mb-12">
-                Start with a proper assessment at Nexus Clinic Kuala Lumpur so
-                your plan fits your body, your risks, and your lifestyle.
+                {t("cta.desc2")}
               </p>
 
               <motion.button
@@ -525,7 +469,7 @@ const GLP1LandingPage = () => {
                 whileTap={{ scale: 0.95 }}
                 className="px-10 py-5 bg-white text-wine rounded-full font-bold text-lg hover:bg-light transition-colors shadow-2xl hover:shadow-3xl inline-flex items-center"
               >
-                Book Your Assessment
+                {t("cta.bookButton")}
                 <ArrowRight className="w-6 h-6 ml-2" />
               </motion.button>
             </motion.div>

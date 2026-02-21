@@ -35,24 +35,28 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const ZepboundLanding = () => {
+const ZepboundLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "zepbound");
+
   const faqs = [
     {
-      q: "How long does it take to see results?",
-      a: "Many people notice appetite changes early, but visible weight loss is usually more obvious over weeks to months. Longer trials show larger total loss over extended use.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "Is Zepbound available in Malaysia?",
-      a: "Yes. Malaysia's NPRA lists tirzepatide among registered GLP-1 related products. Availability and branding can vary, so your clinic will confirm during consultation.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "What happens if I stop taking it?",
-      a: "Do not stop without speaking to your doctor. Many people regain weight after stopping weight loss medicines, so a maintenance plan matters.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
     {
-      q: "Which is better, Zepbound or Wegovy?",
-      a: "They work differently (tirzepatide acts on GIP and GLP-1; semaglutide is GLP-1 only). 'Better' depends on your health profile and side effect tolerance.",
+      q: t("faq.q4"),
+      a: t("faq.a4"),
     },
   ];
   return (
@@ -82,7 +86,7 @@ const ZepboundLanding = () => {
                 >
                   <Sparkles className="w-4 h-4 text-wine" />
                   <span className="text-sm font-medium text-brown">
-                    Doctor-Monitored Programme
+                    {t("hero.badge")}
                   </span>
                 </motion.div>
 
@@ -90,9 +94,9 @@ const ZepboundLanding = () => {
                   variants={fadeInUp}
                   className="text-5xl md:text-6xl lg:text-7xl font-serif text-brown leading-tight mb-6"
                 >
-                  Stuck at the same weight?
+                  {t("hero.title1")}
                   <span className="block text-wine mt-2">
-                    Let's change the story.
+                    {t("hero.title2")}
                   </span>
                 </motion.h1>
 
@@ -100,9 +104,7 @@ const ZepboundLanding = () => {
                   variants={fadeInUp}
                   className="text-xl text-taupe mb-8 max-w-lg"
                 >
-                  Real appetite control, steady progress, and a plan you can
-                  actually live with. No perfection needed—just a safer system
-                  that fits your body and lifestyle.
+                  {t("hero.description")}
                 </motion.p>
 
                 <motion.div
@@ -114,7 +116,7 @@ const ZepboundLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="group bg-wine text-white px-8 py-4 rounded-full font-medium hover:bg-rose transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
                   >
-                    Book Your Consultation
+                    {t("hero.bookConsultation")}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
 
@@ -123,7 +125,7 @@ const ZepboundLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="bg-white/70 backdrop-blur-sm border-2 border-wine/30 text-brown px-8 py-4 rounded-full font-medium hover:bg-white hover:border-wine transition-all duration-300"
                   >
-                    Learn More
+                    {t("hero.learnMore")}
                   </motion.button>
                 </motion.div>
               </motion.div>
@@ -143,10 +145,10 @@ const ZepboundLanding = () => {
                   <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-8 border border-white/50 shadow-2xl">
                     <div className="grid grid-cols-2 gap-4">
                       {[
-                        { icon: Shield, text: "Doctor-Led" },
-                        { icon: Clock, text: "Weekly Injections" },
-                        { icon: Heart, text: "Safe Monitoring" },
-                        { icon: Target, text: "Real Results" },
+                        { icon: Shield, text: t("hero.trust1") },
+                        { icon: Clock, text: t("hero.trust2") },
+                        { icon: Heart, text: t("hero.trust3") },
+                        { icon: Target, text: t("hero.trust4") },
                       ].map((item, idx) => (
                         <motion.div
                           key={idx}
@@ -164,9 +166,9 @@ const ZepboundLanding = () => {
                     <div className="mt-6 p-4 bg-linear-to-r from-wine/10 to-rose/10 rounded-xl">
                       <p className="text-brown text-sm">
                         <span className="font-bold">
-                          Zepbound (tirzepatide):
+                          {t("hero.zepboundLabel")}
                         </span>{" "}
-                        Dual-hormone approach for natural appetite control
+                        {t("hero.zepboundDesc")}
                       </p>
                     </div>
                   </div>
@@ -207,21 +209,20 @@ const ZepboundLanding = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-serif text-brown mb-4">
-                Why Nexus Clinic?
+                {t("whyNexus.title")}
               </h2>
               <p className="text-taupe text-lg max-w-2xl mx-auto">
-                Evidence-based care with a personal touch, right in the heart of
-                Kuala Lumpur
+                {t("whyNexus.description")}
               </p>
             </motion.div>
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
               {[
-                { icon: Award, text: "Doctor-Led Assessment" },
-                { icon: Users, text: "Personal Guidance" },
-                { icon: FileText, text: "Evidence-Based" },
-                { icon: Calendar, text: "Clear Follow-ups" },
-                { icon: MapPin, text: "KL City Centre" },
+                { icon: Award, text: t("whyNexus.trust1") },
+                { icon: Users, text: t("whyNexus.trust2") },
+                { icon: FileText, text: t("whyNexus.trust3") },
+                { icon: Calendar, text: t("whyNexus.trust4") },
+                { icon: MapPin, text: t("whyNexus.trust5") },
               ].map((item, idx) => (
                 <motion.div
                   key={idx}
@@ -251,16 +252,14 @@ const ZepboundLanding = () => {
             >
               <motion.div variants={fadeInLeft}>
                 <h2 className="text-4xl md:text-5xl font-serif text-brown mb-6">
-                  What is Zepbound, and why is everyone talking about it?
+                  {t("whatIs.title")}
                 </h2>
 
                 <div className="space-y-6 text-taupe">
                   <p className="text-lg">
-                    Zepbound is the brand name for{" "}
-                    <span className="font-bold text-wine">tirzepatide</span>{" "}
-                    used for chronic weight management. It's a prescription
-                    injection taken once weekly, alongside a reduced-calorie
-                    diet and increased physical activity.
+                    {t("whatIs.desc1")}{" "}
+                    <span className="font-bold text-wine">{t("whatIs.desc1Bold")}</span>{" "}
+                    {t("whatIs.desc1End")}
                   </p>
 
                   <motion.div
@@ -268,9 +267,7 @@ const ZepboundLanding = () => {
                     className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-wine"
                   >
                     <p className="text-brown italic">
-                      "Here's the key point: Zepbound works on hunger signals
-                      and helps you feel full sooner, so eating less feels more
-                      natural—not like a daily fight."
+                      &ldquo;{t("whatIs.quote")}&rdquo;
                     </p>
                   </motion.div>
                 </div>
@@ -279,16 +276,16 @@ const ZepboundLanding = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
                   <h3 className="text-xl font-bold text-brown mb-4">
-                    Zepbound vs Mounjaro
+                    {t("whatIs.vsTitle")}
                   </h3>
 
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <div className="w-2 h-2 rounded-full bg-wine mt-2"></div>
                       <p className="text-taupe">
-                        Same active ingredient:{" "}
+                        {t("whatIs.vsSameIngredient")}{" "}
                         <span className="font-bold text-brown">
-                          tirzepatide
+                          {t("whatIs.vsSameIngredientBold")}
                         </span>
                       </p>
                     </div>
@@ -296,16 +293,14 @@ const ZepboundLanding = () => {
                     <div className="flex items-start gap-3">
                       <div className="w-2 h-2 rounded-full bg-rose mt-2"></div>
                       <p className="text-taupe">
-                        Different marketing for different uses
+                        {t("whatIs.vsDifferentMarketing")}
                       </p>
                     </div>
 
                     <div className="bg-cream p-4 rounded-xl mt-4">
                       <p className="text-sm text-brown">
-                        <span className="font-bold">Malaysia note:</span>{" "}
-                        Clinics may discuss "tirzepatide programmes" rather than
-                        US brand names. NPRA registers tirzepatide among GLP-1
-                        products.
+                        <span className="font-bold">{t("whatIs.malaysiaNote")}</span>{" "}
+                        {t("whatIs.malaysiaNoteDesc")}
                       </p>
                     </div>
                   </div>
@@ -336,9 +331,9 @@ const ZepboundLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl font-serif text-brown mb-4"
               >
-                How Zepbound Works
+                {t("howItWorks.title")}
                 <span className="block text-lg font-sans text-taupe mt-2">
-                  (in human language)
+                  {t("howItWorks.subtitle")}
                 </span>
               </motion.h2>
             </motion.div>
@@ -347,18 +342,18 @@ const ZepboundLanding = () => {
               {[
                 {
                   icon: Coffee,
-                  title: "Before",
-                  desc: "Constant cravings, never feel full",
+                  title: t("howItWorks.step1Title"),
+                  desc: t("howItWorks.step1Desc"),
                 },
                 {
                   icon: Zap,
-                  title: "With Zepbound",
-                  desc: "Activate GLP-1 & GIP receptors",
+                  title: t("howItWorks.step2Title"),
+                  desc: t("howItWorks.step2Desc"),
                 },
                 {
                   icon: Heart,
-                  title: "Result",
-                  desc: "Satisfied with smaller portions",
+                  title: t("howItWorks.step3Title"),
+                  desc: t("howItWorks.step3Desc"),
                 },
               ].map((item, idx) => (
                 <motion.div
@@ -391,8 +386,7 @@ const ZepboundLanding = () => {
               className="mt-12 p-6 bg-linear-to-r from-wine to-rose rounded-2xl text-white text-center"
             >
               <p className="text-lg">
-                This is not about willpower. It's about changing the signals
-                that were pushing you to overeat.
+                {t("howItWorks.banner")}
               </p>
             </motion.div>
           </div>
@@ -412,18 +406,18 @@ const ZepboundLanding = () => {
             >
               <motion.div variants={fadeInLeft}>
                 <h2 className="text-4xl font-serif text-brown mb-6">
-                  Who can be a candidate?
+                  {t("candidate.title")}
                 </h2>
 
                 <div className="space-y-6">
                   <div className="bg-white rounded-2xl p-6 shadow-lg">
                     <h3 className="text-lg font-bold text-wine mb-3">
-                      FDA Approval Criteria:
+                      {t("candidate.fdaTitle")}
                     </h3>
                     <ul className="space-y-3">
                       {[
-                        "BMI 30 or higher",
-                        "BMI 27 or higher with weight-related condition (high blood pressure, type 2 diabetes, high cholesterol)",
+                        t("candidate.fda1"),
+                        t("candidate.fda2"),
                       ].map((item, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <CheckCircle2 className="w-5 h-5 text-wine shrink-0 mt-0.5" />
@@ -435,10 +429,8 @@ const ZepboundLanding = () => {
 
                   <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-wine/20">
                     <p className="text-sm text-brown">
-                      <span className="font-bold">Important:</span> Even if you
-                      fit BMI ranges, a medical review matters. Some people
-                      should not use tirzepatide due to risks and
-                      contraindications.
+                      <span className="font-bold">{t("candidate.importantNote")}</span>{" "}
+                      {t("candidate.importantNoteDesc")}
                     </p>
                   </div>
                 </div>
@@ -449,18 +441,18 @@ const ZepboundLanding = () => {
                   <div className="flex items-center gap-3 mb-6">
                     <AlertTriangle className="w-6 h-6 text-rose" />
                     <h3 className="text-xl font-bold text-brown">
-                      Who should NOT use Zepbound
+                      {t("candidate.whoShouldNotTitle")}
                     </h3>
                   </div>
 
                   <ul className="space-y-4">
                     {[
-                      "History of medullary thyroid carcinoma (MTC)",
-                      "MEN2 (Multiple Endocrine Neoplasia syndrome type 2)",
-                      "Serious allergic reaction to tirzepatide",
-                      "Pancreatitis history (caution)",
-                      "Gallbladder disease (caution)",
-                      "Kidney issues (caution)",
+                      t("candidate.shouldNot1"),
+                      t("candidate.shouldNot2"),
+                      t("candidate.shouldNot3"),
+                      t("candidate.shouldNot4"),
+                      t("candidate.shouldNot5"),
+                      t("candidate.shouldNot6"),
                     ].map((item, idx) => (
                       <motion.li
                         key={idx}
@@ -475,8 +467,7 @@ const ZepboundLanding = () => {
 
                   <div className="mt-6 p-4 bg-cream rounded-xl">
                     <p className="text-sm text-brown">
-                      A proper clinic does not "sell injections." A proper
-                      clinic checks risk, monitors you, and adjusts safely.
+                      {t("candidate.clinicNote")}
                     </p>
                   </div>
                 </div>
@@ -498,15 +489,14 @@ const ZepboundLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl font-serif text-brown text-center mb-4"
               >
-                What results can you realistically expect?
+                {t("results.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-taupe text-center max-w-2xl mx-auto mb-16"
               >
-                Clinical results vary, but here's the typical pattern patients
-                experience
+                {t("results.description")}
               </motion.p>
 
               <div className="relative">
@@ -516,27 +506,27 @@ const ZepboundLanding = () => {
                 <div className="grid md:grid-cols-4 gap-6">
                   {[
                     {
-                      weeks: "1-4",
-                      title: "Early Days",
-                      desc: "Appetite shifts, early adjustment",
+                      weeks: t("results.phase1Weeks"),
+                      title: t("results.phase1Title"),
+                      desc: t("results.phase1Desc"),
                       icon: Activity,
                     },
                     {
-                      weeks: "5-12",
-                      title: "Steady Loss",
-                      desc: "Visible progress begins",
+                      weeks: t("results.phase2Weeks"),
+                      title: t("results.phase2Title"),
+                      desc: t("results.phase2Desc"),
                       icon: Scale,
                     },
                     {
-                      weeks: "3-6 months",
-                      title: "New Normal",
-                      desc: "Habits feel easier",
+                      weeks: t("results.phase3Weeks"),
+                      title: t("results.phase3Title"),
+                      desc: t("results.phase3Desc"),
                       icon: Heart,
                     },
                     {
-                      weeks: "Long-term",
-                      title: "Maintenance",
-                      desc: "The real win",
+                      weeks: t("results.phase4Weeks"),
+                      title: t("results.phase4Title"),
+                      desc: t("results.phase4Desc"),
                       icon: Award,
                     },
                   ].map((item, idx) => (
@@ -561,8 +551,7 @@ const ZepboundLanding = () => {
 
               <motion.div variants={fadeInUp} className="mt-12 text-center">
                 <p className="text-lg text-brown italic">
-                  "At Nexus Clinic Kuala Lumpur, the goal is not 'fast.' The
-                  goal is safe, steady, and maintainable."
+                  &ldquo;{t("results.quote")}&rdquo;
                 </p>
               </motion.div>
             </motion.div>
@@ -582,33 +571,33 @@ const ZepboundLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl font-serif text-brown text-center mb-16"
               >
-                Your Journey at Nexus Clinic
+                {t("journey.title")}
               </motion.h2>
 
               <div className="grid md:grid-cols-4 gap-8">
                 {[
                   {
                     step: "01",
-                    title: "First Consult",
-                    desc: "Your real story matters—sleep, stress, cravings, history",
+                    title: t("journey.step1Title"),
+                    desc: t("journey.step1Desc"),
                     icon: MessageCircle,
                   },
                   {
                     step: "02",
-                    title: "Safety Checks",
-                    desc: "BMI, blood pressure, labs, medication review",
+                    title: t("journey.step2Title"),
+                    desc: t("journey.step2Desc"),
                     icon: Shield,
                   },
                   {
                     step: "03",
-                    title: "Malaysia Life Plan",
-                    desc: "Nasi campur? Grab food? Family dinners? We get it.",
+                    title: t("journey.step3Title"),
+                    desc: t("journey.step3Desc"),
                     icon: Coffee,
                   },
                   {
                     step: "04",
-                    title: "Ongoing Monitoring",
-                    desc: "Side effects, plateaus, motivation—we're with you",
+                    title: t("journey.step4Title"),
+                    desc: t("journey.step4Desc"),
                     icon: Heart,
                   },
                 ].map((item, idx) => (
@@ -654,14 +643,14 @@ const ZepboundLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl font-serif text-brown text-center mb-4"
               >
-                Side Effects & Safety
+                {t("sideEffects.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-taupe text-center max-w-2xl mx-auto mb-16"
               >
-                You deserve clear answers. Here's what you need to know.
+                {t("sideEffects.description")}
               </motion.p>
 
               <div className="grid md:grid-cols-2 gap-8">
@@ -671,19 +660,19 @@ const ZepboundLanding = () => {
                 >
                   <h3 className="text-xl font-bold text-brown mb-6 flex items-center gap-2">
                     <Info className="w-5 h-5 text-wine" />
-                    Common Side Effects
+                    {t("sideEffects.commonTitle")}
                   </h3>
 
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      "Nausea",
-                      "Diarrhea",
-                      "Vomiting",
-                      "Constipation",
-                      "Abdominal pain",
-                      "Indigestion",
-                      "Fatigue",
-                      "Heartburn",
+                      t("sideEffects.effect1"),
+                      t("sideEffects.effect2"),
+                      t("sideEffects.effect3"),
+                      t("sideEffects.effect4"),
+                      t("sideEffects.effect5"),
+                      t("sideEffects.effect6"),
+                      t("sideEffects.effect7"),
+                      t("sideEffects.effect8"),
                     ].map((effect, idx) => (
                       <motion.div
                         key={idx}
@@ -697,8 +686,7 @@ const ZepboundLanding = () => {
                   </div>
 
                   <p className="mt-6 text-sm text-brown bg-white/50 p-4 rounded-xl">
-                    Side effects often show up most during dose increases, then
-                    reduce over time for many people.
+                    {t("sideEffects.commonNote")}
                   </p>
                 </motion.div>
 
@@ -708,18 +696,18 @@ const ZepboundLanding = () => {
                 >
                   <h3 className="text-xl font-bold text-brown mb-6 flex items-center gap-2">
                     <AlertTriangle className="w-5 h-5 text-rose" />
-                    Serious Risks
+                    {t("sideEffects.seriousTitle")}
                   </h3>
 
                   <ul className="space-y-3">
                     {[
-                      "Thyroid tumors",
-                      "Pancreatitis",
-                      "Gallbladder problems",
-                      "Kidney issues from dehydration",
-                      "Serious allergic reactions",
-                      "Hypoglycemia (with diabetes meds)",
-                      "Mood changes",
+                      t("sideEffects.risk1"),
+                      t("sideEffects.risk2"),
+                      t("sideEffects.risk3"),
+                      t("sideEffects.risk4"),
+                      t("sideEffects.risk5"),
+                      t("sideEffects.risk6"),
+                      t("sideEffects.risk7"),
                     ].map((risk, idx) => (
                       <li
                         key={idx}
@@ -733,8 +721,7 @@ const ZepboundLanding = () => {
 
                   <div className="mt-6 p-4 bg-white rounded-xl border-l-4 border-rose">
                     <p className="text-sm font-bold text-brown">
-                      This is exactly why doctor monitoring is not optional. It
-                      is the point.
+                      {t("sideEffects.seriousNote")}
                     </p>
                   </div>
                 </motion.div>
@@ -749,13 +736,10 @@ const ZepboundLanding = () => {
                   <AlertCircle className="w-6 h-6 text-wine shrink-0 mt-1" />
                   <div>
                     <h4 className="font-bold text-brown mb-2">
-                      Important for Surgery or Sedation
+                      {t("sideEffects.surgeryTitle")}
                     </h4>
                     <p className="text-taupe text-sm">
-                      Malaysia's NPRA has reviewed safety concerns about GLP-1
-                      medicines and aspiration risk during anaesthesia. If
-                      you're scheduled for a procedure, tell your doctor and
-                      anaesthesia team early.
+                      {t("sideEffects.surgeryDesc")}
                     </p>
                   </div>
                 </div>
@@ -778,12 +762,11 @@ const ZepboundLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl font-serif text-brown mb-6"
               >
-                Investment in Your Health
+                {t("cost.title")}
               </motion.h2>
 
               <motion.p variants={fadeInUp} className="text-taupe text-lg mb-8">
-                Cost depends on your programme and dose plan. We believe in
-                transparency.
+                {t("cost.description")}
               </motion.p>
 
               <motion.div
@@ -793,15 +776,15 @@ const ZepboundLanding = () => {
                 <div className="grid md:grid-cols-2 gap-8 text-left">
                   <div>
                     <h4 className="font-bold text-brown mb-4">
-                      What affects cost:
+                      {t("cost.whatAffectsTitle")}
                     </h4>
                     <ul className="space-y-3">
                       {[
-                        "Medicine brand & supply route",
-                        "Your dose level over time",
-                        "Frequency of monitoring",
-                        "Lab work if needed",
-                        "Nutrition coaching options",
+                        t("cost.factor1"),
+                        t("cost.factor2"),
+                        t("cost.factor3"),
+                        t("cost.factor4"),
+                        t("cost.factor5"),
                       ].map((item, idx) => (
                         <li
                           key={idx}
@@ -816,11 +799,10 @@ const ZepboundLanding = () => {
 
                   <div>
                     <h4 className="font-bold text-brown mb-4">
-                      Best practice:
+                      {t("cost.bestPracticeTitle")}
                     </h4>
                     <p className="text-taupe mb-4">
-                      Ask for a clear breakdown of consultation fees, medicine
-                      cost, monitoring, and adjustment policies.
+                      {t("cost.bestPracticeDesc")}
                     </p>
 
                     <motion.button
@@ -828,7 +810,7 @@ const ZepboundLanding = () => {
                       whileTap={{ scale: 0.95 }}
                       className="w-full bg-wine text-white py-4 rounded-xl font-medium hover:bg-rose transition-colors"
                     >
-                      Request Cost Breakdown
+                      {t("cost.requestButton")}
                     </motion.button>
                   </div>
                 </div>
@@ -850,29 +832,29 @@ const ZepboundLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl font-serif text-brown text-center mb-16"
               >
-                Zepbound vs Others
+                {t("comparison.title")}
               </motion.h2>
 
               <div className="grid md:grid-cols-3 gap-8">
                 {[
                   {
-                    name: "Zepbound",
-                    active: "Tirzepatide",
-                    type: "GIP + GLP-1",
+                    name: t("comparison.med1Name"),
+                    active: t("comparison.med1Active"),
+                    type: t("comparison.med1Type"),
                     color: "text-wine",
                     bg: "bg-wine/10",
                   },
                   {
-                    name: "Mounjaro",
-                    active: "Tirzepatide",
-                    type: "GIP + GLP-1",
+                    name: t("comparison.med2Name"),
+                    active: t("comparison.med2Active"),
+                    type: t("comparison.med2Type"),
                     color: "text-rose",
                     bg: "bg-rose/10",
                   },
                   {
-                    name: "Wegovy/Ozempic",
-                    active: "Semaglutide",
-                    type: "GLP-1 only",
+                    name: t("comparison.med3Name"),
+                    active: t("comparison.med3Active"),
+                    type: t("comparison.med3Type"),
                     color: "text-brown",
                     bg: "bg-brown/10",
                   },
@@ -904,10 +886,8 @@ const ZepboundLanding = () => {
                 className="mt-12 p-6 bg-linear-to-r from-cream to-white rounded-2xl"
               >
                 <p className="text-brown text-center">
-                  <span className="font-bold">Note:</span> Some reports note
-                  higher average weight loss in tirzepatide trials, but your
-                  best option depends on your health history and doctor
-                  guidance.
+                  <span className="font-bold">{t("comparison.note")}</span>{" "}
+                  {t("comparison.noteDesc")}
                 </p>
               </motion.div>
             </motion.div>
@@ -932,13 +912,13 @@ const ZepboundLanding = () => {
                   <Sparkles className="w-6 h-6 text-wine" />
                 </div>
                 <h3 className="text-2xl font-bold text-brown">
-                  Is this the same as fat freezing?
+                  {t("fatFreezing.title")}
                 </h3>
               </motion.div>
 
               <motion.p variants={fadeInUp} className="text-taupe text-lg mb-4">
-                <span className="font-bold text-wine">No.</span> And this is
-                important for expectations.
+                <span className="font-bold text-wine">{t("fatFreezing.intro")}</span>{" "}
+                {t("fatFreezing.introEnd")}
               </motion.p>
 
               <motion.div
@@ -946,20 +926,18 @@ const ZepboundLanding = () => {
                 className="grid md:grid-cols-2 gap-6 mt-6"
               >
                 <div className="p-4 bg-cream rounded-xl">
-                  <h4 className="font-bold text-brown mb-2">Fat Freezing</h4>
+                  <h4 className="font-bold text-brown mb-2">{t("fatFreezing.ffTitle")}</h4>
                   <p className="text-sm text-taupe">
-                    Targets specific pockets of fat. Reshapes areas. Doesn't
-                    change appetite.
+                    {t("fatFreezing.ffDesc")}
                   </p>
                 </div>
 
                 <div className="p-4 bg-wine/10 rounded-xl border border-wine/20">
                   <h4 className="font-bold text-brown mb-2">
-                    Zepbound Programme
+                    {t("fatFreezing.zpTitle")}
                   </h4>
                   <p className="text-sm text-taupe">
-                    Appetite regulation, fullness, metabolic support. Reduces
-                    overall body weight.
+                    {t("fatFreezing.zpDesc")}
                   </p>
                 </div>
               </motion.div>
@@ -968,8 +946,7 @@ const ZepboundLanding = () => {
                 variants={fadeInUp}
                 className="mt-6 text-sm text-brown italic"
               >
-                Some people do both, but the right order matters. Usually,
-                medical weight loss first, contouring later.
+                {t("fatFreezing.note")}
               </motion.p>
             </motion.div>
           </div>
@@ -989,9 +966,9 @@ const ZepboundLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl md:text-5xl font-serif text-brown mb-4"
               >
-                Better Results
+                {t("habits.title")}
                 <span className="block text-lg font-sans text-taupe mt-2">
-                  (without turning your life upside down)
+                  {t("habits.subtitle")}
                 </span>
               </motion.h2>
             </motion.div>
@@ -1000,33 +977,33 @@ const ZepboundLanding = () => {
               {[
                 {
                   icon: Salad,
-                  habit: "Protein at each meal",
-                  desc: "Stay full longer",
+                  habit: t("habits.habit1"),
+                  desc: t("habits.habit1Desc"),
                 },
                 {
                   icon: Droplets,
-                  habit: "Water & electrolytes",
-                  desc: "If nausea or constipation hits",
+                  habit: t("habits.habit2"),
+                  desc: t("habits.habit2Desc"),
                 },
                 {
                   icon: Activity,
-                  habit: "Light movement",
-                  desc: "Protect muscle and mood",
+                  habit: t("habits.habit3"),
+                  desc: t("habits.habit3Desc"),
                 },
                 {
                   icon: Moon,
-                  habit: "Prioritize sleep",
-                  desc: "Hunger hormones worsen when sleep is poor",
+                  habit: t("habits.habit4"),
+                  desc: t("habits.habit4Desc"),
                 },
                 {
                   icon: Coffee,
-                  habit: "Smaller meals",
-                  desc: "When appetite changes",
+                  habit: t("habits.habit5"),
+                  desc: t("habits.habit5Desc"),
                 },
                 {
                   icon: Heart,
-                  habit: "No crash diets",
-                  desc: "You want fat loss, not burnout",
+                  habit: t("habits.habit6"),
+                  desc: t("habits.habit6Desc"),
                 },
               ].map((item, idx) => (
                 <motion.div
@@ -1088,16 +1065,14 @@ const ZepboundLanding = () => {
               variants={fadeInUp}
               className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6"
             >
-              Ready to talk to a doctor?
+              {t("cta.title")}
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl text-white/90 mb-12 max-w-2xl mx-auto"
             >
-              If you're tired of yo-yo dieting and want a medically guided plan
-              that feels realistic, book a consultation at Nexus Clinic Kuala
-              Lumpur.
+              {t("cta.description")}
             </motion.p>
 
             <motion.div
@@ -1113,7 +1088,7 @@ const ZepboundLanding = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-wine px-10 py-5 rounded-full font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300"
               >
-                Book Your Consultation
+                {t("cta.bookButton")}
               </motion.button>
 
               <motion.button
@@ -1124,7 +1099,7 @@ const ZepboundLanding = () => {
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-white text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300"
               >
-                Call Us Now
+                {t("cta.callButton")}
               </motion.button>
             </motion.div>
 
@@ -1132,11 +1107,11 @@ const ZepboundLanding = () => {
               variants={fadeInUp}
               className="mt-12 flex justify-center gap-4 text-white/80 text-sm"
             >
-              <span>Kuala Lumpur</span>
+              <span>{t("cta.location")}</span>
               <span>•</span>
-              <span>Doctor-monitored</span>
+              <span>{t("cta.doctorMonitored")}</span>
               <span>•</span>
-              <span>Evidence-based</span>
+              <span>{t("cta.evidenceBased")}</span>
             </motion.div>
           </motion.div>
         </section>
