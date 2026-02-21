@@ -30,33 +30,35 @@ import {
   fadeInRight,
   scaleIn,
 } from "../../lib/animations";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const AcneScarLanding = () => {
+const AcneScarLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "acneScarTreatment");
+
   const scarTypes = [
     {
       icon: <Target className="w-6 h-6" />,
-      title: "Ice Pick Scars",
-      description:
-        "Small, narrow, deep 'holes' that need targeted treatment approaches",
+      title: t("scarTypes.type1Title"),
+      description: t("scarTypes.type1Desc"),
       color: "from-rose/20 to-wine/20",
     },
     {
       icon: <Layers className="w-6 h-6" />,
-      title: "Boxcar Scars",
-      description: "Wider dents with clearer edges, like old chickenpox marks",
+      title: t("scarTypes.type2Title"),
+      description: t("scarTypes.type2Desc"),
       color: "from-taupe/20 to-brown/20",
     },
     {
       icon: <Wind className="w-6 h-6" />,
-      title: "Rolling Scars",
-      description:
-        "Soft wave-like dents from bands of scar tissue pulling skin down",
+      title: t("scarTypes.type3Title"),
+      description: t("scarTypes.type3Desc"),
       color: "from-wine/20 to-rose/20",
     },
     {
       icon: <Gem className="w-6 h-6" />,
-      title: "Raised Scars",
-      description: "Hypertrophic or keloid scars needing different approaches",
+      title: t("scarTypes.type4Title"),
+      description: t("scarTypes.type4Desc"),
       color: "from-brown/20 to-taupe/20",
     },
   ];
@@ -64,41 +66,38 @@ const AcneScarLanding = () => {
   const treatments = [
     {
       icon: <Microscope className="w-8 h-8" />,
-      title: "Subcision",
-      description:
-        "Releases fibrotic strands tethering scars, allowing skin to lift naturally",
-      time: "30-60 mins",
-      sessions: "1-3 sessions",
-      downtime: "Mild swelling/bruising",
+      title: t("treatments.t1Title"),
+      description: t("treatments.t1Desc"),
+      time: t("treatments.t1Time"),
+      sessions: t("treatments.t1Sessions"),
+      downtime: t("treatments.t1Downtime"),
       color: "from-wine to-rose",
     },
     {
       icon: <Sparkles className="w-8 h-8" />,
-      title: "Fractional CO2 Laser",
-      description:
-        "Creates micro-zones for skin healing and new collagen building",
-      time: "45-60 mins",
-      sessions: "3-5 sessions",
-      downtime: "5-14 days",
+      title: t("treatments.t2Title"),
+      description: t("treatments.t2Desc"),
+      time: t("treatments.t2Time"),
+      sessions: t("treatments.t2Sessions"),
+      downtime: t("treatments.t2Downtime"),
       color: "from-brown to-taupe",
     },
     {
       icon: <Feather className="w-8 h-8" />,
-      title: "Microneedling",
-      description:
-        "Controlled micro-injuries that encourage collagen production",
-      time: "30-45 mins",
-      sessions: "4-6 sessions",
-      downtime: "2-3 days",
+      title: t("treatments.t3Title"),
+      description: t("treatments.t3Desc"),
+      time: t("treatments.t3Time"),
+      sessions: t("treatments.t3Sessions"),
+      downtime: t("treatments.t3Downtime"),
       color: "from-rose to-wine",
     },
     {
       icon: <Flower2 className="w-8 h-8" />,
-      title: "PRP Therapy",
-      description: "Platelet-rich plasma support for enhanced healing",
-      time: "20-30 mins",
-      sessions: "2-3 sessions",
-      downtime: "Minimal",
+      title: t("treatments.t4Title"),
+      description: t("treatments.t4Desc"),
+      time: t("treatments.t4Time"),
+      sessions: t("treatments.t4Sessions"),
+      downtime: t("treatments.t4Downtime"),
       color: "from-taupe to-brown",
     },
   ];
@@ -106,58 +105,132 @@ const AcneScarLanding = () => {
   const benefits = [
     {
       icon: <Heart className="w-6 h-6" />,
-      text: "Smoother skin in daily lighting",
+      text: t("benefits.pro1"),
     },
     {
       icon: <CheckCircle2 className="w-6 h-6" />,
-      text: "Makeup sits better",
+      text: t("benefits.pro2"),
     },
     {
       icon: <Star className="w-6 h-6" />,
-      text: "Confidence improves in photos",
+      text: t("benefits.pro3"),
     },
     {
       icon: <Wind className="w-6 h-6" />,
-      text: "Texture feels less bumpy",
+      text: t("benefits.pro4"),
     },
   ];
 
   const considerations = [
     {
       icon: <Calendar className="w-6 h-6" />,
-      text: "Active, inflamed acne that keeps flaring",
+      text: t("whoFor.wait1"),
     },
     {
       icon: <Heart className="w-6 h-6" />,
-      text: "Pregnancy or breastfeeding",
+      text: t("whoFor.wait2"),
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      text: "History of severe keloids",
+      text: t("whoFor.wait3"),
     },
     {
       icon: <Sun className="w-6 h-6" />,
-      text: "Cannot avoid sun exposure",
+      text: t("whoFor.wait4"),
     },
   ];
 
   const stats = [
     {
-      value: "2001",
-      label: "Established",
+      value: t("hero.stat1Value"),
+      label: t("hero.stat1Label"),
       icon: <Calendar className="w-5 h-5" />,
     },
     {
-      value: "4.7",
-      label: "Google Rating",
+      value: t("hero.stat2Value"),
+      label: t("hero.stat2Label"),
       icon: <Star className="w-5 h-5" />,
     },
-    { value: "437+", label: "Reviews", icon: <Heart className="w-5 h-5" /> },
     {
-      value: "24+",
-      label: "Years Experience",
+      value: t("hero.stat3Value"),
+      label: t("hero.stat3Label"),
+      icon: <Heart className="w-5 h-5" />,
+    },
+    {
+      value: t("hero.stat4Value"),
+      label: t("hero.stat4Label"),
       icon: <Clock className="w-5 h-5" />,
     },
+  ];
+
+  const goodFitItems = [
+    t("whoFor.fit1"),
+    t("whoFor.fit2"),
+    t("whoFor.fit3"),
+    t("whoFor.fit4"),
+  ];
+
+  const scarMappingSteps = [
+    {
+      step: t("scarMapping.step1Num"),
+      title: t("scarMapping.step1Title"),
+      desc: t("scarMapping.step1Desc"),
+    },
+    {
+      step: t("scarMapping.step2Num"),
+      title: t("scarMapping.step2Title"),
+      desc: t("scarMapping.step2Desc"),
+    },
+    {
+      step: t("scarMapping.step3Num"),
+      title: t("scarMapping.step3Title"),
+      desc: t("scarMapping.step3Desc"),
+    },
+  ];
+
+  const cons = [
+    t("benefits.con1"),
+    t("benefits.con2"),
+    t("benefits.con3"),
+  ];
+
+  const sideEffectsList = [
+    t("sideEffects.effect1"),
+    t("sideEffects.effect2"),
+    t("sideEffects.effect3"),
+    t("sideEffects.effect4"),
+  ];
+
+  const costItems = [
+    {
+      treatment: t("cost.item1Treatment"),
+      price: t("cost.item1Price"),
+      clinic: t("cost.item1Clinic"),
+    },
+    {
+      treatment: t("cost.item2Treatment"),
+      price: t("cost.item2Price"),
+      clinic: t("cost.item2Clinic"),
+    },
+    {
+      treatment: t("cost.item3Treatment"),
+      price: t("cost.item3Price"),
+      clinic: t("cost.item3Clinic"),
+    },
+  ];
+
+  const faqItems = [
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+  ];
+
+  const whyNexusPoints = [
+    t("whyNexus.point1"),
+    t("whyNexus.point2"),
+    t("whyNexus.point3"),
+    t("whyNexus.point4"),
   ];
 
   return (
@@ -186,7 +259,7 @@ const AcneScarLanding = () => {
                 >
                   <MapPin className="w-4 h-4 text-wine" />
                   <span className="text-sm font-inter text-brown">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </motion.div>
 
@@ -194,18 +267,16 @@ const AcneScarLanding = () => {
                   variants={fadeInUp}
                   className="font-georgia text-5xl lg:text-7xl text-brown leading-tight"
                 >
-                  Clearer skin is
-                  <span className="text-wine block italic">not a dream.</span>
-                  <span className="text-rose block">It is a plan.</span>
+                  {t("hero.title1")}
+                  <span className="text-wine block italic">{t("hero.title2")}</span>
+                  <span className="text-rose block">{t("hero.title3")}</span>
                 </motion.h1>
 
                 <motion.p
                   variants={fadeInUp}
                   className="text-lg text-taupe font-inter leading-relaxed max-w-lg"
                 >
-                  At Nexus Clinic Kuala Lumpur, we build a scar map for your
-                  face and match it with the right mix of treatments, so your
-                  skin looks smoother in real life, not just in photos.
+                  {t("hero.desc")}
                 </motion.p>
 
                 <motion.div variants={fadeInUp} className="flex wrap gap-4">
@@ -214,7 +285,7 @@ const AcneScarLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="px-8 py-4 bg-wine text-light font-inter rounded-full shadow-lg hover:shadow-xl transition-all flex items-center space-x-2 group"
                   >
-                    <span>Start Your Scar Map</span>
+                    <span>{t("hero.button")}</span>
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
 
@@ -223,7 +294,7 @@ const AcneScarLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="px-8 py-4 border-2 border-wine/30 text-brown font-inter rounded-full hover:bg-glass transition-all"
                   >
-                    Learn More
+                    {t("hero.learnMore")}
                   </motion.button>
                 </motion.div>
 
@@ -255,13 +326,11 @@ const AcneScarLanding = () => {
                     <div className="flex items-center space-x-2 text-wine">
                       <AlertCircle className="w-5 h-5" />
                       <span className="font-inter text-sm uppercase tracking-wider">
-                        Quick, honest note
+                        {t("hero.honestNote")}
                       </span>
                     </div>
                     <p className="font-georgia text-brown text-xl italic">
-                      "There is no single 'best acne scar treatment' for
-                      everyone. Acne scars come in different shapes, depths, and
-                      directions."
+                      {t("hero.honestQuote")}
                     </p>
                     <div className="h-1 w-20 bg-rose rounded-full" />
                   </div>
@@ -291,7 +360,7 @@ const AcneScarLanding = () => {
               >
                 <Stethoscope className="w-4 h-4 text-wine" />
                 <span className="text-sm text-brown">
-                  Understanding Your Skin
+                  {t("whyStubborn.badge")}
                 </span>
               </motion.div>
 
@@ -299,9 +368,9 @@ const AcneScarLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown"
               >
-                Why acne scars feel so stubborn
+                {t("whyStubborn.title")}
                 <span className="text-wine block text-2xl mt-4">
-                  (and why they are not your fault)
+                  {t("whyStubborn.subtitle")}
                 </span>
               </motion.h2>
 
@@ -309,10 +378,7 @@ const AcneScarLanding = () => {
                 variants={fadeInUp}
                 className="text-lg text-taupe font-inter leading-relaxed"
               >
-                Acne scars are not just "marks on the surface." Many scars sit
-                deeper because acne inflammation damages collagen below the
-                skin. When healing happens unevenly, the surface can dip,
-                tether, or look rough.
+                {t("whyStubborn.desc")}
               </motion.p>
 
               <motion.div
@@ -324,11 +390,10 @@ const AcneScarLanding = () => {
                   className="bg-cream p-8 rounded-3xl shadow-lg border border-white/50"
                 >
                   <h3 className="font-georgia text-2xl text-wine mb-4">
-                    The Good News
+                    {t("whyStubborn.goodNewsTitle")}
                   </h3>
                   <p className="text-brown font-inter">
-                    Scars can be improved. The skin can rebuild collagen. It
-                    just needs the right trigger and enough time.
+                    {t("whyStubborn.goodNewsDesc")}
                   </p>
                 </motion.div>
 
@@ -337,12 +402,10 @@ const AcneScarLanding = () => {
                   className="bg-cream p-8 rounded-3xl shadow-lg border border-white/50"
                 >
                   <h3 className="font-georgia text-2xl text-rose mb-4">
-                    The Reality
+                    {t("whyStubborn.realityTitle")}
                   </h3>
                   <p className="text-brown font-inter">
-                    Even people who never pick can still scar, especially with
-                    cystic acne. But with proper treatment, meaningful
-                    improvement is achievable.
+                    {t("whyStubborn.realityDesc")}
                   </p>
                 </motion.div>
               </motion.div>
@@ -364,20 +427,19 @@ const AcneScarLanding = () => {
                 variants={fadeInUp}
                 className="text-wine font-inter tracking-wider text-sm uppercase"
               >
-                Understanding Your Scars
+                {t("scarTypes.badge")}
               </motion.span>
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown"
               >
-                Types of Acne Scars
+                {t("scarTypes.title")}
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-taupe font-inter max-w-2xl mx-auto"
               >
-                Most facial acne scars fall into these patterns. Identifying
-                your scar type is the first step to effective treatment.
+                {t("scarTypes.desc")}
               </motion.p>
             </motion.div>
 
@@ -420,12 +482,9 @@ const AcneScarLanding = () => {
             >
               <p className="text-brown font-inter text-center">
                 <span className="font-bold text-rose">
-                  Post-acne marks (not true scars):
+                  {t("scarTypes.postAcneLabel")}
                 </span>{" "}
-                Brown or red marks after acne are very common in Malaysia. They
-                can look like scarring, but they are usually pigment or redness.
-                They often respond well to pigment-friendly plans and strict sun
-                protection.
+                {t("scarTypes.postAcneDesc")}
               </p>
             </motion.div>
           </div>
@@ -444,20 +503,15 @@ const AcneScarLanding = () => {
               <motion.div variants={fadeInLeft} className="space-y-8">
                 <div className="inline-flex items-center space-x-2 bg-glass px-4 py-2 rounded-full">
                   <Heart className="w-4 h-4 text-wine" />
-                  <span className="text-sm text-brown">Who Should Start</span>
+                  <span className="text-sm text-brown">{t("whoFor.goodFitBadge")}</span>
                 </div>
 
                 <h2 className="font-georgia text-4xl text-brown">
-                  You are a good fit if:
+                  {t("whoFor.goodFitTitle")}
                 </h2>
 
                 <ul className="space-y-4">
-                  {[
-                    "Your acne is mostly under control and the scars are the main problem",
-                    "Your scars show more in certain lighting, selfies, or video calls",
-                    "You want improvement, not 'perfect glass skin'",
-                    "You can commit to a plan (usually multiple sessions)",
-                  ].map((item, index) => (
+                  {goodFitItems.map((item, index) => (
                     <motion.li
                       key={index}
                       variants={fadeInUp}
@@ -473,11 +527,11 @@ const AcneScarLanding = () => {
               <motion.div variants={fadeInRight} className="space-y-8">
                 <div className="inline-flex items-center space-x-2 bg-glass px-4 py-2 rounded-full">
                   <Clock className="w-4 h-4 text-rose" />
-                  <span className="text-sm text-brown">When to Wait</span>
+                  <span className="text-sm text-brown">{t("whoFor.waitBadge")}</span>
                 </div>
 
                 <h2 className="font-georgia text-4xl text-brown">
-                  You may need to wait or adjust if:
+                  {t("whoFor.waitTitle")}
                 </h2>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -521,7 +575,7 @@ const AcneScarLanding = () => {
               >
                 <MapPin className="w-4 h-4 text-wine" />
                 <span className="text-sm text-brown">
-                  Our Signature Approach
+                  {t("scarMapping.badge")}
                 </span>
               </motion.div>
 
@@ -529,15 +583,14 @@ const AcneScarLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown"
               >
-                The Nexus Scar Mapping Plan
+                {t("scarMapping.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-lg text-taupe font-inter"
               >
-                A good acne scar plan should feel clear, not confusing. Here's
-                how we build yours.
+                {t("scarMapping.desc")}
               </motion.p>
             </motion.div>
 
@@ -548,23 +601,7 @@ const AcneScarLanding = () => {
               viewport={{ once: true }}
               className="grid md:grid-cols-3 gap-8 mt-16"
             >
-              {[
-                {
-                  step: "01",
-                  title: "Map Your Scars",
-                  desc: "We analyze scar types, depth, tethering, skin sensitivity, pigment risk, and your lifestyle",
-                },
-                {
-                  step: "02",
-                  title: "Choose the Tools",
-                  desc: "Often a combination approach - fractional CO2, subcision, microneedling, peels, PRP, and more",
-                },
-                {
-                  step: "03",
-                  title: "Set Real Expectations",
-                  desc: "We discuss what 'good progress' looks like for your face and timeline",
-                },
-              ].map((item, index) => (
+              {scarMappingSteps.map((item, index) => (
                 <motion.div
                   key={index}
                   variants={fadeInUp}
@@ -601,20 +638,19 @@ const AcneScarLanding = () => {
                 variants={fadeInUp}
                 className="text-wine font-inter tracking-wider text-sm uppercase"
               >
-                Our Treatment Arsenal
+                {t("treatments.badge")}
               </motion.span>
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown"
               >
-                Acne Scar Treatments
+                {t("treatments.title")}
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-taupe font-inter max-w-2xl mx-auto"
               >
-                Explained in easy words - each with specific benefits for
-                different scar types
+                {t("treatments.desc")}
               </motion.p>
             </motion.div>
 
@@ -651,15 +687,15 @@ const AcneScarLanding = () => {
 
                     <div className="space-y-2 pt-4 border-t border-white/50">
                       <div className="flex justify-between text-sm">
-                        <span className="text-brown font-inter">Duration:</span>
+                        <span className="text-brown font-inter">{t("treatments.durationLabel")}</span>
                         <span className="text-wine">{treatment.time}</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-brown font-inter">Sessions:</span>
+                        <span className="text-brown font-inter">{t("treatments.sessionsLabel")}</span>
                         <span className="text-rose">{treatment.sessions}</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-brown font-inter">Downtime:</span>
+                        <span className="text-brown font-inter">{t("treatments.downtimeLabel")}</span>
                         <span className="text-taupe">{treatment.downtime}</span>
                       </div>
                     </div>
@@ -683,11 +719,11 @@ const AcneScarLanding = () => {
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <div className="inline-flex items-center space-x-2 bg-glass px-4 py-2 rounded-full">
                   <Heart className="w-4 h-4 text-wine" />
-                  <span className="text-sm text-brown">What Patients Love</span>
+                  <span className="text-sm text-brown">{t("benefits.prosBadge")}</span>
                 </div>
 
                 <h2 className="font-georgia text-4xl text-brown">
-                  Realistic Pros
+                  {t("benefits.prosTitle")}
                 </h2>
 
                 <div className="space-y-4">
@@ -711,18 +747,14 @@ const AcneScarLanding = () => {
                 <div className="inline-flex items-center space-x-2 bg-glass px-4 py-2 rounded-full">
                   <AlertCircle className="w-4 h-4 text-rose" />
                   <span className="text-sm text-brown">
-                    What Can Be Annoying
+                    {t("benefits.consBadge")}
                   </span>
                 </div>
 
-                <h2 className="font-georgia text-4xl text-brown">But Normal</h2>
+                <h2 className="font-georgia text-4xl text-brown">{t("benefits.consTitle")}</h2>
 
                 <div className="space-y-4">
-                  {[
-                    "It takes time. Collagen does not rebuild overnight",
-                    "Downtime can be inconvenient if you choose resurfacing lasers",
-                    "You may need a combination plan for mixed scars",
-                  ].map((item, index) => (
+                  {cons.map((item, index) => (
                     <motion.div
                       key={index}
                       variants={fadeInUp}
@@ -756,16 +788,16 @@ const AcneScarLanding = () => {
                 className="inline-flex items-center space-x-2 bg-glass px-4 py-2 rounded-full mb-8"
               >
                 <Shield className="w-4 h-4 text-wine" />
-                <span className="text-sm text-brown">Safety First</span>
+                <span className="text-sm text-brown">{t("sideEffects.badge")}</span>
               </motion.div>
 
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-8"
               >
-                Side effects and safety
+                {t("sideEffects.title")}
                 <span className="text-wine block text-2xl mt-4">
-                  what you should know in Malaysia
+                  {t("sideEffects.subtitle")}
                 </span>
               </motion.h2>
 
@@ -773,22 +805,14 @@ const AcneScarLanding = () => {
                 variants={fadeInUp}
                 className="text-lg text-taupe font-inter mb-8"
               >
-                Most acne scar procedures are safe when performed by trained
-                medical professionals, using proper settings and aftercare.
-                Malaysia has guidance around aesthetic medical practice and
-                credentialing.
+                {t("sideEffects.desc")}
               </motion.p>
 
               <motion.div
                 variants={fadeInUp}
                 className="grid sm:grid-cols-2 gap-4 mb-8"
               >
-                {[
-                  "Redness, swelling, warmth",
-                  "Peeling or dryness after resurfacing",
-                  "Mild bruising after subcision",
-                  "Temporary pigment changes (higher risk in darker skin)",
-                ].map((item, index) => (
+                {sideEffectsList.map((item, index) => (
                   <div key={index} className="flex items-start space-x-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-wine mt-2" />
                     <span className="text-brown font-inter text-sm">
@@ -803,8 +827,7 @@ const AcneScarLanding = () => {
                 className="bg-rose/10 p-6 rounded-2xl border border-rose/20"
               >
                 <p className="text-brown font-inter italic">
-                  "The best safety move you can make is simple: follow
-                  aftercare, avoid sun, and do not 'over-treat' too fast."
+                  {t("sideEffects.safetyQuote")}
                 </p>
               </motion.div>
             </motion.div>
@@ -825,9 +848,9 @@ const AcneScarLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                Cost of acne scar treatment
+                {t("cost.title")}
                 <span className="text-wine block text-2xl">
-                  in Kuala Lumpur and Malaysia
+                  {t("cost.subtitle")}
                 </span>
               </motion.h2>
 
@@ -835,31 +858,14 @@ const AcneScarLanding = () => {
                 variants={fadeInUp}
                 className="text-lg text-taupe font-inter mb-8"
               >
-                Prices vary by scar severity, treatment type, device used, and
-                number of sessions.
+                {t("cost.desc")}
               </motion.p>
 
               <motion.div
                 variants={fadeInUp}
                 className="grid md:grid-cols-3 gap-6 mb-8"
               >
-                {[
-                  {
-                    treatment: "Trial Session",
-                    price: "RM398",
-                    clinic: "Dr Chong Clinic",
-                  },
-                  {
-                    treatment: "Subcision",
-                    price: "RM800+",
-                    clinic: "Premier Clinic",
-                  },
-                  {
-                    treatment: "Fractional CO2",
-                    price: "RM1,800+",
-                    clinic: "Premier Clinic",
-                  },
-                ].map((item, index) => (
+                {costItems.map((item, index) => (
                   <motion.div
                     key={index}
                     whileHover={{ scale: 1.05 }}
@@ -880,8 +886,7 @@ const AcneScarLanding = () => {
                 variants={fadeInUp}
                 className="text-center text-brown font-inter italic"
               >
-                At Nexus Clinic Kuala Lumpur, your cost depends on your scar map
-                and chosen plan.
+                {t("cost.note")}
               </motion.p>
             </motion.div>
           </div>
@@ -901,16 +906,16 @@ const AcneScarLanding = () => {
                 <div className="inline-flex items-center space-x-2 bg-glass px-4 py-2 rounded-full">
                   <Droplets className="w-4 h-4 text-wine" />
                   <span className="text-sm text-brown">
-                    Protect Your Results
+                    {t("aftercare.badge")}
                   </span>
                 </div>
 
                 <h2 className="font-georgia text-4xl lg:text-5xl text-brown">
-                  Aftercare that protects your results
+                  {t("aftercare.title")}
                 </h2>
 
                 <p className="text-lg text-taupe font-inter">
-                  Your aftercare is not "optional." It is part of the treatment.
+                  {t("aftercare.desc")}
                 </p>
 
                 <div className="space-y-4">
@@ -919,20 +924,20 @@ const AcneScarLanding = () => {
                     className="bg-cream p-6 rounded-2xl"
                   >
                     <h3 className="font-georgia text-xl text-wine mb-3">
-                      First 48 Hours
+                      {t("aftercare.first48Title")}
                     </h3>
                     <ul className="space-y-2 text-brown font-inter">
                       <li className="flex items-start space-x-2">
                         <span className="text-wine">•</span>
-                        <span>Keep it gentle. Cleanse softly</span>
+                        <span>{t("aftercare.first48Item1")}</span>
                       </li>
                       <li className="flex items-start space-x-2">
                         <span className="text-wine">•</span>
-                        <span>Avoid heat, sauna, heavy workouts</span>
+                        <span>{t("aftercare.first48Item2")}</span>
                       </li>
                       <li className="flex items-start space-x-2">
                         <span className="text-wine">•</span>
-                        <span>Do not pick peeling skin</span>
+                        <span>{t("aftercare.first48Item3")}</span>
                       </li>
                     </ul>
                   </motion.div>
@@ -942,20 +947,20 @@ const AcneScarLanding = () => {
                     className="bg-cream p-6 rounded-2xl"
                   >
                     <h3 className="font-georgia text-xl text-rose mb-3">
-                      First Week
+                      {t("aftercare.firstWeekTitle")}
                     </h3>
                     <ul className="space-y-2 text-brown font-inter">
                       <li className="flex items-start space-x-2">
                         <span className="text-rose">•</span>
-                        <span>Sunscreen daily, even indoors</span>
+                        <span>{t("aftercare.firstWeekItem1")}</span>
                       </li>
                       <li className="flex items-start space-x-2">
                         <span className="text-rose">•</span>
-                        <span>Pause harsh actives (retinoids, acids)</span>
+                        <span>{t("aftercare.firstWeekItem2")}</span>
                       </li>
                       <li className="flex items-start space-x-2">
                         <span className="text-rose">•</span>
-                        <span>Keep skin hydrated and protected</span>
+                        <span>{t("aftercare.firstWeekItem3")}</span>
                       </li>
                     </ul>
                   </motion.div>
@@ -966,11 +971,10 @@ const AcneScarLanding = () => {
                 <div className="absolute inset-0 bg-linear-to-br from-wine/20 to-rose/20 rounded-3xl blur-3xl" />
                 <div className="relative bg-glass backdrop-blur-sm p-8 rounded-3xl border border-white/30">
                   <h3 className="font-georgia text-2xl text-brown mb-4">
-                    Between Sessions
+                    {t("aftercare.betweenTitle")}
                   </h3>
                   <p className="text-brown font-inter mb-6">
-                    Do not rush. Your skin needs time to rebuild collagen. If
-                    acne returns, treat it early so scars do not keep forming.
+                    {t("aftercare.betweenDesc")}
                   </p>
                   <div className="h-1 w-20 bg-wine rounded-full" />
                 </div>
@@ -993,35 +997,18 @@ const AcneScarLanding = () => {
                 variants={scaleIn}
                 className="inline-flex items-center space-x-2 bg-glass px-4 py-2 rounded-full mb-8"
               >
-                <span className="text-sm text-brown">People Also Ask</span>
+                <span className="text-sm text-brown">{t("faq.badge")}</span>
               </motion.div>
 
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-12"
               >
-                Frequently Asked Questions
+                {t("faq.title")}
               </motion.h2>
 
               <div className="space-y-4">
-                {[
-                  {
-                    q: "How many sessions of fractional CO2 laser are needed?",
-                    a: "Many patients are guided toward 3 to 5 sessions, often spaced 4 to 6 weeks apart, depending on scar depth and goals.",
-                  },
-                  {
-                    q: "Is fractional CO2 laser safe for darker skin tones?",
-                    a: "It can be safe with proper assessment and customised settings, but pigment risk needs planning. Darker skin tones may have a higher risk of pigmentation changes.",
-                  },
-                  {
-                    q: "What is subcision and what scars is it for?",
-                    a: "Subcision is a minor procedure where a needle is used to release tethering strands under the skin, helping depressed scars lift and encouraging collagen formation.",
-                  },
-                  {
-                    q: "What is a realistic acne scar improvement goal?",
-                    a: "Visible improvement in texture and depth. Many patients don't need 'perfect,' they want smoother skin in real lighting.",
-                  },
-                ].map((faq, index) => (
+                {faqItems.map((faq, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
@@ -1056,36 +1043,28 @@ const AcneScarLanding = () => {
                 className="inline-flex items-center space-x-2 bg-glass px-4 py-2 rounded-full"
               >
                 <MapPin className="w-4 h-4 text-wine" />
-                <span className="text-sm text-brown">Why Choose Us</span>
+                <span className="text-sm text-brown">{t("whyNexus.badge")}</span>
               </motion.div>
 
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown"
               >
-                Why Nexus Clinic Kuala Lumpur
+                {t("whyNexus.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-lg text-taupe font-inter"
               >
-                If you are searching for acne scar treatment in Kuala Lumpur,
-                you are probably overwhelmed by options. Many clinics offer
-                lasers. Many offer microneedling. The difference is how well
-                your plan is built.
+                {t("whyNexus.desc")}
               </motion.p>
 
               <motion.div
                 variants={fadeInUp}
                 className="grid md:grid-cols-2 gap-6 pt-8"
               >
-                {[
-                  "Scar mapping and combination planning for mixed scars",
-                  "Established 2001 in KL's Golden Triangle",
-                  "Complete toolkit: subcision, CO2, dermaroller, peels, PRP",
-                  "Easy access at Wisma UOA II, Jalan Pinang",
-                ].map((item, index) => (
+                {whyNexusPoints.map((item, index) => (
                   <motion.div
                     key={index}
                     whileHover={{ scale: 1.02 }}
@@ -1105,7 +1084,7 @@ const AcneScarLanding = () => {
                   whileTap={{ scale: 0.95 }}
                   className="px-12 py-5 bg-linear-to-r from-wine to-rose text-light font-inter rounded-full shadow-xl hover:shadow-2xl transition-all inline-flex items-center space-x-3 group"
                 >
-                  <span className="text-lg">Start Your Scar Map</span>
+                  <span className="text-lg">{t("whyNexus.button")}</span>
                   <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
               </motion.div>

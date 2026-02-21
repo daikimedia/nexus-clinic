@@ -1,5 +1,6 @@
 import TirzepatideLanding from "@/src/views/weightlossTreatment/Tirzepatide";
 
-export default function Page() {
-  return <TirzepatideLanding />;
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return <TirzepatideLanding locale={locale} />;
 }

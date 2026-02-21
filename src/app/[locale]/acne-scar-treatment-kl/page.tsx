@@ -1,5 +1,6 @@
 import AcneScarLanding from "@/src/views/skinTreatment/AcneScarTreatment";
 
-export default function Page() {
-  return <AcneScarLanding />;
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return <AcneScarLanding locale={locale} />;
 }

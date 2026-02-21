@@ -25,28 +25,32 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const TirzepatideLanding = () => {
+const TirzepatideLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "tirzepatide");
+
   const faqs = [
     {
-      q: "What is tirzepatide used for?",
-      a: "Tirzepatide is used to improve blood sugar control in type 2 diabetes (Mounjaro). In the US, it's also approved for chronic weight management under the brand Zepbound.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "Is tirzepatide the same as Mounjaro or Zepbound?",
-      a: "Mounjaro and Zepbound contain tirzepatide as the active ingredient. Tirzepatide is the medicine; Mounjaro and Zepbound are brand names.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "How much weight can you lose on tirzepatide?",
-      a: "In a 72 week trial, average weight loss was 15% to about 21% in adults with obesity (without diabetes). Individual results vary.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
     {
-      q: "Is tirzepatide available in Malaysia?",
-      a: "Malaysia's NPRA has referenced Mounjaro in safety communications. It's available through prescription only at clinics with proper medical supervision.",
+      q: t("faq.q4"),
+      a: t("faq.a4"),
     },
     {
-      q: "Do I still need diet and exercise on tirzepatide?",
-      a: "Yes. Even the FDA indication specifies use with reduced calorie diet and increased physical activity. The injection supports appetite control, but habits keep results.",
+      q: t("faq.q5"),
+      a: t("faq.a5"),
     },
   ];
   return (
@@ -73,21 +77,19 @@ const TirzepatideLanding = () => {
                 >
                   <Sparkles className="w-4 h-4 text-wine" />
                   <span className="text-sm font-medium text-wine">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </motion.div>
 
                 <h1 className="font-['Georgia',serif] text-5xl sm:text-6xl lg:text-7xl leading-tight">
-                  Lose weight when{" "}
-                  <span className="text-wine italic">willpower</span>
+                  {t("hero.title1")}{" "}
+                  <span className="text-wine italic">{t("hero.titleBold")}</span>
                   <br />
-                  is not the problem
+                  {t("hero.title2")}
                 </h1>
 
                 <p className="text-xl text-brown/80 max-w-lg">
-                  Tirzepatide is a once weekly medical option that helps reduce
-                  hunger and cravings. At Nexus Clinic Kuala Lumpur, we keep it
-                  safe, structured, and doctor monitored.
+                  {t("hero.description")}
                 </p>
 
                 <motion.button
@@ -95,7 +97,7 @@ const TirzepatideLanding = () => {
                   whileTap={{ scale: 0.98 }}
                   className="group bg-wine text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-rose transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2"
                 >
-                  <span>Book a consultation</span>
+                  <span>{t("hero.bookButton")}</span>
                   <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
 
@@ -105,12 +107,12 @@ const TirzepatideLanding = () => {
                   className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-8"
                 >
                   {[
-                    { icon: FileText, text: "Doctor led assessment" },
-                    { icon: Syringe, text: "Prescription only" },
-                    { icon: Users, text: "Regular follow ups" },
-                    { icon: Heart, text: "Lifestyle plan" },
-                    { icon: Shield, text: "Safety guidance" },
-                    { icon: Info, text: "Privacy first care" },
+                    { icon: FileText, text: t("hero.proof1") },
+                    { icon: Syringe, text: t("hero.proof2") },
+                    { icon: Users, text: t("hero.proof3") },
+                    { icon: Heart, text: t("hero.proof4") },
+                    { icon: Shield, text: t("hero.proof5") },
+                    { icon: Info, text: t("hero.proof6") },
                   ].map((item, index) => (
                     <div
                       key={index}
@@ -127,19 +129,19 @@ const TirzepatideLanding = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="relative bg-white/70 backdrop-blur-lg rounded-3xl p-8 shadow-2xl border border-white/50">
                   <div className="absolute -top-4 -right-4 bg-wine text-white px-4 py-2 rounded-full text-sm font-medium">
-                    Doctor Monitored
+                    {t("hero.doctorMonitored")}
                   </div>
 
                   <h3 className="font-['Georgia',serif] text-2xl mb-6 text-brown">
-                    What makes it different
+                    {t("hero.cardTitle")}
                   </h3>
 
                   <div className="space-y-6">
                     {[
-                      "Dual hormone pathway activation (GIP + GLP-1)",
-                      "Reduces food noise and cravings",
-                      "Slows stomach emptying naturally",
-                      "Clinically proven results",
+                      t("hero.cardItem1"),
+                      t("hero.cardItem2"),
+                      t("hero.cardItem3"),
+                      t("hero.cardItem4"),
                     ].map((item, index) => (
                       <motion.div
                         key={index}
@@ -166,7 +168,7 @@ const TirzepatideLanding = () => {
                           ))}
                         </div>
                         <span className="text-sm text-brown">
-                          +200 patients
+                          {t("hero.patients")}
                         </span>
                       </div>
                       <div className="flex items-center space-x-1">
@@ -196,15 +198,14 @@ const TirzepatideLanding = () => {
             >
               <motion.div variants={fadeInUp} className="text-center mb-16">
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl mb-6 text-brown">
-                  Tirzepatide weight loss in Malaysia:
+                  {t("understanding.title1")}
                   <br />
                   <span className="text-wine">
-                    what it is, and why it feels different
+                    {t("understanding.title2")}
                   </span>
                 </h2>
                 <p className="text-lg text-brown/80 max-w-2xl mx-auto">
-                  If you have tried "eat less, move more" a hundred times, you
-                  already know the truth. Some bodies fight back harder.
+                  {t("understanding.subtitle")}
                 </p>
               </motion.div>
 
@@ -217,13 +218,10 @@ const TirzepatideLanding = () => {
                 <div className="grid md:grid-cols-2 gap-8 relative z-10">
                   <div className="space-y-6">
                     <h3 className="font-['Georgia',serif] text-2xl text-brown">
-                      The science
+                      {t("understanding.scienceTitle")}
                     </h3>
                     <p className="text-brown leading-relaxed">
-                      Tirzepatide is designed for that exact problem. It works
-                      on appetite and fullness signals in the body, not just
-                      motivation. In large clinical trials, people with obesity
-                      lost significant body weight over time.
+                      {t("understanding.scienceDesc")}
                     </p>
                     <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4">
                       <div className="flex items-center space-x-3">
@@ -232,10 +230,10 @@ const TirzepatideLanding = () => {
                         </div>
                         <div>
                           <div className="text-sm text-brown/70">
-                            Active ingredient in
+                            {t("understanding.activeIn")}
                           </div>
                           <div className="font-medium text-brown">
-                            Mounjaro® & Zepbound®
+                            {t("understanding.activeInBrands")}
                           </div>
                         </div>
                       </div>
@@ -244,15 +242,15 @@ const TirzepatideLanding = () => {
 
                   <div className="space-y-6">
                     <h3 className="font-['Georgia',serif] text-2xl text-brown">
-                      What patients notice
+                      {t("understanding.patientsNoticeTitle")}
                     </h3>
                     <ul className="space-y-4">
                       {[
-                        "Calmer eating patterns",
-                        "Feel full sooner",
-                        "Stay full longer",
-                        "Food noise gets quieter",
-                        "Portions feel naturally smaller",
+                        t("understanding.notice1"),
+                        t("understanding.notice2"),
+                        t("understanding.notice3"),
+                        t("understanding.notice4"),
+                        t("understanding.notice5"),
                       ].map((item, index) => (
                         <li key={index} className="flex items-center space-x-2">
                           <CheckCircle2 className="w-4 h-4 text-wine" />
@@ -281,19 +279,19 @@ const TirzepatideLanding = () => {
                 <div className="inline-flex items-center space-x-2 bg-wine/10 px-4 py-2 rounded-full">
                   <Target className="w-4 h-4 text-wine" />
                   <span className="text-sm font-medium text-wine">
-                    Who this is for
+                    {t("whoFor.badge")}
                   </span>
                 </div>
 
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown">
-                  This may suit you if:
+                  {t("whoFor.suitTitle")}
                 </h2>
 
                 <div className="space-y-4">
                   {[
-                    "You have obesity, or you are overweight with weight related health risks",
-                    "You have tried structured diet and exercise but keep rebounding",
-                    "Hunger and cravings feel like the main obstacle",
+                    t("whoFor.suit1"),
+                    t("whoFor.suit2"),
+                    t("whoFor.suit3"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -311,24 +309,23 @@ const TirzepatideLanding = () => {
                 <div className="inline-flex items-center space-x-2 bg-rose/10 px-4 py-2 rounded-full">
                   <AlertCircle className="w-4 h-4 text-rose" />
                   <span className="text-sm font-medium text-rose">
-                    Important considerations
+                    {t("whoFor.notSuitBadge")}
                   </span>
                 </div>
 
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown">
-                  This may NOT suit you if:
+                  {t("whoFor.notSuitTitle")}
                 </h2>
 
                 <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-rose">
                   <p className="text-sm text-brown/70 mb-4">
-                    A doctor must screen you, but common "do not use" situations
-                    include:
+                    {t("whoFor.notSuitIntro")}
                   </p>
                   <ul className="space-y-3">
                     {[
-                      "Personal or family history of medullary thyroid cancer, or MEN2",
-                      "Pregnancy or breastfeeding",
-                      "Certain serious GI conditions",
+                      t("whoFor.notSuit1"),
+                      t("whoFor.notSuit2"),
+                      t("whoFor.notSuit3"),
                     ].map((item, index) => (
                       <li key={index} className="flex items-start space-x-3">
                         <span className="w-1.5 h-1.5 rounded-full bg-rose mt-2" />
@@ -337,8 +334,7 @@ const TirzepatideLanding = () => {
                     ))}
                   </ul>
                   <p className="text-xs text-brown/50 mt-4">
-                    These cautions are highlighted in tirzepatide prescribing
-                    information, including a boxed warning.
+                    {t("whoFor.cautionNote")}
                   </p>
                 </div>
               </motion.div>
@@ -358,14 +354,12 @@ const TirzepatideLanding = () => {
             >
               <motion.div variants={fadeInUp} className="text-center mb-16">
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl mb-6 text-brown">
-                  What results can you
+                  {t("results.title1")}
                   <br />
-                  <span className="text-wine">realistically expect?</span>
+                  <span className="text-wine">{t("results.title2")}</span>
                 </h2>
                 <p className="text-lg text-brown/80">
-                  Let's keep it honest. Results vary. Genetics, starting weight,
-                  dose tolerance, protein intake, sleep, and consistency all
-                  matter.
+                  {t("results.subtitle")}
                 </p>
               </motion.div>
 
@@ -375,19 +369,19 @@ const TirzepatideLanding = () => {
               >
                 {[
                   {
-                    value: "15-21%",
-                    label: "Average weight loss",
-                    sub: "in 72 week trials",
+                    value: t("results.stat1Value"),
+                    label: t("results.stat1Label"),
+                    sub: t("results.stat1Sub"),
                   },
                   {
-                    value: "72",
-                    label: "Weeks",
-                    sub: "clinical study duration",
+                    value: t("results.stat2Value"),
+                    label: t("results.stat2Label"),
+                    sub: t("results.stat2Sub"),
                   },
                   {
-                    value: "2025",
-                    label: "Head to head",
-                    sub: "vs semaglutide",
+                    value: t("results.stat3Value"),
+                    label: t("results.stat3Label"),
+                    sub: t("results.stat3Sub"),
                   },
                 ].map((stat, index) => (
                   <div
@@ -408,28 +402,28 @@ const TirzepatideLanding = () => {
                 className="bg-linear-to-br from-wine to-rose rounded-3xl p-8 text-white"
               >
                 <h3 className="font-['Georgia',serif] text-2xl mb-6">
-                  A simple timeline
+                  {t("results.timelineTitle")}
                 </h3>
                 <div className="grid md:grid-cols-4 gap-4">
                   {[
                     {
-                      period: "Weeks 1-4",
-                      desc: "Appetite drops first; scale may change slowly",
+                      period: t("results.tl1Period"),
+                      desc: t("results.tl1Desc"),
                       icon: Clock,
                     },
                     {
-                      period: "Weeks 5-12",
-                      desc: "Momentum builds if you keep meals consistent",
+                      period: t("results.tl2Period"),
+                      desc: t("results.tl2Desc"),
                       icon: TrendingDown,
                     },
                     {
-                      period: "Months 3-6",
-                      desc: "Many notice visible body shape changes",
+                      period: t("results.tl3Period"),
+                      desc: t("results.tl3Desc"),
                       icon: Heart,
                     },
                     {
-                      period: "Months 6-12",
-                      desc: "Progress continues, but plateaus can happen",
+                      period: t("results.tl4Period"),
+                      desc: t("results.tl4Desc"),
                       icon: Target,
                     },
                   ].map((item, index) => {
@@ -449,8 +443,7 @@ const TirzepatideLanding = () => {
                   })}
                 </div>
                 <p className="text-sm text-white/70 mt-4">
-                  * If you stop treatment after losing weight, regain is common.
-                  SURMOUNT-4 study shows importance of continuity.
+                  {t("results.regainNote")}
                 </p>
               </motion.div>
             </motion.div>
@@ -469,10 +462,10 @@ const TirzepatideLanding = () => {
             >
               <motion.div variants={fadeInUp} className="text-center mb-16">
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl mb-6 text-brown">
-                  The Nexus Clinic Kuala Lumpur approach
+                  {t("approach.title")}
                   <br />
                   <span className="text-wine text-2xl">
-                    (what "doctor monitored" should look like)
+                    {t("approach.subtitle")}
                   </span>
                 </h2>
               </motion.div>
@@ -481,51 +474,28 @@ const TirzepatideLanding = () => {
                 {[
                   {
                     step: "01",
-                    title: "Medical assessment first",
-                    items: [
-                      "Weight history",
-                      "Sleep, stress, cravings",
-                      "Family history",
-                      "Realistic target setting",
-                    ],
+                    title: t("approach.step1Title"),
+                    items: t("approach.step1Items", { returnObjects: true }) as string[],
                   },
                   {
                     step: "02",
-                    title: "Eligibility and safety screening",
-                    items: [
-                      "Check contraindications",
-                      "Risk factors",
-                      "Medical history review",
-                    ],
+                    title: t("approach.step2Title"),
+                    items: t("approach.step2Items", { returnObjects: true }) as string[],
                   },
                   {
                     step: "03",
-                    title: "Dose titration and follow ups",
-                    items: [
-                      "Gradual introduction",
-                      "Individualized schedule",
-                      "Regular monitoring",
-                    ],
+                    title: t("approach.step3Title"),
+                    items: t("approach.step3Items", { returnObjects: true }) as string[],
                   },
                   {
                     step: "04",
-                    title: "Nutrition that fits Malaysian life",
-                    items: [
-                      "Protein first",
-                      "Fiber daily",
-                      "Steady hydration",
-                      "Smarter portions",
-                    ],
+                    title: t("approach.step4Title"),
+                    items: t("approach.step4Items", { returnObjects: true }) as string[],
                   },
                   {
                     step: "05",
-                    title: "Progress tracking beyond the scale",
-                    items: [
-                      "Waist and hip measurements",
-                      "Cravings and hunger scores",
-                      "Energy and sleep",
-                      "Labs when needed",
-                    ],
+                    title: t("approach.step5Title"),
+                    items: t("approach.step5Items", { returnObjects: true }) as string[],
                   },
                 ].map((phase, index) => (
                   <motion.div
@@ -544,7 +514,7 @@ const TirzepatideLanding = () => {
                           {phase.title}
                         </h3>
                         <div className="flex flex-wrap gap-2">
-                          {phase.items.map((item, i) => (
+                          {(Array.isArray(phase.items) ? phase.items : []).map((item: string, i: number) => (
                             <span
                               key={i}
                               className="bg-cream px-3 py-1 rounded-full text-sm text-brown"
@@ -574,25 +544,25 @@ const TirzepatideLanding = () => {
             >
               <motion.div variants={fadeInLeft} className="space-y-8">
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown">
-                  Side effects:
+                  {t("sideEffects.title1")}
                   <br />
                   <span className="text-wine">
-                    what's common, what's serious
+                    {t("sideEffects.title2")}
                   </span>
                 </h2>
 
                 <div className="bg-cream rounded-2xl p-6">
                   <h3 className="font-medium text-brown mb-4">
-                    Most common (GI related):
+                    {t("sideEffects.commonTitle")}
                   </h3>
                   <div className="grid grid-cols-2 gap-3">
                     {[
-                      "Nausea",
-                      "Diarrhea",
-                      "Vomiting",
-                      "Constipation",
-                      "Abdominal discomfort",
-                      "Reduced appetite",
+                      t("sideEffects.common1"),
+                      t("sideEffects.common2"),
+                      t("sideEffects.common3"),
+                      t("sideEffects.common4"),
+                      t("sideEffects.common5"),
+                      t("sideEffects.common6"),
                     ].map((item, index) => (
                       <div key={index} className="flex items-center space-x-2">
                         <span className="w-1.5 h-1.5 rounded-full bg-wine" />
@@ -604,14 +574,14 @@ const TirzepatideLanding = () => {
 
                 <div className="space-y-4">
                   <h3 className="font-medium text-brown">
-                    Simple ways to reduce discomfort:
+                    {t("sideEffects.reduceTitle")}
                   </h3>
                   {[
-                    "Eat smaller meals",
-                    "Avoid greasy foods early on",
-                    "Stop when comfortably full",
-                    "Spread protein across the day",
-                    "Stay hydrated",
+                    t("sideEffects.tip1"),
+                    t("sideEffects.tip2"),
+                    t("sideEffects.tip3"),
+                    t("sideEffects.tip4"),
+                    t("sideEffects.tip5"),
                   ].map((tip, index) => (
                     <div key={index} className="flex items-start space-x-3">
                       <CheckCircle2 className="w-4 h-4 text-wine shrink-0 mt-0.5" />
@@ -625,40 +595,37 @@ const TirzepatideLanding = () => {
                 <div className="bg-rose/10 rounded-2xl p-6 border-l-4 border-rose">
                   <h3 className="font-medium text-brown mb-4 flex items-center space-x-2">
                     <AlertCircle className="w-5 h-5 text-rose" />
-                    <span>Important safety notes</span>
+                    <span>{t("sideEffects.safetyTitle")}</span>
                   </h3>
                   <ul className="space-y-4">
                     <li className="text-sm text-brown">
-                      <span className="font-medium">Boxed warning:</span>{" "}
-                      Thyroid C-cell tumors observed in animal studies
+                      <span className="font-medium">{t("sideEffects.boxedWarning")}</span>{" "}
+                      {t("sideEffects.boxedWarningDesc")}
                     </li>
                     <li className="text-sm text-brown">
                       <span className="font-medium">
-                        NPRA safety communication:
+                        {t("sideEffects.npraWarning")}
                       </span>{" "}
-                      Aspiration risk during general anaesthesia or deep
-                      sedation
+                      {t("sideEffects.npraWarningDesc")}
                     </li>
                     <li className="text-sm text-brown font-medium">
-                      If you develop severe persistent abdominal pain, seek
-                      medical care immediately.
+                      {t("sideEffects.severeNote")}
                     </li>
                   </ul>
                 </div>
 
                 <div className="bg-wine text-white rounded-2xl p-6">
                   <h3 className="font-['Georgia',serif] text-xl mb-4">
-                    Always tell your doctor:
+                    {t("sideEffects.tellDoctorTitle")}
                   </h3>
                   <p className="text-sm opacity-90 mb-4">
-                    Before any procedure involving anaesthesia or sedation,
-                    inform your doctor you are on GLP-1 class medication.
+                    {t("sideEffects.tellDoctorDesc")}
                   </p>
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
                     <div className="flex items-center space-x-2">
                       <Info className="w-4 h-4" />
                       <span className="text-sm">
-                        Malaysia's NPRA specifically highlights this risk
+                        {t("sideEffects.npraNote")}
                       </span>
                     </div>
                   </div>
@@ -680,10 +647,10 @@ const TirzepatideLanding = () => {
             >
               <motion.div variants={fadeInUp} className="text-center mb-16">
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown">
-                  Cost of tirzepatide in Malaysia
+                  {t("cost.title")}
                 </h2>
                 <p className="text-lg text-brown/80 mt-4">
-                  What affects the price
+                  {t("cost.subtitle")}
                 </p>
               </motion.div>
 
@@ -694,15 +661,15 @@ const TirzepatideLanding = () => {
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="font-['Georgia',serif] text-xl text-brown mb-4">
-                      Factors include:
+                      {t("cost.factorsTitle")}
                     </h3>
                     <ul className="space-y-3">
                       {[
-                        "Brand and supply chain",
-                        "Dose strength",
-                        "Pen or vial format",
-                        "Medical monitoring included",
-                        "Labs, consults, and follow ups",
+                        t("cost.factor1"),
+                        t("cost.factor2"),
+                        t("cost.factor3"),
+                        t("cost.factor4"),
+                        t("cost.factor5"),
                       ].map((item, index) => (
                         <li key={index} className="flex items-center space-x-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-wine" />
@@ -713,9 +680,7 @@ const TirzepatideLanding = () => {
                   </div>
                   <div className="bg-cream rounded-xl p-6">
                     <p className="text-brown text-sm">
-                      At Nexus Clinic Kuala Lumpur, we position pricing around
-                      total programme value, not just "per injection," because
-                      monitoring and safety protect the patient.
+                      {t("cost.pricingNote")}
                     </p>
                   </div>
                 </div>
@@ -723,40 +688,34 @@ const TirzepatideLanding = () => {
 
               <motion.div variants={fadeInUp} className="space-y-8">
                 <h3 className="font-['Georgia',serif] text-2xl text-brown text-center">
-                  Tirzepatide vs other weight loss options
+                  {t("cost.comparisonTitle")}
                 </h3>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h4 className="font-medium text-wine mb-3">
-                      vs Semaglutide
+                      {t("cost.vsSemaTitle")}
                     </h4>
                     <p className="text-sm text-brown">
-                      Both reduce appetite. Tirzepatide targets two pathways
-                      (GIP + GLP-1). In head to head research, tirzepatide
-                      produced greater average weight loss.
+                      {t("cost.vsSemaDesc")}
                     </p>
                   </div>
 
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h4 className="font-medium text-wine mb-3">
-                      vs Fat freezing
+                      {t("cost.vsFatTitle")}
                     </h4>
                     <p className="text-sm text-brown">
-                      Fat freezing targets local fat pockets. Tirzepatide
-                      supports whole body weight loss. Many use contouring after
-                      weight loss, not instead of it.
+                      {t("cost.vsFatDesc")}
                     </p>
                   </div>
 
                   <div className="bg-white rounded-xl p-6 shadow-sm md:col-span-2">
                     <h4 className="font-medium text-wine mb-3">
-                      vs "Quick pills"
+                      {t("cost.vsPillsTitle")}
                     </h4>
                     <p className="text-sm text-brown">
-                      Some stimulant options can reduce appetite, but they don't
-                      address the same hormonal appetite pathways. A doctor
-                      should guide choices based on risks and medical history.
+                      {t("cost.vsPillsDesc")}
                     </p>
                   </div>
                 </div>
@@ -786,17 +745,16 @@ const TirzepatideLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl md:text-5xl mb-6"
               >
-                If you are tired of starting over every Monday,
+                {t("cta.title1")}
                 <br />
-                <span className="italic">you are not alone.</span>
+                <span className="italic">{t("cta.title2")}</span>
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-xl mb-12 text-white/90"
               >
-                A doctor monitored tirzepatide programme can help you feel in
-                control again, with a plan that is safe and realistic.
+                {t("cta.description")}
               </motion.p>
 
               <motion.button
@@ -805,7 +763,7 @@ const TirzepatideLanding = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-wine px-12 py-5 rounded-full text-lg font-medium hover:bg-cream transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center space-x-3"
               >
-                <span>Book a weight loss consultation</span>
+                <span>{t("cta.button")}</span>
                 <ChevronRight className="w-5 h-5" />
               </motion.button>
 
@@ -813,8 +771,7 @@ const TirzepatideLanding = () => {
                 variants={fadeInUp}
                 className="text-sm text-white/70 mt-6"
               >
-                Discuss eligibility, expected outcomes, side effects, and a
-                structured plan at Nexus Clinic Kuala Lumpur
+                {t("cta.footer")}
               </motion.p>
             </motion.div>
           </div>

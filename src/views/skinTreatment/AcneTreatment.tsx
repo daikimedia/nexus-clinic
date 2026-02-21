@@ -24,136 +24,119 @@ import {
   Activity,
 } from "lucide-react";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-// ─── DATA ────────────────────────────────────────────────────────────────────
+export default function AcneLandingPage({ locale = fallbackLng }: { locale?: string }) {
+  const { t } = useTranslation(locale, "acneTreatment");
 
-const trustItems = [
-  { icon: ShieldCheck, text: "MOH Registered & Compliant" },
-  { icon: Stethoscope, text: "Doctor-Led Care" },
-  { icon: MapPin, text: "KLCC — Wisma UOA II, Jalan Pinang" },
-];
+  const trustItems = [
+    { icon: ShieldCheck, text: t("hero.trust1") },
+    { icon: Stethoscope, text: t("hero.trust2") },
+    { icon: MapPin, text: t("hero.trust3") },
+  ];
 
-const acneTypes = [
-  {
-    number: "01",
-    title: "Comedonal",
-    subtitle: "Clogged Pores",
-    desc: "Tiny bumps, blackheads, and texture that never feels smooth. Often worsened by heavy makeup or humid days.",
-    icon: Droplets,
-  },
-  {
-    number: "02",
-    title: "Inflammatory",
-    subtitle: "Red & Angry",
-    desc: "Strong skin reactions with redness, swelling, and tenderness. Needs targeted anti-inflammatory care.",
-    icon: Zap,
-  },
-  {
-    number: "03",
-    title: "Hormonal",
-    subtitle: "Cycle-Linked",
-    desc: "Often shows around the jawline and chin in adults. Flares with stress, cycles, and sleep changes.",
-    icon: Activity,
-  },
-  {
-    number: "04",
-    title: "Body Acne",
-    subtitle: "Back & Chest",
-    desc: "Sweat, friction, tight clothing, and gym habits all contribute. Requires a lifestyle-aware plan.",
-    icon: Heart,
-  },
-  {
-    number: "05",
-    title: "PIH & Marks",
-    subtitle: "Post-Acne Scarring",
-    desc: "Dark marks that linger long after breakouts. Early treatment prevents long-term pigmentation.",
-    icon: Sparkles,
-  },
-];
+  const acneTypes = [
+    {
+      number: "01",
+      title: t("acneTypes.type1Title"),
+      subtitle: t("acneTypes.type1Subtitle"),
+      desc: t("acneTypes.type1Desc"),
+      icon: Droplets,
+    },
+    {
+      number: "02",
+      title: t("acneTypes.type2Title"),
+      subtitle: t("acneTypes.type2Subtitle"),
+      desc: t("acneTypes.type2Desc"),
+      icon: Zap,
+    },
+    {
+      number: "03",
+      title: t("acneTypes.type3Title"),
+      subtitle: t("acneTypes.type3Subtitle"),
+      desc: t("acneTypes.type3Desc"),
+      icon: Activity,
+    },
+    {
+      number: "04",
+      title: t("acneTypes.type4Title"),
+      subtitle: t("acneTypes.type4Subtitle"),
+      desc: t("acneTypes.type4Desc"),
+      icon: Heart,
+    },
+    {
+      number: "05",
+      title: t("acneTypes.type5Title"),
+      subtitle: t("acneTypes.type5Subtitle"),
+      desc: t("acneTypes.type5Desc"),
+      icon: Sparkles,
+    },
+  ];
 
-const treatmentPhases = [
-  {
-    phase: "Phase 01",
-    title: "Calm the Acne",
-    desc: "Reduce inflammation, stop new breakouts, and simplify your routine to what actually works.",
-    duration: "Weeks 1–4",
-  },
-  {
-    phase: "Phase 02",
-    title: "Fade the Marks",
-    desc: "Once active acne slows, we target PIH and uneven tone while rebuilding your skin barrier.",
-    duration: "Weeks 4–12",
-  },
-  {
-    phase: "Phase 03",
-    title: "Maintain & Protect",
-    desc: "Right habits, a minimal maintenance routine. No heavy products forever — just what your skin needs.",
-    duration: "Ongoing",
-  },
-];
+  const treatmentPhases = [
+    {
+      phase: t("phases.phase1Label"),
+      title: t("phases.phase1Title"),
+      desc: t("phases.phase1Desc"),
+      duration: t("phases.phase1Duration"),
+    },
+    {
+      phase: t("phases.phase2Label"),
+      title: t("phases.phase2Title"),
+      desc: t("phases.phase2Desc"),
+      duration: t("phases.phase2Duration"),
+    },
+    {
+      phase: t("phases.phase3Label"),
+      title: t("phases.phase3Title"),
+      desc: t("phases.phase3Desc"),
+      duration: t("phases.phase3Duration"),
+    },
+  ];
 
-const treatmentOptions = [
-  {
-    label: "A",
-    title: "At-Home Foundation",
-    items: ["Benzoyl Peroxide", "Retinoids", "Salicylic Acid"],
-    note: "6–8 weeks minimum for real change.",
-  },
-  {
-    label: "B",
-    title: "Prescription Support",
-    items: [
-      "Topical + Oral Antibiotics",
-      "Hormonal Options (where suitable)",
-      "Isotretinoin (severe cases)",
-    ],
-    note: "4–8 weeks to show results.",
-  },
-  {
-    label: "C",
-    title: "In-Clinic Procedures",
-    items: ["Chemical Peels", "Microdermabrasion", "Light & Laser Therapy"],
-    note: "Chosen by acne type & downtime tolerance.",
-  },
-];
+  const treatmentOptions = [
+    {
+      label: "A",
+      title: t("treatments.optATitle"),
+      items: [t("treatments.optAItem1"), t("treatments.optAItem2"), t("treatments.optAItem3")],
+      note: t("treatments.optANote"),
+    },
+    {
+      label: "B",
+      title: t("treatments.optBTitle"),
+      items: [t("treatments.optBItem1"), t("treatments.optBItem2"), t("treatments.optBItem3")],
+      note: t("treatments.optBNote"),
+    },
+    {
+      label: "C",
+      title: t("treatments.optCTitle"),
+      items: [t("treatments.optCItem1"), t("treatments.optCItem2"), t("treatments.optCItem3")],
+      note: t("treatments.optCNote"),
+    },
+  ];
 
-const faqs = [
-  {
-    q: "How long does acne treatment take?",
-    a: "Most treatments need 6 weeks before you notice improvement. Prescription options take 4–8 weeks; some take 2–3 months for full effect. Anyone promising clear skin in 3 days is not being honest with you.",
-  },
-  {
-    q: "Why is my acne getting worse before it gets better?",
-    a: "Some actives — especially retinoids — cause a temporary flare as clogged pores clear. This is not failure. Pacing, moisturiser support, and the right frequency matter.",
-  },
-  {
-    q: "Can I treat acne with sensitive skin?",
-    a: "Yes. You need a gentler plan: start slow, avoid harsh scrubs, and focus on barrier support while introducing actives gradually.",
-  },
-  {
-    q: "When should I see a doctor for acne?",
-    a: "If your acne is painful, leaving marks, recurring, or affecting your confidence — don't wait. That is exactly the point at which a stronger plan makes a meaningful difference.",
-  },
-  {
-    q: "Is acne laser treatment worth it?",
-    a: "Laser helps certain acne types — especially inflammation-driven acne. It works best as part of a combination plan, not as a standalone.",
-  },
-];
+  const faqs = [
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
+  ];
 
-const pros = [
-  "Stops random trial-and-error with a structured plan",
-  "Better control of breakouts and inflammation",
-  "Reduced risk of marks and long-term scarring",
-  "Guidance on what to stop doing — often the biggest win",
-];
+  const pros = [
+    t("prosCons.pro1"),
+    t("prosCons.pro2"),
+    t("prosCons.pro3"),
+    t("prosCons.pro4"),
+  ];
 
-const cons = [
-  "Acne rarely disappears overnight — real change takes weeks",
-  "Some treatments cause early dryness or temporary purging",
-  "Severe acne may require longer monitoring and combination care",
-];
+  const cons = [
+    t("prosCons.con1"),
+    t("prosCons.con2"),
+    t("prosCons.con3"),
+  ];
 
-export default function AcneLandingPage() {
   return (
     <>
       <main
@@ -206,11 +189,11 @@ export default function AcneLandingPage() {
               className="text-4xl md:text-6xl lg:text-7xl leading-[1.1] font-normal mb-6"
               style={{ color: "var(--color-brown)" }}
             >
-              Acne Treatment in{" "}
+              {t("hero.title1")}{" "}
               <span className="italic" style={{ color: "var(--color-wine)" }}>
-                Kuala Lumpur
+                {t("hero.titleHighlight")}
               </span>{" "}
-              That Finally Makes Sense for Your Skin
+              {t("hero.title2")}
             </motion.h1>
 
             <motion.p
@@ -221,8 +204,7 @@ export default function AcneLandingPage() {
                 fontFamily: "var(--font-inter)",
               }}
             >
-              Acne is not just "dirty pores". It is stress, hormones, heat,
-              habits, and the wrong routine all mixing together.
+              {t("hero.desc1")}
             </motion.p>
 
             <motion.p
@@ -233,15 +215,14 @@ export default function AcneLandingPage() {
                 fontFamily: "var(--font-inter)",
               }}
             >
-              At Nexus Clinic KL, your plan starts with a{" "}
+              {t("hero.desc2Before")}{" "}
               <span
                 style={{ color: "var(--color-brown)" }}
                 className="font-medium"
               >
-                doctor-led assessment
+                {t("hero.desc2Bold")}
               </span>
-              , then we build a treatment path that fits your acne type, your
-              skin tone, and your lifestyle.
+              {t("hero.desc2After")}
             </motion.p>
 
             {/* CTA Button */}
@@ -260,7 +241,7 @@ export default function AcneLandingPage() {
                   letterSpacing: "0.15em",
                 }}
               >
-                Book Assessment
+                {t("hero.bookButton")}
                 <ArrowRight size={16} />
               </motion.button>
               <motion.button
@@ -275,7 +256,7 @@ export default function AcneLandingPage() {
                   backgroundColor: "transparent",
                 }}
               >
-                Learn More
+                {t("hero.learnMore")}
                 <ChevronDown size={16} />
               </motion.button>
             </motion.div>
@@ -345,18 +326,18 @@ export default function AcneLandingPage() {
                     fontFamily: "var(--font-inter)",
                   }}
                 >
-                  The KL Reality
+                  {t("klReality.badge")}
                 </span>
               </div>
               <h2
                 className="text-3xl md:text-4xl lg:text-5xl leading-tight mb-6 font-normal"
                 style={{ color: "var(--color-brown)" }}
               >
-                Acne in Malaysia{" "}
+                {t("klReality.title1")}{" "}
                 <span className="italic" style={{ color: "var(--color-wine)" }}>
-                  can feel nonstop.
+                  {t("klReality.titleHighlight")}
                 </span>{" "}
-                You are not imagining it.
+                {t("klReality.title2")}
               </h2>
               <p
                 className="leading-relaxed mb-4 text-sm md:text-base"
@@ -365,9 +346,7 @@ export default function AcneLandingPage() {
                   fontFamily: "var(--font-inter)",
                 }}
               >
-                Kuala Lumpur is hot. It is humid. You sweat on the way to lunch,
-                you reapply sunscreen, you sit in aircon, then you step out
-                again. Your skin gets confused.
+                {t("klReality.desc1")}
               </p>
               <p
                 className="leading-relaxed text-sm md:text-base"
@@ -376,9 +355,7 @@ export default function AcneLandingPage() {
                   fontFamily: "var(--font-inter)",
                 }}
               >
-                If you are reading this, you probably tried something already.
-                Maybe a cleanser that felt too harsh. Maybe a "miracle" serum
-                that worked for two weeks, then stopped.
+                {t("klReality.desc2")}
               </p>
             </motion.div>
 
@@ -390,10 +367,10 @@ export default function AcneLandingPage() {
               className="space-y-4"
             >
               {[
-                "Identify what type of acne you have",
-                "Understand what is triggering it",
-                "Know what your skin can tolerate",
-                "Receive a plan you can actually follow",
+                t("klReality.step1"),
+                t("klReality.step2"),
+                t("klReality.step3"),
+                t("klReality.step4"),
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -454,7 +431,7 @@ export default function AcneLandingPage() {
                     fontFamily: "var(--font-inter)",
                   }}
                 >
-                  Diagnosis First
+                  {t("acneTypes.badge")}
                 </span>
               </motion.div>
               <motion.h2
@@ -462,11 +439,11 @@ export default function AcneLandingPage() {
                 className="text-3xl md:text-5xl font-normal"
                 style={{ color: "var(--color-brown)" }}
               >
-                Types of Acne We{" "}
+                {t("acneTypes.title1")}{" "}
                 <span className="italic" style={{ color: "var(--color-wine)" }}>
-                  Commonly See
+                  {t("acneTypes.titleHighlight")}
                 </span>{" "}
-                in KL
+                {t("acneTypes.title2")}
               </motion.h2>
             </motion.div>
 
@@ -490,7 +467,6 @@ export default function AcneLandingPage() {
                       i !== 0 ? "1px solid rgba(172,153,144,0.25)" : "none",
                   }}
                 >
-                  {/* Number watermark */}
                   <div
                     className="absolute top-4 right-6 text-5xl font-bold select-none"
                     style={{
@@ -581,7 +557,7 @@ export default function AcneLandingPage() {
                     fontFamily: "var(--font-inter)",
                   }}
                 >
-                  Your Journey
+                  {t("phases.badge")}
                 </span>
               </motion.div>
               <motion.h2
@@ -589,9 +565,9 @@ export default function AcneLandingPage() {
                 className="text-3xl md:text-5xl font-normal"
                 style={{ color: "var(--color-cream)" }}
               >
-                A Clear Path to{" "}
+                {t("phases.title1")}{" "}
                 <span className="italic" style={{ color: "var(--color-rose)" }}>
-                  Clearer Skin
+                  {t("phases.titleHighlight")}
                 </span>
               </motion.h2>
             </motion.div>
@@ -603,7 +579,6 @@ export default function AcneLandingPage() {
               viewport={{ once: true }}
               className="grid md:grid-cols-3 gap-0 relative"
             >
-              {/* Connecting line */}
               <div
                 className="absolute top-8 left-[16%] right-[16%] h-px hidden md:block"
                 style={{ backgroundColor: "rgba(172,153,144,0.2)" }}
@@ -615,7 +590,6 @@ export default function AcneLandingPage() {
                   variants={fadeInUp}
                   className="relative p-8 md:p-10 text-center"
                 >
-                  {/* Circle */}
                   <div
                     className="w-16 h-16 mx-auto mb-8 flex items-center justify-center text-sm font-medium relative z-10"
                     style={{
@@ -694,7 +668,7 @@ export default function AcneLandingPage() {
                     fontFamily: "var(--font-inter)",
                   }}
                 >
-                  How We Treat
+                  {t("treatments.badge")}
                 </span>
               </motion.div>
               <motion.h2
@@ -702,9 +676,9 @@ export default function AcneLandingPage() {
                 className="text-3xl md:text-5xl font-normal max-w-2xl"
                 style={{ color: "var(--color-brown)" }}
               >
-                Treatment Options{" "}
+                {t("treatments.title1")}{" "}
                 <span className="italic" style={{ color: "var(--color-wine)" }}>
-                  Chosen for You
+                  {t("treatments.titleHighlight")}
                 </span>
               </motion.h2>
             </motion.div>
@@ -802,16 +776,16 @@ export default function AcneLandingPage() {
                     fontFamily: "var(--font-inter)",
                   }}
                 >
-                  Your First Visit
+                  {t("firstVisit.badge")}
                 </span>
               </div>
               <h2
                 className="text-3xl md:text-4xl lg:text-5xl font-normal leading-tight mb-8"
                 style={{ color: "var(--color-brown)" }}
               >
-                What Happens at{" "}
+                {t("firstVisit.title1")}{" "}
                 <span className="italic" style={{ color: "var(--color-wine)" }}>
-                  Nexus Clinic KL
+                  {t("firstVisit.titleHighlight")}
                 </span>
               </h2>
               <p
@@ -821,9 +795,7 @@ export default function AcneLandingPage() {
                   fontFamily: "var(--font-inter)",
                 }}
               >
-                A good acne plan always starts with three things: a clear
-                diagnosis, a routine you can actually stick to, and treatments
-                that match your goals.
+                {t("firstVisit.desc1")}
               </p>
               <p
                 className="text-sm md:text-base leading-relaxed"
@@ -832,9 +804,7 @@ export default function AcneLandingPage() {
                   fontFamily: "var(--font-inter)",
                 }}
               >
-                You leave knowing what you likely have, what is making it worse,
-                and what the first 4–8 weeks will look like — including what to
-                do if dryness or purging happens.
+                {t("firstVisit.desc2")}
               </p>
             </motion.div>
 
@@ -846,21 +816,9 @@ export default function AcneLandingPage() {
               className="space-y-4"
             >
               {[
-                {
-                  step: "01",
-                  title: "Clear Acne Diagnosis",
-                  desc: "We look at your acne type, location, inflammation level, and patterns that suggest hormones or irritation.",
-                },
-                {
-                  step: "02",
-                  title: "A Routine You Can Stick To",
-                  desc: "Not a 9-step routine. Not 12 products. A realistic, followable plan.",
-                },
-                {
-                  step: "03",
-                  title: "Treatments That Match Your Goals",
-                  desc: "Fewer breakouts fast? Fewer marks? Stopping cystic flare-ups? We choose based on your priorities and skin tolerance.",
-                },
+                { step: "01", title: t("firstVisit.step1Title"), desc: t("firstVisit.step1Desc") },
+                { step: "02", title: t("firstVisit.step2Title"), desc: t("firstVisit.step2Desc") },
+                { step: "03", title: t("firstVisit.step3Title"), desc: t("firstVisit.step3Desc") },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -906,9 +864,7 @@ export default function AcneLandingPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════
-          PROS & CONS
-      ════════════════════════════════════════ */}
+        {/* PROS & CONS */}
         <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -933,7 +889,7 @@ export default function AcneLandingPage() {
                     fontFamily: "var(--font-inter)",
                   }}
                 >
-                  Honest Expectations
+                  {t("prosCons.badge")}
                 </span>
               </motion.div>
               <motion.h2
@@ -941,15 +897,14 @@ export default function AcneLandingPage() {
                 className="text-3xl md:text-5xl font-normal"
                 style={{ color: "var(--color-brown)" }}
               >
-                Benefits &{" "}
+                {t("prosCons.title1")}{" "}
                 <span className="italic" style={{ color: "var(--color-wine)" }}>
-                  Real Limitations
+                  {t("prosCons.titleHighlight")}
                 </span>
               </motion.h2>
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-10">
-              {/* Pros */}
               <motion.div
                 variants={fadeInLeft}
                 initial="hidden"
@@ -971,7 +926,7 @@ export default function AcneLandingPage() {
                       fontFamily: "var(--font-inter)",
                     }}
                   >
-                    What Works in Your Favour
+                    {t("prosCons.prosLabel")}
                   </span>
                 </div>
                 <div className="space-y-5">
@@ -1000,7 +955,6 @@ export default function AcneLandingPage() {
                 </div>
               </motion.div>
 
-              {/* Cons */}
               <motion.div
                 variants={fadeInRight}
                 initial="hidden"
@@ -1022,7 +976,7 @@ export default function AcneLandingPage() {
                       fontFamily: "var(--font-inter)",
                     }}
                   >
-                    What to Prepare For
+                    {t("prosCons.consLabel")}
                   </span>
                 </div>
                 <div className="space-y-5">
@@ -1054,9 +1008,7 @@ export default function AcneLandingPage() {
           </div>
         </section>
 
-        {/* ════════════════════════════════════════
-          TIMELINE — HOW LONG
-      ════════════════════════════════════════ */}
+        {/* TIMELINE */}
         <section
           className="py-20 md:py-28 px-6 md:px-16 lg:px-24"
           style={{ backgroundColor: "var(--color-cream)" }}
@@ -1084,7 +1036,7 @@ export default function AcneLandingPage() {
                     fontFamily: "var(--font-inter)",
                   }}
                 >
-                  Timeline
+                  {t("timeline.badge")}
                 </span>
               </motion.div>
               <motion.h2
@@ -1092,9 +1044,9 @@ export default function AcneLandingPage() {
                 className="text-3xl md:text-5xl font-normal"
                 style={{ color: "var(--color-brown)" }}
               >
-                How Long Does{" "}
+                {t("timeline.title1")}{" "}
                 <span className="italic" style={{ color: "var(--color-wine)" }}>
-                  Treatment Take?
+                  {t("timeline.titleHighlight")}
                 </span>
               </motion.h2>
             </motion.div>
@@ -1107,26 +1059,10 @@ export default function AcneLandingPage() {
               className="grid grid-cols-2 md:grid-cols-4 gap-6"
             >
               {[
-                {
-                  duration: "4 Weeks",
-                  label: "Benzoyl Peroxide begins working",
-                  source: "NHS",
-                },
-                {
-                  duration: "6 Weeks",
-                  label: "First visible improvement",
-                  source: "NHS",
-                },
-                {
-                  duration: "4–8 Weeks",
-                  label: "Prescription treatments show results",
-                  source: "Mayo Clinic",
-                },
-                {
-                  duration: "2–3 Months",
-                  label: "Full effect for most treatments",
-                  source: "NHS",
-                },
+                { duration: t("timeline.tl1Duration"), label: t("timeline.tl1Label"), source: t("timeline.tl1Source") },
+                { duration: t("timeline.tl2Duration"), label: t("timeline.tl2Label"), source: t("timeline.tl2Source") },
+                { duration: t("timeline.tl3Duration"), label: t("timeline.tl3Label"), source: t("timeline.tl3Source") },
+                { duration: t("timeline.tl4Duration"), label: t("timeline.tl4Label"), source: t("timeline.tl4Source") },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -1179,24 +1115,19 @@ export default function AcneLandingPage() {
                 fontFamily: "var(--font-georgia)",
               }}
             >
-              If someone promises clear skin in 3 days, be careful.
+              {t("timeline.warning")}
             </motion.p>
           </div>
         </section>
 
-        {/* ════════════════════════════════════════
-          FAQ SECTION
-      ════════════════════════════════════════ */}
+        {/* FAQ SECTION */}
         <FAQ data={faqs} />
 
-        {/* ════════════════════════════════════════
-          FINAL CTA BANNER
-      ════════════════════════════════════════ */}
+        {/* FINAL CTA BANNER */}
         <section
           className="py-20 md:py-32 px-6 md:px-16 lg:px-24 relative overflow-hidden"
           style={{ backgroundColor: "var(--color-wine)" }}
         >
-          {/* Background texture */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
@@ -1232,8 +1163,8 @@ export default function AcneLandingPage() {
               className="text-3xl md:text-5xl lg:text-6xl font-normal mb-6 leading-tight"
               style={{ color: "var(--color-cream)" }}
             >
-              Ready for a plan that{" "}
-              <span className="italic">actually fits your skin?</span>
+              {t("cta.title1")}{" "}
+              <span className="italic">{t("cta.title2")}</span>
             </motion.h2>
 
             <motion.p
@@ -1244,8 +1175,7 @@ export default function AcneLandingPage() {
                 fontFamily: "var(--font-inter)",
               }}
             >
-              Start with an assessment, not a sales pitch. We identify what you
-              have, what triggers it, and what the next 4–8 weeks look like.
+              {t("cta.description")}
             </motion.p>
 
             <motion.div
@@ -1263,7 +1193,7 @@ export default function AcneLandingPage() {
                   letterSpacing: "0.15em",
                 }}
               >
-                Book Your Assessment
+                {t("cta.button")}
                 <ArrowRight size={16} />
               </motion.button>
             </motion.div>

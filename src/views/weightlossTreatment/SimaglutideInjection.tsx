@@ -21,32 +21,36 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const SimaglutideLanding = () => {
+const SimaglutideLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "semaglutide");
+
   const faqs = [
     {
-      q: "How does semaglutide help with weight loss?",
-      a: "It mimics GLP-1, a hormone that helps regulate appetite and fullness, reducing hunger and slowing digestion.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "How long to see weight loss results?",
-      a: "Appetite changes within first month, visible loss around 4-8 weeks, stronger results over 6-12 months.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "What are common side effects?",
-      a: "Digestive issues like nausea, diarrhea, constipation. Most improve over time with gradual dose increase.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
     {
-      q: "Is semaglutide same as Wegovy or Ozempic?",
-      a: "Same active ingredient but different indications. Wegovy for weight management, Ozempic primarily for diabetes.",
+      q: t("faq.q4"),
+      a: t("faq.a4"),
     },
     {
-      q: "Will I regain weight if I stop?",
-      a: "Weight regain can happen. Maintenance planning and habit support are crucial for long-term success.",
+      q: t("faq.q5"),
+      a: t("faq.a5"),
     },
     {
-      q: "Do I still need diet and exercise?",
-      a: "Yes. Wegovy is indicated with reduced-calorie diet and increased physical activity for best results.",
+      q: t("faq.q6"),
+      a: t("faq.a6"),
     },
   ];
   return (
@@ -75,7 +79,7 @@ const SimaglutideLanding = () => {
                 >
                   <Sparkles className="w-4 h-4 text-wine" />
                   <span className="text-sm font-medium text-brown">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </motion.div>
 
@@ -84,23 +88,22 @@ const SimaglutideLanding = () => {
                   className="text-4xl lg:text-5xl xl:text-6xl font-serif text-brown leading-tight"
                   style={{ fontFamily: "var(--font-georgia)" }}
                 >
-                  Quiet the cravings,
-                  <span className="block text-wine">not your lifestyle</span>
+                  {t("hero.title1")}
+                  <span className="block text-wine">{t("hero.title2")}</span>
                 </motion.h1>
 
                 <motion.p
                   variants={fadeInUp}
                   className="text-lg text-taupe max-w-lg"
                 >
-                  Lose weight with doctor-monitored semaglutide in Kuala Lumpur.
+                  {t("hero.description")}
                 </motion.p>
 
                 <motion.p
                   variants={fadeInUp}
                   className="text-brown font-medium italic border-l-4 border-rose pl-4 bg-white/50 p-4 rounded-r-lg"
                 >
-                  "Feel fuller sooner. Eat with control again. A medical plan
-                  that fits real life in Malaysia."
+                  &ldquo;{t("hero.quote")}&rdquo;
                 </motion.p>
 
                 {/* Trust Badges */}
@@ -109,10 +112,10 @@ const SimaglutideLanding = () => {
                   className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4"
                 >
                   {[
-                    { icon: Shield, text: "Doctor-monitored" },
-                    { icon: Clock, text: "Weekly follow-ups" },
-                    { icon: Heart, text: "Safety screened" },
-                    { icon: TrendingUp, text: "Real results" },
+                    { icon: Shield, text: t("hero.trust1") },
+                    { icon: Clock, text: t("hero.trust2") },
+                    { icon: Heart, text: t("hero.trust3") },
+                    { icon: TrendingUp, text: t("hero.trust4") },
                   ].map((item, index) => (
                     <div
                       key={index}
@@ -130,14 +133,14 @@ const SimaglutideLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="bg-wine text-white px-8 py-3 rounded-full font-medium hover:bg-rose transition-colors shadow-lg shadow-wine/20"
                   >
-                    Start Your Journey
+                    {t("hero.startButton")}
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="border border-taupe text-brown px-8 py-3 rounded-full font-medium hover:bg-white transition-colors"
                   >
-                    Learn More
+                    {t("hero.learnMore")}
                   </motion.button>
                 </motion.div>
               </motion.div>
@@ -151,19 +154,19 @@ const SimaglutideLanding = () => {
                       </div>
                       <div>
                         <h3 className="font-serif text-brown text-lg">
-                          Medical Safety First
+                          {t("hero.safetyTitle")}
                         </h3>
                         <p className="text-sm text-taupe">
-                          Right patient, right plan
+                          {t("hero.safetySubtitle")}
                         </p>
                       </div>
                     </div>
 
                     {[
-                      "Doctor-monitored weight loss assessment",
-                      "Prescription-only with safety screening",
-                      "Clear expectations, no hype",
-                      "Lifestyle support for KL routines",
+                      t("hero.safetyItem1"),
+                      t("hero.safetyItem2"),
+                      t("hero.safetyItem3"),
+                      t("hero.safetyItem4"),
                     ].map((item, index) => (
                       <motion.div
                         key={index}
@@ -203,13 +206,10 @@ const SimaglutideLanding = () => {
                 <AlertCircle className="w-6 h-6 text-wine shrink-0 mt-1" />
                 <div>
                   <h3 className="font-serif text-brown text-lg mb-2">
-                    A quick note before we start
+                    {t("quickNote.title")}
                   </h3>
                   <p className="text-taupe text-sm leading-relaxed">
-                    Semaglutide is a prescription medicine. It is not for
-                    everyone, and it is not a quick fix. You should always use
-                    it under medical supervision. This page is for education and
-                    to help you make an informed decision.
+                    {t("quickNote.description")}
                   </p>
                 </div>
               </div>
@@ -229,14 +229,12 @@ const SimaglutideLanding = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <h2 className="font-serif text-3xl lg:text-4xl text-brown">
-                  What is a semaglutide injection
-                  <span className="block text-wine">for weight loss?</span>
+                  {t("whatIs.title1")}
+                  <span className="block text-wine">{t("whatIs.title2")}</span>
                 </h2>
 
                 <p className="text-taupe leading-relaxed">
-                  Semaglutide is a medicine that works on appetite and fullness
-                  signals in your body. For weight management, the well-known
-                  brand name is Wegovy.
+                  {t("whatIs.desc")}
                 </p>
 
                 <motion.div
@@ -244,9 +242,7 @@ const SimaglutideLanding = () => {
                   className="bg-linear-to-br from-cream to-white p-6 rounded-2xl border border-wine/10"
                 >
                   <p className="text-brown italic">
-                    "Many people describe the change like this: You still enjoy
-                    food, but the 'food noise' becomes quieter. Portions feel
-                    easier. Snacking becomes less automatic."
+                    &ldquo;{t("whatIs.quote")}&rdquo;
                   </p>
                 </motion.div>
 
@@ -255,18 +251,18 @@ const SimaglutideLanding = () => {
                     <div className="w-10 h-10 bg-rose/10 rounded-full flex items-center justify-center mb-2">
                       <Calendar className="w-5 h-5 text-rose" />
                     </div>
-                    <h4 className="font-medium text-brown">Once-weekly</h4>
-                    <p className="text-xs text-taupe">Subcutaneous injection</p>
+                    <h4 className="font-medium text-brown">{t("whatIs.onceWeekly")}</h4>
+                    <p className="text-xs text-taupe">{t("whatIs.subcutaneous")}</p>
                   </div>
                   <div className="bg-white p-4 rounded-xl border border-cream">
                     <div className="w-10 h-10 bg-wine/10 rounded-full flex items-center justify-center mb-2">
                       <Target className="w-5 h-5 text-wine" />
                     </div>
                     <h4 className="font-medium text-brown">
-                      4 injection sites
+                      {t("whatIs.injectionSites")}
                     </h4>
                     <p className="text-xs text-taupe">
-                      Abdomen, thigh, upper arm
+                      {t("whatIs.injectionAreas")}
                     </p>
                   </div>
                 </div>
@@ -275,7 +271,7 @@ const SimaglutideLanding = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-brown/5 rounded-3xl p-8">
                   <h3 className="font-serif text-xl text-brown mb-6">
-                    Wegovy vs Ozempic
+                    {t("whatIs.vsTitle")}
                   </h3>
 
                   <div className="space-y-4">
@@ -283,9 +279,9 @@ const SimaglutideLanding = () => {
                       whileHover={{ scale: 1.02 }}
                       className="bg-white p-5 rounded-xl shadow-sm border-l-4 border-wine"
                     >
-                      <h4 className="font-medium text-wine mb-1">Wegovy</h4>
+                      <h4 className="font-medium text-wine mb-1">{t("whatIs.wegovyTitle")}</h4>
                       <p className="text-sm text-taupe">
-                        Made and dosed for chronic weight management
+                        {t("whatIs.wegovyDesc")}
                       </p>
                     </motion.div>
 
@@ -293,16 +289,15 @@ const SimaglutideLanding = () => {
                       whileHover={{ scale: 1.02 }}
                       className="bg-white p-5 rounded-xl shadow-sm border-l-4 border-rose"
                     >
-                      <h4 className="font-medium text-rose mb-1">Ozempic</h4>
+                      <h4 className="font-medium text-rose mb-1">{t("whatIs.ozempicTitle")}</h4>
                       <p className="text-sm text-taupe">
-                        Primarily for type 2 diabetes, may be used off-label
+                        {t("whatIs.ozempicDesc")}
                       </p>
                     </motion.div>
                   </div>
 
                   <p className="text-xs text-taupe mt-4 italic">
-                    Off-label prescribing must be decided by a qualified doctor
-                    based on your health profile.
+                    {t("whatIs.offLabelNote")}
                   </p>
                 </div>
               </motion.div>
@@ -324,12 +319,11 @@ const SimaglutideLanding = () => {
               className="text-center max-w-2xl mx-auto mb-12"
             >
               <h2 className="font-serif text-3xl lg:text-4xl text-brown mb-4">
-                How semaglutide helps
-                <span className="block text-wine">with weight loss</span>
+                {t("howItWorks.title1")}
+                <span className="block text-wine">{t("howItWorks.title2")}</span>
               </h2>
               <p className="text-taupe">
-                Semaglutide mimics a hormone called GLP-1 that is involved in
-                hunger, fullness, and digestion.
+                {t("howItWorks.description")}
               </p>
             </motion.div>
 
@@ -337,18 +331,18 @@ const SimaglutideLanding = () => {
               {[
                 {
                   icon: Heart,
-                  title: "Reduce appetite",
-                  desc: "Helps quiet the constant food thoughts",
+                  title: t("howItWorks.step1Title"),
+                  desc: t("howItWorks.step1Desc"),
                 },
                 {
                   icon: Clock,
-                  title: "Feel full longer",
-                  desc: "Extended satisfaction after meals",
+                  title: t("howItWorks.step2Title"),
+                  desc: t("howItWorks.step2Desc"),
                 },
                 {
                   icon: TrendingUp,
-                  title: "Slow digestion",
-                  desc: "Feel satisfied with smaller portions",
+                  title: t("howItWorks.step3Title"),
+                  desc: t("howItWorks.step3Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -382,20 +376,19 @@ const SimaglutideLanding = () => {
             <div className="grid lg:grid-cols-2 gap-12">
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <h2 className="font-serif text-3xl lg:text-4xl text-brown">
-                  Who semaglutide weight loss
-                  <span className="block text-wine">injections are for</span>
+                  {t("whoFor.title1")}
+                  <span className="block text-wine">{t("whoFor.title2")}</span>
                 </h2>
 
                 <p className="text-taupe">
-                  Generally used for adults with obesity, or overweight with
-                  weight-related health risks.
+                  {t("whoFor.description")}
                 </p>
 
                 <div className="space-y-4">
                   {[
-                    "Diet and exercise alone have not worked long-term",
-                    "Appetite and cravings keep undoing progress",
-                    "Weight affecting energy, confidence, or health markers",
+                    t("whoFor.reason1"),
+                    t("whoFor.reason2"),
+                    t("whoFor.reason3"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -415,15 +408,15 @@ const SimaglutideLanding = () => {
                 <div className="bg-wine/5 p-6 rounded-2xl border border-wine/20">
                   <h3 className="font-serif text-xl text-wine mb-4 flex items-center gap-2">
                     <AlertCircle className="w-5 h-5" />
-                    Who should not use semaglutide
+                    {t("whoFor.whoShouldNotTitle")}
                   </h3>
 
                   <ul className="space-y-3">
                     {[
-                      "Personal or family history of medullary thyroid carcinoma",
-                      "History of pancreatitis or gallbladder disease",
-                      "Kidney problems related to dehydration risk",
-                      "Pregnancy or planning pregnancy",
+                      t("whoFor.shouldNot1"),
+                      t("whoFor.shouldNot2"),
+                      t("whoFor.shouldNot3"),
+                      t("whoFor.shouldNot4"),
                     ].map((item, index) => (
                       <li
                         key={index}
@@ -438,12 +431,10 @@ const SimaglutideLanding = () => {
 
                 <div className="bg-white p-6 rounded-2xl border border-cream">
                   <h4 className="font-medium text-brown mb-2">
-                    Extra care needed if you have:
+                    {t("whoFor.extraCareTitle")}
                   </h4>
                   <p className="text-sm text-taupe">
-                    Significant gastrointestinal conditions, or if you're
-                    breastfeeding. Stop well before planned pregnancy due to
-                    long half-life.
+                    {t("whoFor.extraCareDesc")}
                   </p>
                 </div>
               </motion.div>
@@ -465,28 +456,28 @@ const SimaglutideLanding = () => {
               className="text-center max-w-2xl mx-auto mb-12"
             >
               <h2 className="font-serif text-3xl lg:text-4xl text-brown mb-4">
-                What results can you
-                <span className="block text-wine">realistically expect?</span>
+                {t("results.title1")}
+                <span className="block text-wine">{t("results.title2")}</span>
               </h2>
-              <p className="text-taupe">Let's keep it honest.</p>
+              <p className="text-taupe">{t("results.subtitle")}</p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  stat: "68 weeks",
-                  label: "Clinical trial duration",
-                  desc: "STEP 1 trial with significant average weight loss",
+                  stat: t("results.stat1Value"),
+                  label: t("results.stat1Label"),
+                  desc: t("results.stat1Desc"),
                 },
                 {
-                  stat: "4-8 weeks",
-                  label: "Initial changes",
-                  desc: "Noticeable appetite changes begin",
+                  stat: t("results.stat2Value"),
+                  label: t("results.stat2Label"),
+                  desc: t("results.stat2Desc"),
                 },
                 {
-                  stat: "6-12 months",
-                  label: "Peak results",
-                  desc: "Strongest weight loss results",
+                  stat: t("results.stat3Value"),
+                  label: t("results.stat3Label"),
+                  desc: t("results.stat3Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -510,9 +501,7 @@ const SimaglutideLanding = () => {
               className="mt-8 p-6 bg-white rounded-2xl border border-wine/20"
             >
               <p className="text-brown italic">
-                Many people notice changes earlier than the "scale moment": less
-                urge to snack at night, better control around rice, roti,
-                sweets, and late dinners, fewer cravings between meals.
+                {t("results.noticeQuote")}
               </p>
             </motion.div>
           </div>
@@ -533,17 +522,14 @@ const SimaglutideLanding = () => {
                 className="bg-linear-to-br from-wine to-rose text-white p-8 rounded-3xl"
               >
                 <h2 className="font-serif text-2xl lg:text-3xl mb-4">
-                  What happens if you stop?
+                  {t("stopSection.title")}
                 </h2>
                 <p className="mb-4 text-white/90">
-                  In the STEP 1 extension, after stopping semaglutide,
-                  participants regained a significant portion of weight loss
-                  over the following year, even with lifestyle advice.
+                  {t("stopSection.description")}
                 </p>
                 <div className="bg-white/20 backdrop-blur-sm p-4 rounded-xl">
                   <p className="text-sm italic">
-                    This supports the idea that obesity is chronic and
-                    maintenance planning is important.
+                    {t("stopSection.note")}
                   </p>
                 </div>
               </motion.div>
@@ -565,10 +551,10 @@ const SimaglutideLanding = () => {
               className="text-center max-w-2xl mx-auto mb-12"
             >
               <h2 className="font-serif text-3xl lg:text-4xl text-brown mb-4">
-                The Nexus Clinic Kuala Lumpur approach
+                {t("nexusApproach.title")}
               </h2>
               <p className="text-taupe">
-                Doctor-monitored weight loss, not just "a jab"
+                {t("nexusApproach.subtitle")}
               </p>
             </motion.div>
 
@@ -576,18 +562,18 @@ const SimaglutideLanding = () => {
               {[
                 {
                   step: "01",
-                  title: "Real suitability check",
-                  desc: "Goals, history, current meds, past diet patterns, and risk factors",
+                  title: t("nexusApproach.step1Title"),
+                  desc: t("nexusApproach.step1Desc"),
                 },
                 {
                   step: "02",
-                  title: "Plan for KL life",
-                  desc: "Busy workdays, family dinners, social weekends - real routines",
+                  title: t("nexusApproach.step2Title"),
+                  desc: t("nexusApproach.step2Desc"),
                 },
                 {
                   step: "03",
-                  title: "Follow-up & adjustments",
-                  desc: "Side effects, plateaus, travel weeks, stress eating - we monitor",
+                  title: t("nexusApproach.step3Title"),
+                  desc: t("nexusApproach.step3Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -625,13 +611,13 @@ const SimaglutideLanding = () => {
               >
                 <h3 className="font-serif text-2xl text-green-700 mb-6 flex items-center gap-2">
                   <CheckCircle2 className="w-6 h-6" />
-                  Pros
+                  {t("prosCons.prosTitle")}
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Strong evidence for meaningful weight loss",
-                    "Helps appetite control without constant willpower",
-                    "May improve weight-related health markers",
+                    t("prosCons.pro1"),
+                    t("prosCons.pro2"),
+                    t("prosCons.pro3"),
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
@@ -647,14 +633,14 @@ const SimaglutideLanding = () => {
               >
                 <h3 className="font-serif text-2xl text-orange-700 mb-6 flex items-center gap-2">
                   <AlertCircle className="w-6 h-6" />
-                  Cons
+                  {t("prosCons.consTitle")}
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Gastrointestinal side effects possible",
-                    "Results take months, not days",
-                    "Weight regain possible without maintenance",
-                    "Prescription medicine, not for everyone",
+                    t("prosCons.con1"),
+                    t("prosCons.con2"),
+                    t("prosCons.con3"),
+                    t("prosCons.con4"),
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <AlertCircle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
@@ -681,19 +667,17 @@ const SimaglutideLanding = () => {
           <div className="container mx-auto px-4 text-center">
             <motion.div variants={scaleIn} className="max-w-2xl mx-auto">
               <h2 className="font-serif text-3xl lg:text-4xl mb-4">
-                Ready to explore semaglutide in Kuala Lumpur?
+                {t("cta.title")}
               </h2>
               <p className="text-white/90 mb-8">
-                If you want a plan that feels safe, structured, and realistic
-                for life in Malaysia, Nexus Clinic Kuala Lumpur can guide you
-                through every step.
+                {t("cta.description")}
               </p>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-wine px-8 py-3 rounded-full font-medium hover:bg-cream transition-colors shadow-lg inline-flex items-center gap-2"
               >
-                Schedule Your Consultation
+                {t("cta.button")}
                 <ChevronRight className="w-4 h-4" />
               </motion.button>
             </motion.div>

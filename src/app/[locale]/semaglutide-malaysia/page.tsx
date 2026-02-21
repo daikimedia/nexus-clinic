@@ -1,5 +1,6 @@
 import SimaglutideLanding from "@/src/views/weightlossTreatment/SimaglutideInjection";
 
-export default function Page() {
-  return <SimaglutideLanding />;
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  return <SimaglutideLanding locale={locale} />;
 }
