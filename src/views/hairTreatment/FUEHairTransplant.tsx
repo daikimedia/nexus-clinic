@@ -34,7 +34,12 @@ import {
   fadeInRight,
   scaleIn,
 } from "../../lib/animations";
-const FUEHairTransplant = () => {
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
+
+const FUEHairTransplant = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "fueHairTransplant");
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-cream via-white to-cream font-['Inter',sans-serif] overflow-hidden">
@@ -66,7 +71,7 @@ const FUEHairTransplant = () => {
             >
               <Sparkles className="w-4 h-4 text-wine" />
               <span className="text-sm text-brown tracking-wide">
-                NEXUS CLINIC KUALA LUMPUR
+                {t("hero.badge")}
               </span>
             </motion.div>
 
@@ -74,18 +79,16 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-5xl md:text-7xl lg:text-8xl text-brown mb-8 leading-tight"
             >
-              Your new hairline
-              <span className="block text-wine">should look like it</span>
-              always belonged to you
+              {t("hero.title1")}
+              <span className="block text-wine">{t("hero.title2")}</span>
+              {t("hero.title3")}
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl md:text-2xl text-taupe max-w-3xl mx-auto mb-12 font-light leading-relaxed"
             >
-              If your hair is thinning, you may feel older overnight. With FUE
-              hair transplant in Kuala Lumpur, you can rebuild a natural look,
-              step by step.
+              {t("hero.desc")}
             </motion.p>
 
             <motion.div
@@ -98,7 +101,7 @@ const FUEHairTransplant = () => {
                 className="group relative px-8 py-4 bg-wine text-white rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <span className="relative z-10 flex items-center gap-2 text-lg">
-                  Begin Your Journey
+                  {t("hero.beginBtn")}
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <motion.div
@@ -114,7 +117,7 @@ const FUEHairTransplant = () => {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 border-2 border-wine text-wine rounded-full hover:bg-wine hover:text-white transition-all duration-300"
               >
-                Watch Stories
+                {t("hero.watchBtn")}
               </motion.button>
             </motion.div>
           </div>
@@ -146,18 +149,18 @@ const FUEHairTransplant = () => {
               {[
                 {
                   icon: Calendar,
-                  title: "Founded 2001",
-                  desc: "Two decades of confidential, professional care",
+                  title: t("trust.t1Title"),
+                  desc: t("trust.t1Desc"),
                 },
                 {
                   icon: MapPin,
-                  title: "Kuala Lumpur",
-                  desc: "Wisma UOA II, Jalan Pinang - In the heart of KL",
+                  title: t("trust.t2Title"),
+                  desc: t("trust.t2Desc"),
                 },
                 {
                   icon: Award,
-                  title: "Specialized Care",
-                  desc: "FUE transplants & comprehensive hair loss treatments",
+                  title: t("trust.t3Title"),
+                  desc: t("trust.t3Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -191,30 +194,31 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-16 text-center"
             >
-              Quick <span className="text-wine">Answers</span>
+              {t("quickAnswers.title1")}{" "}
+              <span className="text-wine">{t("quickAnswers.title2")}</span>
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
                   icon: Scissors,
-                  q: "What is FUE?",
-                  a: "It removes follicular units one by one using tiny punches, then places them in thinning areas.",
+                  q: t("quickAnswers.q1"),
+                  a: t("quickAnswers.a1"),
                 },
                 {
                   icon: Heart,
-                  q: "Is it painful?",
-                  a: "Local anaesthesia is used. You may feel pressure, then mild soreness later.",
+                  q: t("quickAnswers.q2"),
+                  a: t("quickAnswers.a2"),
                 },
                 {
                   icon: Clock,
-                  q: "When will I see results?",
-                  a: "Most visible change builds over months. Full results around 9 to 12 months or longer.",
+                  q: t("quickAnswers.q3"),
+                  a: t("quickAnswers.a3"),
                 },
                 {
                   icon: Shield,
-                  q: "Will there be scars?",
-                  a: "FUE usually leaves many very tiny scars, not a long strip scar.",
+                  q: t("quickAnswers.q4"),
+                  a: t("quickAnswers.a4"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -256,21 +260,19 @@ const FUEHairTransplant = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <motion.div variants={fadeInLeft}>
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-white mb-8">
-                  Why FUE is the most searched hair transplant option in
-                  Malaysia
+                  {t("whyFUE.title")}
                 </h2>
 
                 <p className="text-white/90 text-xl mb-12 leading-relaxed">
-                  People in Kuala Lumpur want results that look normal in real
-                  life. Not just in before and after photos.
+                  {t("whyFUE.desc")}
                 </p>
 
                 <div className="space-y-6">
                   {[
-                    "No long strip scar on the back of the head",
-                    "Quicker healing for many patients",
-                    "Perfect for hairline work and detail areas like temples",
-                    "Malaysia's strong medical services reputation",
+                    t("whyFUE.b1"),
+                    t("whyFUE.b2"),
+                    t("whyFUE.b3"),
+                    t("whyFUE.b4"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -290,15 +292,13 @@ const FUEHairTransplant = () => {
                 <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl rounded-[40px] transform rotate-3" />
                 <div className="relative bg-white/20 backdrop-blur-md p-12 rounded-[40px] border border-white/30">
                   <h3 className="font-['Georgia',serif] text-3xl text-white mb-6">
-                    What is FUE?
+                    {t("whyFUE.cardTitle")}
                   </h3>
                   <p className="text-white/90 text-lg mb-6 leading-relaxed">
-                    FUE stands for follicular unit excision. Your surgeon
-                    removes tiny natural hair groupings, usually 1 to 4 hairs.
+                    {t("whyFUE.cardP1")}
                   </p>
                   <p className="text-white/90 text-lg leading-relaxed">
-                    These grafts come from the donor area at the back of the
-                    scalp. That area usually keeps hair thicker for longer.
+                    {t("whyFUE.cardP2")}
                   </p>
                 </div>
               </motion.div>
@@ -318,15 +318,15 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-8 text-center"
             >
-              The <span className="text-wine">Journey</span>
+              {t("journey.title1")}{" "}
+              <span className="text-wine">{t("journey.title2")}</span>
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl text-taupe text-center max-w-3xl mx-auto mb-16"
             >
-              Every clinic has its own workflow, but FUE usually follows the
-              same core stages
+              {t("journey.desc")}
             </motion.p>
 
             <div className="relative">
@@ -337,29 +337,29 @@ const FUEHairTransplant = () => {
                 {[
                   {
                     step: "01",
-                    title: "Consultation & Assessment",
-                    desc: "Your doctor checks your hair loss pattern and donor density. You discuss your styling habits and daily routine.",
+                    title: t("journey.s1Title"),
+                    desc: t("journey.s1Desc"),
                     icon: Users,
                     align: "left",
                   },
                   {
                     step: "02",
-                    title: "Hairline Design",
-                    desc: "A good hairline matches your face and age. This is where natural results begin.",
+                    title: t("journey.s2Title"),
+                    desc: t("journey.s2Desc"),
                     icon: Target,
                     align: "right",
                   },
                   {
                     step: "03",
-                    title: "Donor Preparation",
-                    desc: "The donor area is trimmed. Local anaesthesia is used for comfort.",
+                    title: t("journey.s3Title"),
+                    desc: t("journey.s3Desc"),
                     icon: Droplets,
                     align: "left",
                   },
                   {
                     step: "04",
-                    title: "Extraction & Placement",
-                    desc: "Grafts are removed one by one using micro punches, then placed to follow natural direction.",
+                    title: t("journey.s4Title"),
+                    desc: t("journey.s4Desc"),
                     icon: Sparkles,
                     align: "right",
                   },
@@ -406,35 +406,36 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-16 text-center"
             >
-              Recovery <span className="text-wine">Timeline</span>
+              {t("recovery.title1")}{" "}
+              <span className="text-wine">{t("recovery.title2")}</span>
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  period: "First 3 Days",
+                  period: t("recovery.r1Period"),
                   icon: Thermometer,
-                  desc: "Tight, sore scalp is common. Swelling can happen.",
+                  desc: t("recovery.r1Desc"),
                 },
                 {
-                  period: "Days 4-10",
+                  period: t("recovery.r2Period"),
                   icon: Wind,
-                  desc: "Scabbing forms, then starts to fall. You must avoid picking.",
+                  desc: t("recovery.r2Desc"),
                 },
                 {
-                  period: "Weeks 3-8",
+                  period: t("recovery.r3Period"),
                   icon: Flower2,
-                  desc: "Shedding can happen. This can look scary, but it is often part of the cycle.",
+                  desc: t("recovery.r3Desc"),
                 },
                 {
-                  period: "Months 3-6",
+                  period: t("recovery.r4Period"),
                   icon: Activity,
-                  desc: "New growth starts to show. It may look fine at first, then thickens.",
+                  desc: t("recovery.r4Desc"),
                 },
                 {
-                  period: "Months 9-12+",
+                  period: t("recovery.r5Period"),
                   icon: Sun,
-                  desc: "Most people see their main result in this window.",
+                  desc: t("recovery.r5Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -471,27 +472,29 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-16 text-center"
             >
-              FUE <span className="text-wine">vs</span> Others
+              {t("comparison.title1")}{" "}
+              <span className="text-wine">{t("comparison.title2")}</span>{" "}
+              {t("comparison.title3")}
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  method: "FUE",
-                  desc: "Individual graft removal",
-                  feature: "Many very tiny scars, usually hard to notice",
+                  method: t("comparison.fue"),
+                  desc: t("comparison.fueDesc"),
+                  feature: t("comparison.fueFeature"),
                   icon: Sparkle,
                 },
                 {
-                  method: "FUT (Strip)",
-                  desc: "A strip is removed, then grafts are separated",
-                  feature: "Can leave a single larger scar",
+                  method: t("comparison.fut"),
+                  desc: t("comparison.futDesc"),
+                  feature: t("comparison.futFeature"),
                   icon: Waves,
                 },
                 {
-                  method: "DHI",
-                  desc: "Often marketed for precise placement",
-                  feature: "Still needs proper extraction and planning",
+                  method: t("comparison.dhi"),
+                  desc: t("comparison.dhiDesc"),
+                  feature: t("comparison.dhiFeature"),
                   icon: Target,
                 },
               ].map((item, index) => (
@@ -519,8 +522,7 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="text-center text-taupe mt-12 italic"
             >
-              In real life, the "best" option is the one that fits your scalp,
-              donor, and goals.
+              {t("comparison.note")}
             </motion.p>
           </div>
         </motion.section>
@@ -542,27 +544,28 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-4xl md:text-5xl text-white mb-8 text-center"
             >
-              Investment in <span className="text-cream">You</span>
+              {t("cost.title1")}{" "}
+              <span className="text-cream">{t("cost.title2")}</span>
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl text-white/90 text-center max-w-3xl mx-auto mb-16"
             >
-              FUE hair transplant cost in Kuala Lumpur and Malaysia
+              {t("cost.desc")}
             </motion.p>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <div className="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20">
                   <h3 className="font-['Georgia',serif] text-2xl text-white mb-6">
-                    Cost Factors
+                    {t("cost.factorsTitle")}
                   </h3>
                   {[
-                    "Number of grafts",
-                    "Clinic reputation and credentials",
-                    "City overhead (KL can be higher)",
-                    "Add-ons like PRP and medicines",
+                    t("cost.f1"),
+                    t("cost.f2"),
+                    t("cost.f3"),
+                    t("cost.f4"),
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-4 mb-4">
                       <div className="w-2 h-2 bg-white rounded-full" />
@@ -573,12 +576,12 @@ const FUEHairTransplant = () => {
 
                 <div className="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20">
                   <h3 className="font-['Georgia',serif] text-2xl text-white mb-6">
-                    What You May See Online
+                    {t("cost.onlineTitle")}
                   </h3>
                   {[
-                    "RM 6,500 to RM 15,000 range",
-                    "RM 6 to RM 12 per graft",
-                    "Starting from RM 5,000 packages",
+                    t("cost.o1"),
+                    t("cost.o2"),
+                    t("cost.o3"),
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-4 mb-4">
                       <Quote className="w-4 h-4 text-white" />
@@ -593,18 +596,16 @@ const FUEHairTransplant = () => {
                 className="bg-white p-8 rounded-3xl"
               >
                 <h3 className="font-['Georgia',serif] text-2xl text-brown mb-6">
-                  Important Advice
+                  {t("cost.adviceTitle")}
                 </h3>
                 <p className="text-taupe text-lg mb-8">
-                  Do not compare price without comparing what is included. Ask
-                  about doctor involvement, graft handling, and follow-up
-                  support.
+                  {t("cost.adviceDesc")}
                 </p>
                 <div className="space-y-4">
                   {[
-                    "Doctor involvement",
-                    "Graft handling",
-                    "Follow-up support",
+                    t("cost.adv1"),
+                    t("cost.adv2"),
+                    t("cost.adv3"),
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <CheckCircle2 className="w-5 h-5 text-wine" />
@@ -629,23 +630,24 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-16 text-center"
             >
-              People Also <span className="text-wine">Ask</span>
+              {t("peopleAsk.title1")}{" "}
+              <span className="text-wine">{t("peopleAsk.title2")}</span>
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
-                "How much does FUE hair transplant cost in Malaysia?",
-                "Is FUE hair transplant painful?",
-                "How long is recovery after FUE?",
-                "When can I wash my hair after FUE?",
-                "Why does transplanted hair shed after surgery?",
-                "How long does an FUE hair transplant last?",
-                "Does FUE leave scars?",
-                "How many grafts do I need for my hairline?",
-                "Is FUE better than FUT?",
-                "Can an FUE hair transplant fail?",
-                "Is Malaysia a good place for FUE hair transplant?",
-                "What should I avoid after FUE?",
+                t("peopleAsk.q1"),
+                t("peopleAsk.q2"),
+                t("peopleAsk.q3"),
+                t("peopleAsk.q4"),
+                t("peopleAsk.q5"),
+                t("peopleAsk.q6"),
+                t("peopleAsk.q7"),
+                t("peopleAsk.q8"),
+                t("peopleAsk.q9"),
+                t("peopleAsk.q10"),
+                t("peopleAsk.q11"),
+                t("peopleAsk.q12"),
               ].map((question, index) => (
                 <motion.div
                   key={index}
@@ -681,15 +683,15 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-8"
             >
-              Nexus Clinic <span className="text-wine">Approach</span>
+              {t("approach.title1")}{" "}
+              <span className="text-wine">{t("approach.title2")}</span>
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl text-taupe max-w-3xl mx-auto mb-12"
             >
-              At Nexus Clinic Kuala Lumpur, the goal should be simple. Make the
-              plan feel safe, private, and realistic.
+              {t("approach.desc")}
             </motion.p>
 
             <motion.div
@@ -697,10 +699,10 @@ const FUEHairTransplant = () => {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto"
             >
               {[
-                "A graft estimate range",
-                "A hairline design explanation",
-                "A downtime plan that fits your work life",
-                "A maintenance plan for existing hair",
+                t("approach.a1"),
+                t("approach.a2"),
+                t("approach.a3"),
+                t("approach.a4"),
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -736,12 +738,13 @@ const FUEHairTransplant = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-8"
             >
-              Begin Your <span className="text-wine">Natural</span> Journey
+              {t("cta.title1")}{" "}
+              <span className="text-wine">{t("cta.title2")}</span>{" "}
+              {t("cta.title3")}
             </motion.h2>
 
             <motion.p variants={fadeInUp} className="text-xl text-taupe mb-12">
-              If you want a natural hairline, start with a calm consult. Ask for
-              a plan that matches your face, hair type, and future loss pattern.
+              {t("cta.desc")}
             </motion.p>
 
             <motion.div variants={fadeInUp}>
@@ -751,7 +754,7 @@ const FUEHairTransplant = () => {
                 className="group relative px-12 py-5 bg-wine text-white rounded-full overflow-hidden shadow-2xl hover:shadow-wine/30 transition-shadow"
               >
                 <span className="relative z-10 flex items-center gap-3 text-xl">
-                  Book Your Consultation
+                  {t("cta.bookBtn")}
                   <Calendar className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                 </span>
                 <motion.div
@@ -768,7 +771,7 @@ const FUEHairTransplant = () => {
               className="mt-8 flex items-center justify-center gap-4 text-taupe"
             >
               <MapPin className="w-4 h-4" />
-              <span>Wisma UOA II, Jalan Pinang, Kuala Lumpur</span>
+              <span>{t("cta.address")}</span>
             </motion.div>
           </div>
         </motion.section>

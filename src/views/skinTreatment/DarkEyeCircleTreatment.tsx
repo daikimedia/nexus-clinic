@@ -29,28 +29,32 @@ import {
 } from "../../lib/animations";
 import BeforeAfterFaceSection from "../../components/BeforeAfterFace";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const DarkEyeCircleLanding = () => {
+const DarkEyeCircleLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "darkEyeCircle");
+
   const faqs = [
     {
-      q: "What causes dark circles under the eyes?",
-      a: "Common causes include genetics, fatigue, rubbing, skin thinning, pigment changes, and sun exposure.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "Can lack of sleep cause dark circles?",
-      a: "Yes, fatigue is a known contributor and can make the under-eye area look darker or more hollow.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "Do allergies cause dark circles?",
-      a: "They can. Rubbing habits can lead to post-inflammatory hyperpigmentation around the eyes.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
     {
-      q: "Does tear trough filler remove dark circles?",
-      a: "It can reduce the 'dark' look when the problem is shadowing from hollowness, but not for pigmentation.",
+      q: t("faq.q4"),
+      a: t("faq.a4"),
     },
     {
-      q: "Can dark circles be removed permanently?",
-      a: "Significant improvement is possible, but 'permanent' depends on the cause.",
+      q: t("faq.q5"),
+      a: t("faq.a5"),
     },
   ];
   return (
@@ -80,7 +84,7 @@ const DarkEyeCircleLanding = () => {
                 >
                   <BadgeCheck className="w-5 h-5 text-wine" />
                   <span className="text-brown font-medium">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </motion.div>
 
@@ -90,9 +94,9 @@ const DarkEyeCircleLanding = () => {
                   transition={{ delay: 0.3 }}
                   className="text-4xl lg:text-6xl font-bold mb-6 font-['Georgia',serif]"
                 >
-                  <span className="text-brown">Bright eyes again, </span>
+                  <span className="text-brown">{t("hero.title1")} </span>
                   <br />
-                  <span className="text-wine">without looking "done"</span>
+                  <span className="text-wine">{t("hero.title2")}</span>
                 </motion.h1>
 
                 <motion.p
@@ -101,9 +105,7 @@ const DarkEyeCircleLanding = () => {
                   transition={{ delay: 0.4 }}
                   className="text-lg text-taupe mb-8 max-w-lg mx-auto lg:mx-0"
                 >
-                  Just rested, fresh, and like you. At Nexus Clinic, we treat
-                  the real cause first, then choose the safest option for your
-                  under-eye area.
+                  {t("hero.desc")}
                 </motion.p>
 
                 <motion.div
@@ -113,11 +115,11 @@ const DarkEyeCircleLanding = () => {
                   className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                 >
                   <button className="group bg-wine text-white px-8 py-4 rounded-full font-medium hover:bg-brown transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl">
-                    Start with a diagnosis-first consultation
+                    {t("hero.btn1")}
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button className="border-2 border-taupe text-brown px-8 py-4 rounded-full font-medium hover:border-wine hover:text-wine transition-all duration-300">
-                    Learn more
+                    {t("hero.btn2")}
                   </button>
                 </motion.div>
 
@@ -131,18 +133,18 @@ const DarkEyeCircleLanding = () => {
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-5 h-5 text-rose" />
                     <span className="text-sm text-brown">
-                      Doctor-led clinic
+                      {t("hero.trust1")}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Eye className="w-5 h-5 text-rose" />
                     <span className="text-sm text-brown">
-                      Under-eye expertise
+                      {t("hero.trust2")}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Heart className="w-5 h-5 text-rose" />
-                    <span className="text-sm text-brown">Wisma UOA II, KL</span>
+                    <span className="text-sm text-brown">{t("hero.trust3")}</span>
                   </div>
                 </motion.div>
               </div>
@@ -157,28 +159,28 @@ const DarkEyeCircleLanding = () => {
                   {/* Glass Card */}
                   <div className="bg-glass backdrop-blur-lg rounded-3xl p-8 shadow-2xl">
                     <h3 className="text-2xl font-['Georgia',serif] text-brown mb-6">
-                      Quick self-check
+                      {t("hero.selfCheckTitle")}
                     </h3>
                     <div className="space-y-4">
                       {[
                         {
                           icon: Sun,
-                          text: "If it looks brown and stays brown - pigment likely",
+                          text: t("hero.check1"),
                           color: "wine",
                         },
                         {
                           icon: Droplet,
-                          text: "If it looks blue/purple - vessels and thin skin",
+                          text: t("hero.check2"),
                           color: "rose",
                         },
                         {
                           icon: Layers,
-                          text: "If worse under lights - hollows and shadowing",
+                          text: t("hero.check3"),
                           color: "taupe",
                         },
                         {
                           icon: Activity,
-                          text: "If puffy in morning - fluid retention",
+                          text: t("hero.check4"),
                           color: "brown",
                         },
                       ].map((item, index) => (
@@ -221,40 +223,39 @@ const DarkEyeCircleLanding = () => {
                 variants={fadeInUp}
                 className="text-3xl lg:text-4xl font-['Georgia',serif] text-brown mb-4"
               >
-                What are dark eye circles, really?
+                {t("types.title")}
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-taupe max-w-2xl mx-auto"
               >
-                "Dark circles" is not one problem. It's a label for several
-                different under-eye issues.
+                {t("types.desc")}
               </motion.p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
-                  title: "Pigmented",
-                  desc: "Brown, from melasma or sun",
+                  title: t("types.type1Title"),
+                  desc: t("types.type1Desc"),
                   icon: Sun,
                   color: "wine",
                 },
                 {
-                  title: "Vascular",
-                  desc: "Blue/purple from visible vessels",
+                  title: t("types.type2Title"),
+                  desc: t("types.type2Desc"),
                   icon: Droplet,
                   color: "rose",
                 },
                 {
-                  title: "Structural",
-                  desc: "Shadows from hollows",
+                  title: t("types.type3Title"),
+                  desc: t("types.type3Desc"),
                   icon: Layers,
                   color: "brown",
                 },
                 {
-                  title: "Eye bags",
-                  desc: "Puffiness creates shadows",
+                  title: t("types.type4Title"),
+                  desc: t("types.type4Desc"),
                   icon: Eye,
                   color: "taupe",
                 },
@@ -298,66 +299,65 @@ const DarkEyeCircleLanding = () => {
                 variants={fadeInUp}
                 className="text-3xl lg:text-4xl font-['Georgia',serif] text-brown mb-4"
               >
-                Treatment options, tailored to you
+                {t("treatments.title")}
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-taupe max-w-2xl mx-auto"
               >
-                We don't push one trendy solution for everyone. Here's what we
-                offer.
+                {t("treatments.desc")}
               </motion.p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  title: "Tear Trough Filler",
-                  price: "From RM 1,200",
+                  title: t("treatments.t1Title"),
+                  price: t("treatments.t1Price"),
                   icon: Droplet,
                   color: "wine",
-                  best: "Best for hollows & shadowing",
-                  desc: "Softens the hollow groove between eyelid and cheek",
+                  best: t("treatments.t1Best"),
+                  desc: t("treatments.t1Desc"),
                 },
                 {
-                  title: "Ultraformer HIFU",
-                  price: "RM 1,500 - 3,500",
+                  title: t("treatments.t2Title"),
+                  price: t("treatments.t2Price"),
                   icon: Zap,
                   color: "rose",
-                  best: "Best for eye bags & laxity",
-                  desc: "Non-surgical tightening with ultrasound",
+                  best: t("treatments.t2Best"),
+                  desc: t("treatments.t2Desc"),
                 },
                 {
-                  title: "PDRN Rejuvenation",
-                  price: "From RM 800",
+                  title: t("treatments.t3Title"),
+                  price: t("treatments.t3Price"),
                   icon: Flower2,
                   color: "brown",
-                  best: "Best for thin, crepey skin",
-                  desc: "Skin-repair approach for fine lines",
+                  best: t("treatments.t3Best"),
+                  desc: t("treatments.t3Desc"),
                 },
                 {
-                  title: "PRP Therapy",
-                  price: "RM 800 - 1,800",
+                  title: t("treatments.t4Title"),
+                  price: t("treatments.t4Price"),
                   icon: Sparkles,
                   color: "taupe",
-                  best: "Best for natural regeneration",
-                  desc: "Uses your body's own growth factors",
+                  best: t("treatments.t4Best"),
+                  desc: t("treatments.t4Desc"),
                 },
                 {
-                  title: "Carboxy Therapy",
-                  price: "From RM 600",
+                  title: t("treatments.t5Title"),
+                  price: t("treatments.t5Price"),
                   icon: Waves,
                   color: "wine",
-                  best: "CO2 infusion approach",
-                  desc: "Stimulates circulation and collagen",
+                  best: t("treatments.t5Best"),
+                  desc: t("treatments.t5Desc"),
                 },
                 {
-                  title: "Laser Options",
-                  price: "Custom pricing",
+                  title: t("treatments.t6Title"),
+                  price: t("treatments.t6Price"),
                   icon: Sparkle,
                   color: "rose",
-                  best: "Best for pigmentation",
-                  desc: "Pico Laser, Pro Yellow Laser & more",
+                  best: t("treatments.t6Best"),
+                  desc: t("treatments.t6Desc"),
                 },
               ].map((treatment, index) => (
                 <motion.div
@@ -394,7 +394,7 @@ const DarkEyeCircleLanding = () => {
                     whileHover={{ x: 5 }}
                     className="mt-4 flex items-center gap-1 text-brown hover:text-wine transition-colors"
                   >
-                    Learn more <ChevronRight className="w-4 h-4" />
+                    {t("treatments.learnMore")} <ChevronRight className="w-4 h-4" />
                   </motion.button>
                 </motion.div>
               ))}
@@ -416,28 +416,25 @@ const DarkEyeCircleLanding = () => {
                   className="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full mb-6"
                 >
                   <ShieldCheck className="w-5 h-5 text-cream" />
-                  <span className="text-sm">Safety first approach</span>
+                  <span className="text-sm">{t("safety.badge")}</span>
                 </motion.div>
 
                 <motion.h2
                   variants={fadeInLeft}
                   className="text-3xl lg:text-4xl font-['Georgia',serif] mb-6"
                 >
-                  Why expertise matters for under-eye treatments
+                  {t("safety.title")}
                 </motion.h2>
 
                 <motion.p variants={fadeInLeft} className="text-cream/80 mb-8">
-                  The under-eye area is delicate. Dermal fillers can carry
-                  serious risks if injected into a blood vessel, including skin
-                  injury and rare vision complications. That's why correct
-                  patient selection and experienced injection matter.
+                  {t("safety.desc")}
                 </motion.p>
 
                 <motion.div variants={fadeInLeft} className="space-y-4">
                   {[
-                    "Doctor-led aesthetic clinic with consultation-first planning",
-                    "Conservative dosing and safety-first technique",
-                    "Tear trough filler requires careful assessment",
+                    t("safety.point1"),
+                    t("safety.point2"),
+                    t("safety.point3"),
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <CheckCircle2 className="w-5 h-5 text-rose shrink-0" />
@@ -455,22 +452,19 @@ const DarkEyeCircleLanding = () => {
               >
                 <div className="bg-[rgba(255,255,255,0.1)] backdrop-blur-lg rounded-3xl p-8">
                   <h3 className="text-2xl font-['Georgia',serif] mb-6">
-                    Important risk note
+                    {t("safety.riskTitle")}
                   </h3>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3 p-4 bg-white/5 rounded-xl">
                       <AlertCircle className="w-5 h-5 text-rose mt-1" />
                       <p className="text-sm text-cream">
-                        Nexus Clinic explicitly warns of serious risks if filler
-                        is injected into a blood vessel, including skin injury
-                        and rare vision complications.
+                        {t("safety.risk1")}
                       </p>
                     </div>
                     <div className="flex items-start gap-3 p-4 bg-white/5 rounded-xl">
                       <UserCheck className="w-5 h-5 text-rose mt-1" />
                       <p className="text-sm text-cream">
-                        Choose a doctor-led clinic and a conservative technique.
-                        Your safety is our priority.
+                        {t("safety.risk2")}
                       </p>
                     </div>
                   </div>
@@ -502,37 +496,37 @@ const DarkEyeCircleLanding = () => {
                 variants={fadeInUp}
                 className="text-3xl lg:text-4xl font-['Georgia',serif] text-brown mb-4"
               >
-                Investment in your confidence
+                {t("pricing.title")}
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-taupe max-w-2xl mx-auto"
               >
-                Transparent pricing from Nexus Clinic Kuala Lumpur
+                {t("pricing.desc")}
               </motion.p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
-                  treatment: "Dermal Fillers",
-                  range: "RM 1,200 - 2,200",
-                  note: "per syringe",
+                  treatment: t("pricing.p1Treatment"),
+                  range: t("pricing.p1Range"),
+                  note: t("pricing.p1Note"),
                 },
                 {
-                  treatment: "HIFU Face Lift",
-                  range: "RM 1,500 - 3,500",
-                  note: "per session",
+                  treatment: t("pricing.p2Treatment"),
+                  range: t("pricing.p2Range"),
+                  note: t("pricing.p2Note"),
                 },
                 {
-                  treatment: "PRP Therapy",
-                  range: "RM 800 - 1,800",
-                  note: "per session",
+                  treatment: t("pricing.p3Treatment"),
+                  range: t("pricing.p3Range"),
+                  note: t("pricing.p3Note"),
                 },
                 {
-                  treatment: "Custom Packages",
-                  range: "Contact us",
-                  note: "for combination",
+                  treatment: t("pricing.p4Treatment"),
+                  range: t("pricing.p4Range"),
+                  note: t("pricing.p4Note"),
                 },
               ].map((price, index) => (
                 <motion.div
@@ -556,8 +550,7 @@ const DarkEyeCircleLanding = () => {
               whileInView={{ opacity: 1 }}
               className="text-center text-sm text-taupe mt-8"
             >
-              *Prices are indicative. Final cost depends on your specific
-              treatment plan.
+              {t("pricing.disclaimer")}
             </motion.p>
           </div>
         </section>
@@ -575,26 +568,23 @@ const DarkEyeCircleLanding = () => {
                 variants={fadeInUp}
                 className="text-2xl font-['Georgia',serif] text-brown mb-8"
               >
-                Why Nexus Clinic stands out in Kuala Lumpur
+                {t("whyNexus.title")}
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-taupe max-w-3xl mx-auto mb-8"
               >
-                While other clinics focus on devices and menus, we lead with
-                diagnosis-first clarity and under-eye safety. Our doctor-led
-                approach ensures you get the right treatment for your specific
-                cause.
+                {t("whyNexus.desc")}
               </motion.p>
               <motion.div
                 variants={fadeInUp}
                 className="flex flex-wrap justify-center gap-4"
               >
                 {[
-                  "Doctor-led",
-                  "Cause-first",
-                  "Safety-focused",
-                  "Conservative dosing",
+                  t("whyNexus.tag1"),
+                  t("whyNexus.tag2"),
+                  t("whyNexus.tag3"),
+                  t("whyNexus.tag4"),
                 ].map((item, index) => (
                   <span
                     key={index}
@@ -620,12 +610,10 @@ const DarkEyeCircleLanding = () => {
               variants={fadeInUp}
               className="text-3xl lg:text-4xl font-['Georgia',serif] mb-6"
             >
-              Start with a diagnosis-led consultation
+              {t("cta.title")}
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-lg text-cream mb-8">
-              We'll identify whether your dark circles are pigment, vessels,
-              hollows, or eye bags, then build a plan that fits your skin and
-              your comfort level.
+              {t("cta.desc")}
             </motion.p>
             <motion.button
               variants={scaleIn}
@@ -633,14 +621,14 @@ const DarkEyeCircleLanding = () => {
               whileTap={{ scale: 0.95 }}
               className="bg-white text-brown px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all duration-300 inline-flex items-center gap-2 group"
             >
-              Book your consultation
+              {t("cta.bookBtn")}
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </motion.button>
             <motion.p
               variants={fadeInUp}
               className="text-sm text-cream/80 mt-6"
             >
-              Located at Wisma UOA II, Jalan Pinang, Kuala Lumpur
+              {t("cta.address")}
             </motion.p>
           </motion.div>
         </section>

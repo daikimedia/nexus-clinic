@@ -22,28 +22,32 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const SkinWhiteningLanding = () => {
+const SkinWhiteningLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "skinWhitening");
+
   const faqs = [
     {
-      q: "What's the best treatment for my skin?",
-      a: "It depends on the cause. For stubborn pigmentation, laser toning is often effective. For dullness, chemical peels work well. Many get best results from a combination plan.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "Is laser safe for Asian skin tones?",
-      a: "Yes, when done by experienced doctors with appropriate settings. Our protocols are specifically designed for Asian skin types.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "How many sessions will I need?",
-      a: "Mild dullness may improve quickly, while dark spots and melasma usually need multiple sessions. Your doctor will estimate based on your skin.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
     {
-      q: "How long do results last?",
-      a: "With good maintenance and daily sun protection, results can last 6-12 months. Skin is alive and responds to sun and stress.",
+      q: t("faq.q4"),
+      a: t("faq.a4"),
     },
     {
-      q: "Are glutathione drips safe?",
-      a: "Only under medical supervision. We keep it grounded with realistic expectations and proper protocols.",
+      q: t("faq.q5"),
+      a: t("faq.a5"),
     },
   ];
   return (
@@ -71,7 +75,7 @@ const SkinWhiteningLanding = () => {
               >
                 <span className="inline-flex items-center gap-2 bg-cream text-brown px-4 py-2 rounded-full text-sm font-medium border border-taupe/20">
                   <Sparkle className="w-4 h-4 text-rose" />
-                  Nexus Clinic Kuala Lumpur
+                  {t("hero.badge")}
                   <Sparkle className="w-4 h-4 text-rose" />
                 </span>
               </motion.div>
@@ -81,9 +85,9 @@ const SkinWhiteningLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl sm:text-5xl lg:text-7xl font-['Georgia',serif] text-center mb-6"
               >
-                <span className="text-brown">Brighter skin,</span>
+                <span className="text-brown">{t("hero.title1")}</span>
                 <br />
-                <span className="text-wine italic">not a different you</span>
+                <span className="text-wine italic">{t("hero.title2")}</span>
               </motion.h1>
 
               {/* Supporting Text */}
@@ -91,8 +95,7 @@ const SkinWhiteningLanding = () => {
                 variants={fadeInUp}
                 className="text-lg sm:text-xl text-taupe text-center max-w-2xl mx-auto mb-12 leading-relaxed"
               >
-                Real tone-correcting treatment in Kuala Lumpur for skin that
-                feels alive, fresh, and naturally radiant.
+                {t("hero.desc")}
               </motion.p>
 
               {/* CTA Buttons */}
@@ -102,13 +105,13 @@ const SkinWhiteningLanding = () => {
               >
                 <button className="group relative px-8 py-4 bg-wine text-white rounded-full overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-wine/20">
                   <span className="relative z-10 flex items-center justify-center gap-2 font-medium">
-                    Begin Your Journey
+                    {t("hero.btn1")}
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-rose transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
                 </button>
                 <button className="px-8 py-4 border-2 border-taupe text-brown rounded-full hover:bg-cream transition-all duration-300 font-medium backdrop-blur-sm bg-white/30">
-                  Discover Our Approach
+                  {t("hero.btn2")}
                 </button>
               </motion.div>
 
@@ -118,10 +121,10 @@ const SkinWhiteningLanding = () => {
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-12"
               >
                 {[
-                  { icon: MapPin, text: "KLCC: Wisma UOA II, Jalan Pinang" },
-                  { icon: Award, text: "Established Since 2001" },
-                  { icon: Shield, text: "Doctor-Led Protocols" },
-                  { icon: Sparkles, text: "Evidence-Based Treatments" },
+                  { icon: MapPin, text: t("hero.trust1") },
+                  { icon: Award, text: t("hero.trust2") },
+                  { icon: Shield, text: t("hero.trust3") },
+                  { icon: Sparkles, text: t("hero.trust4") },
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -158,13 +161,13 @@ const SkinWhiteningLanding = () => {
             >
               <motion.div variants={fadeInUp} className="text-center mb-16">
                 <span className="text-wine font-medium mb-4 block">
-                  First, a quick truth
+                  {t("understanding.badge")}
                 </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-['Georgia',serif] text-brown mb-6">
-                  About "Skin Whitening"
+                  {t("understanding.title")}
                 </h2>
                 <p className="text-taupe text-lg">
-                  When you search for whitening, you might really mean:
+                  {t("understanding.desc")}
                 </p>
               </motion.div>
 
@@ -173,12 +176,12 @@ const SkinWhiteningLanding = () => {
                 className="grid grid-cols-1 md:grid-cols-2 gap-4"
               >
                 {[
-                  "My skin looks dull and tired",
-                  "I have tan lines that won't fade",
-                  "My acne marks are darker",
-                  "My melasma keeps returning",
-                  "My face and neck don't match",
-                  "My skin feels uneven",
+                  t("understanding.concern1"),
+                  t("understanding.concern2"),
+                  t("understanding.concern3"),
+                  t("understanding.concern4"),
+                  t("understanding.concern5"),
+                  t("understanding.concern6"),
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -194,9 +197,7 @@ const SkinWhiteningLanding = () => {
                 variants={fadeInUp}
                 className="mt-12 text-center text-brown italic bg-white p-8 rounded-2xl border-l-4 border-wine"
               >
-                "At Nexus Clinic, the goal is brighter, clearer, more even-toned
-                skin. We're here to treat pigmentation, not push beauty
-                standards."
+                {t("understanding.quote")}
               </motion.p>
             </motion.div>
           </div>
@@ -213,11 +214,10 @@ const SkinWhiteningLanding = () => {
             >
               <motion.div variants={fadeInUp} className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-['Georgia',serif] text-brown mb-4">
-                  Our Approach
+                  {t("treatments.title")}
                 </h2>
                 <p className="text-taupe text-lg max-w-2xl mx-auto">
-                  We treat the cause, not just the color. Personalized protocols
-                  for your unique skin.
+                  {t("treatments.desc")}
                 </p>
               </motion.div>
 
@@ -225,45 +225,44 @@ const SkinWhiteningLanding = () => {
                 {[
                   {
                     icon: Sun,
-                    title: "Laser Toning",
-                    description:
-                      "Target excess pigment and support natural glow",
-                    bestFor: "Sunspots, stubborn marks, uneven tone",
+                    title: t("treatments.t1Title"),
+                    description: t("treatments.t1Desc"),
+                    bestFor: t("treatments.t1Best"),
                     color: "from-rose to-wine",
                   },
                   {
                     icon: Droplets,
-                    title: "Chemical Peels",
-                    description: "Lift dead skin and fade surface pigment",
-                    bestFor: "Dullness, surface pigmentation, acne marks",
+                    title: t("treatments.t2Title"),
+                    description: t("treatments.t2Desc"),
+                    bestFor: t("treatments.t2Best"),
                     color: "from-wine to-rose",
                   },
                   {
                     icon: Flower2,
-                    title: "Mesotherapy",
-                    description: "Hydration and luminosity boosters",
-                    bestFor: "Dehydrated, tired-looking skin",
+                    title: t("treatments.t3Title"),
+                    description: t("treatments.t3Desc"),
+                    bestFor: t("treatments.t3Best"),
                     color: "from-rose to-brown",
                   },
                   {
                     icon: Leaf,
-                    title: "Glutathione",
-                    description: "IV support when appropriate",
-                    bestFor: "Internal brightening support",
+                    title: t("treatments.t4Title"),
+                    description: t("treatments.t4Desc"),
+                    bestFor: t("treatments.t4Best"),
                     color: "from-brown to-wine",
                   },
                   {
                     icon: Shield,
-                    title: "Medical Skincare",
-                    description: "Results protector for home",
-                    bestFor: "Long-term maintenance",
+                    title: t("treatments.t5Title"),
+                    description: t("treatments.t5Desc"),
+                    bestFor: t("treatments.t5Best"),
                     color: "from-wine to-taupe",
                   },
                   {
                     icon: Heart,
-                    title: "Body Treatments",
-                    description: "For underarms, knees, and more",
-                    bestFor: "Sensitive areas, friction darkening",
+                    title: t("treatments.t6Title"),
+                    description: t("treatments.t6Desc"),
+                    bestFor: t("treatments.t6Best"),
                     color: "from-taupe to-rose",
                   },
                 ].map((item, index) => (
@@ -285,7 +284,7 @@ const SkinWhiteningLanding = () => {
                       </h3>
                       <p className="text-taupe mb-4">{item.description}</p>
                       <p className="text-sm text-wine font-medium">
-                        Best for: {item.bestFor}
+                        {t("treatments.bestForLabel")} {item.bestFor}
                       </p>
                     </div>
                   </motion.div>
@@ -312,24 +311,23 @@ const SkinWhiteningLanding = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <motion.div variants={fadeInLeft}>
                   <span className="text-wine font-medium mb-4 block">
-                    Kuala Lumpur Reality
+                    {t("whyKL.badge")}
                   </span>
                   <h2 className="text-3xl sm:text-4xl lg:text-5xl font-['Georgia',serif] text-brown mb-6">
-                    Why skin changes in KL
+                    {t("whyKL.title")}
                   </h2>
                   <p className="text-taupe text-lg mb-8">
-                    KL is beautiful, but your skin deals with a lot here. Sun,
-                    heat, humidity, and stress all show up on your face.
+                    {t("whyKL.desc")}
                   </p>
 
                   <div className="space-y-4">
                     {[
-                      "Sun damage: UV pushes melanin production",
-                      "Ageing: slower cell turnover brings dullness",
-                      "Hormonal changes: trigger melasma",
-                      "Pollution and lifestyle affect clarity",
-                      "Post-acne marks leave shadows",
-                      "Friction darkens inner thighs and underarms",
+                      t("whyKL.cause1"),
+                      t("whyKL.cause2"),
+                      t("whyKL.cause3"),
+                      t("whyKL.cause4"),
+                      t("whyKL.cause5"),
+                      t("whyKL.cause6"),
                     ].map((item, index) => (
                       <motion.div
                         key={index}
@@ -347,16 +345,16 @@ const SkinWhiteningLanding = () => {
                   <div className="absolute inset-0 bg-linear-to-r from-rose to-wine rounded-3xl transform rotate-3 opacity-20"></div>
                   <div className="relative bg-white p-8 rounded-3xl shadow-2xl">
                     <h3 className="text-2xl font-['Georgia',serif] text-brown mb-6">
-                      Perfect for:
+                      {t("whyKL.perfectForTitle")}
                     </h3>
                     <div className="space-y-4">
                       {[
-                        "Uneven skin tone or dullness",
-                        "Sunspots or age spots",
-                        "Acne marks that stay brown",
-                        "Melasma on cheeks or upper lip",
-                        "Stubborn tan lines",
-                        "Dark underarms, elbows, knees",
+                        t("whyKL.perfect1"),
+                        t("whyKL.perfect2"),
+                        t("whyKL.perfect3"),
+                        t("whyKL.perfect4"),
+                        t("whyKL.perfect5"),
+                        t("whyKL.perfect6"),
                       ].map((item, index) => (
                         <div key={index} className="flex items-center gap-3">
                           <div className="w-8 h-8 bg-cream rounded-full flex items-center justify-center">
@@ -386,47 +384,47 @@ const SkinWhiteningLanding = () => {
             >
               <motion.div variants={fadeInUp} className="text-center mb-16">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-['Georgia',serif] text-brown mb-4">
-                  Investment in Your Skin
+                  {t("pricing.title")}
                 </h2>
                 <p className="text-taupe text-lg">
-                  Transparent pricing for your journey to radiance
+                  {t("pricing.desc")}
                 </p>
               </motion.div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
                   {
-                    name: "Chemical Peel",
-                    price: "RM 200 - 500",
+                    name: t("pricing.p1Name"),
+                    price: t("pricing.p1Price"),
                     icon: Droplets,
-                    per: "session",
+                    per: t("pricing.p1Per"),
                     features: [
-                      "Surface pigmentation",
-                      "Dullness",
-                      "Texture improvement",
+                      t("pricing.p1F1"),
+                      t("pricing.p1F2"),
+                      t("pricing.p1F3"),
                     ],
                   },
                   {
-                    name: "Laser Toning",
-                    price: "RM 400 - 1,000",
+                    name: t("pricing.p2Name"),
+                    price: t("pricing.p2Price"),
                     icon: Sun,
-                    per: "session",
+                    per: t("pricing.p2Per"),
                     features: [
-                      "Stubborn spots",
-                      "Uneven tone",
-                      "Melasma patterns",
+                      t("pricing.p2F1"),
+                      t("pricing.p2F2"),
+                      t("pricing.p2F3"),
                     ],
                     popular: true,
                   },
                   {
-                    name: "Glutathione",
-                    price: "RM 250 - 600",
+                    name: t("pricing.p3Name"),
+                    price: t("pricing.p3Price"),
                     icon: Leaf,
-                    per: "session",
+                    per: t("pricing.p3Per"),
                     features: [
-                      "IV support",
-                      "Brightening",
-                      "Medical supervision",
+                      t("pricing.p3F1"),
+                      t("pricing.p3F2"),
+                      t("pricing.p3F3"),
                     ],
                   },
                 ].map((item, index) => (
@@ -440,7 +438,7 @@ const SkinWhiteningLanding = () => {
                   >
                     {item.popular && (
                       <div className="absolute top-5 right-5 bg-wine text-white px-3 py-1 rounded-full text-xs font-medium">
-                        Most Popular
+                        {t("pricing.p2Popular")}
                       </div>
                     )}
                     <div className="p-8">
@@ -478,8 +476,7 @@ const SkinWhiteningLanding = () => {
                 variants={fadeInUp}
                 className="text-center mt-8 text-taupe text-sm"
               >
-                *Final cost depends on your skin condition and number of
-                sessions needed
+                {t("pricing.disclaimer")}
               </motion.p>
             </motion.div>
           </div>
@@ -512,21 +509,20 @@ const SkinWhiteningLanding = () => {
                 variants={fadeInUp}
                 className="text-3xl sm:text-4xl lg:text-5xl font-['Georgia',serif] text-white mb-6"
               >
-                Ready for skin that feels alive?
+                {t("cta.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-xl text-white/90 mb-10"
               >
-                Stop guessing. Start your structured journey to radiant,
-                even-toned skin.
+                {t("cta.desc")}
               </motion.p>
 
               <motion.div variants={fadeInUp}>
                 <button className="group relative px-12 py-5 bg-white text-wine rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 font-medium text-lg">
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    Book Your Consultation
+                    {t("cta.bookBtn")}
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </span>
                   <div className="absolute inset-0 bg-cream transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
@@ -537,8 +533,7 @@ const SkinWhiteningLanding = () => {
                 variants={fadeInUp}
                 className="mt-6 text-white/70 text-sm"
               >
-                LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, Kuala
-                Lumpur
+                {t("cta.address")}
               </motion.p>
             </motion.div>
           </div>

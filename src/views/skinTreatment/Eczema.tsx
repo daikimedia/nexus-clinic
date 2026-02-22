@@ -25,24 +25,28 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const EczemaLandingPage = () => {
+const EczemaLandingPage = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "eczema");
+
   const faqs = [
     {
-      q: "Will eczema go away without treatment?",
-      a: "Some mild cases improve, but eczema often flares and returns. Management and prevention are key.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "Is eczema contagious?",
-      a: "No. Atopic dermatitis is not contagious. You cannot spread it by touch.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "Why is eczema worse at night?",
-      a: "Many people feel itch more at night due to routine changes, body temperature shifts, and subconscious scratching.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
     {
-      q: "Are steroid creams safe for eczema?",
-      a: "They are widely used and safe when used correctly with proper medical guidance on strength, area, and duration.",
+      q: t("faq.q4"),
+      a: t("faq.a4"),
     },
   ];
   return (
@@ -71,18 +75,17 @@ const EczemaLandingPage = () => {
                   >
                     <MapPin className="w-4 h-4 text-wine mr-2" />
                     <span className="text-brown font-medium">
-                      Nexus Clinic Kuala Lumpur
+                      {t("hero.badge")}
                     </span>
                   </motion.div>
 
                   <h1 className="font-['Georgia',serif] text-5xl sm:text-6xl lg:text-7xl text-brown leading-tight">
-                    Eczema relief
-                    <span className="block text-wine">that feels real.</span>
+                    {t("hero.title1")}
+                    <span className="block text-wine">{t("hero.title2")}</span>
                   </h1>
 
                   <p className="text-xl text-taupe max-w-lg">
-                    Calm your skin, sleep better, and stop the flare cycle in
-                    Kuala Lumpur.
+                    {t("hero.desc")}
                   </p>
                 </div>
 
@@ -92,10 +95,9 @@ const EczemaLandingPage = () => {
                       <Moon className="w-6 h-6 text-wine" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-brown">Sleep better</h3>
+                      <h3 className="font-semibold text-brown">{t("hero.sleepTitle")}</h3>
                       <p className="text-taupe">
-                        When eczema flares, it steals sleep, confidence, and
-                        comfort.
+                        {t("hero.sleepDesc")}
                       </p>
                     </div>
                   </div>
@@ -106,11 +108,10 @@ const EczemaLandingPage = () => {
                     </div>
                     <div>
                       <h3 className="font-semibold text-brown">
-                        Doctor-led approach
+                        {t("hero.doctorTitle")}
                       </h3>
                       <p className="text-taupe">
-                        MOH-registered clinic with diagnosis-first approach in
-                        KLCC.
+                        {t("hero.doctorDesc")}
                       </p>
                     </div>
                   </div>
@@ -122,7 +123,7 @@ const EczemaLandingPage = () => {
                   whileTap={{ scale: 0.95 }}
                   className="bg-wine text-light px-8 py-4 rounded-full font-medium hover:bg-rose transition-all duration-300 shadow-lg hover:shadow-xl flex items-center space-x-2 group"
                 >
-                  <span>Start your calm journey</span>
+                  <span>{t("hero.btn")}</span>
                   <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
               </motion.div>
@@ -152,10 +153,10 @@ const EczemaLandingPage = () => {
                         </div>
                         <div>
                           <p className="text-sm text-taupe">
-                            KL Climate Impact
+                            {t("hero.floatingLabel")}
                           </p>
                           <p className="font-semibold text-brown">
-                            Heat + Sweat Triggers
+                            {t("hero.floatingValue")}
                           </p>
                         </div>
                       </div>
@@ -184,9 +185,9 @@ const EczemaLandingPage = () => {
                   <Shield className="w-8 h-8 text-wine" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-brown">MOH-Registered</h4>
+                  <h4 className="font-semibold text-brown">{t("trust.t1Title")}</h4>
                   <p className="text-taupe text-sm">
-                    Doctor-led with diagnosis-first approach
+                    {t("trust.t1Desc")}
                   </p>
                 </div>
               </motion.div>
@@ -199,9 +200,9 @@ const EczemaLandingPage = () => {
                   <MapPin className="w-8 h-8 text-wine" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-brown">Near KLCC</h4>
+                  <h4 className="font-semibold text-brown">{t("trust.t2Title")}</h4>
                   <p className="text-taupe text-sm">
-                    LG 10, Wisma UOA II, Jalan Pinang
+                    {t("trust.t2Desc")}
                   </p>
                 </div>
               </motion.div>
@@ -214,9 +215,9 @@ const EczemaLandingPage = () => {
                   <Droplets className="w-8 h-8 text-wine" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-brown">Trigger Mapping</h4>
+                  <h4 className="font-semibold text-brown">{t("trust.t3Title")}</h4>
                   <p className="text-taupe text-sm">
-                    Assessment before treatment
+                    {t("trust.t3Desc")}
                   </p>
                 </div>
               </motion.div>
@@ -234,12 +235,11 @@ const EczemaLandingPage = () => {
           <div className="max-w-7xl mx-auto">
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <h2 className="font-['Georgia',serif] text-4xl text-brown mb-4">
-                Why eczema feels worse in
-                <span className="text-wine"> Kuala Lumpur</span>
+                {t("whyKL.title1")}
+                <span className="text-wine"> {t("whyKL.title2")}</span>
               </h2>
               <p className="text-taupe max-w-2xl mx-auto">
-                Malaysia's climate and lifestyle create a perfect storm for
-                eczema
+                {t("whyKL.desc")}
               </p>
             </motion.div>
 
@@ -249,9 +249,9 @@ const EczemaLandingPage = () => {
                 className="bg-light p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
               >
                 <Thermometer className="w-10 h-10 text-wine mb-4" />
-                <h3 className="font-semibold text-brown mb-2">Heat + Sweat</h3>
+                <h3 className="font-semibold text-brown mb-2">{t("whyKL.trigger1Title")}</h3>
                 <p className="text-taupe text-sm">
-                  Sweat can sting cracked skin and trigger itching
+                  {t("whyKL.trigger1Desc")}
                 </p>
               </motion.div>
 
@@ -261,10 +261,10 @@ const EczemaLandingPage = () => {
               >
                 <Wind className="w-10 h-10 text-wine mb-4" />
                 <h3 className="font-semibold text-brown mb-2">
-                  Air Conditioning
+                  {t("whyKL.trigger2Title")}
                 </h3>
                 <p className="text-taupe text-sm">
-                  Temperature swings stress your skin barrier
+                  {t("whyKL.trigger2Desc")}
                 </p>
               </motion.div>
 
@@ -274,10 +274,10 @@ const EczemaLandingPage = () => {
               >
                 <Droplets className="w-10 h-10 text-wine mb-4" />
                 <h3 className="font-semibold text-brown mb-2">
-                  Frequent Showers
+                  {t("whyKL.trigger3Title")}
                 </h3>
                 <p className="text-taupe text-sm">
-                  Hot water strips natural protective oils
+                  {t("whyKL.trigger3Desc")}
                 </p>
               </motion.div>
 
@@ -287,10 +287,10 @@ const EczemaLandingPage = () => {
               >
                 <Brain className="w-10 h-10 text-wine mb-4" />
                 <h3 className="font-semibold text-brown mb-2">
-                  Stress & Pollution
+                  {t("whyKL.trigger4Title")}
                 </h3>
                 <p className="text-taupe text-sm">
-                  Both increase inflammation and scratching
+                  {t("whyKL.trigger4Desc")}
                 </p>
               </motion.div>
             </div>
@@ -308,63 +308,41 @@ const EczemaLandingPage = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft} className="space-y-8">
                 <h2 className="font-['Georgia',serif] text-4xl text-brown">
-                  Common eczema
-                  <span className="text-wine"> symptoms</span>
+                  {t("symptoms.title1")}
+                  <span className="text-wine"> {t("symptoms.title2")}</span>
                 </h2>
 
                 <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <AlertCircle className="w-5 h-5 text-wine" />
-                    <span className="text-brown">
-                      Intense itching, often before you see a rash
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <AlertCircle className="w-5 h-5 text-wine" />
-                    <span className="text-brown">Dry, rough, flaky skin</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <AlertCircle className="w-5 h-5 text-wine" />
-                    <span className="text-brown">
-                      Red or darker patches (brown, purple, or grey)
-                    </span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <AlertCircle className="w-5 h-5 text-wine" />
-                    <span className="text-brown">
-                      Small bumps, oozing, or crusting during flares
-                    </span>
-                  </div>
+                  {[
+                    t("symptoms.s1"),
+                    t("symptoms.s2"),
+                    t("symptoms.s3"),
+                    t("symptoms.s4"),
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center space-x-3">
+                      <AlertCircle className="w-5 h-5 text-wine" />
+                      <span className="text-brown">{item}</span>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
 
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-cream p-8 rounded-3xl shadow-xl">
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="text-center p-4 bg-white rounded-xl">
-                      <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <Heart className="w-6 h-6 text-wine" />
+                    {[
+                      { icon: Heart, text: t("symptoms.area1") },
+                      { icon: Moon, text: t("symptoms.area2") },
+                      { icon: Wind, text: t("symptoms.area3") },
+                      { icon: Droplet, text: t("symptoms.area4") },
+                    ].map((item, index) => (
+                      <div key={index} className="text-center p-4 bg-white rounded-xl">
+                        <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                          <item.icon className="w-6 h-6 text-wine" />
+                        </div>
+                        <p className="text-sm text-brown">{item.text}</p>
                       </div>
-                      <p className="text-sm text-brown">Skin folds</p>
-                    </div>
-                    <div className="text-center p-4 bg-white rounded-xl">
-                      <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <Moon className="w-6 h-6 text-wine" />
-                      </div>
-                      <p className="text-sm text-brown">Behind knees</p>
-                    </div>
-                    <div className="text-center p-4 bg-white rounded-xl">
-                      <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <Wind className="w-6 h-6 text-wine" />
-                      </div>
-                      <p className="text-sm text-brown">Neck</p>
-                    </div>
-                    <div className="text-center p-4 bg-white rounded-xl">
-                      <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <Droplet className="w-6 h-6 text-wine" />
-                      </div>
-                      <p className="text-sm text-brown">Wrists</p>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </motion.div>
@@ -382,11 +360,11 @@ const EczemaLandingPage = () => {
           <div className="max-w-7xl mx-auto">
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <h2 className="font-['Georgia',serif] text-4xl text-brown mb-4">
-                Treatment options that
-                <span className="text-wine"> actually work</span>
+                {t("treatments.title1")}
+                <span className="text-wine"> {t("treatments.title2")}</span>
               </h2>
               <p className="text-taupe max-w-2xl mx-auto">
-                Evidence-based care tailored to your skin's needs
+                {t("treatments.desc")}
               </p>
             </motion.div>
 
@@ -399,14 +377,13 @@ const EczemaLandingPage = () => {
                   <Droplets className="w-8 h-8 text-wine group-hover:text-white" />
                 </div>
                 <h3 className="font-['Georgia',serif] text-xl text-brown mb-3">
-                  Moisturisers & Barrier Repair
+                  {t("treatments.t1Title")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  The foundation of eczema care. Moisturise every day, even when
-                  skin looks calm.
+                  {t("treatments.t1Desc")}
                 </p>
                 <p className="text-sm text-wine">
-                  Fragrance-free, daily routine
+                  {t("treatments.t1Note")}
                 </p>
               </motion.div>
 
@@ -418,14 +395,13 @@ const EczemaLandingPage = () => {
                   <Sparkles className="w-8 h-8 text-wine group-hover:text-white" />
                 </div>
                 <h3 className="font-['Georgia',serif] text-xl text-brown mb-3">
-                  Anti-inflammatory Creams
+                  {t("treatments.t2Title")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  For active flares. Topical corticosteroids and calcineurin
-                  inhibitors when needed.
+                  {t("treatments.t2Desc")}
                 </p>
                 <p className="text-sm text-wine">
-                  Doctor-guided strength and duration
+                  {t("treatments.t2Note")}
                 </p>
               </motion.div>
 
@@ -437,13 +413,12 @@ const EczemaLandingPage = () => {
                   <Moon className="w-8 h-8 text-wine group-hover:text-white" />
                 </div>
                 <h3 className="font-['Georgia',serif] text-xl text-brown mb-3">
-                  Itch Control & Sleep Support
+                  {t("treatments.t3Title")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  Cold compresses, night routine adjustments, and habit
-                  strategies.
+                  {t("treatments.t3Desc")}
                 </p>
-                <p className="text-sm text-wine">Better sleep, calmer skin</p>
+                <p className="text-sm text-wine">{t("treatments.t3Note")}</p>
               </motion.div>
             </div>
           </div>
@@ -459,11 +434,11 @@ const EczemaLandingPage = () => {
           <div className="max-w-7xl mx-auto">
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <h2 className="font-['Georgia',serif] text-4xl text-brown mb-4">
-                Practical routine for
-                <span className="text-wine"> KL life</span>
+                {t("routine.title1")}
+                <span className="text-wine"> {t("routine.title2")}</span>
               </h2>
               <p className="text-taupe max-w-2xl mx-auto">
-                Simple, sustainable steps that fit your daily rhythm
+                {t("routine.desc")}
               </p>
             </motion.div>
 
@@ -474,11 +449,11 @@ const EczemaLandingPage = () => {
                     1
                   </div>
                   <Sun className="w-8 h-8 text-wine mb-4" />
-                  <h3 className="font-semibold text-brown mb-3">Morning</h3>
+                  <h3 className="font-semibold text-brown mb-3">{t("routine.morningTitle")}</h3>
                   <ul className="space-y-2 text-taupe text-sm">
-                    <li>• Quick rinse or gentle cleanse</li>
-                    <li>• Moisturiser</li>
-                    <li>• Sensitive-skin friendly sunscreen</li>
+                    <li>• {t("routine.morning1")}</li>
+                    <li>• {t("routine.morning2")}</li>
+                    <li>• {t("routine.morning3")}</li>
                   </ul>
                 </div>
               </motion.div>
@@ -489,11 +464,11 @@ const EczemaLandingPage = () => {
                     2
                   </div>
                   <Coffee className="w-8 h-8 text-wine mb-4" />
-                  <h3 className="font-semibold text-brown mb-3">Midday</h3>
+                  <h3 className="font-semibold text-brown mb-3">{t("routine.middayTitle")}</h3>
                   <ul className="space-y-2 text-taupe text-sm">
-                    <li>• Rinse sweat if possible</li>
-                    <li>• Reapply moisturiser if skin feels tight</li>
-                    <li>• Avoid fragranced wipes</li>
+                    <li>• {t("routine.midday1")}</li>
+                    <li>• {t("routine.midday2")}</li>
+                    <li>• {t("routine.midday3")}</li>
                   </ul>
                 </div>
               </motion.div>
@@ -504,11 +479,11 @@ const EczemaLandingPage = () => {
                     3
                   </div>
                   <Moon className="w-8 h-8 text-wine mb-4" />
-                  <h3 className="font-semibold text-brown mb-3">Night</h3>
+                  <h3 className="font-semibold text-brown mb-3">{t("routine.nightTitle")}</h3>
                   <ul className="space-y-2 text-taupe text-sm">
-                    <li>• Lukewarm shower</li>
-                    <li>• Pat dry, moisturise</li>
-                    <li>• Medicated creams as advised</li>
+                    <li>• {t("routine.night1")}</li>
+                    <li>• {t("routine.night2")}</li>
+                    <li>• {t("routine.night3")}</li>
                   </ul>
                 </div>
               </motion.div>
@@ -532,11 +507,10 @@ const EczemaLandingPage = () => {
           <div className="max-w-4xl mx-auto text-center relative z-10">
             <motion.div variants={fadeInUp} className="space-y-8">
               <h2 className="font-['Georgia',serif] text-4xl text-light mb-4">
-                Stop guessing with random creams
+                {t("cta.title")}
               </h2>
               <p className="text-xl text-light/90 max-w-2xl mx-auto">
-                Visit Nexus Clinic Kuala Lumpur for a doctor-led skin assessment
-                and a plan that fits real KL life
+                {t("cta.desc")}
               </p>
 
               <motion.button
@@ -546,12 +520,12 @@ const EczemaLandingPage = () => {
                 className="bg-light text-wine px-8 py-4 rounded-full font-medium hover:bg-cream transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center space-x-2 group"
               >
                 <MapPin className="w-5 h-5" />
-                <span>Wisma UOA II, Jalan Pinang, near KLCC</span>
+                <span>{t("cta.bookBtn")}</span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
               <p className="text-light/70 text-sm">
-                MOH-registered • Doctor-led • Diagnosis-first approach
+                {t("cta.note")}
               </p>
             </motion.div>
           </div>

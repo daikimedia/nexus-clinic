@@ -27,20 +27,24 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const HairTransplantLanding = () => {
+const HairTransplantLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "hairTransplant");
+
   const faqs = [
     {
-      q: "Is shedding after a hair transplant normal?",
-      a: "Yes, shedding can happen and it often worries people. It is commonly linked to shock loss, where hair shafts shed while follicles rest before growing again.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "Can a hair transplant fail?",
-      a: "Most grafts survive when the plan is good and aftercare is followed. Risk factors include poor donor selection, smoking, uncontrolled health issues, and poor post-op care.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "Can women get a hair transplant in Malaysia?",
-      a: "Yes, women can get hair transplants. The suitability depends on the pattern of hair loss and donor area strength.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
   ];
   return (
@@ -68,7 +72,7 @@ const HairTransplantLanding = () => {
               >
                 <Sparkles className="w-4 h-4 text-wine" />
                 <span className="text-sm font-medium text-brown">
-                  Nexus Clinic Kuala Lumpur
+                  {t("hero.badge")}
                 </span>
               </motion.div>
 
@@ -76,10 +80,10 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
               >
-                <span className="text-brown">Hair Transplant</span>
+                <span className="text-brown">{t("hero.title1")}</span>
                 <br />
                 <span className="bg-linear-to-r from-wine to-rose bg-clip-text text-transparent">
-                  in Kuala Lumpur
+                  {t("hero.title2")}
                 </span>
               </motion.h1>
 
@@ -87,15 +91,14 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="text-xl text-brown mb-8 max-w-2xl mx-auto font-light"
               >
-                A hair transplant is not just hair. It is confidence, restored.
+                {t("hero.desc")}
               </motion.p>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-lg text-taupe mb-12 max-w-2xl mx-auto"
               >
-                If your hairline keeps moving back, you are not alone. At Nexus
-                Clinic Kuala Lumpur, we help you plan results that look natural.
+                {t("hero.subdesc")}
               </motion.p>
 
               <motion.div
@@ -107,7 +110,7 @@ const HairTransplantLanding = () => {
                   whileTap={{ scale: 0.95 }}
                   className="group px-8 py-4 bg-linear-to-r from-wine to-rose text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
                 >
-                  Book Your Consultation
+                  {t("hero.bookBtn")}
                   <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
 
@@ -116,7 +119,7 @@ const HairTransplantLanding = () => {
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-white/80 backdrop-blur-sm border border-cream text-brown rounded-full font-semibold hover:bg-white transition-all duration-300"
                 >
-                  View Gallery
+                  {t("hero.galleryBtn")}
                 </motion.button>
               </motion.div>
             </motion.div>
@@ -174,10 +177,10 @@ const HairTransplantLanding = () => {
                   <MapPin className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="font-['Georgia',serif] text-xl font-bold text-brown mb-3">
-                  Prime Location
+                  {t("trust.t1Title")}
                 </h3>
                 <p className="text-taupe">
-                  In the heart of Kuala Lumpur (Jalan Pinang, near KLCC)
+                  {t("trust.t1Desc")}
                 </p>
               </motion.div>
 
@@ -189,10 +192,10 @@ const HairTransplantLanding = () => {
                   <Award className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="font-['Georgia',serif] text-xl font-bold text-brown mb-3">
-                  Established Since 2001
+                  {t("trust.t2Title")}
                 </h3>
                 <p className="text-taupe">
-                  Two decades of excellence in aesthetic medicine
+                  {t("trust.t2Desc")}
                 </p>
               </motion.div>
 
@@ -204,10 +207,10 @@ const HairTransplantLanding = () => {
                   <Users className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="font-['Georgia',serif] text-xl font-bold text-brown mb-3">
-                  Private Consultations
+                  {t("trust.t3Title")}
                 </h3>
                 <p className="text-taupe">
-                  Doctor-led, clear treatment planning
+                  {t("trust.t3Desc")}
                 </p>
               </motion.div>
             </motion.div>
@@ -228,40 +231,37 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl font-bold text-center text-brown mb-4"
               >
-                Quick Answers People Want First
+                {t("quickAnswers.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-center text-taupe mb-12"
               >
-                Everything you need to know before your consultation
+                {t("quickAnswers.desc")}
               </motion.p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   {
                     icon: <Shield className="w-6 h-6 text-wine" />,
-                    question: "Is hair transplant permanent?",
-                    answer:
-                      "In many cases, yes, because donor hair is usually more resistant to hair loss.",
+                    question: t("quickAnswers.q1"),
+                    answer: t("quickAnswers.a1"),
                   },
                   {
                     icon: <Heart className="w-6 h-6 text-wine" />,
-                    question: "Is it painful?",
-                    answer:
-                      "Most people feel pressure, not sharp pain, because local anaesthesia is used.",
+                    question: t("quickAnswers.q2"),
+                    answer: t("quickAnswers.a2"),
                   },
                   {
                     icon: <Clock className="w-6 h-6 text-wine" />,
-                    question: "How long until results look 'done'?",
-                    answer: "Full results often take 12 to 18 months.",
+                    question: t("quickAnswers.q3"),
+                    answer: t("quickAnswers.a3"),
                   },
                   {
                     icon: <Sparkle className="w-6 h-6 text-wine" />,
-                    question: "How much does it cost in Malaysia?",
-                    answer:
-                      "From RM 5,500 to RM 30,000, depending on grafts and method.",
+                    question: t("quickAnswers.q4"),
+                    answer: t("quickAnswers.a4"),
                   },
                 ].map((item, index) => (
                   <motion.div
@@ -302,48 +302,49 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl font-bold text-center text-brown mb-4"
               >
-                Hair Transplant Methods
+                {t("methods.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-center text-taupe mb-12"
               >
-                FUE vs FUT vs DHI - Understanding your options
+                {t("methods.desc")}
               </motion.p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
                   {
-                    title: "FUE",
-                    fullTitle: "Follicular Unit Extraction",
-                    description:
-                      "Removes follicles one by one, then places them where needed.",
+                    title: t("methods.fue"),
+                    fullTitle: t("methods.fueFullTitle"),
+                    description: t("methods.fueDesc"),
                     benefits: [
-                      "No long strip scar",
-                      "Faster healing",
-                      "Works well for hairline and crown",
+                      t("methods.fueBenefit1"),
+                      t("methods.fueBenefit2"),
+                      t("methods.fueBenefit3"),
                     ],
                     linear: "from-wine to-rose",
                   },
                   {
-                    title: "FUT",
-                    fullTitle: "Follicular Unit Transplant",
-                    description:
-                      "Removes a thin strip from donor area, then separates grafts.",
+                    title: t("methods.fut"),
+                    fullTitle: t("methods.futFullTitle"),
+                    description: t("methods.futDesc"),
                     benefits: [
-                      "Useful for many grafts",
-                      "Suits certain donor types",
-                      "Budget-friendly option",
+                      t("methods.futBenefit1"),
+                      t("methods.futBenefit2"),
+                      t("methods.futBenefit3"),
                     ],
                     linear: "from-brown to-taupe",
                   },
                   {
-                    title: "DHI",
-                    fullTitle: "Direct Hair Implantation",
-                    description:
-                      "Placement style using an implanter tool for precise results.",
-                    benefits: ["No cuts", "No stitches", "Precise placement"],
+                    title: t("methods.dhi"),
+                    fullTitle: t("methods.dhiFullTitle"),
+                    description: t("methods.dhiDesc"),
+                    benefits: [
+                      t("methods.dhiBenefit1"),
+                      t("methods.dhiBenefit2"),
+                      t("methods.dhiBenefit3"),
+                    ],
                     linear: "from-rose to-wine",
                   },
                 ].map((method, index) => (
@@ -380,7 +381,7 @@ const HairTransplantLanding = () => {
 
                     <div className="px-8 pb-8">
                       <button className="text-wine font-semibold flex items-center gap-2 group/btn">
-                        Learn More
+                        {t("methods.learnMore")}
                         <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
@@ -392,8 +393,7 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="text-center text-brown mt-8 italic"
               >
-                In real life, the "best" method depends on your hair loss
-                pattern, donor strength, and goals.
+                {t("methods.note")}
               </motion.p>
             </motion.div>
           </div>
@@ -413,7 +413,7 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl font-bold text-center text-brown mb-4"
               >
-                Who Is Hair Transplant For?
+                {t("whoFor.title")}
               </motion.h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
@@ -424,16 +424,16 @@ const HairTransplantLanding = () => {
                       <CheckCircle2 className="w-6 h-6 text-white" />
                     </div>
                     <h3 className="font-['Georgia',serif] text-2xl font-bold text-brown">
-                      Good Candidates
+                      {t("whoFor.goodTitle")}
                     </h3>
                   </div>
 
                   <ul className="space-y-4">
                     {[
-                      "Stable hair loss pattern",
-                      "Strong donor area",
-                      "Want long-term solution",
-                      "Understand results take time",
+                      t("whoFor.good1"),
+                      t("whoFor.good2"),
+                      t("whoFor.good3"),
+                      t("whoFor.good4"),
                     ].map((item, index) => (
                       <motion.li
                         key={index}
@@ -450,14 +450,14 @@ const HairTransplantLanding = () => {
 
                   <div className="mt-8 p-6 bg-linear-to-br from-cream to-white rounded-xl">
                     <h4 className="font-semibold text-brown mb-3">
-                      Common reasons in KL:
+                      {t("whoFor.reasonsTitle")}
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {[
-                        "Receding hairline",
-                        "Crown thinning",
-                        "Diffuse thinning",
-                        "Beard gaps",
+                        t("whoFor.reason1"),
+                        t("whoFor.reason2"),
+                        t("whoFor.reason3"),
+                        t("whoFor.reason4"),
                       ].map((tag, idx) => (
                         <span
                           key={idx}
@@ -477,16 +477,16 @@ const HairTransplantLanding = () => {
                       <AlertCircle className="w-6 h-6 text-white" />
                     </div>
                     <h3 className="font-['Georgia',serif] text-2xl font-bold text-brown">
-                      Should Wait
+                      {t("whoFor.waitTitle")}
                     </h3>
                   </div>
 
                   <ul className="space-y-4">
                     {[
-                      "Hair loss is still very fast",
-                      "Active scalp inflammation",
-                      "Donor hair is weak",
-                      "Expect instant density",
+                      t("whoFor.wait1"),
+                      t("whoFor.wait2"),
+                      t("whoFor.wait3"),
+                      t("whoFor.wait4"),
                     ].map((item, index) => (
                       <motion.li
                         key={index}
@@ -506,8 +506,7 @@ const HairTransplantLanding = () => {
                     className="mt-8 p-6 bg-linear-to-br from-wine/5 to-rose/5 rounded-xl border border-cream"
                   >
                     <p className="text-brown italic">
-                      Start with non-surgical options first (PRP, medications,
-                      or laser), then re-check your progress.
+                      {t("whoFor.waitNote")}
                     </p>
                   </motion.div>
                 </motion.div>
@@ -530,24 +529,24 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl font-bold text-center text-brown mb-4"
               >
-                Areas We Can Treat
+                {t("areas.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-center text-taupe mb-12"
               >
-                Not just the scalp - personalized restoration for every area
+                {t("areas.desc")}
               </motion.p>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                 {[
-                  { icon: <Scissors className="w-6 h-6" />, label: "Hairline" },
-                  { icon: <Sparkles className="w-6 h-6" />, label: "Temples" },
-                  { icon: <Leaf className="w-6 h-6" />, label: "Crown" },
-                  { icon: <Flower2 className="w-6 h-6" />, label: "Beard" },
-                  { icon: <Star className="w-6 h-6" />, label: "Moustache" },
-                  { icon: <Heart className="w-6 h-6" />, label: "Eyebrows" },
+                  { icon: <Scissors className="w-6 h-6" />, label: t("areas.a1") },
+                  { icon: <Sparkles className="w-6 h-6" />, label: t("areas.a2") },
+                  { icon: <Leaf className="w-6 h-6" />, label: t("areas.a3") },
+                  { icon: <Flower2 className="w-6 h-6" />, label: t("areas.a4") },
+                  { icon: <Star className="w-6 h-6" />, label: t("areas.a5") },
+                  { icon: <Heart className="w-6 h-6" />, label: t("areas.a6") },
                 ].map((area, index) => (
                   <motion.div
                     key={index}
@@ -580,7 +579,7 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl font-bold text-center text-brown mb-12"
               >
-                Your Journey at Nexus Clinic
+                {t("journey.title")}
               </motion.h2>
 
               <div className="relative">
@@ -591,37 +590,32 @@ const HairTransplantLanding = () => {
                   {[
                     {
                       step: "01",
-                      title: "Consultation & Scalp Check",
-                      description:
-                        "We discuss your hair loss story, check donor area, density, and scalp health.",
+                      title: t("journey.s1Title"),
+                      description: t("journey.s1Desc"),
                       icon: <Users className="w-6 h-6" />,
                     },
                     {
                       step: "02",
-                      title: "Hairline Design",
-                      description:
-                        "A good hairline should fit your age and features. We design it together.",
+                      title: t("journey.s2Title"),
+                      description: t("journey.s2Desc"),
                       icon: <Scissors className="w-6 h-6" />,
                     },
                     {
                       step: "03",
-                      title: "Graft Estimate",
-                      description:
-                        "Clear pricing by graft count or session. You know what you're paying for.",
+                      title: t("journey.s3Title"),
+                      description: t("journey.s3Desc"),
                       icon: <Sparkle className="w-6 h-6" />,
                     },
                     {
                       step: "04",
-                      title: "Procedure Day",
-                      description:
-                        "Local anaesthesia, bring music or podcasts. We guide you through.",
+                      title: t("journey.s4Title"),
+                      description: t("journey.s4Desc"),
                       icon: <Calendar className="w-6 h-6" />,
                     },
                     {
                       step: "05",
-                      title: "Aftercare & Follow-ups",
-                      description:
-                        "Washing guidance, activity limits, and protected results.",
+                      title: t("journey.s5Title"),
+                      description: t("journey.s5Desc"),
                       icon: <Heart className="w-6 h-6" />,
                     },
                   ].map((item, index) => (
@@ -669,32 +663,38 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl font-bold text-center text-brown mb-4"
               >
-                Recovery Timeline
+                {t("recovery.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-center text-taupe mb-12"
               >
-                What you will actually see, week by week
+                {t("recovery.desc")}
               </motion.p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 {[
                   {
-                    period: "Days 1-7",
-                    desc: "Scalp feels tight, swelling, gentle washing",
+                    period: t("recovery.r1Period"),
+                    desc: t("recovery.r1Desc"),
                   },
                   {
-                    period: "Days 8-14",
-                    desc: "Scabs fall off, grafts secure",
+                    period: t("recovery.r2Period"),
+                    desc: t("recovery.r2Desc"),
                   },
                   {
-                    period: "Weeks 3-8",
-                    desc: "Shedding (shock loss) - temporary",
+                    period: t("recovery.r3Period"),
+                    desc: t("recovery.r3Desc"),
                   },
-                  { period: "Months 3-6", desc: "New growth begins, thickens" },
-                  { period: "Months 9-18", desc: "Full density, natural look" },
+                  {
+                    period: t("recovery.r4Period"),
+                    desc: t("recovery.r4Desc"),
+                  },
+                  {
+                    period: t("recovery.r5Period"),
+                    desc: t("recovery.r5Desc"),
+                  },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -730,19 +730,19 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl font-bold text-center text-brown mb-12"
               >
-                Honest View: Pros & Cons
+                {t("prosCons.title")}
               </motion.h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Pros */}
                 <motion.div variants={fadeInLeft} className="space-y-4">
                   <h3 className="text-2xl font-semibold text-green-600 mb-6">
-                    Benefits
+                    {t("prosCons.benefitsTitle")}
                   </h3>
                   {[
-                    "Uses your own hair, so it looks real",
-                    "Can improve hairline shape and coverage",
-                    "Often long-lasting when planned well",
+                    t("prosCons.pro1"),
+                    t("prosCons.pro2"),
+                    t("prosCons.pro3"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -758,13 +758,13 @@ const HairTransplantLanding = () => {
                 {/* Cons */}
                 <motion.div variants={fadeInRight} className="space-y-4">
                   <h3 className="text-2xl font-semibold text-wine mb-6">
-                    Limitations
+                    {t("prosCons.limitsTitle")}
                   </h3>
                   {[
-                    "Results take time (12-18 months)",
-                    "May still lose native hair around transplant",
-                    "Some need second procedure later",
-                    "Not everyone has enough donor supply",
+                    t("prosCons.con1"),
+                    t("prosCons.con2"),
+                    t("prosCons.con3"),
+                    t("prosCons.con4"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -782,7 +782,7 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="text-center text-wine mt-8 italic font-medium"
               >
-                A good clinic will say this clearly, before you commit.
+                {t("prosCons.note")}
               </motion.p>
             </motion.div>
           </div>
@@ -802,7 +802,7 @@ const HairTransplantLanding = () => {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl font-bold text-center text-brown mb-4"
               >
-                Hair Transplant Cost in Malaysia
+                {t("cost.title")}
               </motion.h2>
 
               <motion.div
@@ -810,45 +810,45 @@ const HairTransplantLanding = () => {
                 className="bg-white p-8 rounded-2xl shadow-xl mb-8"
               >
                 <div className="text-center mb-8">
-                  <span className="text-5xl font-bold text-wine">RM 5,500</span>
-                  <span className="text-taupe mx-4">to</span>
+                  <span className="text-5xl font-bold text-wine">{t("cost.low")}</span>
+                  <span className="text-taupe mx-4">{t("cost.to")}</span>
                   <span className="text-5xl font-bold text-rose">
-                    RM 30,000
+                    {t("cost.high")}
                   </span>
                 </div>
 
                 <p className="text-center text-brown mb-8">
-                  Depending on grafts, method, and clinic's team
+                  {t("cost.desc")}
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="p-4 bg-cream rounded-lg">
-                    <h4 className="font-semibold text-brown mb-2">FUE Cases</h4>
-                    <p className="text-wine">RM 5,500 - RM 15,000</p>
+                    <h4 className="font-semibold text-brown mb-2">{t("cost.fueTitle")}</h4>
+                    <p className="text-wine">{t("cost.fueRange")}</p>
                     <p className="text-sm text-taupe mt-1">
-                      For many standard cases
+                      {t("cost.fueNote")}
                     </p>
                   </div>
 
                   <div className="p-4 bg-cream rounded-lg">
-                    <h4 className="font-semibold text-brown mb-2">Per Graft</h4>
-                    <p className="text-wine">RM 6 - RM 12</p>
+                    <h4 className="font-semibold text-brown mb-2">{t("cost.graftTitle")}</h4>
+                    <p className="text-wine">{t("cost.graftRange")}</p>
                     <p className="text-sm text-taupe mt-1">
-                      FUE, DHI often higher
+                      {t("cost.graftNote")}
                     </p>
                   </div>
                 </div>
 
                 <div className="mt-8 p-6 border border-cream rounded-xl">
                   <h4 className="font-semibold text-brown mb-4">
-                    What's included:
+                    {t("cost.includesTitle")}
                   </h4>
                   <ul className="space-y-2">
                     {[
-                      "Consultation & planning",
-                      "Procedure & team support",
-                      "Aftercare visits",
-                      "Post-op instructions",
+                      t("cost.inc1"),
+                      t("cost.inc2"),
+                      t("cost.inc3"),
+                      t("cost.inc4"),
                     ].map((item, idx) => (
                       <li
                         key={idx}
@@ -880,21 +880,19 @@ const HairTransplantLanding = () => {
               variants={fadeInUp}
               className="font-['Georgia',serif] text-4xl font-bold mb-6"
             >
-              You Deserve an Honest Plan
+              {t("cta.title")}
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl mb-8 max-w-2xl mx-auto opacity-90"
             >
-              A hair transplant can be life-changing, but only when it is
-              planned well. Start with a proper assessment.
+              {t("cta.desc")}
             </motion.p>
 
             <motion.p variants={fadeInUp} className="text-lg mb-12">
               <MapPin className="inline w-5 h-5 mr-2" />
-              Nexus Clinic Kuala Lumpur - LG 10, Lower Ground Floor, Wisma UOA
-              II, Jalan Pinang, 50450 Kuala Lumpur
+              {t("cta.address")}
             </motion.p>
 
             <motion.div
@@ -902,16 +900,15 @@ const HairTransplantLanding = () => {
               className="flex flex-wrap gap-4 justify-center"
             >
               <button className="px-8 py-4 bg-white text-wine rounded-full font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                Book Your Consultation
+                {t("cta.bookBtn")}
               </button>
               <button className="px-8 py-4 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-wine transition-all duration-300">
-                Call Us
+                {t("cta.callBtn")}
               </button>
             </motion.div>
 
             <motion.p variants={fadeInUp} className="text-sm opacity-70 mt-12">
-              This page is general information and does not replace medical
-              advice.
+              {t("cta.disclaimer")}
             </motion.p>
           </motion.div>
         </section>
