@@ -119,6 +119,30 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const checkTime = () => {
+      const malaysiaTime = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Kuala_Lumpur",
+      });
+
+      const now = new Date(malaysiaTime);
+      const hour = now.getHours();
+
+      if (hour >= 9 && hour < 18) {
+        setIsActive(true);
+      } else {
+        setIsActive(false);
+      }
+    };
+
+    checkTime();
+    const interval = setInterval(checkTime, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -205,7 +229,9 @@ const Navbar = () => {
                   <div className="flex items-center gap-4">
                     <span className="flex items-center gap-1.5">
                       <Sparkles size={12} className="text-rose" />
-                      <span>Free Consultation Available</span>
+                      <span>
+                        Doctor is {isActive ? "Available" : "Close"} Now
+                      </span>
                     </span>
                   </div>
                 </div>

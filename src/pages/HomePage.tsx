@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import SectionBeforeAfter from "../components/BeforeAfterCustomize";
 
 const GlassCard = ({
   children,
@@ -40,6 +41,33 @@ const GlassCard = ({
 );
 
 const HeroSection = () => {
+  const [count, setCount] = useState(23456);
+
+  useEffect(() => {
+    const today = new Date().toDateString();
+    const savedDate = localStorage.getItem("counterDate");
+    const savedCount = localStorage.getItem("counterValue");
+
+    if (savedDate === today && savedCount) {
+      setCount(parseInt(savedCount));
+    } else {
+      const base = 23000 + Math.floor(Math.random() * 1000);
+      localStorage.setItem("counterDate", today);
+      localStorage.setItem("counterValue", base.toString());
+      setCount(base);
+    }
+
+    const interval = setInterval(() => {
+      setCount((prev) => {
+        const newCount = prev + Math.floor(Math.random() * 5);
+        localStorage.setItem("counterValue", newCount.toString());
+        return newCount;
+      });
+    }, 3600000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-screen pt-24 lg:pt-0 overflow-hidden bg-cream">
       {/* Subtle Background Pattern */}
@@ -228,6 +256,28 @@ const HeroSection = () => {
                     <span className="text-sm font-medium pr-2 text-brown">
                       Scan Your Face
                     </span>
+                  </div>
+                </GlassCard>
+
+                <GlassCard
+                  className="absolute bottom-10 left-6 lg:-left-12 p-5"
+                  delay={0.5}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={16}
+                          className="text-wine fill-wine"
+                        />
+                      ))}
+                    </div>
+                    <span className="font-semibold text-brown">5.0</span>
+                    <span className="text-sm text-taupe">(500+ Reviews)</span>
+                  </div>
+                  <div className="text-sm text-taupe mt-2">
+                    {count.toLocaleString()}+ Customers Visited Us
                   </div>
                 </GlassCard>
 
@@ -774,25 +824,82 @@ const ContactSection = () => {
 };
 
 export default function HomePageNexus() {
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const checkTime = () => {
+      const malaysiaTime = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Kuala_Lumpur",
+      });
+
+      const now = new Date(malaysiaTime);
+      const hour = now.getHours();
+
+      if (hour >= 9 && hour < 18) {
+        setIsActive(true);
+      } else {
+        setIsActive(false);
+      }
+    };
+
+    checkTime();
+    const interval = setInterval(checkTime, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/before-after-face/before-clinic.png",
+      after: "/images/before-after-face/after-clinic.png",
+    },
+    {
+      id: 2,
+      before: "/images/before-after-face/before-face.png",
+      after: "/images/before-after-face/after-face.png",
+    },
+    {
+      id: 3,
+      before: "/images/before-after-face/before-face2.png",
+      after: "/images/before-after-face/after-face2.png",
+    },
+  ];
   return (
     <div className="min-h-screen bg-cream font-inter">
       {/* <Navigation /> */}
       <Navbar />
       <HeroSection />
+      <SectionBeforeAfter transformations={transformations} />
       <ServicesSection />
       <WhyChooseSection />
       <TestimonialsSection />
       <ContactSection />
       <Footer />
 
-      {/* WhatsApp Button */}
       <motion.a
         href="https://wa.me/60167025699"
         target="_blank"
         rel="noopener noreferrer"
         initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
+        animate={
+          isActive
+            ? {
+                scale: [1, 1.15, 1],
+                opacity: [1, 0.6, 1],
+              }
+            : { scale: 1, opacity: 1 }
+        }
+        transition={
+          isActive
+            ? {
+                duration: 1,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }
+            : { duration: 0.3 }
+        }
+        whileHover={{ scale: 1.2 }}
         className="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-50 bg-[#25D366]"
       >
         <MessageCircle className="text-white" size={24} />
