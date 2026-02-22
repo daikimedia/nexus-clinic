@@ -69,15 +69,15 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen pt-24 lg:pt-0 overflow-hidden bg-cream">
+    <section className="relative min-h-screen pt-12 md:pt-24 lg:pt-0 overflow-hidden bg-cream">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 right-0 w-200 h-200 rounded-full blur-3xl bg-linear-radial from-rose/20 to-transparent" />
+        <div className="absolute top-0 right-0 w-200 h-100 rounded-full blur-3xl bg-linear-radial from-rose/20 to-transparent" />
         <div className="absolute bottom-0 left-0 w-150 h-150 rounded-full blur-3xl bg-linear-radial from-taupe/15 to-transparent" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-screen py-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-screen py-0 md:py-12">
           {/* Left Content */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <motion.div
@@ -90,7 +90,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                className="inline-block text-6xl lg:text-8xl mb-4 opacity-20 font-georgia text-wine"
+                className="md:inline-block hidden text-6xl lg:text-8xl mb-4 opacity-20 font-georgia text-wine"
               >
                 "
               </motion.span>
@@ -102,6 +102,14 @@ const HeroSection = () => {
                   transition={{ delay: 0.2, duration: 0.8 }}
                   className="block"
                 >
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="inline-block md:hidden text-6xl lg:text-8xl mb-4 opacity-20 font-georgia text-wine"
+                  >
+                    "
+                  </motion.span>
                   Redefine Your
                 </motion.span>
                 <motion.span
@@ -129,7 +137,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+                className="flex sm:flex-row items-center justify-center lg:justify-start gap-4"
               >
                 <motion.button
                   whileHover={{
@@ -137,7 +145,7 @@ const HeroSection = () => {
                     boxShadow: "0 20px 40px rgba(140, 79, 88, 0.25)",
                   }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-8 py-4 rounded-full text-white text-sm tracking-wider flex items-center gap-3 bg-brown hover:bg-wine transition-colors"
+                  className=" px-4 py-2 lg:px-8 lg:py-4 rounded-full text-white text-sm tracking-wider flex items-center gap-3 bg-brown hover:bg-wine transition-colors"
                 >
                   Arrange Schedule
                 </motion.button>
@@ -160,7 +168,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
-              className="flex items-center justify-center lg:justify-start gap-12 mt-16"
+              className="flex items-center justify-center lg:justify-start gap-12 mt-4 lg:mt-16"
             >
               <div className="text-center lg:text-left">
                 <span className="text-5xl lg:text-6xl font-light font-georgia text-brown">
@@ -203,7 +211,7 @@ const HeroSection = () => {
                   <img
                     src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&auto=format&fit=crop"
                     alt="Beauty Treatment"
-                    className="w-full aspect-3/4 object-cover"
+                    className="w-full aspect-4/4 object-cover"
                   />
 
                   {/* Overlay linear */}
@@ -246,7 +254,7 @@ const HeroSection = () => {
 
                 {/* Scan Face Card */}
                 <GlassCard
-                  className="absolute -top-4 lg:top-8 right-0 lg:-right-8 p-3 lg:p-4"
+                  className="absolute hidden lg:block -top-4 lg:top-8 right-0 lg:-right-8 p-3 lg:p-4"
                   delay={1.2}
                 >
                   <div className="flex items-center gap-3">
@@ -260,7 +268,7 @@ const HeroSection = () => {
                 </GlassCard>
 
                 <GlassCard
-                  className="absolute bottom-10 left-6 lg:-left-12 p-5"
+                  className="absolute bottom-5 md:bottom-10 -left-4 lg:-left-12 p-3 lg:p-5"
                   delay={0.5}
                 >
                   <div className="flex items-center gap-3">
@@ -283,7 +291,7 @@ const HeroSection = () => {
 
                 {/* Treatment Gallery Card */}
                 <GlassCard
-                  className="absolute -bottom-8 lg:bottom-8 -right-4 lg:-right-12 p-4 lg:p-5 max-w-70"
+                  className="absolute -top-8 lg:top-90 lg:bottom-8 -right-4 lg:-right-12 p-2 lg:p-5 max-w-70"
                   delay={1.6}
                 >
                   <div className="flex items-center justify-between mb-3">
