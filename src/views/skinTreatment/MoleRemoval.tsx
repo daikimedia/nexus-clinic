@@ -30,8 +30,91 @@ import {
   fadeInRight,
   scaleIn,
 } from "../../lib/animations";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const MoleRemovalLanding = () => {
+const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "moleRemoval");
+
+  const heroMethods = [
+    t("hero.method1"),
+    t("hero.method2"),
+    t("hero.method3"),
+    t("hero.method4"),
+  ];
+
+  const peaceReasons = [
+    { icon: AlertCircle, text: t("peaceOfMind.reason1") },
+    { icon: Eye, text: t("peaceOfMind.reason2") },
+    { icon: Heart, text: t("peaceOfMind.reason3") },
+  ];
+
+  const moleFeatures = [
+    t("understanding.feature1"),
+    t("understanding.feature2"),
+    t("understanding.feature3"),
+    t("understanding.feature4"),
+  ];
+
+  const removalReasons = [
+    t("understanding.removal1"),
+    t("understanding.removal2"),
+    t("understanding.removal3"),
+    t("understanding.removal4"),
+  ];
+
+  const abcdeItems = [
+    { letter: t("abcde.aLetter"), text: t("abcde.aText") },
+    { letter: t("abcde.bLetter"), text: t("abcde.bText"), desc: t("abcde.bDesc") },
+    { letter: t("abcde.cLetter"), text: t("abcde.cText"), desc: t("abcde.cDesc") },
+    { letter: t("abcde.dLetter"), text: t("abcde.dText"), desc: t("abcde.dDesc") },
+    { letter: t("abcde.eLetter"), text: t("abcde.eText"), desc: t("abcde.eDesc") },
+  ];
+
+  const processSteps = [
+    { step: 1, title: t("process.step1Title"), icon: Eye, desc: t("process.step1Desc") },
+    { step: 2, title: t("process.step2Title"), icon: Target, desc: t("process.step2Desc") },
+    { step: 3, title: t("process.step3Title"), icon: Shield, desc: t("process.step3Desc") },
+    { step: 4, title: t("process.step4Title"), icon: Flower2, desc: t("process.step4Desc") },
+  ];
+
+  const methods = [
+    { method: t("methods.m1Title"), icon: Sparkles, desc: t("methods.m1Desc") },
+    { method: t("methods.m2Title"), icon: Zap, desc: t("methods.m2Desc") },
+    { method: t("methods.m3Title"), icon: Activity, desc: t("methods.m3Desc") },
+    { method: t("methods.m4Title"), icon: Thermometer, desc: t("methods.m4Desc") },
+    { method: t("methods.m5Title"), icon: Scissors, desc: t("methods.m5Desc") },
+  ];
+
+  const healingPhases = [
+    { day: t("methods.day1Value"), desc: t("methods.day1Desc") },
+    { day: t("methods.day2Value"), desc: t("methods.day2Desc") },
+    { day: t("methods.day3Value"), desc: t("methods.day3Desc") },
+    { day: t("methods.day4Value"), desc: t("methods.day4Desc") },
+  ];
+
+  const pros = [
+    t("prosCons.pro1"),
+    t("prosCons.pro2"),
+    t("prosCons.pro3"),
+    t("prosCons.pro4"),
+  ];
+
+  const cons = [
+    t("prosCons.con1"),
+    t("prosCons.con2"),
+    t("prosCons.con3"),
+    t("prosCons.con4"),
+  ];
+
+  const faqItems = [
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
+  ];
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-cream via-white to-light">
@@ -55,24 +138,22 @@ const MoleRemovalLanding = () => {
                 <div className="flex items-center gap-2 text-wine">
                   <Gem className="w-5 h-5" />
                   <span className="text-sm tracking-[0.2em] uppercase font-light">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </div>
 
                 <h1 className="font-georgia text-4xl md:text-5xl lg:text-6xl leading-tight text-brown">
-                  Mole Removal in Kuala Lumpur That{" "}
-                  <span className="text-wine italic">Looks Natural</span> When
-                  It Heals
+                  {t("hero.title1")}{" "}
+                  <span className="text-wine italic">{t("hero.title2")}</span>{" "}
+                  {t("hero.title3")}
                 </h1>
 
                 <p className="text-lg text-taupe font-light leading-relaxed max-w-lg">
-                  If it is on your face, you do not just want it gone. You want
-                  the area to heal neatly and blend in.
+                  {t("hero.desc")}
                 </p>
 
                 <p className="text-rose font-medium border-l-4 border-wine pl-4 py-2 bg-white/50 backdrop-blur-sm rounded-r-lg">
-                  At Nexus Clinic KL, we choose the safest method for your mole
-                  type, location, and skin
+                  {t("hero.highlight")}
                 </p>
 
                 <motion.button
@@ -80,7 +161,7 @@ const MoleRemovalLanding = () => {
                   whileTap={{ scale: 0.98 }}
                   className="group bg-wine text-white px-8 py-4 rounded-full font-medium hover:bg-rose transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2"
                 >
-                  Book Your Assessment
+                  {t("hero.button")}
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
 
@@ -93,19 +174,19 @@ const MoleRemovalLanding = () => {
                     <div className="flex items-center gap-3">
                       <MapPin className="w-5 h-5 text-wine" />
                       <span className="text-sm text-brown">
-                        KLCC area, Wisma UOA II
+                        {t("hero.trust1")}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Zap className="w-5 h-5 text-wine" />
                       <span className="text-sm text-brown">
-                        Multiple removal methods
+                        {t("hero.trust2")}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <ShieldCheck className="w-5 h-5 text-wine" />
                       <span className="text-sm text-brown">
-                        Doctor-led assessment first
+                        {t("hero.trust3")}
                       </span>
                     </div>
                   </div>
@@ -122,20 +203,15 @@ const MoleRemovalLanding = () => {
                         <Flower2 className="w-8 h-8 text-wine" />
                         <div>
                           <h3 className="font-georgia text-brown">
-                            Natural Healing
+                            {t("hero.glassTitle")}
                           </h3>
                           <p className="text-sm text-taupe">
-                            Blends seamlessly with your skin
+                            {t("hero.glassDesc")}
                           </p>
                         </div>
                       </div>
                       <div className="grid grid-cols-2 gap-3">
-                        {[
-                          "Laser",
-                          "Electrocautery",
-                          "Radiofrequency",
-                          "Cryotherapy",
-                        ].map((method, i) => (
+                        {heroMethods.map((method, i) => (
                           <div
                             key={i}
                             className="bg-cream rounded-xl p-3 text-center"
@@ -177,24 +253,19 @@ const MoleRemovalLanding = () => {
             >
               <Leaf className="w-12 h-12 text-wine mx-auto mb-6" />
               <h2 className="font-georgia text-3xl md:text-4xl text-brown mb-6">
-                Mole removal in Malaysia is not only cosmetic.
+                {t("peaceOfMind.title1")}
                 <br />
                 <span className="text-wine italic">
-                  Sometimes it is peace of mind.
+                  {t("peaceOfMind.title2")}
                 </span>
               </h2>
               <p className="text-taupe text-lg leading-relaxed">
-                Most people do not book mole removal because they love skincare.
-                They book it because the mole is starting to bother them.
+                {t("peaceOfMind.desc")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {[
-                { icon: AlertCircle, text: "It catches on a mask" },
-                { icon: Eye, text: "It sits right where makeup cakes" },
-                { icon: Heart, text: "Someone pointed it out in a photo" },
-              ].map((item, i) => (
+              {peaceReasons.map((item, i) => (
                 <motion.div
                   key={i}
                   variants={scaleIn}
@@ -220,20 +291,15 @@ const MoleRemovalLanding = () => {
             >
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <h2 className="font-georgia text-3xl md:text-4xl text-brown">
-                  What is a mole,{" "}
-                  <span className="text-wine italic">in simple words</span>
+                  {t("understanding.title1")}{" "}
+                  <span className="text-wine italic">{t("understanding.title2")}</span>
                 </h2>
                 <p className="text-taupe">
-                  A mole is a common skin growth. Many are harmless.
+                  {t("understanding.desc")}
                 </p>
 
                 <div className="grid grid-cols-2 gap-4">
-                  {[
-                    "Flat or raised",
-                    "Light to dark brown",
-                    "Smooth or rough",
-                    "Small or larger",
-                  ].map((feature, i) => (
+                  {moleFeatures.map((feature, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <CheckCircle2 className="w-4 h-4 text-wine" />
                       <span className="text-brown text-sm">{feature}</span>
@@ -243,30 +309,30 @@ const MoleRemovalLanding = () => {
 
                 <div className="bg-white rounded-2xl p-6 shadow-lg border border-cream">
                   <h3 className="font-georgia text-brown mb-4">
-                    Mole vs Skin Tag vs Wart
+                    {t("understanding.comparisonTitle")}
                   </h3>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
                       <span className="w-2 h-2 rounded-full bg-wine mt-2"></span>
                       <p className="text-sm text-taupe">
-                        <span className="font-medium text-brown">Mole:</span>{" "}
-                        pigmented, flat or raised
+                        <span className="font-medium text-brown">{t("understanding.moleLabel")}</span>{" "}
+                        {t("understanding.moleDesc")}
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="w-2 h-2 rounded-full bg-rose mt-2"></span>
                       <p className="text-sm text-taupe">
                         <span className="font-medium text-brown">
-                          Skin tag:
+                          {t("understanding.skinTagLabel")}
                         </span>{" "}
-                        soft, skin-colored
+                        {t("understanding.skinTagDesc")}
                       </p>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="w-2 h-2 rounded-full bg-taupe mt-2"></span>
                       <p className="text-sm text-taupe">
-                        <span className="font-medium text-brown">Wart:</span>{" "}
-                        rough texture, viral
+                        <span className="font-medium text-brown">{t("understanding.wartLabel")}</span>{" "}
+                        {t("understanding.wartDesc")}
                       </p>
                     </div>
                   </div>
@@ -276,15 +342,10 @@ const MoleRemovalLanding = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-wine/5 rounded-3xl p-8">
                   <h3 className="font-georgia text-2xl text-brown mb-6">
-                    When to consider removal
+                    {t("understanding.removalTitle")}
                   </h3>
                   <div className="space-y-4">
-                    {[
-                      "Cosmetic reasons - You don't like how it looks",
-                      "Comfort - Irritated by shaving, masks, collars",
-                      "Changes - Size, color, or texture differences",
-                      "Suspicious - Needs checking",
-                    ].map((reason, i) => (
+                    {removalReasons.map((reason, i) => (
                       <motion.div
                         key={i}
                         whileHover={{ x: 5 }}
@@ -320,23 +381,17 @@ const MoleRemovalLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-3xl md:text-4xl text-white mb-4 text-center"
               >
-                Red Flags You Should Not Ignore
+                {t("abcde.title")}
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-cream text-center mb-12"
               >
-                The ABCDE rule for spotting suspicious moles
+                {t("abcde.desc")}
               </motion.p>
 
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {[
-                  { letter: "A", text: "Asymmetry" },
-                  { letter: "B", text: "Border", desc: "irregular" },
-                  { letter: "C", text: "Color", desc: "variation" },
-                  { letter: "D", text: "Diameter", desc: "> pencil eraser" },
-                  { letter: "E", text: "Evolving", desc: "changes" },
-                ].map((item, i) => (
+                {abcdeItems.map((item, i) => (
                   <motion.div
                     key={i}
                     variants={scaleIn}
@@ -358,7 +413,7 @@ const MoleRemovalLanding = () => {
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20">
                   <AlertCircle className="w-5 h-5 text-white" />
                   <span className="text-white">
-                    Please do not remove a mole at home - it's risky
+                    {t("abcde.warning")}
                   </span>
                 </div>
               </motion.div>
@@ -379,41 +434,16 @@ const MoleRemovalLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-3xl md:text-4xl text-brown mb-4"
               >
-                How Mole Removal Works at{" "}
-                <span className="text-wine">Nexus Clinic KL</span>
+                {t("process.title1")}{" "}
+                <span className="text-wine">{t("process.title2")}</span>
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-taupe">
-                A calm, step-by-step process for optimal results
+                {t("process.desc")}
               </motion.p>
             </motion.div>
 
             <div className="grid md:grid-cols-4 gap-6">
-              {[
-                {
-                  step: 1,
-                  title: "Consultation",
-                  icon: Eye,
-                  desc: "Shape, color, texture, location assessment",
-                },
-                {
-                  step: 2,
-                  title: "Method Selection",
-                  icon: Target,
-                  desc: "Safest method for your mole type",
-                },
-                {
-                  step: 3,
-                  title: "Numbing & Removal",
-                  icon: Shield,
-                  desc: "Comfortable procedure with local anaesthetic",
-                },
-                {
-                  step: 4,
-                  title: "Aftercare",
-                  icon: Flower2,
-                  desc: "Guidance for clean healing",
-                },
-              ].map((item, i) => (
+              {processSteps.map((item, i) => (
                 <motion.div
                   key={i}
                   variants={fadeInUp}
@@ -454,40 +484,14 @@ const MoleRemovalLanding = () => {
             >
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <h2 className="font-georgia text-3xl md:text-4xl text-brown">
-                  Multiple Methods, <span className="text-wine">One Goal</span>
+                  {t("methods.title1")} <span className="text-wine">{t("methods.title2")}</span>
                 </h2>
                 <p className="text-taupe">
-                  The method should match the mole, not the marketing
+                  {t("methods.desc")}
                 </p>
 
                 <div className="space-y-4">
-                  {[
-                    {
-                      method: "Laser Mole Removal",
-                      icon: Sparkles,
-                      desc: "Quick, precise, and controlled for cosmetic moles",
-                    },
-                    {
-                      method: "Electrocautery",
-                      icon: Zap,
-                      desc: "Uses heat for certain benign growths",
-                    },
-                    {
-                      method: "Radiofrequency",
-                      icon: Activity,
-                      desc: "High-frequency energy with controlled depth",
-                    },
-                    {
-                      method: "Cryotherapy",
-                      icon: Thermometer,
-                      desc: "Freezing for certain lesions",
-                    },
-                    {
-                      method: "Surgical Excision",
-                      icon: Scissors,
-                      desc: "When needed for suspicious or deeper moles",
-                    },
-                  ].map((item, i) => (
+                  {methods.map((item, i) => (
                     <motion.div
                       key={i}
                       whileHover={{ x: 5 }}
@@ -510,21 +514,13 @@ const MoleRemovalLanding = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-wine/5 rounded-3xl p-8">
                   <h3 className="font-georgia text-2xl text-brown mb-6">
-                    Healing Timeline
+                    {t("methods.healingTitle")}
                   </h3>
                   <div className="space-y-6">
-                    {[
-                      {
-                        day: "1-3",
-                        desc: "Mild redness, tenderness, small wound",
-                      },
-                      { day: "4-10", desc: "Scab forms and dries" },
-                      { day: "2-4", desc: "Skin closes and calms", week: true },
-                      { day: "Months", desc: "Scar line fades and blends" },
-                    ].map((phase, i) => (
+                    {healingPhases.map((phase, i) => (
                       <div key={i} className="flex items-center gap-4">
                         <div className="w-16 h-16 rounded-full bg-white flex flex-col items-center justify-center shadow-md">
-                          <span className="text-xs text-taupe">Day</span>
+                          <span className="text-xs text-taupe">{t("methods.day1Label")}</span>
                           <span className="font-bold text-wine">
                             {phase.day}
                           </span>
@@ -537,10 +533,9 @@ const MoleRemovalLanding = () => {
                   <div className="mt-8 bg-white rounded-xl p-4">
                     <p className="text-sm text-taupe">
                       <span className="font-medium text-brown">
-                        Will it leave a scar?
+                        {t("methods.scarQuestion")}
                       </span>{" "}
-                      Sometimes yes. Sometimes barely. For many people, the scar
-                      is cosmetically better than the mole.
+                      {t("methods.scarAnswer")}
                     </p>
                   </div>
                 </div>
@@ -566,15 +561,10 @@ const MoleRemovalLanding = () => {
                   <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
                     <CheckCircle2 className="w-6 h-6 text-green-600" />
                   </div>
-                  <h3 className="font-georgia text-2xl text-brown">Pros</h3>
+                  <h3 className="font-georgia text-2xl text-brown">{t("prosCons.prosTitle")}</h3>
                 </div>
                 <ul className="space-y-4">
-                  {[
-                    "Cleaner look where makeup sits better",
-                    "Less irritation from shaving, masks, collars",
-                    "Less self-consciousness in photos",
-                    "Peace of mind once properly assessed",
-                  ].map((item, i) => (
+                  {pros.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
                       <span className="text-brown">{item}</span>
@@ -591,15 +581,10 @@ const MoleRemovalLanding = () => {
                   <div className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
                     <XCircle className="w-6 h-6 text-red-600" />
                   </div>
-                  <h3 className="font-georgia text-2xl text-brown">Cons</h3>
+                  <h3 className="font-georgia text-2xl text-brown">{t("prosCons.consTitle")}</h3>
                 </div>
                 <ul className="space-y-4">
-                  {[
-                    "Possible scarring, depending on depth and method",
-                    "Healing period where spot looks 'worse' first",
-                    "Some moles may require more than one session",
-                    "Suspicious moles need different approach",
-                  ].map((item, i) => (
+                  {cons.map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <XCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
                       <span className="text-brown">{item}</span>
@@ -624,32 +609,11 @@ const MoleRemovalLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-3xl md:text-4xl text-brown text-center mb-12"
               >
-                Frequently Asked Questions
+                {t("faq.title")}
               </motion.h2>
 
               <div className="space-y-4">
-                {[
-                  {
-                    q: "Is mole removal painful?",
-                    a: "Most mole removal is done with numbing medication, so the procedure itself should not be painful. You may feel mild stinging or burning for a few days afterward.",
-                  },
-                  {
-                    q: "How long does it take to heal?",
-                    a: "Recovery is often minimal, with mild redness or scabbing for a few days to a week. Laser healing is commonly quoted around 7 to 14 days.",
-                  },
-                  {
-                    q: "Will mole removal leave a scar?",
-                    a: "Scar risk depends on mole depth and removal method. Some people find the scar looks better than the mole once it fades.",
-                  },
-                  {
-                    q: "Can a mole grow back?",
-                    a: "Moles do not typically grow back unless they were incompletely removed.",
-                  },
-                  {
-                    q: "How much does it cost in Malaysia?",
-                    a: "Cost varies widely based on size, depth, location, and method. The most accurate way is a consultation and quotation.",
-                  },
-                ].map((faq, i) => (
+                {faqItems.map((faq, i) => (
                   <motion.div
                     key={i}
                     variants={fadeInUp}
@@ -687,15 +651,15 @@ const MoleRemovalLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-3xl md:text-4xl text-white mb-6"
               >
-                If a mole is making you feel self-conscious,
+                {t("cta.title1")}
                 <br />
                 <span className="italic">
-                  you don't need to keep living with that feeling.
+                  {t("cta.title2")}
                 </span>
               </motion.h2>
 
               <motion.p variants={fadeInUp} className="text-cream mb-8 text-lg">
-                And if a mole is changing, you don't need to keep guessing.
+                {t("cta.desc")}
               </motion.p>
 
               <motion.div
@@ -707,7 +671,7 @@ const MoleRemovalLanding = () => {
                   whileTap={{ scale: 0.95 }}
                   className="bg-white text-wine px-8 py-4 rounded-full font-medium hover:bg-cream transition-all shadow-lg hover:shadow-xl"
                 >
-                  Book a Mole Assessment
+                  {t("cta.bookBtn")}
                 </motion.button>
 
                 <motion.button
@@ -715,7 +679,7 @@ const MoleRemovalLanding = () => {
                   whileTap={{ scale: 0.95 }}
                   className="border-2 border-white text-white px-8 py-4 rounded-full font-medium hover:bg-white/10 transition-all"
                 >
-                  Learn More
+                  {t("cta.learnMore")}
                 </motion.button>
               </motion.div>
 
@@ -724,7 +688,7 @@ const MoleRemovalLanding = () => {
                 className="mt-8 text-white/80 text-sm"
               >
                 <MapPin className="w-4 h-4 inline mr-2" />
-                LG 10, Wisma UOA II, Jalan Pinang, 50450 Kuala Lumpur
+                {t("cta.address")}
               </motion.div>
             </motion.div>
           </div>

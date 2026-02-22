@@ -27,31 +27,34 @@ import {
   fadeInRight,
   scaleIn,
 } from "../../lib/animations";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const MelasmaLanding = () => {
+const MelasmaLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "melasmaTreatment");
+
   const services = [
     {
-      title: "Advanced Pigmentation Lasers",
-      description:
-        "Target pigment clusters dengan gradual, safe untuk Asian skin",
+      title: t("treatments.t1Title"),
+      description: t("treatments.t1Desc"),
       icon: <Zap className="w-6 h-6" />,
       color: "from-wine/20 to-rose/20",
     },
     {
-      title: "Dermamelan Treatment",
-      description: "Professional depigmentation reset untuk melasma stubborn",
+      title: t("treatments.t2Title"),
+      description: t("treatments.t2Desc"),
       icon: <Gem className="w-6 h-6" />,
       color: "from-brown/20 to-taupe/20",
     },
     {
-      title: "Chemical Peels",
-      description: "Surface pigment treatment dengan barrier protection",
+      title: t("treatments.t3Title"),
+      description: t("treatments.t3Desc"),
       icon: <Leaf className="w-6 h-6" />,
       color: "from-rose/20 to-wine/20",
     },
     {
-      title: "Topical Treatment Plan",
-      description: "Customized home care untuk long-term control",
+      title: t("treatments.t4Title"),
+      description: t("treatments.t4Desc"),
       icon: <Droplets className="w-6 h-6" />,
       color: "from-taupe/20 to-brown/20",
     },
@@ -60,60 +63,120 @@ const MelasmaLanding = () => {
   const triggers = [
     {
       icon: <Sun className="w-5 h-5" />,
-      text: "UV Exposure",
+      text: t("understanding.trigger1"),
       color: "text-rose",
     },
     {
       icon: <Thermometer className="w-5 h-5" />,
-      text: "Heat & Humidity",
+      text: t("understanding.trigger2"),
       color: "text-wine",
     },
     {
       icon: <Heart className="w-5 h-5" />,
-      text: "Hormonal Changes",
+      text: t("understanding.trigger3"),
       color: "text-brown",
     },
     {
       icon: <Wind className="w-5 h-5" />,
-      text: "Skin Irritation",
+      text: t("understanding.trigger4"),
       color: "text-taupe",
     },
   ];
 
   const comparisons = [
     {
-      type: "Creams",
-      best: "Daily control & prevention",
-      limit: "Slow, needs consistency",
+      type: t("results.comp1Type"),
+      best: t("results.comp1Best"),
+      limit: t("results.comp1Limit"),
     },
     {
-      type: "Chemical Peels",
-      best: "Surface pigment, mild cases",
-      limit: "Limited for deeper pigment",
+      type: t("results.comp2Type"),
+      best: t("results.comp2Best"),
+      limit: t("results.comp2Limit"),
     },
     {
-      type: "Lasers",
-      best: "Stubborn pigment clusters",
-      limit: "Needs careful settings",
+      type: t("results.comp3Type"),
+      best: t("results.comp3Best"),
+      limit: t("results.comp3Limit"),
     },
   ];
 
   const faqs = [
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+  ];
+
+  const trustItems = [
+    t("hero.trust1"),
+    t("hero.trust2"),
+    t("hero.trust3"),
+    t("hero.trust4"),
+  ];
+
+  const heroAreas = [
+    t("hero.area1"),
+    t("hero.area2"),
+    t("hero.area3"),
+    t("hero.area4"),
+  ];
+
+  const whyItems = [
+    t("understanding.whyItem1"),
+    t("understanding.whyItem2"),
+    t("understanding.whyItem3"),
+    t("understanding.whyItem4"),
+  ];
+
+  const approachSteps = [
     {
-      q: "Is laser safe for melasma on Asian skin?",
-      a: "Yes, with right settings and gradual approach. Aggressive lasers can trigger rebound pigmentation.",
+      step: t("approach.step1Num"),
+      title: t("approach.step1Title"),
+      desc: t("approach.step1Desc"),
+      icon: <Moon className="w-8 h-8" />,
+      color: "from-wine/20 to-rose/20",
     },
     {
-      q: "How many sessions do I need?",
-      a: "Varies based on depth, skin type, and sun protection consistency. Multiple sessions are normal.",
+      step: t("approach.step2Num"),
+      title: t("approach.step2Title"),
+      desc: t("approach.step2Desc"),
+      icon: <Sparkles className="w-8 h-8" />,
+      color: "from-brown/20 to-taupe/20",
     },
     {
-      q: "Does melasma come back after treatment?",
-      a: "Relapse is common if triggers return. Maintenance is part of the plan, not an afterthought.",
+      step: t("approach.step3Num"),
+      title: t("approach.step3Title"),
+      desc: t("approach.step3Desc"),
+      icon: <Shield className="w-8 h-8" />,
+      color: "from-rose/20 to-wine/20",
+    },
+  ];
+
+  const resultItems = [
+    t("results.result1"),
+    t("results.result2"),
+    t("results.result3"),
+  ];
+
+  const preventionTips = [
+    {
+      icon: <SunDim className="w-8 h-8" />,
+      title: t("prevention.tip1Title"),
+      desc: t("prevention.tip1Desc"),
+      color: "from-wine/20 to-rose/20",
     },
     {
-      q: "What sunscreen is best for melasma in Malaysia?",
-      a: "Broad spectrum with visible light protection. Tinted products with iron oxide are recommended.",
+      icon: <Shield className="w-8 h-8" />,
+      title: t("prevention.tip2Title"),
+      desc: t("prevention.tip2Desc"),
+      color: "from-brown/20 to-taupe/20",
+    },
+    {
+      icon: <Heart className="w-8 h-8" />,
+      title: t("prevention.tip3Title"),
+      desc: t("prevention.tip3Desc"),
+      color: "from-rose/20 to-wine/20",
     },
   ];
 
@@ -141,31 +204,24 @@ const MelasmaLanding = () => {
                   <div className="inline-flex items-center gap-2 bg-glass backdrop-blur-sm px-4 py-2 rounded-full border border-cream">
                     <span className="w-2 h-2 bg-wine rounded-full animate-pulse" />
                     <span className="text-sm font-medium text-brown">
-                      Nexus Clinic KL • Est. 2001
+                      {t("hero.badge")}
                     </span>
                   </div>
 
                   {/* Main Heading */}
                   <h1 className="font-georgia text-5xl lg:text-6xl text-brown leading-tight">
-                    Melasma doesn't need to
-                    <span className="block text-wine">run your confidence</span>
+                    {t("hero.title1")}
+                    <span className="block text-wine">{t("hero.title2")}</span>
                   </h1>
 
                   {/* Description */}
                   <p className="text-lg text-taupe leading-relaxed max-w-lg">
-                    At Nexus Clinic Kuala Lumpur, we treat melasma with calm,
-                    step by step plans that respect Asian skin and real life in
-                    Malaysia.
+                    {t("hero.desc")}
                   </p>
 
                   {/* Trust Indicators */}
                   <div className="flex wrap gap-6 pt-4">
-                    {[
-                      "KLCC Location",
-                      "Dermatology Led",
-                      "Transparent Pricing",
-                      "Easy Booking",
-                    ].map((item, i) => (
+                    {trustItems.map((item, i) => (
                       <motion.div
                         key={i}
                         variants={scaleIn}
@@ -182,20 +238,20 @@ const MelasmaLanding = () => {
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="group px-8 py-4 bg-wine text-light rounded-full font-medium 
+                      className="group px-8 py-4 bg-wine text-light rounded-full font-medium
                              hover:bg-brown transition-all duration-300 shadow-lg hover:shadow-xl
                              flex items-center gap-2"
                     >
-                      Book Consultation
+                      {t("hero.bookBtn")}
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="px-8 py-4 border-2 border-wine/30 text-wine rounded-full 
+                      className="px-8 py-4 border-2 border-wine/30 text-wine rounded-full
                              font-medium hover:border-wine hover:bg-wine/5 transition-all"
                     >
-                      WhatsApp Us
+                      {t("hero.whatsappBtn")}
                     </motion.button>
                   </div>
                 </motion.div>
@@ -210,33 +266,29 @@ const MelasmaLanding = () => {
                         </div>
                         <div>
                           <h3 className="font-georgia text-xl text-brown">
-                            If you're here,
+                            {t("hero.glassTitle")}
                           </h3>
                           <p className="text-taupe">
-                            you probably know the feeling
+                            {t("hero.glassSubtitle")}
                           </p>
                         </div>
                       </div>
 
                       <p className="text-brown/80 leading-relaxed">
-                        "You look in the mirror and the patches are the first
-                        thing you see. Cheeks. Upper lip. Forehead. Sometimes
-                        all three."
+                        {t("hero.glassQuote")}
                       </p>
 
                       <div className="grid grid-cols-2 gap-3">
-                        {["Cheeks", "Forehead", "Upper Lip", "Jawline"].map(
-                          (area, i) => (
-                            <div
-                              key={i}
-                              className="bg-cream/50 rounded-xl p-3 text-center"
-                            >
-                              <span className="text-sm font-medium text-brown">
-                                {area}
-                              </span>
-                            </div>
-                          ),
-                        )}
+                        {heroAreas.map((area, i) => (
+                          <div
+                            key={i}
+                            className="bg-cream/50 rounded-xl p-3 text-center"
+                          >
+                            <span className="text-sm font-medium text-brown">
+                              {area}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -260,23 +312,20 @@ const MelasmaLanding = () => {
                 <motion.div variants={fadeInLeft} className="space-y-8">
                   <div>
                     <span className="text-wine font-medium tracking-wider text-sm uppercase">
-                      Understanding
+                      {t("understanding.badge")}
                     </span>
                     <h2 className="font-georgia text-4xl text-brown mt-2">
-                      What is melasma?
+                      {t("understanding.title")}
                     </h2>
                   </div>
 
                   <p className="text-lg text-taupe leading-relaxed">
-                    Melasma is a type of pigmentation that appears as brown or
-                    grey brown patches, usually on the face. It's common,
-                    especially in women, and often linked with hormones and sun
-                    exposure.
+                    {t("understanding.desc")}
                   </p>
 
                   <div className="bg-cream/50 rounded-3xl p-8 border border-cream">
                     <h3 className="font-georgia text-xl text-brown mb-4">
-                      Common Triggers in KL
+                      {t("understanding.triggersTitle")}
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
                       {triggers.map((trigger, i) => (
@@ -300,20 +349,14 @@ const MelasmaLanding = () => {
                 <motion.div variants={fadeInRight} className="space-y-6">
                   <div className="bg-glass backdrop-blur-sm rounded-3xl p-8 border border-cream">
                     <h3 className="font-georgia text-xl text-brown mb-6">
-                      Why Malaysia?
+                      {t("understanding.whyMalaysiaTitle")}
                     </h3>
                     <p className="text-brown/70 mb-6">
-                      Year round strong UV levels and hot, humid climate make
-                      melasma management uniquely challenging.
+                      {t("understanding.whyMalaysiaDesc")}
                     </p>
 
                     <div className="space-y-4">
-                      {[
-                        "Sun exposure and tanning habits",
-                        "Pregnancy related melasma",
-                        "Birth control or hormone shifts",
-                        "Strong acids irritating skin barrier",
-                      ].map((item, i) => (
+                      {whyItems.map((item, i) => (
                         <motion.div
                           key={i}
                           variants={fadeInUp}
@@ -328,15 +371,13 @@ const MelasmaLanding = () => {
 
                   <div className="bg-wine/5 rounded-3xl p-8 border border-wine/10">
                     <h3 className="font-georgia text-xl text-brown mb-4">
-                      Is it really melasma?
+                      {t("understanding.isItTitle")}
                     </h3>
                     <p className="text-brown/70 mb-4">
-                      Melasma looks patchy and spread out, appears on both sides
-                      of the face, and deepens with triggers.
+                      {t("understanding.isItDesc")}
                     </p>
                     <p className="text-sm text-taupe">
-                      Can be confused with sunspots, PIH, or freckles — which is
-                      why we start with assessment, not assumptions.
+                      {t("understanding.isItNote")}
                     </p>
                   </div>
                 </motion.div>
@@ -356,41 +397,18 @@ const MelasmaLanding = () => {
               className="max-w-4xl mx-auto text-center mb-16"
             >
               <span className="text-wine font-medium tracking-wider text-sm uppercase">
-                Our Philosophy
+                {t("approach.badge")}
               </span>
               <h2 className="font-georgia text-4xl text-brown mt-2 mb-6">
-                Why melasma needs a plan, not a single treatment
+                {t("approach.title")}
               </h2>
               <p className="text-lg text-taupe">
-                Most people don't fail treatment. They fail incomplete
-                treatment.
+                {t("approach.desc")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {[
-                {
-                  step: "01",
-                  title: "Calm the triggers",
-                  desc: "Sun, heat, inflammation, irritation",
-                  icon: <Moon className="w-8 h-8" />,
-                  color: "from-wine/20 to-rose/20",
-                },
-                {
-                  step: "02",
-                  title: "Lift & break down pigment",
-                  desc: "Laser, peel, or both depending on depth",
-                  icon: <Sparkles className="w-8 h-8" />,
-                  color: "from-brown/20 to-taupe/20",
-                },
-                {
-                  step: "03",
-                  title: "Stop the rebound",
-                  desc: "Maintenance and correct home care",
-                  icon: <Shield className="w-8 h-8" />,
-                  color: "from-rose/20 to-wine/20",
-                },
-              ].map((item, i) => (
+              {approachSteps.map((item, i) => (
                 <motion.div
                   key={i}
                   variants={scaleIn}
@@ -398,11 +416,11 @@ const MelasmaLanding = () => {
                   className="relative group"
                 >
                   <div
-                    className="bg-glass backdrop-blur-sm rounded-3xl p-8 border border-cream 
+                    className="bg-glass backdrop-blur-sm rounded-3xl p-8 border border-cream
                               hover:border-wine/30 transition-all duration-300"
                   >
                     <div
-                      className={`absolute inset-0 bg-linear-to-br ${item.color} rounded-3xl opacity-0 
+                      className={`absolute inset-0 bg-linear-to-br ${item.color} rounded-3xl opacity-0
                                   group-hover:opacity-100 transition-opacity duration-500`}
                     />
                     <div className="relative z-10">
@@ -441,10 +459,10 @@ const MelasmaLanding = () => {
             >
               <div className="text-center mb-16">
                 <span className="text-wine font-medium tracking-wider text-sm uppercase">
-                  Our Treatments
+                  {t("treatments.badge")}
                 </span>
                 <h2 className="font-georgia text-4xl text-brown mt-2">
-                  Melasma treatment options at Nexus Clinic
+                  {t("treatments.title")}
                 </h2>
               </div>
 
@@ -457,11 +475,11 @@ const MelasmaLanding = () => {
                     className="group relative"
                   >
                     <div
-                      className={`absolute inset-0 bg-linear-to-br ${service.color} rounded-3xl 
+                      className={`absolute inset-0 bg-linear-to-br ${service.color} rounded-3xl
                                   opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                     />
                     <div
-                      className="relative bg-glass backdrop-blur-sm rounded-3xl p-8 border border-cream 
+                      className="relative bg-glass backdrop-blur-sm rounded-3xl p-8 border border-cream
                                 h-full group-hover:border-wine/30 transition-all duration-300"
                     >
                       <div className="flex items-start gap-4">
@@ -479,10 +497,10 @@ const MelasmaLanding = () => {
                             {service.description}
                           </p>
                           <button
-                            className="text-wine font-medium inline-flex items-center gap-2 
+                            className="text-wine font-medium inline-flex items-center gap-2
                                          hover:gap-3 transition-all"
                           >
-                            Learn more <ChevronRight className="w-4 h-4" />
+                            {t("treatments.learnMore")} <ChevronRight className="w-4 h-4" />
                           </button>
                         </div>
                       </div>
@@ -507,18 +525,14 @@ const MelasmaLanding = () => {
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <motion.div variants={fadeInLeft} className="space-y-6">
                   <span className="text-wine font-medium tracking-wider text-sm uppercase">
-                    Realistic Results
+                    {t("results.badge")}
                   </span>
                   <h2 className="font-georgia text-4xl text-brown">
-                    What to expect
+                    {t("results.title")}
                   </h2>
 
                   <div className="space-y-4">
-                    {[
-                      "Patches soften and blend into your natural tone",
-                      "Makeup sits better, stop color correcting daily",
-                      "Flare ups become smaller and easier to calm",
-                    ].map((item, i) => (
+                    {resultItems.map((item, i) => (
                       <div key={i} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-wine shrink-0 mt-0.5" />
                         <span className="text-brown/70">{item}</span>
@@ -528,12 +542,10 @@ const MelasmaLanding = () => {
 
                   <div className="bg-white/50 rounded-2xl p-6 border border-cream">
                     <h3 className="font-georgia text-lg text-brown mb-3">
-                      Important to know
+                      {t("results.importantTitle")}
                     </h3>
                     <p className="text-taupe text-sm">
-                      Melasma often improves in stages, not overnight. Dermal or
-                      deeper pigment is harder to "erase" — the goal becomes
-                      visible softening and long term control.
+                      {t("results.importantDesc")}
                     </p>
                   </div>
                 </motion.div>
@@ -541,7 +553,7 @@ const MelasmaLanding = () => {
                 <motion.div variants={fadeInRight} className="space-y-6">
                   <div className="bg-glass backdrop-blur-sm rounded-3xl p-8 border border-cream">
                     <h3 className="font-georgia text-xl text-brown mb-6">
-                      Quick Comparison
+                      {t("results.comparisonTitle")}
                     </h3>
                     <div className="space-y-4">
                       {comparisons.map((item, i) => (
@@ -557,13 +569,13 @@ const MelasmaLanding = () => {
                           <div className="grid grid-cols-2 gap-2 text-sm">
                             <div>
                               <span className="text-wine font-medium">
-                                Best:{" "}
+                                {t("results.bestLabel")}
                               </span>
                               <span className="text-taupe">{item.best}</span>
                             </div>
                             <div>
                               <span className="text-rose font-medium">
-                                Limit:{" "}
+                                {t("results.limitLabel")}
                               </span>
                               <span className="text-taupe">{item.limit}</span>
                             </div>
@@ -577,10 +589,9 @@ const MelasmaLanding = () => {
                     <AlertCircle className="w-5 h-5 text-wine shrink-0" />
                     <p className="text-sm text-brown">
                       <span className="font-medium">
-                        The big risk to respect:
+                        {t("results.riskTitle")}
                       </span>{" "}
-                      Rebound pigmentation (PIH) if laser is too aggressive. We
-                      prioritize controlled progress, not trauma.
+                      {t("results.riskDesc")}
                     </p>
                   </div>
                 </motion.div>
@@ -600,34 +611,15 @@ const MelasmaLanding = () => {
               className="max-w-4xl mx-auto text-center mb-12"
             >
               <span className="text-wine font-medium tracking-wider text-sm uppercase">
-                Prevention
+                {t("prevention.badge")}
               </span>
               <h2 className="font-georgia text-4xl text-brown mt-2">
-                Your melasma prevention routine in Malaysia
+                {t("prevention.title")}
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {[
-                {
-                  icon: <SunDim className="w-8 h-8" />,
-                  title: "Daily Sunscreen",
-                  desc: "Even when indoors. Melasma is triggered by light.",
-                  color: "from-wine/20 to-rose/20",
-                },
-                {
-                  icon: <Shield className="w-8 h-8" />,
-                  title: "Visible Light Protection",
-                  desc: "Iron oxide in tinted products helps block visible light.",
-                  color: "from-brown/20 to-taupe/20",
-                },
-                {
-                  icon: <Heart className="w-8 h-8" />,
-                  title: "Keep Barrier Calm",
-                  desc: "Over-exfoliation is a common mistake. Don't scrub.",
-                  color: "from-rose/20 to-wine/20",
-                },
-              ].map((item, i) => (
+              {preventionTips.map((item, i) => (
                 <motion.div
                   key={i}
                   variants={scaleIn}
@@ -635,11 +627,11 @@ const MelasmaLanding = () => {
                   className="group relative"
                 >
                   <div
-                    className={`absolute inset-0 bg-linear-to-br ${item.color} rounded-3xl 
+                    className={`absolute inset-0 bg-linear-to-br ${item.color} rounded-3xl
                                 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                   />
                   <div
-                    className="relative bg-glass backdrop-blur-sm rounded-3xl p-8 border border-cream 
+                    className="relative bg-glass backdrop-blur-sm rounded-3xl p-8 border border-cream
                               text-center group-hover:border-wine/30 transition-all duration-300"
                   >
                     <div
@@ -671,10 +663,10 @@ const MelasmaLanding = () => {
             >
               <div className="text-center mb-12">
                 <span className="text-wine font-medium tracking-wider text-sm uppercase">
-                  FAQ
+                  {t("faq.badge")}
                 </span>
                 <h2 className="font-georgia text-4xl text-brown mt-2">
-                  Common questions about melasma
+                  {t("faq.title")}
                 </h2>
               </div>
 
@@ -683,12 +675,12 @@ const MelasmaLanding = () => {
                   <motion.div
                     key={i}
                     variants={fadeInUp}
-                    className="group bg-glass backdrop-blur-sm rounded-2xl border border-cream 
+                    className="group bg-glass backdrop-blur-sm rounded-2xl border border-cream
                            hover:border-wine/30 transition-all duration-300 overflow-hidden"
                   >
                     <details className="group">
                       <summary
-                        className="flex items-center justify-between p-6 cursor-pointer 
+                        className="flex items-center justify-between p-6 cursor-pointer
                                      list-none marker:hidden"
                       >
                         <span className="font-georgia text-brown text-lg pr-8">
@@ -727,17 +719,15 @@ const MelasmaLanding = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6 leading-tight"
               >
-                If your melasma keeps coming back,
-                <span className="block text-wine">don't blame yourself</span>
+                {t("cta.title1")}
+                <span className="block text-wine">{t("cta.title2")}</span>
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-lg text-taupe mb-10 max-w-2xl mx-auto"
               >
-                Most people were never given a full plan. Book a consultation
-                and let's map your pigment, calm your triggers, and build a
-                routine you can actually keep up with.
+                {t("cta.desc")}
               </motion.p>
 
               <motion.div
@@ -747,21 +737,21 @@ const MelasmaLanding = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group px-10 py-5 bg-wine text-light rounded-full font-medium 
+                  className="group px-10 py-5 bg-wine text-light rounded-full font-medium
                          hover:bg-brown transition-all duration-300 shadow-xl hover:shadow-2xl
                          flex items-center gap-3 text-lg"
                 >
-                  Book Your Consultation
+                  {t("cta.bookBtn")}
                   <Calendar className="w-5 h-5 group-hover:rotate-12 transition-transform" />
                 </motion.button>
 
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-10 py-5 border-2 border-wine/30 text-wine rounded-full 
+                  className="px-10 py-5 border-2 border-wine/30 text-wine rounded-full
                          font-medium hover:border-wine hover:bg-wine/5 transition-all text-lg"
                 >
-                  WhatsApp Us
+                  {t("cta.whatsappBtn")}
                 </motion.button>
               </motion.div>
 
@@ -769,9 +759,9 @@ const MelasmaLanding = () => {
                 variants={fadeInUp}
                 className="mt-12 flex items-center justify-center gap-6 text-sm text-taupe"
               >
-                <span>✓ KLCC Location</span>
-                <span>✓ Est. 2001</span>
-                <span>✓ Dermatology Led</span>
+                <span>✓ {t("cta.trust1")}</span>
+                <span>✓ {t("cta.trust2")}</span>
+                <span>✓ {t("cta.trust3")}</span>
               </motion.div>
             </motion.div>
           </div>

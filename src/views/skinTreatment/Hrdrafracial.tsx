@@ -28,8 +28,12 @@ import {
   fadeInRight,
   scaleIn,
 } from "../../lib/animations";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const HydraFacialLandingPage = () => {
+const HydraFacialLandingPage = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "hydrafacial");
+
   return (
     <>
       <main className="w-full overflow-hidden bg-light">
@@ -53,21 +57,19 @@ const HydraFacialLandingPage = () => {
                 <motion.div variants={fadeInUp} className="space-y-4">
                   <span className="inline-flex items-center gap-2 text-wine font-inter text-sm tracking-wider">
                     <Sparkles size={18} />
-                    NEXUS CLINIC KUALA LUMPUR
+                    {t("hero.badge")}
                   </span>
 
                   <h1 className="font-georgia text-5xl lg:text-6xl text-brown leading-tight">
-                    Your clean-skin reset in Kuala Lumpur,
+                    {t("hero.title1")}
                     <span className="text-wine">
                       {" "}
-                      without the "facial drama"
+                      {t("hero.title2")}
                     </span>
                   </h1>
 
                   <p className="text-xl text-taupe font-inter leading-relaxed">
-                    Deep cleanse. Gentle suction. Fresh hydration. You walk out
-                    looking rested, not red. Made for Malaysia's heat, humidity,
-                    and city-life buildup.
+                    {t("hero.desc")}
                   </p>
                 </motion.div>
 
@@ -83,7 +85,7 @@ const HydraFacialLandingPage = () => {
                         <Shield className="text-wine" size={20} />
                       </div>
                       <span className="text-sm text-brown font-inter">
-                        MOH-registered & doctor-led
+                        {t("hero.trust1")}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
@@ -91,7 +93,7 @@ const HydraFacialLandingPage = () => {
                         <MapPin className="text-wine" size={20} />
                       </div>
                       <span className="text-sm text-brown font-inter">
-                        Wisma UOA II, KLCC
+                        {t("hero.trust2")}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
@@ -99,7 +101,7 @@ const HydraFacialLandingPage = () => {
                         <Clock className="text-wine" size={20} />
                       </div>
                       <span className="text-sm text-brown font-inter">
-                        Zero downtime • Monthly glow
+                        {t("hero.trust3")}
                       </span>
                     </div>
                   </div>
@@ -107,14 +109,14 @@ const HydraFacialLandingPage = () => {
 
                 <motion.div variants={fadeInUp} className="flex wrap gap-4">
                   <button className="group bg-wine text-white px-8 py-4 rounded-full font-inter text-sm hover:bg-brown transition-all duration-300 flex items-center gap-2">
-                    Book Your Cleanse
+                    {t("hero.bookBtn")}
                     <ChevronRight
                       size={18}
                       className="group-hover:translate-x-1 transition-transform"
                     />
                   </button>
                   <button className="border border-taupe text-brown px-8 py-4 rounded-full font-inter text-sm hover:bg-cream transition-all">
-                    RM350 • View Details
+                    {t("hero.priceBtn")}
                   </button>
                 </motion.div>
               </motion.div>
@@ -143,7 +145,7 @@ const HydraFacialLandingPage = () => {
                     <div className="flex items-center gap-2">
                       <Thermometer className="text-wine" size={20} />
                       <span className="text-sm font-inter text-brown">
-                        KL Weather-Adapted
+                        {t("hero.floatingCard1")}
                       </span>
                     </div>
                   </motion.div>
@@ -156,7 +158,7 @@ const HydraFacialLandingPage = () => {
                     <div className="flex items-center gap-2">
                       <Droplets className="text-wine" size={20} />
                       <span className="text-sm font-inter text-brown">
-                        Deep Hydration
+                        {t("hero.floatingCard2")}
                       </span>
                     </div>
                   </motion.div>
@@ -178,21 +180,21 @@ const HydraFacialLandingPage = () => {
               <motion.div variants={fadeInLeft} className="relative">
                 <div className="absolute -top-10 -left-10 w-32 h-32 bg-rose/20 rounded-full blur-2xl" />
                 <h2 className="font-georgia text-4xl lg:text-5xl text-brown mb-6 relative">
-                  If your skin could talk,
+                  {t("skinTalk.title1")}
                   <br />
-                  <span className="text-wine">it would ask for this</span>
+                  <span className="text-wine">{t("skinTalk.title2")}</span>
                 </h2>
 
                 <div className="space-y-6">
                   {[
                     {
                       icon: Sun,
-                      text: "KL heat and humidity clogging your pores",
+                      text: t("skinTalk.issue1"),
                     },
-                    { icon: Wind, text: "Air-con drying out your skin" },
+                    { icon: Wind, text: t("skinTalk.issue2") },
                     {
                       icon: Droplets,
-                      text: "Makeup sitting on congested texture",
+                      text: t("skinTalk.issue3"),
                     },
                   ].map((item, index) => (
                     <motion.div
@@ -214,10 +216,7 @@ const HydraFacialLandingPage = () => {
                   variants={fadeInUp}
                   className="mt-8 text-brown font-inter text-lg leading-relaxed"
                 >
-                  A hydra facial isn't random pampering. It's a practical reset
-                  that cleans, clears, and hydrates in one go. Most notice the
-                  glow fast. The better part? How smooth your skin feels
-                  tomorrow.
+                  {t("skinTalk.desc")}
                 </motion.p>
               </motion.div>
 
@@ -229,17 +228,17 @@ const HydraFacialLandingPage = () => {
                     </div>
                     <div>
                       <h3 className="font-georgia text-2xl text-brown">
-                        Doctor-first approach
+                        {t("skinTalk.doctorTitle")}
                       </h3>
-                      <p className="text-taupe">Assessment then plan</p>
+                      <p className="text-taupe">{t("skinTalk.doctorSubtitle")}</p>
                     </div>
                   </div>
 
                   <div className="space-y-4">
                     {[
-                      "Assess your skin sensitivity",
-                      "Match your breakout pattern",
-                      "Fit your schedule",
+                      t("skinTalk.doctorPoint1"),
+                      t("skinTalk.doctorPoint2"),
+                      t("skinTalk.doctorPoint3"),
                     ].map((text, index) => (
                       <div key={index} className="flex items-center gap-3">
                         <CheckCircle2 className="text-wine" size={20} />
@@ -266,47 +265,46 @@ const HydraFacialLandingPage = () => {
                 variants={fadeInUp}
                 className="text-wine font-inter text-sm tracking-wider mb-4 block"
               >
-                THE TREATMENT
+                {t("whatIs.badge")}
               </motion.span>
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                What is a hydra facial?
+                {t("whatIs.title")}
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-xl text-taupe max-w-3xl mx-auto"
               >
-                A non-invasive, multi-step facial combining cleansing,
-                exfoliation, gentle suction, and hydration with skin serums.
+                {t("whatIs.desc")}
               </motion.p>
             </motion.div>
 
             <div className="grid lg:grid-cols-4 gap-6">
               {[
                 {
-                  step: "01",
-                  title: "Cleanse",
-                  desc: "Gentle removal of impurities",
+                  step: t("whatIs.step1Num"),
+                  title: t("whatIs.step1Title"),
+                  desc: t("whatIs.step1Desc"),
                   color: "wine",
                 },
                 {
-                  step: "02",
-                  title: "Exfoliate",
-                  desc: "Reveal fresh skin layers",
+                  step: t("whatIs.step2Num"),
+                  title: t("whatIs.step2Title"),
+                  desc: t("whatIs.step2Desc"),
                   color: "rose",
                 },
                 {
-                  step: "03",
-                  title: "Extract",
-                  desc: "Painless suction cleaning",
+                  step: t("whatIs.step3Num"),
+                  title: t("whatIs.step3Title"),
+                  desc: t("whatIs.step3Desc"),
                   color: "taupe",
                 },
                 {
-                  step: "04",
-                  title: "Hydrate",
-                  desc: "Infuse nourishing serums",
+                  step: t("whatIs.step4Num"),
+                  title: t("whatIs.step4Title"),
+                  desc: t("whatIs.step4Desc"),
                   color: "brown",
                 },
               ].map((item, index) => (
@@ -334,8 +332,7 @@ const HydraFacialLandingPage = () => {
               className="mt-12 bg-cream rounded-3xl p-8 text-center"
             >
               <p className="text-brown font-inter text-lg italic">
-                "Like a regular facial, but your pores actually feel something
-                real happened."
+                {t("whatIs.quote")}
               </p>
             </motion.div>
           </div>
@@ -352,17 +349,17 @@ const HydraFacialLandingPage = () => {
             >
               <motion.div variants={fadeInLeft}>
                 <h2 className="font-georgia text-4xl lg:text-5xl text-brown mb-6">
-                  Why it's popular in
+                  {t("whyKL.title1")}
                   <br />
-                  <span className="text-wine">Kuala Lumpur</span>
+                  <span className="text-wine">{t("whyKL.title2")}</span>
                 </h2>
 
                 <div className="space-y-6">
                   {[
-                    "Fits a busy week - no downtime needed",
-                    "Perfect when humidity congests your face",
-                    "Pre-event glow without looking treated",
-                    "Safe for Malaysian skin tones when done right",
+                    t("whyKL.reason1"),
+                    t("whyKL.reason2"),
+                    t("whyKL.reason3"),
+                    t("whyKL.reason4"),
                   ].map((text, index) => (
                     <motion.div
                       key={index}
@@ -381,16 +378,16 @@ const HydraFacialLandingPage = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-white rounded-3xl p-8 shadow-xl">
                   <h3 className="font-georgia text-2xl text-brown mb-6">
-                    What it helps with
+                    {t("whyKL.helpsTitle")}
                   </h3>
                   <div className="space-y-4">
                     {[
-                      "Oily skin & visible blackheads",
-                      "Rough texture & dullness",
-                      "Dehydrated skin that still looks shiny",
-                      "Enlarged-looking pores",
-                      "Uneven tone from daily sun",
-                      "Tired face before events",
+                      t("whyKL.helps1"),
+                      t("whyKL.helps2"),
+                      t("whyKL.helps3"),
+                      t("whyKL.helps4"),
+                      t("whyKL.helps5"),
+                      t("whyKL.helps6"),
                     ].map((item, index) => (
                       <motion.div
                         key={index}
@@ -421,7 +418,7 @@ const HydraFacialLandingPage = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                Who it's for
+                {t("whoFor.title")}
               </motion.h2>
             </motion.div>
 
@@ -429,33 +426,33 @@ const HydraFacialLandingPage = () => {
               {[
                 {
                   icon: <User className="text-wine" size={24} />,
-                  title: "Students & Professionals",
-                  desc: "Busy schedules need efficient glow",
+                  title: t("whoFor.person1Title"),
+                  desc: t("whoFor.person1Desc"),
                 },
                 {
                   icon: <Heart className="text-wine" size={24} />,
-                  title: "Daily Makeup Wearers",
-                  desc: "Deep clean under the layers",
+                  title: t("whoFor.person2Title"),
+                  desc: t("whoFor.person2Desc"),
                 },
                 {
                   icon: <User className="text-wine" size={24} />,
-                  title: "Men",
-                  desc: "Clean pores, simple routine",
+                  title: t("whoFor.person3Title"),
+                  desc: t("whoFor.person3Desc"),
                 },
                 {
                   icon: <Airplay className="text-wine" size={24} />,
-                  title: "Frequent Travelers",
-                  desc: "Reset from airport skin",
+                  title: t("whoFor.person4Title"),
+                  desc: t("whoFor.person4Desc"),
                 },
                 {
                   icon: <Leaf className="text-wine" size={24} />,
-                  title: "KL Locals",
-                  desc: "Combat humidity buildup",
+                  title: t("whoFor.person5Title"),
+                  desc: t("whoFor.person5Desc"),
                 },
                 {
                   icon: <Sparkle className="text-wine" size={24} />,
-                  title: "Event Prep",
-                  desc: "Glow without redness",
+                  title: t("whoFor.person6Title"),
+                  desc: t("whoFor.person6Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -482,14 +479,14 @@ const HydraFacialLandingPage = () => {
                 <AlertCircle className="text-wine shrink-0" size={24} />
                 <div>
                   <h4 className="font-georgia text-xl text-brown mb-3">
-                    Pause and ask first if:
+                    {t("whoFor.pauseTitle")}
                   </h4>
                   <ul className="grid md:grid-cols-2 gap-3">
                     {[
-                      "Active skin infection or cold sore",
-                      "Sunburnt skin",
-                      "Recent strong peels or lasers",
-                      "Started strong prescription products",
+                      t("whoFor.pause1"),
+                      t("whoFor.pause2"),
+                      t("whoFor.pause3"),
+                      t("whoFor.pause4"),
                     ].map((item, index) => (
                       <li
                         key={index}
@@ -517,7 +514,7 @@ const HydraFacialLandingPage = () => {
             >
               <motion.div variants={fadeInLeft}>
                 <h2 className="font-georgia text-4xl lg:text-5xl text-brown mb-6">
-                  What results can you expect?
+                  {t("results.title")}
                 </h2>
 
                 <div className="space-y-6">
@@ -530,11 +527,11 @@ const HydraFacialLandingPage = () => {
                         <Sparkles className="text-wine" size={20} />
                       </div>
                       <h3 className="font-georgia text-xl text-brown">
-                        Immediate glow
+                        {t("results.immediateTitle")}
                       </h3>
                     </div>
                     <p className="text-taupe font-inter ml-12">
-                      Cleaner pores, softer texture, better hydration
+                      {t("results.immediateDesc")}
                     </p>
                   </motion.div>
 
@@ -547,12 +544,11 @@ const HydraFacialLandingPage = () => {
                         <Clock className="text-wine" size={20} />
                       </div>
                       <h3 className="font-georgia text-xl text-brown">
-                        How long it lasts
+                        {t("results.lastTitle")}
                       </h3>
                     </div>
                     <p className="text-taupe font-inter ml-12">
-                      Varies with skincare and sun exposure. Monthly maintenance
-                      recommended.
+                      {t("results.lastDesc")}
                     </p>
                   </motion.div>
                 </div>
@@ -560,12 +556,12 @@ const HydraFacialLandingPage = () => {
 
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-wine rounded-3xl p-8 text-white">
-                  <h3 className="font-georgia text-2xl mb-6">Monthly rhythm</h3>
+                  <h3 className="font-georgia text-2xl mb-6">{t("results.rhythmTitle")}</h3>
                   <div className="space-y-4">
                     {[
-                      "Month 1: Deep clean & reset",
-                      "Month 2: Maintain glow",
-                      "Month 3: Build results",
+                      t("results.rhythm1"),
+                      t("results.rhythm2"),
+                      t("results.rhythm3"),
                     ].map((text, index) => (
                       <div key={index} className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
@@ -594,23 +590,23 @@ const HydraFacialLandingPage = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                Pros & Cons
+                {t("prosCons.title")}
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-taupe text-lg">
-                The honest version, because you deserve to know
+                {t("prosCons.desc")}
               </motion.p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Pros */}
               <motion.div variants={fadeInLeft} className="space-y-4">
-                <h3 className="font-georgia text-2xl text-wine mb-6">Pros</h3>
+                <h3 className="font-georgia text-2xl text-wine mb-6">{t("prosCons.prosTitle")}</h3>
                 {[
-                  "No real downtime for most people",
-                  "Good first treatment if you're nervous",
-                  "Customizable based on your concerns",
-                  "Works perfectly in Malaysia's climate",
-                  "Instant results you can see",
+                  t("prosCons.pro1"),
+                  t("prosCons.pro2"),
+                  t("prosCons.pro3"),
+                  t("prosCons.pro4"),
+                  t("prosCons.pro5"),
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -625,12 +621,12 @@ const HydraFacialLandingPage = () => {
 
               {/* Cons */}
               <motion.div variants={fadeInRight} className="space-y-4">
-                <h3 className="font-georgia text-2xl text-brown mb-6">Cons</h3>
+                <h3 className="font-georgia text-2xl text-brown mb-6">{t("prosCons.consTitle")}</h3>
                 {[
-                  "Results aren't permanent - maintenance needed",
-                  "Deep acne scars need other options too",
-                  "Some may get temporary redness",
-                  "Not a one-time fix",
+                  t("prosCons.con1"),
+                  t("prosCons.con2"),
+                  t("prosCons.con3"),
+                  t("prosCons.con4"),
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -659,10 +655,10 @@ const HydraFacialLandingPage = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                Side effects & safety
+                {t("sideEffects.title")}
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-taupe text-lg">
-                What's normal, what's not
+                {t("sideEffects.desc")}
               </motion.p>
             </motion.div>
 
@@ -672,13 +668,13 @@ const HydraFacialLandingPage = () => {
                 className="bg-white rounded-2xl p-8"
               >
                 <h3 className="font-georgia text-xl text-wine mb-4">
-                  Common & short-lived
+                  {t("sideEffects.commonTitle")}
                 </h3>
                 <ul className="space-y-3">
                   {[
-                    "Mild redness",
-                    "Slight tingling",
-                    "Temporary sensitivity",
+                    t("sideEffects.common1"),
+                    t("sideEffects.common2"),
+                    t("sideEffects.common3"),
                   ].map((item, index) => (
                     <li
                       key={index}
@@ -696,13 +692,13 @@ const HydraFacialLandingPage = () => {
                 className="bg-white rounded-2xl p-8"
               >
                 <h3 className="font-georgia text-xl text-brown mb-4">
-                  Less common
+                  {t("sideEffects.lessCommonTitle")}
                 </h3>
                 <ul className="space-y-3">
                   {[
-                    "Mild puffiness",
-                    "Temporary breakouts",
-                    "Reactive skin response",
+                    t("sideEffects.lessCommon1"),
+                    t("sideEffects.lessCommon2"),
+                    t("sideEffects.lessCommon3"),
                   ].map((item, index) => (
                     <li
                       key={index}
@@ -729,9 +725,9 @@ const HydraFacialLandingPage = () => {
             >
               <motion.div variants={fadeInLeft}>
                 <h2 className="font-georgia text-4xl lg:text-5xl text-brown mb-6">
-                  Hydra facial cost in
+                  {t("cost.title1")}
                   <br />
-                  <span className="text-wine">Malaysia & KL</span>
+                  <span className="text-wine">{t("cost.title2")}</span>
                 </h2>
 
                 <div className="space-y-6">
@@ -740,13 +736,13 @@ const HydraFacialLandingPage = () => {
                     className="bg-cream rounded-2xl p-8"
                   >
                     <div className="text-3xl font-georgia text-wine mb-2">
-                      RM350
+                      {t("cost.price")}
                     </div>
                     <p className="text-taupe font-inter">
-                      Hydrafacial Deep Cleanse at Nexus Clinic KL
+                      {t("cost.priceDesc")}
                     </p>
                     <p className="text-sm text-brown mt-2">
-                      Zero downtime • Monthly rhythm
+                      {t("cost.priceNote")}
                     </p>
                   </motion.div>
 
@@ -754,9 +750,7 @@ const HydraFacialLandingPage = () => {
                     variants={fadeInUp}
                     className="text-taupe font-inter"
                   >
-                    Market range: RM600-800 per session at other KL clinics.
-                    Compare what's included - some "cheap" promos exclude
-                    boosters or use different machines.
+                    {t("cost.marketRange")}
                   </motion.p>
                 </div>
               </motion.div>
@@ -764,14 +758,14 @@ const HydraFacialLandingPage = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-brown rounded-3xl p-8 text-white">
                   <h3 className="font-georgia text-2xl mb-4">
-                    What affects price
+                    {t("cost.affectsTitle")}
                   </h3>
                   <ul className="space-y-3">
                     {[
-                      "Clinic & device brand",
-                      "Boosters & add-ons",
-                      "Package bundles",
-                      "Experience level",
+                      t("cost.affects1"),
+                      t("cost.affects2"),
+                      t("cost.affects3"),
+                      t("cost.affects4"),
                     ].map((item, index) => (
                       <li key={index} className="flex items-center gap-2">
                         <ChevronRight size={16} />
@@ -780,7 +774,7 @@ const HydraFacialLandingPage = () => {
                     ))}
                   </ul>
                   <p className="mt-6 text-sm opacity-80">
-                    Consultation clarifies what you're actually booking
+                    {t("cost.affectsNote")}
                   </p>
                 </div>
               </motion.div>
@@ -801,34 +795,34 @@ const HydraFacialLandingPage = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                Hydra facial vs other treatments
+                {t("comparison.title")}
               </motion.h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "vs Classic Facial",
+                  title: t("comparison.comp1Title"),
                   points: [
-                    "Massage vs device-based",
-                    "Surface vs deep cleansing",
-                    "Relaxation vs results",
+                    t("comparison.comp1Point1"),
+                    t("comparison.comp1Point2"),
+                    t("comparison.comp1Point3"),
                   ],
                 },
                 {
-                  title: "vs Microdermabrasion",
+                  title: t("comparison.comp2Title"),
                   points: [
-                    "Drier vs hydrated process",
-                    "More abrasive vs gentle",
-                    "No infusion vs serum delivery",
+                    t("comparison.comp2Point1"),
+                    t("comparison.comp2Point2"),
+                    t("comparison.comp2Point3"),
                   ],
                 },
                 {
-                  title: "vs Chemical Peel",
+                  title: t("comparison.comp3Title"),
                   points: [
-                    "Peeling vs no downtime",
-                    "Stronger vs gentler",
-                    "Event prep with risk vs safe glow",
+                    t("comparison.comp3Point1"),
+                    t("comparison.comp3Point2"),
+                    t("comparison.comp3Point3"),
                   ],
                 },
               ].map((item, index) => (
@@ -868,14 +862,14 @@ const HydraFacialLandingPage = () => {
                 className="bg-cream rounded-3xl p-8"
               >
                 <h3 className="font-georgia text-3xl text-brown mb-6">
-                  How to prepare
+                  {t("prepAftercare.prepTitle")}
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Pause strong actives if skin is sensitive",
-                    "Avoid heavy sun exposure before",
-                    "Tell doctor about recent treatments",
-                    "Bring photos of your products",
+                    t("prepAftercare.prep1"),
+                    t("prepAftercare.prep2"),
+                    t("prepAftercare.prep3"),
+                    t("prepAftercare.prep4"),
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="text-wine shrink-0" size={20} />
@@ -890,14 +884,14 @@ const HydraFacialLandingPage = () => {
                 className="bg-wine rounded-3xl p-8 text-white"
               >
                 <h3 className="font-georgia text-3xl mb-6">
-                  Aftercare (24-48h)
+                  {t("prepAftercare.afterTitle")}
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Keep it gentle",
-                    "Avoid aggressive exfoliation",
-                    "Use sunscreen daily",
-                    "Gentle cleanser & moisturizer",
+                    t("prepAftercare.after1"),
+                    t("prepAftercare.after2"),
+                    t("prepAftercare.after3"),
+                    t("prepAftercare.after4"),
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <CheckCircle2
@@ -909,7 +903,7 @@ const HydraFacialLandingPage = () => {
                   ))}
                 </ul>
                 <p className="mt-6 text-sm opacity-80">
-                  SPF 50 essential in Malaysia's climate
+                  {t("prepAftercare.afterNote")}
                 </p>
               </motion.div>
             </motion.div>
@@ -929,44 +923,20 @@ const HydraFacialLandingPage = () => {
                 variants={fadeInUp}
                 className="font-georgia text-4xl lg:text-5xl text-brown mb-6"
               >
-                People Also Ask
+                {t("faq.title")}
               </motion.h2>
             </motion.div>
 
             <div className="space-y-4">
               {[
-                {
-                  q: "What is a HydraFacial treatment?",
-                  a: "A non-invasive facial combining cleansing, exfoliation, extraction, and hydration in one session using a device and serums.",
-                },
-                {
-                  q: "Is HydraFacial suitable for all skin types?",
-                  a: "Yes, including sensitive skin - it can be adjusted to your needs. Always check first if you have active issues.",
-                },
-                {
-                  q: "Is HydraFacial painful?",
-                  a: "Most describe it as comfortable, with gentle suction rather than squeezing.",
-                },
-                {
-                  q: "How long does a session take?",
-                  a: "Around 1 to 1.5 hours, depending on your plan and add-ons.",
-                },
-                {
-                  q: "Are there any side effects?",
-                  a: "Usually mild redness or tingling that settles quickly. Rarely, temporary sensitivity or breakouts.",
-                },
-                {
-                  q: "How many sessions do I need?",
-                  a: "You'll see improvement after one, but monthly maintenance is recommended for ongoing results.",
-                },
-                {
-                  q: "Can HydraFacial help with oily skin and blackheads?",
-                  a: "Yes - suction helps lift oil and debris from pores without squeezing.",
-                },
-                {
-                  q: "Is there downtime after HydraFacial?",
-                  a: "No downtime - you can return to normal activities right away.",
-                },
+                { q: t("faq.q1"), a: t("faq.a1") },
+                { q: t("faq.q2"), a: t("faq.a2") },
+                { q: t("faq.q3"), a: t("faq.a3") },
+                { q: t("faq.q4"), a: t("faq.a4") },
+                { q: t("faq.q5"), a: t("faq.a5") },
+                { q: t("faq.q6"), a: t("faq.a6") },
+                { q: t("faq.q7"), a: t("faq.a7") },
+                { q: t("faq.q8"), a: t("faq.a8") },
               ].map((faq, index) => (
                 <motion.div
                   key={index}
@@ -1002,18 +972,18 @@ const HydraFacialLandingPage = () => {
             className="max-w-3xl mx-auto text-center"
           >
             <h2 className="font-georgia text-4xl lg:text-5xl text-brown mb-6">
-              Ready for your
+              {t("cta.title1")}
               <br />
-              <span className="text-wine">clean-skin reset?</span>
+              <span className="text-wine">{t("cta.title2")}</span>
             </h2>
 
             <p className="text-xl text-taupe font-inter mb-8">
-              If your skin feels clogged, dull, or just tired from KL heat,
-              <br />a Hydrafacial Deep Cleanse is a clean place to start.
+              {t("cta.desc1")}
+              <br />{t("cta.desc2")}
             </p>
 
             <button className="group bg-wine text-white px-12 py-5 rounded-full font-inter text-lg hover:bg-brown transition-all duration-300 inline-flex items-center gap-3">
-              Book Your Assessment
+              {t("cta.bookBtn")}
               <ChevronRight
                 size={20}
                 className="group-hover:translate-x-1 transition-transform"
@@ -1021,7 +991,7 @@ const HydraFacialLandingPage = () => {
             </button>
 
             <p className="mt-6 text-sm text-taupe">
-              Nexus Clinic Kuala Lumpur • LG 10, Wisma UOA II, Jalan Pinang
+              {t("cta.address")}
             </p>
           </motion.div>
         </section>
