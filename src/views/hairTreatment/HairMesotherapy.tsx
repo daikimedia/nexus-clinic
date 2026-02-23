@@ -25,30 +25,24 @@ import {
   fadeInUp,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const HairMesotherapyLanding = () => {
+const HairMesotherapyLanding = ({
+  locale = fallbackLng,
+}: {
+  locale?: string;
+}) => {
+  const { t } = useTranslation(locale, "hairMesotherapy");
+
   const faqs = [
-    {
-      q: "Does hair mesotherapy really work?",
-      a: "Yes, especially for early thinning. It delivers nutrients directly to the scalp and supports follicle function. Results are gradual, with most patients noticing changes within weeks to months.",
-    },
-    {
-      q: "How many sessions do I need?",
-      a: "Most plans start with 4-6 sessions initially, followed by maintenance every 1-3 months depending on your specific case and response to treatment.",
-    },
-    {
-      q: "Is it painful?",
-      a: "Most patients describe it as mild pinching or pressure. We apply local anaesthetic to ensure your comfort throughout the procedure.",
-    },
-    {
-      q: "What are the side effects?",
-      a: "Mild redness, swelling, or tenderness at injection sites are common and typically resolve within a few days.",
-    },
-    {
-      q: "When will I see results?",
-      a: "Results are gradual. Most patients notice improved quality and thickness within weeks to a few months of starting treatment.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
   ];
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-light to-cream font-['Inter',sans-serif] overflow-hidden">
@@ -83,7 +77,7 @@ const HairMesotherapyLanding = () => {
             >
               <Sparkles className="w-4 h-4 text-wine" />
               <span className="text-sm font-medium text-brown">
-                Nexus Clinic Kuala Lumpur
+                {t("hero.badge")}
               </span>
             </motion.div>
 
@@ -91,16 +85,15 @@ const HairMesotherapyLanding = () => {
               variants={fadeInUp}
               className="text-5xl sm:text-6xl lg:text-7xl font-['Georgia',serif] text-brown mb-6 leading-tight"
             >
-              Feed your follicles
-              <span className="block text-wine">again.</span>
+              {t("hero.title1")}
+              <span className="block text-wine">{t("hero.title2")}</span>
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl text-taupe max-w-2xl mx-auto mb-8"
             >
-              Bring back thicker-looking hair with doctor-guided mesotherapy in
-              the heart of Kuala Lumpur
+              {t("hero.desc")}
             </motion.p>
 
             <motion.div
@@ -113,7 +106,7 @@ const HairMesotherapyLanding = () => {
                 className="group relative px-8 py-4 bg-wine text-white rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  Book Your Assessment
+                  {t("hero.bookBtn")}
                   <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </span>
                 <motion.div
@@ -129,7 +122,7 @@ const HairMesotherapyLanding = () => {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-white/70 backdrop-blur-sm text-brown rounded-2xl font-semibold border border-taupe/30 hover:bg-white/90 transition-all duration-300"
               >
-                Learn More
+                {t("hero.learnBtn")}
               </motion.button>
             </motion.div>
 
@@ -139,14 +132,10 @@ const HairMesotherapyLanding = () => {
               className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
             >
               {[
-                { icon: Users, label: "Happy Patients", value: "5000+" },
-                { icon: Award, label: "MOH Registered", value: "Certified" },
-                { icon: Clock, label: "Session Time", value: "30-45 min" },
-                {
-                  icon: MapPin,
-                  label: "KL City Center",
-                  value: "Wisma UOA II",
-                },
+                { icon: Users, label: t("hero.s1Label"), value: t("hero.s1Value") },
+                { icon: Award, label: t("hero.s2Label"), value: t("hero.s2Value") },
+                { icon: Clock, label: t("hero.s3Label"), value: t("hero.s3Value") },
+                { icon: MapPin, label: t("hero.s4Label"), value: t("hero.s4Value") },
               ].map((stat, index) => (
                 <motion.div
                   key={index}
@@ -192,7 +181,7 @@ const HairMesotherapyLanding = () => {
                 >
                   <Syringe className="w-4 h-4 text-wine" />
                   <span className="text-sm font-medium text-wine">
-                    The Procedure
+                    {t("whatIs.badge")}
                   </span>
                 </motion.div>
 
@@ -200,24 +189,22 @@ const HairMesotherapyLanding = () => {
                   variants={fadeInUp}
                   className="text-4xl font-['Georgia',serif] text-brown mb-6"
                 >
-                  What is hair mesotherapy?
+                  {t("whatIs.title")}
                 </motion.h2>
 
                 <motion.p
                   variants={fadeInUp}
                   className="text-lg text-taupe mb-6"
                 >
-                  A minimally invasive treatment that injects a tailored mix of
-                  nutrients into the scalp at 2-4mm depth to nourish follicles
-                  and support healthier growth.
+                  {t("whatIs.desc")}
                 </motion.p>
 
                 <motion.div variants={staggerContainer} className="space-y-4">
                   {[
-                    "Delivers nutrients closer to the follicles",
-                    "Supports scalp circulation and environment",
-                    "Helps reduce scalp inflammation",
-                    "Improves hair quality and thickness over time",
+                    t("whatIs.b1"),
+                    t("whatIs.b2"),
+                    t("whatIs.b3"),
+                    t("whatIs.b4"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -245,8 +232,8 @@ const HairMesotherapyLanding = () => {
                       <Droplets className="w-5 h-5 text-wine" />
                     </div>
                     <div>
-                      <div className="text-sm text-taupe">Injection depth</div>
-                      <div className="text-lg font-bold text-brown">2-4 mm</div>
+                      <div className="text-sm text-taupe">{t("whatIs.depthLabel")}</div>
+                      <div className="text-lg font-bold text-brown">{t("whatIs.depthValue")}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -269,50 +256,21 @@ const HairMesotherapyLanding = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-4xl font-['Georgia',serif] text-brown mb-4">
-                Why choose hair mesotherapy?
+                {t("benefits.title")}
               </h2>
               <p className="text-lg text-taupe">
-                A gentle, effective approach to hair restoration that fits your
-                lifestyle
+                {t("benefits.desc")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
-                {
-                  icon: Heart,
-                  title: "Non-surgical",
-                  description:
-                    "Minimally invasive with no downtime, perfect for busy KL professionals",
-                },
-                {
-                  icon: Leaf,
-                  title: "Natural Results",
-                  description:
-                    "Gradual improvement that looks and feels natural",
-                },
-                {
-                  icon: Shield,
-                  title: "Doctor-Led",
-                  description:
-                    "MOH registered clinic with personalized treatment plans",
-                },
-                {
-                  icon: Sparkles,
-                  title: "Targeted Support",
-                  description: "Direct nutrient delivery to thinning areas",
-                },
-                {
-                  icon: Calendar,
-                  title: "Quick Sessions",
-                  description: "30-45 minute treatments that fit your schedule",
-                },
-                {
-                  icon: Wind,
-                  title: "Scalp Health",
-                  description:
-                    "Improves overall scalp condition and circulation",
-                },
+                { icon: Heart, title: t("benefits.b1Title"), description: t("benefits.b1Desc") },
+                { icon: Leaf, title: t("benefits.b2Title"), description: t("benefits.b2Desc") },
+                { icon: Shield, title: t("benefits.b3Title"), description: t("benefits.b3Desc") },
+                { icon: Sparkles, title: t("benefits.b4Title"), description: t("benefits.b4Desc") },
+                { icon: Calendar, title: t("benefits.b5Title"), description: t("benefits.b5Desc") },
+                { icon: Wind, title: t("benefits.b6Title"), description: t("benefits.b6Desc") },
               ].map((benefit, index) => (
                 <motion.div
                   key={index}
@@ -349,10 +307,10 @@ const HairMesotherapyLanding = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-4xl font-['Georgia',serif] text-brown mb-4">
-                Your Journey at Nexus Clinic
+                {t("journey.title")}
               </h2>
               <p className="text-lg text-taupe">
-                A simple, comfortable process from assessment to results
+                {t("journey.desc")}
               </p>
             </motion.div>
 
@@ -364,32 +322,29 @@ const HairMesotherapyLanding = () => {
                 {[
                   {
                     step: "01",
-                    title: "Scalp Assessment",
-                    description:
-                      "Doctor-led evaluation of your hair loss pattern and scalp health",
+                    title: t("journey.s1Title"),
+                    description: t("journey.s1Desc"),
                     icon: Users,
                     align: "left",
                   },
                   {
                     step: "02",
-                    title: "Comfort Prep",
-                    description:
-                      "Local anaesthetic applied for a comfortable experience",
+                    title: t("journey.s2Title"),
+                    description: t("journey.s2Desc"),
                     icon: Heart,
                     align: "right",
                   },
                   {
                     step: "03",
-                    title: "Micro-injections",
-                    description:
-                      "Precise nutrient delivery to targeted thinning zones",
+                    title: t("journey.s3Title"),
+                    description: t("journey.s3Desc"),
                     icon: Syringe,
                     align: "left",
                   },
                   {
                     step: "04",
-                    title: "Aftercare Guidance",
-                    description: "Simple instructions for optimal results",
+                    title: t("journey.s4Title"),
+                    description: t("journey.s4Desc"),
                     icon: Leaf,
                     align: "right",
                   },
@@ -403,7 +358,7 @@ const HairMesotherapyLanding = () => {
                       {item.align === "left" && (
                         <>
                           <div className="text-wine font-bold mb-2">
-                            Step {item.step}
+                            {t("journey.step")} {item.step}
                           </div>
                           <h3 className="text-2xl font-bold text-brown mb-4">
                             {item.title}
@@ -421,7 +376,7 @@ const HairMesotherapyLanding = () => {
                       {item.align === "right" && (
                         <>
                           <div className="text-wine font-bold mb-2">
-                            Step {item.step}
+                            {t("journey.step")} {item.step}
                           </div>
                           <h3 className="text-2xl font-bold text-brown mb-4">
                             {item.title}
@@ -451,53 +406,52 @@ const HairMesotherapyLanding = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-4xl font-['Georgia',serif] text-brown mb-4">
-                Investment in Your Hair
+                {t("pricing.title")}
               </h2>
               <p className="text-lg text-taupe">
-                Transparent pricing for personalized care
+                {t("pricing.desc")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  name: "Single Session",
-                  price: "RM 750",
-                  description:
-                    "Perfect for maintenance or trying the treatment",
+                  name: t("pricing.p1Name"),
+                  price: t("pricing.p1Price"),
+                  description: t("pricing.p1Desc"),
                   features: [
-                    "Complete scalp assessment",
-                    "One mesotherapy session",
-                    "Aftercare guidance",
-                    "Follow-up consultation",
+                    t("pricing.p1F1"),
+                    t("pricing.p1F2"),
+                    t("pricing.p1F3"),
+                    t("pricing.p1F4"),
                   ],
                 },
                 {
-                  name: "Initial Series",
-                  price: "RM 3,600",
-                  period: "4 sessions",
-                  description: "Recommended for optimal results",
+                  name: t("pricing.p2Name"),
+                  price: t("pricing.p2Price"),
+                  period: t("pricing.p2Period"),
+                  description: t("pricing.p2Desc"),
                   features: [
-                    "Complete scalp assessment",
-                    "4 mesotherapy sessions",
-                    "Progress tracking",
-                    "Priority booking",
-                    "10% savings",
+                    t("pricing.p2F1"),
+                    t("pricing.p2F2"),
+                    t("pricing.p2F3"),
+                    t("pricing.p2F4"),
+                    t("pricing.p2F5"),
                   ],
                   popular: true,
                 },
                 {
-                  name: "Yearly Plan",
-                  price: "RM 6,800",
-                  period: "8 sessions",
-                  description: "Comprehensive year-long support",
+                  name: t("pricing.p3Name"),
+                  price: t("pricing.p3Price"),
+                  period: t("pricing.p3Period"),
+                  description: t("pricing.p3Desc"),
                   features: [
-                    "Complete scalp assessment",
-                    "8 mesotherapy sessions",
-                    "Quarterly progress reviews",
-                    "VIP booking priority",
-                    "15% savings",
-                    "Complimentary scalp analysis",
+                    t("pricing.p3F1"),
+                    t("pricing.p3F2"),
+                    t("pricing.p3F3"),
+                    t("pricing.p3F4"),
+                    t("pricing.p3F5"),
+                    t("pricing.p3F6"),
                   ],
                 },
               ].map((plan, index) => (
@@ -514,7 +468,7 @@ const HairMesotherapyLanding = () => {
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <div className="bg-linear-to-r from-wine to-rose text-white px-4 py-1 rounded-full text-sm font-semibold">
-                        Most Popular
+                        {t("pricing.popular")}
                       </div>
                     </div>
                   )}
@@ -550,7 +504,7 @@ const HairMesotherapyLanding = () => {
                         : "bg-brown/10 text-brown hover:bg-brown/20"
                     }`}
                   >
-                    Choose Plan
+                    {t("pricing.chooseBtn")}
                   </motion.button>
                 </motion.div>
               ))}
@@ -582,14 +536,14 @@ const HairMesotherapyLanding = () => {
                   variants={fadeInUp}
                   className="text-4xl font-['Georgia',serif] text-white mb-4"
                 >
-                  Ready to start your journey?
+                  {t("cta.title")}
                 </motion.h2>
 
                 <motion.p
                   variants={fadeInUp}
                   className="text-lg text-white/90 mb-8"
                 >
-                  Book a consultation with our doctor-led team today
+                  {t("cta.desc")}
                 </motion.p>
 
                 <motion.div
@@ -601,7 +555,7 @@ const HairMesotherapyLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="px-8 py-4 bg-white text-wine rounded-2xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                   >
-                    Schedule Your Assessment
+                    {t("cta.scheduleBtn")}
                   </motion.button>
 
                   <motion.a
@@ -610,7 +564,7 @@ const HairMesotherapyLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="px-8 py-4 bg-white/20 backdrop-blur-sm text-white rounded-2xl font-semibold border border-white/30 hover:bg-white/30 transition-all duration-300"
                   >
-                    Call 016-702 5699
+                    {t("cta.callBtn")}
                   </motion.a>
                 </motion.div>
 
@@ -618,8 +572,7 @@ const HairMesotherapyLanding = () => {
                   variants={fadeInUp}
                   className="text-white/80 mt-6 text-sm"
                 >
-                  LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                  Kuala Lumpur
+                  {t("cta.address")}
                 </motion.p>
               </motion.div>
             </motion.div>

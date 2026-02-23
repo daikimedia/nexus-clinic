@@ -1,5 +1,10 @@
 import HairMesotherapyLanding from "@/src/views/hairTreatment/HairMesotherapy";
 
-export default function Page() {
-  return <HairMesotherapyLanding />;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return <HairMesotherapyLanding locale={locale} />;
 }

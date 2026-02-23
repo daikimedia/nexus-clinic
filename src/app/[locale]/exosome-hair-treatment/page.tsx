@@ -1,5 +1,10 @@
 import ExosomeLanding from "@/src/views/hairTreatment/ExosomeHair";
 
-export default function Page() {
-  return <ExosomeLanding />;
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  return <ExosomeLanding locale={locale} />;
 }

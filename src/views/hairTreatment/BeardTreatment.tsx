@@ -24,24 +24,28 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-export default function BeardLanding() {
+export default function BeardLanding({ locale = fallbackLng }: { locale?: string }) {
+  const { t } = useTranslation(locale, "beardTransplant");
+
   const faqs = [
     {
-      q: "How can I grow a beard faster?",
-      a: "There is no instant switch. Beard growth depends on genetics, hormones, and follicle activity.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "Why is my beard patchy?",
-      a: "Common reasons include genetics, alopecia areata, scarring, and skin inflammation.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "Is a beard transplant permanent?",
-      a: "Yes, once growth is established, results are typically described as long-lasting.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
     {
-      q: "Does a beard transplant look natural?",
-      a: "It can, when the surgeon plans the direction, angle, and density correctly.",
+      q: t("faq.q4"),
+      a: t("faq.a4"),
     },
   ];
   return (
@@ -67,15 +71,14 @@ export default function BeardLanding() {
                 <motion.div variants={fadeInUp} className="space-y-4">
                   <span className="inline-flex items-center gap-2 text-wine font-semibold tracking-wide uppercase text-sm">
                     <Sparkles className="w-4 h-4" />
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                   <h1 className="font-['Georgia',serif] text-5xl lg:text-6xl text-brown leading-tight">
-                    Build a fuller beard,
-                    <span className="text-wine"> fix patchy areas</span>
+                    {t("hero.title1")}
+                    <span className="text-wine">{t("hero.title2")}</span>
                   </h1>
                   <p className="text-xl text-taupe max-w-lg">
-                    From thin cheeks to uneven jawlines, we focus on medical
-                    assessment first, then the right plan.
+                    {t("hero.desc")}
                   </p>
                 </motion.div>
 
@@ -84,11 +87,11 @@ export default function BeardLanding() {
                   className="flex flex-wrap gap-4"
                 >
                   <button className="group bg-wine text-white px-8 py-4 rounded-full font-semibold hover:bg-rose transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl">
-                    Book Consultation
+                    {t("hero.bookBtn")}
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button className="border-2 border-wine text-wine px-8 py-4 rounded-full font-semibold hover:bg-wine hover:text-white transition-all duration-300">
-                    View Results
+                    {t("hero.viewBtn")}
                   </button>
                 </motion.div>
 
@@ -106,7 +109,7 @@ export default function BeardLanding() {
                   </div>
                   <div className="text-brown">
                     <span className="font-bold text-2xl">2000+</span>
-                    <span className="text-taupe ml-2">happy clients</span>
+                    <span className="text-taupe ml-2">{t("hero.clients")}</span>
                   </div>
                 </motion.div>
               </motion.div>
@@ -123,14 +126,14 @@ export default function BeardLanding() {
                     <div className="flex items-center gap-3 pb-4 border-b border-taupe border-opacity-30">
                       <Shield className="w-6 h-6 text-wine" />
                       <span className="font-semibold text-brown">
-                        Trust at a glance
+                        {t("hero.trustTitle")}
                       </span>
                     </div>
                     <div className="space-y-4">
                       {[
-                        "Founded in 2001 in KL's Golden Triangle",
-                        "LG 10, Wisma UOA II, Jalan Pinang",
-                        "Medical assessment first approach",
+                        t("hero.trust1"),
+                        t("hero.trust2"),
+                        t("hero.trust3"),
                       ].map((item, i) => (
                         <motion.div
                           key={i}
@@ -155,7 +158,7 @@ export default function BeardLanding() {
                   <div className="flex items-center gap-2">
                     <Clock className="w-5 h-5 text-rose" />
                     <span className="text-sm font-medium text-brown">
-                      Permanent results
+                      {t("hero.permanent")}
                     </span>
                   </div>
                 </motion.div>
@@ -178,13 +181,13 @@ export default function BeardLanding() {
                 variants={fadeInUp}
                 className="text-wine font-semibold uppercase tracking-wide"
               >
-                Quick Answers
+                {t("quickAnswers.badge")}
               </motion.span>
               <motion.h2
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl text-brown mt-2"
               >
-                What you really want to know
+                {t("quickAnswers.title")}
               </motion.h2>
             </motion.div>
 
@@ -198,26 +201,23 @@ export default function BeardLanding() {
               {[
                 {
                   icon: <Activity className="w-6 h-6" />,
-                  question: "Can patchy beard be treated?",
-                  answer:
-                    "Yes, in many cases. The best option depends on the cause.",
+                  question: t("quickAnswers.q1"),
+                  answer: t("quickAnswers.a1"),
                 },
                 {
                   icon: <Scissors className="w-6 h-6" />,
-                  question: "Is beard transplant permanent?",
-                  answer:
-                    "Results are typically described as long-lasting once growth settles.",
+                  question: t("quickAnswers.q2"),
+                  answer: t("quickAnswers.a2"),
                 },
                 {
                   icon: <FlaskConical className="w-6 h-6" />,
-                  question: "Does PRP help beard growth?",
-                  answer: "Results vary and evidence is still evolving.",
+                  question: t("quickAnswers.q3"),
+                  answer: t("quickAnswers.a3"),
                 },
                 {
                   icon: <Droplets className="w-6 h-6" />,
-                  question: "How much does it cost?",
-                  answer:
-                    "RM 3,000 - RM 15,000 depending on grafts and coverage.",
+                  question: t("quickAnswers.q4"),
+                  answer: t("quickAnswers.a4"),
                 },
               ].map((item, i) => (
                 <motion.div
@@ -250,15 +250,13 @@ export default function BeardLanding() {
                 className="space-y-6"
               >
                 <span className="text-wine font-semibold uppercase tracking-wide">
-                  Understanding Your Needs
+                  {t("understanding.badge")}
                 </span>
                 <h2 className="font-['Georgia',serif] text-4xl text-brown">
-                  What does "beard treatment" mean in real life?
+                  {t("understanding.title")}
                 </h2>
                 <p className="text-taupe text-lg">
-                  In clinic terms, beard treatment usually means one of these
-                  goals. A strong plan starts with identifying which one is your
-                  problem.
+                  {t("understanding.desc")}
                 </p>
               </motion.div>
 
@@ -271,20 +269,20 @@ export default function BeardLanding() {
               >
                 {[
                   {
-                    title: "Beard growth & thickening",
-                    desc: "You have hair, but it is light, thin, or uneven.",
+                    title: t("understanding.g1Title"),
+                    desc: t("understanding.g1Desc"),
                   },
                   {
-                    title: "Patchy beard treatment",
-                    desc: "You have clear gaps, islands, or sections that never filled in.",
+                    title: t("understanding.g2Title"),
+                    desc: t("understanding.g2Desc"),
                   },
                   {
-                    title: "Beard hair loss treatment",
-                    desc: "You used to have hair, then it started falling out in patches.",
+                    title: t("understanding.g3Title"),
+                    desc: t("understanding.g3Desc"),
                   },
                   {
-                    title: "Beard skin treatment",
-                    desc: "You have beard dandruff, itch, redness, or bumps.",
+                    title: t("understanding.g4Title"),
+                    desc: t("understanding.g4Desc"),
                   },
                 ].map((item, i) => (
                   <motion.div
@@ -317,13 +315,13 @@ export default function BeardLanding() {
                 variants={fadeInUp}
                 className="text-wine font-semibold uppercase tracking-wide"
               >
-                Understanding the Root Cause
+                {t("causes.badge")}
               </motion.span>
               <motion.h2
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl text-brown mt-2"
               >
-                Why your beard is patchy or not growing
+                {t("causes.title")}
               </motion.h2>
             </motion.div>
 
@@ -337,28 +335,28 @@ export default function BeardLanding() {
               {[
                 {
                   icon: <Users className="w-8 h-8" />,
-                  title: "Genetics",
-                  desc: "Some men naturally grow thicker beards",
+                  title: t("causes.c1Title"),
+                  desc: t("causes.c1Desc"),
                 },
                 {
                   icon: <AlertCircle className="w-8 h-8" />,
-                  title: "Alopecia Barbae",
-                  desc: "Autoimmune condition causing patchy loss",
+                  title: t("causes.c2Title"),
+                  desc: t("causes.c2Desc"),
                 },
                 {
                   icon: <Award className="w-8 h-8" />,
-                  title: "Scars or Burns",
-                  desc: "Scar tissue prevents hair growth",
+                  title: t("causes.c3Title"),
+                  desc: t("causes.c3Desc"),
                 },
                 {
                   icon: <Scissors className="w-8 h-8" />,
-                  title: "Grooming Habits",
-                  desc: "Aggressive shaving or friction",
+                  title: t("causes.c4Title"),
+                  desc: t("causes.c4Desc"),
                 },
                 {
                   icon: <Droplets className="w-8 h-8" />,
-                  title: "Beard Dandruff",
-                  desc: "Inflammation affecting growth",
+                  title: t("causes.c5Title"),
+                  desc: t("causes.c5Desc"),
                 },
               ].map((item, i) => (
                 <motion.div
@@ -393,37 +391,37 @@ export default function BeardLanding() {
                 variants={fadeInUp}
                 className="text-wine font-semibold uppercase tracking-wide"
               >
-                Treatment Options
+                {t("treatments.badge")}
               </motion.span>
               <motion.h2
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl text-brown mt-2"
               >
-                What actually helps
+                {t("treatments.title")}
               </motion.h2>
             </motion.div>
 
             <div className="grid lg:grid-cols-3 gap-8">
               {[
                 {
-                  title: "Medical Treatment",
-                  subtitle: "For sudden patchy loss",
+                  title: t("treatments.t1Title"),
+                  subtitle: t("treatments.t1Sub"),
                   icon: <Activity className="w-8 h-8" />,
-                  desc: "Corticosteroid injections for alopecia areata. Medical review essential.",
+                  desc: t("treatments.t1Desc"),
                   color: "from-wine to-rose",
                 },
                 {
-                  title: "PRP Therapy",
-                  subtitle: "For thinning areas",
+                  title: t("treatments.t2Title"),
+                  subtitle: t("treatments.t2Sub"),
                   icon: <Droplets className="w-8 h-8" />,
-                  desc: "Platelet-rich plasma for early thinning and density support where follicles exist.",
+                  desc: t("treatments.t2Desc"),
                   color: "from-rose to-taupe",
                 },
                 {
-                  title: "Beard Transplant",
-                  subtitle: "For permanent gaps",
+                  title: t("treatments.t3Title"),
+                  subtitle: t("treatments.t3Sub"),
                   icon: <Scissors className="w-8 h-8" />,
-                  desc: "FUE facial hair transplant for long-term gaps, scars, or absent follicles.",
+                  desc: t("treatments.t3Desc"),
                   color: "from-brown to-wine",
                 },
               ].map((item, i) => (
@@ -453,7 +451,7 @@ export default function BeardLanding() {
                     </p>
                     <p className="text-taupe mb-6">{item.desc}</p>
                     <button className="flex items-center text-wine font-semibold group-hover:gap-2 transition-all">
-                      Learn more <ChevronRight className="w-4 h-4" />
+                      {t("treatments.learnMore")} <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
                 </motion.div>
@@ -475,16 +473,16 @@ export default function BeardLanding() {
               >
                 <div className="bg-light backdrop-blur-lg bg-opacity-70 rounded-3xl p-8 border border-taupe border-opacity-30">
                   <h3 className="font-['Georgia',serif] text-3xl text-brown mb-6">
-                    Beard Assessment at Nexus Clinic
+                    {t("assessment.title")}
                   </h3>
                   <div className="space-y-4">
                     {[
-                      "What your beard looked like before",
-                      "How long the patchiness has been there",
-                      "Whether the skin is inflamed or itchy",
-                      "If you have sudden patchy loss",
-                      "Whether you have scars or injury lines",
-                      "Your goal: subtle fill or fuller defined line",
+                      t("assessment.a1"),
+                      t("assessment.a2"),
+                      t("assessment.a3"),
+                      t("assessment.a4"),
+                      t("assessment.a5"),
+                      t("assessment.a6"),
                     ].map((item, i) => (
                       <motion.div
                         key={i}
@@ -508,21 +506,18 @@ export default function BeardLanding() {
                 className="space-y-6"
               >
                 <span className="text-wine font-semibold uppercase tracking-wide">
-                  Our Approach
+                  {t("assessment.badge")}
                 </span>
                 <h2 className="font-['Georgia',serif] text-4xl text-brown">
-                  A consult should not feel like a sales pitch
+                  {t("assessment.approachTitle")}
                 </h2>
                 <p className="text-taupe text-lg">
-                  It should feel like someone finally understands what you are
-                  dealing with. If we suspect alopecia areata or another medical
-                  condition, we focus on diagnosis first.
+                  {t("assessment.approachDesc")}
                 </p>
                 <div className="pt-6">
                   <div className="bg-cream p-6 rounded-2xl border-l-4 border-wine">
                     <p className="text-brown italic">
-                      "Because cosmetic boosters are not the same as medical
-                      treatment."
+                      {t("assessment.quote")}
                     </p>
                   </div>
                 </div>
@@ -545,54 +540,58 @@ export default function BeardLanding() {
                 variants={fadeInUp}
                 className="text-wine font-semibold uppercase tracking-wide"
               >
-                Comparison
+                {t("prosCons.badge")}
               </motion.span>
               <motion.h2
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl text-brown mt-2"
               >
-                Pros & Cons of Common Treatments
+                {t("prosCons.title")}
               </motion.h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  title: "PRP for Beard",
+                  title: t("prosCons.prp"),
                   pros: [
-                    "Uses your own platelets",
-                    "Minimal downtime",
-                    "Suits early thinning",
+                    t("prosCons.prpPro1"),
+                    t("prosCons.prpPro2"),
+                    t("prosCons.prpPro3"),
                   ],
                   cons: [
-                    "Results vary",
-                    "Needs multiple sessions",
-                    "Not for scar zones",
+                    t("prosCons.prpCon1"),
+                    t("prosCons.prpCon2"),
+                    t("prosCons.prpCon3"),
                   ],
                   color: "text-wine",
                 },
                 {
-                  title: "Minoxidil",
+                  title: t("prosCons.minox"),
                   pros: [
-                    "Accessible",
-                    "Clinical support exists",
-                    "Widely discussed",
+                    t("prosCons.minoxPro1"),
+                    t("prosCons.minoxPro2"),
+                    t("prosCons.minoxPro3"),
                   ],
                   cons: [
-                    "Skin irritation risk",
-                    "Off-label use",
-                    "Store safely from children",
+                    t("prosCons.minoxCon1"),
+                    t("prosCons.minoxCon2"),
+                    t("prosCons.minoxCon3"),
                   ],
                   color: "text-rose",
                 },
                 {
-                  title: "Beard Transplant",
+                  title: t("prosCons.transplant"),
                   pros: [
-                    "Permanent density",
-                    "Works on scars",
-                    "Long-lasting results",
+                    t("prosCons.transPro1"),
+                    t("prosCons.transPro2"),
+                    t("prosCons.transPro3"),
                   ],
-                  cons: ["Higher cost", "Healing period", "Skill-dependent"],
+                  cons: [
+                    t("prosCons.transCon1"),
+                    t("prosCons.transCon2"),
+                    t("prosCons.transCon3"),
+                  ],
                   color: "text-brown",
                 },
               ].map((item, i) => (
@@ -612,7 +611,7 @@ export default function BeardLanding() {
                   <div className="space-y-6">
                     <div>
                       <h4 className="font-semibold text-green-600 mb-3">
-                        Pros
+                        {t("prosCons.prosLabel")}
                       </h4>
                       <ul className="space-y-2">
                         {item.pros.map((pro, idx) => (
@@ -627,7 +626,7 @@ export default function BeardLanding() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-red-500 mb-3">Cons</h4>
+                      <h4 className="font-semibold text-red-500 mb-3">{t("prosCons.consLabel")}</h4>
                       <ul className="space-y-2">
                         {item.cons.map((con, idx) => (
                           <li
@@ -659,20 +658,19 @@ export default function BeardLanding() {
                 className="space-y-6"
               >
                 <span className="text-wine font-semibold uppercase tracking-wide">
-                  Investment
+                  {t("cost.badge")}
                 </span>
                 <h2 className="font-['Georgia',serif] text-4xl text-brown">
-                  Beard Treatment Cost in Malaysia
+                  {t("cost.title")}
                 </h2>
                 <p className="text-taupe text-lg">
-                  Pricing depends on coverage area, technique, and graft count.
-                  Here are real ranges from Malaysia sources:
+                  {t("cost.desc")}
                 </p>
                 <div className="space-y-4">
                   {[
-                    "RM 7,000 - RM 15,000 for beard transplant ranges",
-                    "RM 3,000+ starting prices on directories",
-                    "RM 5,000 - RM 10,000 at Nexus Clinic (guide only)",
+                    t("cost.r1"),
+                    t("cost.r2"),
+                    t("cost.r3"),
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-2 h-2 bg-wine rounded-full"></div>
@@ -682,8 +680,7 @@ export default function BeardLanding() {
                 </div>
                 <div className="bg-cream p-6 rounded-2xl mt-8">
                   <p className="text-wine font-semibold">
-                    If a clinic gives pricing without seeing your beard area,
-                    that is a red flag. Beard work is custom.
+                    {t("cost.warning")}
                   </p>
                 </div>
               </motion.div>
@@ -696,24 +693,24 @@ export default function BeardLanding() {
                 className="bg-linear-to-br from-wine to-rose p-8 rounded-3xl text-white"
               >
                 <h3 className="font-['Georgia',serif] text-2xl mb-6">
-                  Price Guide
+                  {t("cost.guideTitle")}
                 </h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center pb-2 border-b border-white border-opacity-30">
-                    <span>Goatee/Moustache</span>
-                    <span className="font-bold">500-1,000 grafts</span>
+                    <span>{t("cost.goatee")}</span>
+                    <span className="font-bold">{t("cost.goateeGrafts")}</span>
                   </div>
                   <div className="flex justify-between items-center pb-2 border-b border-white border-opacity-30">
-                    <span>Jawline & Cheeks</span>
-                    <span className="font-bold">1,500-2,500 grafts</span>
+                    <span>{t("cost.jawline")}</span>
+                    <span className="font-bold">{t("cost.jawlineGrafts")}</span>
                   </div>
                   <div className="flex justify-between items-center pb-2 border-b border-white border-opacity-30">
-                    <span>Full Beard</span>
-                    <span className="font-bold">2,500-4,000 grafts</span>
+                    <span>{t("cost.fullBeard")}</span>
+                    <span className="font-bold">{t("cost.fullBeardGrafts")}</span>
                   </div>
                   <div className="pt-6">
                     <p className="text-sm opacity-90">
-                      *Final cost determined during consultation
+                      {t("cost.disclaimer")}
                     </p>
                   </div>
                 </div>
@@ -736,41 +733,40 @@ export default function BeardLanding() {
                 variants={fadeInUp}
                 className="text-wine font-semibold uppercase tracking-wide"
               >
-                Often Ignored But Important
+                {t("dandruff.badge")}
               </motion.span>
               <motion.h2
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl text-brown mt-2 mb-8"
               >
-                Beard dandruff and beard skin problems
+                {t("dandruff.title")}
               </motion.h2>
               <motion.div
                 variants={fadeInUp}
                 className="bg-white p-8 rounded-3xl shadow-xl"
               >
                 <p className="text-brown text-xl mb-6">
-                  A beard can look patchy even when hair exists, simply because
-                  the skin is inflamed.
+                  {t("dandruff.desc")}
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 text-left">
                   <div className="p-4 bg-light rounded-xl">
                     <h3 className="font-semibold text-wine mb-2">
-                      Common causes:
+                      {t("dandruff.causesTitle")}
                     </h3>
                     <ul className="space-y-2 text-taupe">
-                      <li>• Seborrheic dermatitis</li>
-                      <li>• Flakes and itch</li>
-                      <li>• Redness under beard</li>
+                      <li>• {t("dandruff.cause1")}</li>
+                      <li>• {t("dandruff.cause2")}</li>
+                      <li>• {t("dandruff.cause3")}</li>
                     </ul>
                   </div>
                   <div className="p-4 bg-light rounded-xl">
                     <h3 className="font-semibold text-wine mb-2">
-                      Treatment focus:
+                      {t("dandruff.treatTitle")}
                     </h3>
                     <ul className="space-y-2 text-taupe">
-                      <li>• Antifungal approaches</li>
-                      <li>• Gentle care routine</li>
-                      <li>• Medical guidance</li>
+                      <li>• {t("dandruff.treat1")}</li>
+                      <li>• {t("dandruff.treat2")}</li>
+                      <li>• {t("dandruff.treat3")}</li>
                     </ul>
                   </div>
                 </div>
@@ -796,16 +792,15 @@ export default function BeardLanding() {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl mb-6"
               >
-                Ready for a beard that looks even, natural, and confident?
+                {t("cta.title")}
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-xl mb-8 opacity-90">
-                Start with a proper assessment. We'll help you understand the
-                cause, then choose the right path.
+                {t("cta.desc")}
               </motion.p>
               <motion.div variants={fadeInUp}>
                 <button className="bg-white text-brown px-12 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 mx-auto">
                   <Calendar className="w-6 h-6" />
-                  Book Your Consultation Today
+                  {t("cta.bookBtn")}
                 </button>
               </motion.div>
             </motion.div>
