@@ -28,32 +28,36 @@ import {
   fadeInUp,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const HairLossTreatment = () => {
+const HairLossTreatment = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "hairLoss");
+
   const faqs = [
     {
-      q: "Can hair loss be reversed naturally?",
-      a: "Sometimes. If linked to temporary triggers like stress, it may improve. Genetic loss needs medical treatment.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "How long to see results?",
-      a: "3 to 6 months for visible change, sometimes longer.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "Is PRP good for hair loss?",
-      a: "Widely used for thinning hair and early-stage loss.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
     {
-      q: "What happens if I stop minoxidil?",
-      a: "Benefits often fade after stopping.",
+      q: t("faq.q4"),
+      a: t("faq.a4"),
     },
     {
-      q: "Is finasteride safe?",
-      a: "Effective but can have side effects. Requires medical supervision.",
+      q: t("faq.q5"),
+      a: t("faq.a5"),
     },
     {
-      q: "When do I need a transplant?",
-      a: "When follicles are no longer active in an area.",
+      q: t("faq.q6"),
+      a: t("faq.a6"),
     },
   ];
   return (
@@ -78,21 +82,20 @@ const HairLossTreatment = () => {
                 <div className="inline-flex items-center space-x-2 bg-white/70 backdrop-blur-sm px-4 py-2 rounded-full">
                   <Shield className="w-4 h-4 text-wine" />
                   <span className="text-sm font-medium text-brown">
-                    Since 2001 • MOH Licensed
+                    {t("hero.badge")}
                   </span>
                 </div>
 
                 <h1 className="font-[--font-georgia] text-5xl lg:text-7xl font-bold leading-tight">
-                  Your hair is not
-                  <span className="block text-wine">"just hair."</span>
+                  {t("hero.title1")}
+                  <span className="block text-wine">{t("hero.title2")}</span>
                   <span className="block text-3xl lg:text-4xl text-taupe mt-4">
-                    It is how you show up.
+                    {t("hero.title3")}
                   </span>
                 </h1>
 
                 <p className="text-xl text-brown max-w-lg leading-relaxed">
-                  At Nexus Clinic Kuala Lumpur, we build a plan that fits your
-                  hair type, your lifestyle, and your goals.
+                  {t("hero.desc")}
                 </p>
 
                 <div className="flex flex-wrap gap-4">
@@ -101,7 +104,7 @@ const HairLossTreatment = () => {
                     whileTap={{ scale: 0.95 }}
                     className="bg-wine text-white px-8 py-4 rounded-full font-medium flex items-center space-x-2 hover:bg-rose transition-colors"
                   >
-                    <span>Start Your Assessment</span>
+                    <span>{t("hero.startBtn")}</span>
                     <ArrowRight className="w-5 h-5" />
                   </motion.button>
 
@@ -110,7 +113,7 @@ const HairLossTreatment = () => {
                     whileTap={{ scale: 0.95 }}
                     className="bg-white/70 backdrop-blur-sm text-brown px-8 py-4 rounded-full font-medium border border-taupe/20 hover:bg-white transition-all"
                   >
-                    View Success Stories
+                    {t("hero.storiesBtn")}
                   </motion.button>
                 </div>
               </motion.div>
@@ -118,21 +121,21 @@ const HairLossTreatment = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/50">
                   <h3 className="text-2xl font-[--font-georgia] font-bold text-brown mb-6">
-                    Quick Answers
+                    {t("hero.qaTitle")}
                   </h3>
                   <div className="space-y-6">
                     {[
                       {
-                        q: "Can hair loss be treated?",
-                        a: "Yes. Many types can be slowed, improved, or managed.",
+                        q: t("hero.qa1Q"),
+                        a: t("hero.qa1A"),
                       },
                       {
-                        q: "What works for genetic loss?",
-                        a: "First-line: minoxidil and finasteride under medical advice.",
+                        q: t("hero.qa2Q"),
+                        a: t("hero.qa2A"),
                       },
                       {
-                        q: "When do results show?",
-                        a: "Most treatments need 3-6 months of consistency.",
+                        q: t("hero.qa3Q"),
+                        a: t("hero.qa3A"),
                       },
                     ].map((item, idx) => (
                       <motion.div
@@ -154,7 +157,7 @@ const HairLossTreatment = () => {
                 <div className="absolute -bottom-8 -left-8 bg-brown text-white p-6 rounded-2xl shadow-xl">
                   <div className="flex items-center space-x-3">
                     <MapPin className="w-5 h-5 text-cream" />
-                    <span className="text-sm">KL's Golden Triangle</span>
+                    <span className="text-sm">{t("hero.location")}</span>
                   </div>
                 </div>
               </motion.div>
@@ -175,10 +178,10 @@ const HairLossTreatment = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-4xl lg:text-5xl font-[--font-georgia] font-bold text-brown mb-6">
-                Trust at a Glance
+                {t("trust.title")}
               </h2>
               <p className="text-xl text-taupe">
-                Two decades of expertise in the heart of Kuala Lumpur
+                {t("trust.desc")}
               </p>
             </motion.div>
 
@@ -186,20 +189,20 @@ const HairLossTreatment = () => {
               {[
                 {
                   icon: Calendar,
-                  label: "Founded",
-                  value: "2001",
+                  label: t("trust.t1Label"),
+                  value: t("trust.t1Value"),
                   color: "text-wine",
                 },
                 {
                   icon: Users,
-                  label: "Patients Treated",
-                  value: "10,000+",
+                  label: t("trust.t2Label"),
+                  value: t("trust.t2Value"),
                   color: "text-rose",
                 },
                 {
                   icon: Shield,
-                  label: "MOH Licensed",
-                  value: "Full Accreditation",
+                  label: t("trust.t3Label"),
+                  value: t("trust.t3Value"),
                   color: "text-brown",
                 },
               ].map((item, idx) => (
@@ -230,7 +233,7 @@ const HairLossTreatment = () => {
                 <div className="flex items-center space-x-3">
                   <MapPin className="w-6 h-6 text-cream" />
                   <span className="text-lg">
-                    LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, KL
+                    {t("trust.address")}
                   </span>
                 </div>
                 <div className="flex items-center space-x-6">
@@ -253,16 +256,15 @@ const HairLossTreatment = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div variants={fadeInLeft} className="max-w-3xl mb-16">
               <span className="text-wine font-semibold tracking-wider text-sm uppercase">
-                Understanding
+                {t("causes.badge")}
               </span>
               <h2 className="text-4xl lg:text-5xl font-[--font-georgia] font-bold text-brown mt-4 mb-6">
-                Hair loss in Malaysia:
+                {t("causes.title1")}
                 <br />
-                Why it happens
+                {t("causes.title2")}
               </h2>
               <p className="text-xl text-taupe">
-                Hair loss is not one single condition. It is a symptom with many
-                causes.
+                {t("causes.desc")}
               </p>
             </motion.div>
 
@@ -270,32 +272,32 @@ const HairLossTreatment = () => {
               {[
                 {
                   icon: Activity,
-                  title: "Pattern Hair Loss",
-                  desc: "Male and female pattern",
+                  title: t("causes.c1Title"),
+                  desc: t("causes.c1Desc"),
                   color: "from-wine to-rose",
                 },
                 {
                   icon: Zap,
-                  title: "Telogen Effluvium",
-                  desc: "Stress, illness, weight loss",
+                  title: t("causes.c2Title"),
+                  desc: t("causes.c2Desc"),
                   color: "from-rose to-taupe",
                 },
                 {
                   icon: AlertCircle,
-                  title: "Alopecia Areata",
-                  desc: "Patchy hair loss",
+                  title: t("causes.c3Title"),
+                  desc: t("causes.c3Desc"),
                   color: "from-taupe to-brown",
                 },
                 {
                   icon: Scissors,
-                  title: "Traction Hair Loss",
-                  desc: "Tight hairstyles",
+                  title: t("causes.c4Title"),
+                  desc: t("causes.c4Desc"),
                   color: "from-wine to-brown",
                 },
                 {
                   icon: Flame,
-                  title: "Scarring Hair Loss",
-                  desc: "Needs early specialist care",
+                  title: t("causes.c5Title"),
+                  desc: t("causes.c5Desc"),
                   color: "from-rose to-brown",
                 },
               ].map((item, idx) => (
@@ -329,10 +331,10 @@ const HairLossTreatment = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="text-4xl lg:text-5xl font-[--font-georgia] font-bold text-brown mb-6">
-                Our Treatment Menu
+                {t("treatments.title")}
               </h2>
               <p className="text-xl text-taupe">
-                Evidence-based solutions for every type of hair loss
+                {t("treatments.desc")}
               </p>
             </motion.div>
 
@@ -340,39 +342,39 @@ const HairLossTreatment = () => {
               {[
                 {
                   icon: Droplets,
-                  title: "Minoxidil",
-                  desc: "Core option for early pattern loss",
-                  price: "From RM 150/month",
+                  title: t("treatments.tr1Title"),
+                  desc: t("treatments.tr1Desc"),
+                  price: t("treatments.tr1Price"),
                 },
                 {
                   icon: Syringe,
-                  title: "PRP Therapy",
-                  desc: "Platelet-rich plasma injections",
-                  price: "RM 800-2,500/session",
+                  title: t("treatments.tr2Title"),
+                  desc: t("treatments.tr2Desc"),
+                  price: t("treatments.tr2Price"),
                 },
                 {
                   icon: Zap,
-                  title: "Low-Level Laser",
-                  desc: "Photomodulation therapy",
-                  price: "Package available",
+                  title: t("treatments.tr3Title"),
+                  desc: t("treatments.tr3Desc"),
+                  price: t("treatments.tr3Price"),
                 },
                 {
                   icon: Gem,
-                  title: "Advanced Options",
-                  desc: "Stem cell, exosomes",
-                  price: "Consultation required",
+                  title: t("treatments.tr4Title"),
+                  desc: t("treatments.tr4Desc"),
+                  price: t("treatments.tr4Price"),
                 },
                 {
                   icon: Scissors,
-                  title: "Hair Transplant",
-                  desc: "For advanced loss",
-                  price: "RM 6,000-15,000",
+                  title: t("treatments.tr5Title"),
+                  desc: t("treatments.tr5Desc"),
+                  price: t("treatments.tr5Price"),
                 },
                 {
                   icon: Leaf,
-                  title: "Scalp Injectables",
-                  desc: "Fillers & mesotherapy",
-                  price: "Custom pricing",
+                  title: t("treatments.tr6Title"),
+                  desc: t("treatments.tr6Desc"),
+                  price: t("treatments.tr6Price"),
                 },
               ].map((item, idx) => (
                 <motion.div
@@ -401,14 +403,14 @@ const HairLossTreatment = () => {
               className="mt-16 bg-linear-to-r from-wine to-rose p-12 rounded-3xl text-white"
             >
               <h3 className="text-3xl font-[--font-georgia] font-bold mb-8 text-center">
-                Your Hair Restoration Timeline
+                {t("treatments.timelineTitle")}
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { month: 1, desc: "Hope & patience" },
-                  { month: 2, desc: "Small improvements" },
-                  { month: 3, desc: "Real change visible" },
-                  { month: 9, desc: "Settled results" },
+                  { month: 1, desc: t("treatments.m1Desc") },
+                  { month: 2, desc: t("treatments.m2Desc") },
+                  { month: 3, desc: t("treatments.m3Desc") },
+                  { month: 9, desc: t("treatments.m9Desc") },
                 ].map((item, idx) => (
                   <motion.div
                     key={idx}
@@ -416,7 +418,7 @@ const HairLossTreatment = () => {
                     className="text-center"
                   >
                     <div className="text-4xl font-bold mb-2">
-                      Month {item.month}
+                      {t("treatments.month")} {item.month}
                     </div>
                     <p className="opacity-90">{item.desc}</p>
                   </motion.div>
@@ -440,31 +442,31 @@ const HairLossTreatment = () => {
               className="max-w-3xl mx-auto text-center mb-16"
             >
               <h2 className="text-4xl lg:text-5xl font-[--font-georgia] font-bold text-brown mb-6">
-                Treatment Costs in Malaysia
+                {t("cost.title")}
               </h2>
               <p className="text-xl text-taupe">
-                Transparent pricing, no surprises
+                {t("cost.desc")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               {[
                 {
-                  title: "PRP Sessions",
-                  range: "RM 800 - 2,500",
-                  per: "per session",
+                  title: t("cost.c1Title"),
+                  range: t("cost.c1Range"),
+                  per: t("cost.c1Per"),
                   icon: Droplets,
                 },
                 {
-                  title: "Hair Transplant",
-                  range: "RM 6,000 - 15,000",
-                  per: "one-time",
+                  title: t("cost.c2Title"),
+                  range: t("cost.c2Range"),
+                  per: t("cost.c2Per"),
                   icon: Scissors,
                 },
                 {
-                  title: "Medication Plans",
-                  range: "Custom pricing",
-                  per: "monthly",
+                  title: t("cost.c3Title"),
+                  range: t("cost.c3Range"),
+                  per: t("cost.c3Per"),
                   icon: HeartPulse,
                 },
               ].map((item, idx) => (
@@ -509,11 +511,10 @@ const HairLossTreatment = () => {
               className="max-w-3xl mx-auto text-center text-white"
             >
               <h2 className="text-4xl lg:text-5xl font-[--font-georgia] font-bold mb-6">
-                Stop Guessing. Start Growing.
+                {t("cta.title")}
               </h2>
               <p className="text-xl mb-8 opacity-90">
-                Book your hair loss assessment at Nexus Clinic Kuala Lumpur
-                today.
+                {t("cta.desc")}
               </p>
 
               <motion.button
@@ -521,18 +522,18 @@ const HairLossTreatment = () => {
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-brown px-10 py-5 rounded-full text-lg font-semibold inline-flex items-center space-x-3 hover:bg-cream transition-colors"
               >
-                <span>Schedule Your Consultation</span>
+                <span>{t("cta.bookBtn")}</span>
                 <ArrowRight className="w-5 h-5" />
               </motion.button>
 
               <div className="mt-12 flex items-center justify-center space-x-8">
                 <div className="flex items-center space-x-2">
                   <Phone className="w-5 h-5" />
-                  <span>+60 3-1234 5678</span>
+                  <span>{t("cta.phone")}</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Mail className="w-5 h-5" />
-                  <span>hello@nexusclinic.my</span>
+                  <span>{t("cta.email")}</span>
                 </div>
               </div>
             </motion.div>
@@ -552,7 +553,7 @@ const HairLossTreatment = () => {
             className="bg-wine text-white p-4 rounded-full shadow-2xl flex items-center space-x-3 hover:bg-rose transition-colors"
           >
             <Phone className="w-6 h-6" />
-            <span className="font-medium pr-2">Book Now</span>
+            <span className="font-medium pr-2">{t("cta.floatingBtn")}</span>
           </motion.button>
         </motion.div>
       </main>

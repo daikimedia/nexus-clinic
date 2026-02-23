@@ -28,32 +28,36 @@ import {
   fadeInUp,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const PRPLandingPage = () => {
+const PRPLandingPage = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "prpHair");
+
   const faqs = [
     {
-      q: "Does PRP actually regrow hair?",
-      a: "For many people with thinning hair, it can help. Some see regrowth, some see less shedding.",
+      q: t("faq.q1"),
+      a: t("faq.a1"),
     },
     {
-      q: "Is PRP painful?",
-      a: "Quick pinches or pressure across the scalp. Most people return to normal activities the same day.",
+      q: t("faq.q2"),
+      a: t("faq.a2"),
     },
     {
-      q: "What happens if you stop PRP?",
-      a: "If PRP helped, stopping may lead to gradual loss again. Maintenance supports longer-term results.",
+      q: t("faq.q3"),
+      a: t("faq.a3"),
     },
     {
-      q: "Is PRP permanent?",
-      a: "Not usually a one-time fix. Often needs repeat sessions to maintain benefits.",
+      q: t("faq.q4"),
+      a: t("faq.a4"),
     },
     {
-      q: "Can I exercise after PRP?",
-      a: "Light exercise is often fine the next day. Wait a few days for intense workouts.",
+      q: t("faq.q5"),
+      a: t("faq.a5"),
     },
     {
-      q: "Can I wash my hair after PRP?",
-      a: "Gentle shampoo next morning is often recommended. Follow your clinician's instructions.",
+      q: t("faq.q6"),
+      a: t("faq.a6"),
     },
   ];
   return (
@@ -78,21 +82,19 @@ const PRPLandingPage = () => {
                 <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full border border-taupe/20">
                   <Leaf className="w-4 h-4 text-wine" />
                   <span className="text-sm font-inter text-brown">
-                    Natural Treatment • Your Own Platelets
+                    {t("hero.badge")}
                   </span>
                 </div>
 
                 <h1 className="font-georgia text-5xl lg:text-6xl text-brown leading-tight">
-                  Thinning hair?
+                  {t("hero.title1")}
                   <span className="block text-wine mt-2">
-                    Let's wake up your follicles again.
+                    {t("hero.title2")}
                   </span>
                 </h1>
 
                 <p className="text-lg text-taupe font-inter max-w-lg">
-                  PRP hair treatment uses your own blood platelets to support
-                  thicker growth. A doctor-guided option for early hair thinning
-                  in Kuala Lumpur.
+                  {t("hero.desc")}
                 </p>
 
                 <div className="flex flex-wrap gap-4">
@@ -101,7 +103,7 @@ const PRPLandingPage = () => {
                     whileTap={{ scale: 0.98 }}
                     className="bg-wine text-white px-8 py-4 rounded-full font-inter text-sm hover:bg-rose transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 group"
                   >
-                    Schedule Consultation
+                    {t("hero.scheduleBtn")}
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
 
@@ -110,7 +112,7 @@ const PRPLandingPage = () => {
                     whileTap={{ scale: 0.98 }}
                     className="bg-white/80 backdrop-blur-sm border border-taupe/30 text-brown px-8 py-4 rounded-full font-inter text-sm hover:bg-white transition-all duration-300"
                   >
-                    Learn More
+                    {t("hero.learnBtn")}
                   </motion.button>
                 </div>
 
@@ -119,18 +121,18 @@ const PRPLandingPage = () => {
                   {[
                     {
                       icon: MapPin,
-                      text: "Central KL Location",
-                      sub: "Wisma UOA II",
+                      text: t("hero.t1Text"),
+                      sub: t("hero.t1Sub"),
                     },
                     {
                       icon: Award,
-                      text: "Established 2001",
-                      sub: "Over 20 years",
+                      text: t("hero.t2Text"),
+                      sub: t("hero.t2Sub"),
                     },
                     {
                       icon: Users,
-                      text: "Doctor Consultations",
-                      sub: "Personalized care",
+                      text: t("hero.t3Text"),
+                      sub: t("hero.t3Sub"),
                     },
                   ].map((item, index) => (
                     <motion.div
@@ -156,25 +158,25 @@ const PRPLandingPage = () => {
                 <div className="relative rounded-3xl overflow-hidden bg-linear-to-br from-rose/10 to-wine/10 p-8">
                   <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 space-y-6 border border-white/50">
                     <h3 className="font-georgia text-2xl text-brown">
-                      Quick Answers
+                      {t("hero.qaTitle")}
                     </h3>
 
                     {[
                       {
-                        q: "Does PRP work for hair loss?",
-                        a: "Can help many with thinning hair, results vary",
+                        q: t("hero.qa1Q"),
+                        a: t("hero.qa1A"),
                       },
                       {
-                        q: "When will I see results?",
-                        a: "Less shedding first, visible growth in months",
+                        q: t("hero.qa2Q"),
+                        a: t("hero.qa2A"),
                       },
                       {
-                        q: "How many sessions?",
-                        a: "Monthly for 3 months, then boosters",
+                        q: t("hero.qa3Q"),
+                        a: t("hero.qa3A"),
                       },
                       {
-                        q: "Cost in Malaysia?",
-                        a: "Varies by clinic and add-ons",
+                        q: t("hero.qa4Q"),
+                        a: t("hero.qa4A"),
                       },
                     ].map((item, index) => (
                       <motion.div
@@ -212,15 +214,14 @@ const PRPLandingPage = () => {
               <div className="inline-flex items-center gap-2 bg-wine/10 px-4 py-2 rounded-full mb-4">
                 <Heart className="w-4 h-4 text-wine" />
                 <span className="text-sm font-inter text-brown">
-                  Natural Approach
+                  {t("whatIs.badge")}
                 </span>
               </div>
               <h2 className="font-georgia text-4xl text-brown mb-4">
-                What is PRP Hair Treatment?
+                {t("whatIs.title")}
               </h2>
               <p className="text-lg text-taupe font-inter">
-                PRP means platelet-rich plasma. Platelets are tiny parts of your
-                blood that carry growth factors.
+                {t("whatIs.desc")}
               </p>
             </motion.div>
 
@@ -228,20 +229,20 @@ const PRPLandingPage = () => {
               {[
                 {
                   icon: Droplets,
-                  title: "Blood Draw",
-                  desc: "Small blood sample taken from your arm, like a normal blood test",
+                  title: t("whatIs.s1Title"),
+                  desc: t("whatIs.s1Desc"),
                   color: "wine",
                 },
                 {
                   icon: Zap,
-                  title: "Centrifuge",
-                  desc: "Blood is spun to separate layers and concentrate platelets",
+                  title: t("whatIs.s2Title"),
+                  desc: t("whatIs.s2Desc"),
                   color: "rose",
                 },
                 {
                   icon: Target,
-                  title: "Targeted Injection",
-                  desc: "PRP injected into thinning areas with precise, controlled injections",
+                  title: t("whatIs.s3Title"),
+                  desc: t("whatIs.s3Desc"),
                   color: "brown",
                 },
               ].map((item, index) => (
@@ -277,21 +278,21 @@ const PRPLandingPage = () => {
                 <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-taupe/20">
                   <Users className="w-4 h-4 text-wine" />
                   <span className="text-sm font-inter text-brown">
-                    Ideal Candidates
+                    {t("whoFor.badge")}
                   </span>
                 </div>
 
                 <h2 className="font-georgia text-4xl text-brown">
-                  Who PRP Hair Treatment Is For
+                  {t("whoFor.title")}
                 </h2>
 
                 <div className="space-y-4">
                   {[
-                    "Notice gradual thinning at the crown or part line",
-                    "See a widening hair part or weaker ponytail volume",
-                    "Have early male or female pattern hair loss",
-                    "Want a non-surgical hair restoration option",
-                    "Support results after a hair transplant",
+                    t("whoFor.w1"),
+                    t("whoFor.w2"),
+                    t("whoFor.w3"),
+                    t("whoFor.w4"),
+                    t("whoFor.w5"),
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -312,16 +313,16 @@ const PRPLandingPage = () => {
                 className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-xl border border-white"
               >
                 <h3 className="font-georgia text-2xl text-brown mb-6">
-                  Important Considerations
+                  {t("whoFor.considTitle")}
                 </h3>
                 <p className="font-inter text-taupe mb-6">
-                  PRP may not be suitable if you have:
+                  {t("whoFor.considDesc")}
                 </p>
                 <ul className="space-y-4">
                   {[
-                    "Very low platelets or certain blood-related conditions",
-                    "Active infection at the treatment area",
-                    "Certain serious medical conditions where injections are not advised",
+                    t("whoFor.c1"),
+                    t("whoFor.c2"),
+                    t("whoFor.c3"),
                   ].map((item, index) => (
                     <motion.li
                       key={index}
@@ -353,15 +354,14 @@ const PRPLandingPage = () => {
               <div className="inline-flex items-center gap-2 bg-rose/10 px-4 py-2 rounded-full mb-4">
                 <Clock className="w-4 h-4 text-rose" />
                 <span className="text-sm font-inter text-brown">
-                  Results Timeline
+                  {t("timeline.badge")}
                 </span>
               </div>
               <h2 className="font-georgia text-4xl text-brown mb-4">
-                What to Expect
+                {t("timeline.title")}
               </h2>
               <p className="text-lg text-taupe font-inter">
-                PRP is slow, because hair growth is slow. Here's a realistic
-                timeline:
+                {t("timeline.desc")}
               </p>
             </motion.div>
 
@@ -372,20 +372,20 @@ const PRPLandingPage = () => {
               <div className="space-y-12">
                 {[
                   {
-                    time: "Weeks 2 to 6",
-                    desc: "Less shedding for some people",
+                    time: t("timeline.t1Time"),
+                    desc: t("timeline.t1Desc"),
                     icon: Activity,
                     position: "left",
                   },
                   {
-                    time: "Month 2 to 3",
-                    desc: "Early signs of improvement",
+                    time: t("timeline.t2Time"),
+                    desc: t("timeline.t2Desc"),
                     icon: Sparkles,
                     position: "right",
                   },
                   {
-                    time: "Month 3 to 6",
-                    desc: "Clearer changes in density and thickness",
+                    time: t("timeline.t3Time"),
+                    desc: t("timeline.t3Desc"),
                     icon: Star,
                     position: "left",
                   },
@@ -436,22 +436,22 @@ const PRPLandingPage = () => {
                   <Calendar className="w-8 h-8 text-wine" />
                 </div>
                 <h3 className="font-georgia text-2xl text-brown mb-4">
-                  How Many Sessions?
+                  {t("sessions.sessionsTitle")}
                 </h3>
                 <p className="font-inter text-taupe mb-4">
-                  A widely used plan is:
+                  {t("sessions.sessionsDesc")}
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-wine"></div>
                     <p className="font-inter text-brown">
-                      One session each month for 3 months
+                      {t("sessions.s1")}
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-rose"></div>
                     <p className="font-inter text-brown">
-                      Then a booster every 6 months
+                      {t("sessions.s2")}
                     </p>
                   </div>
                 </div>
@@ -465,16 +465,16 @@ const PRPLandingPage = () => {
                   <Shield className="w-8 h-8 text-rose" />
                 </div>
                 <h3 className="font-georgia text-2xl text-brown mb-4">
-                  Cost in Malaysia
+                  {t("sessions.costTitle")}
                 </h3>
                 <p className="font-inter text-taupe mb-4">
-                  PRP sessions typically range from:
+                  {t("sessions.costDesc")}
                 </p>
                 <p className="font-georgia text-3xl text-wine mb-2">
-                  RM800 - RM2,500
+                  {t("sessions.costRange")}
                 </p>
                 <p className="font-inter text-sm text-taupe">
-                  per session, depending on clinic and add-ons
+                  {t("sessions.costNote")}
                 </p>
               </motion.div>
             </div>
@@ -496,15 +496,14 @@ const PRPLandingPage = () => {
               variants={fadeInUp}
               className="font-georgia text-4xl md:text-5xl mb-6"
             >
-              Start Your Hair Restoration Journey
+              {t("cta.title")}
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl mb-12 text-white/90"
             >
-              Get a scalp review, realistic expectation, and treatment roadmap
-              at Nexus Clinic KL
+              {t("cta.desc")}
             </motion.p>
 
             <motion.div
@@ -513,24 +512,24 @@ const PRPLandingPage = () => {
             >
               <div className="grid md:grid-cols-2 gap-8 text-left">
                 <div>
-                  <h3 className="font-georgia text-xl mb-4">Visit Us</h3>
+                  <h3 className="font-georgia text-xl mb-4">{t("cta.visitTitle")}</h3>
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
                       <MapPin className="w-5 h-5 text-white/80" />
                       <p className="font-inter text-sm">
-                        LG 10, Wisma UOA II, Jalan Pinang, 50450 KL
+                        {t("cta.address")}
                       </p>
                     </div>
                     <div className="flex items-center gap-3">
                       <Phone className="w-5 h-5 text-white/80" />
                       <p className="font-inter text-sm">
-                        +6016-921 5699 / +6016-702 5699
+                        {t("cta.phone")}
                       </p>
                     </div>
                     <div className="flex items-center gap-3">
                       <Mail className="w-5 h-5 text-white/80" />
                       <p className="font-inter text-sm">
-                        contact@nexus-clinic.com
+                        {t("cta.email")}
                       </p>
                     </div>
                   </div>
@@ -542,7 +541,7 @@ const PRPLandingPage = () => {
                     whileTap={{ scale: 0.95 }}
                     className="bg-white text-wine px-8 py-4 rounded-full font-inter text-sm font-medium hover:bg-cream transition-all duration-300 shadow-lg flex items-center gap-2 group"
                   >
-                    Book Your Consultation
+                    {t("cta.bookBtn")}
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
                 </div>
