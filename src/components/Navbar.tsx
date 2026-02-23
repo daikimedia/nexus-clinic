@@ -5,11 +5,11 @@ import {
   Menu,
   X,
   Globe,
-  ShoppingCart,
   Phone,
   ChevronRight,
   Sparkles,
   Calendar,
+  Search,
 } from "lucide-react";
 
 const toSlug = (name: string): string => {
@@ -81,18 +81,11 @@ const navItems = [
         "Minoxidil Treatment",
         "Finasteride",
       ],
-      // body: [
-      //   "Stretch Marks",
-      //   "Body Contouring",
-      //   "Emsculpt - Muscle Toning & Fat Loss",
-      //   "Vanquish ME - Fat Reduction",
-      //   "Clatuu - Fat Freezing",
-      // ],
     },
   },
   { label: "Products", href: "/products" },
   { label: "Blogs", href: "/blogs" },
-  { label: "Cart", href: "/cart", icon: ShoppingCart },
+  // { label: "Cart", href: "/cart", icon: ShoppingCart },
 ];
 
 const languages = [
@@ -108,15 +101,337 @@ const categoryLabels: Record<string, string> = {
   skin: "Skin",
   face: "Face",
   hair: "Hair",
-  // body: "Body",
 };
 
+type SearchResult = { label: string; href: string; category: string };
+
+const buildSearchIndex = (): SearchResult[] => {
+  const results: SearchResult[] = [];
+  navItems.forEach((item) => {
+    if (item.submenu) {
+      Object.entries(item.submenu).forEach(([category, items]) => {
+        (items as string[]).forEach((subItem) => {
+          results.push({
+            label: subItem,
+            href: toSlug(subItem),
+            category: categoryLabels[category] ?? category,
+          });
+        });
+      });
+    } else if (item.href && item.href !== "#") {
+      results.push({ label: item.label, href: item.href, category: "Page" });
+    }
+  });
+  return results;
+};
+
+const searchIndex = buildSearchIndex();
+
+// ── Highlight helper ─────
+const highlightMatch = (text: string, query: string) => {
+  if (!query) return <>{text}</>;
+  const idx = text.toLowerCase().indexOf(query.toLowerCase());
+  if (idx === -1) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, idx)}
+      <span className="text-wine font-semibold">
+        {text.slice(idx, idx + query.length)}
+      </span>
+      {text.slice(idx + query.length)}
+    </>
+  );
+};
+
+// ── Desktop Search Box
+const DesktopSearchBox = ({ isScrolled }: { isScrolled: boolean }) => {
+  const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setQuery(val);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => setDebouncedQuery(val), 300);
+  };
+
+  const results =
+    debouncedQuery.trim().length > 1
+      ? searchIndex
+          .filter((item) =>
+            item.label.toLowerCase().includes(debouncedQuery.toLowerCase()),
+          )
+          .slice(0, 8)
+      : [];
+
+  useEffect(() => {
+    setIsOpen(results.length > 0);
+  }, [results.length]);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const handleSelect = (href: string) => {
+    window.location.href = href;
+    setQuery("");
+    setDebouncedQuery("");
+    setIsOpen(false);
+  };
+
+  return (
+    <div ref={containerRef} className="relative">
+      <div
+        className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all duration-300 ${
+          isScrolled
+            ? "bg-cream/60 border-taupe/20 hover:border-wine/30 focus-within:border-wine/50 focus-within:bg-light"
+            : "bg-light/20 border-light/30 hover:border-light/50 focus-within:bg-light/30 focus-within:border-light/60"
+        }`}
+      >
+        <Search
+          size={15}
+          className={isScrolled ? "text-taupe" : "text-brown/80"}
+        />
+        <input
+          ref={inputRef}
+          type="text"
+          value={query}
+          onChange={handleChange}
+          onFocus={() => results.length > 0 && setIsOpen(true)}
+          placeholder="Search treatments..."
+          className="bg-transparent outline-none text-sm font-inter w-36 md:w-36 placeholder:text-taupe/60 transition-all duration-300 text-brown"
+        />
+        {query && (
+          <button
+            onClick={() => {
+              setQuery("");
+              setDebouncedQuery("");
+              setIsOpen(false);
+              inputRef.current?.focus();
+            }}
+            className="text-taupe hover:text-wine transition-colors"
+          >
+            <X size={13} />
+          </button>
+        )}
+      </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.97 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.97 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="absolute top-full right-0 mt-2 w-72 bg-light rounded-2xl shadow-2xl shadow-brown/10 border border-cream overflow-hidden z-50"
+          >
+            <div className="px-4 py-2.5 border-b border-cream">
+              <p className="text-taupe text-xs font-inter">
+                {results.length} result{results.length !== 1 ? "s" : ""} for
+                &ldquo;{debouncedQuery}&rdquo;
+              </p>
+            </div>
+            <ul className="py-2 max-h-72 overflow-y-auto">
+              {results.map((item, idx) => (
+                <motion.li
+                  key={idx}
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.03 }}
+                >
+                  <button
+                    onClick={() => handleSelect(item.href)}
+                    className="w-full text-left flex items-center gap-3 px-4 py-2.5 hover:bg-cream/60 transition-colors group"
+                  >
+                    <div className="w-7 h-7 rounded-full bg-wine/10 flex items-center justify-center shrink-0">
+                      <Search size={13} className="text-wine" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-brown text-sm font-inter truncate">
+                        {highlightMatch(item.label, debouncedQuery)}
+                      </p>
+                      <p className="text-taupe/70 text-xs font-inter">
+                        {item.category}
+                      </p>
+                    </div>
+                    <ChevronRight
+                      size={14}
+                      className="text-taupe ml-auto shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                    />
+                  </button>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+// ── Mobile Inline Search (renders inside the navbar bar, not the menu) ────────
+const MobileInlineSearch = ({
+  onClose,
+  isScrolled,
+}: {
+  onClose: () => void;
+  isScrolled: boolean;
+}) => {
+  const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Auto-focus on mount
+  useEffect(() => {
+    const t = setTimeout(() => inputRef.current?.focus(), 80);
+    return () => clearTimeout(t);
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setQuery(val);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => setDebouncedQuery(val), 300);
+  };
+
+  const results =
+    debouncedQuery.trim().length > 1
+      ? searchIndex
+          .filter((item) =>
+            item.label.toLowerCase().includes(debouncedQuery.toLowerCase()),
+          )
+          .slice(0, 7)
+      : [];
+
+  useEffect(() => {
+    setIsOpen(results.length > 0);
+  }, [results.length]);
+
+  // Click outside → close suggestions (not the bar itself)
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(e.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const handleSelect = (href: string) => {
+    window.location.href = href;
+  };
+
+  const handleClearOrClose = () => {
+    if (query) {
+      setQuery("");
+      setDebouncedQuery("");
+      setIsOpen(false);
+      inputRef.current?.focus();
+    } else {
+      onClose();
+    }
+  };
+
+  return (
+    <div ref={containerRef} className="relative w-full">
+      {/* Input row */}
+      <div
+        className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all duration-200 ${
+          isScrolled
+            ? "bg-cream/80 border-taupe/30 focus-within:border-wine/50"
+            : "bg-light/90 border-light/40 focus-within:border-light/70"
+        }`}
+      >
+        <Search size={16} className="text-taupe shrink-0" />
+        <input
+          ref={inputRef}
+          type="text"
+          value={query}
+          onChange={handleChange}
+          onFocus={() => results.length > 0 && setIsOpen(true)}
+          placeholder="Search treatments..."
+          className="bg-transparent outline-none text-sm font-inter text-brown placeholder:text-taupe/50 flex-1 min-w-0"
+        />
+        <button
+          onClick={handleClearOrClose}
+          className="text-taupe hover:text-wine transition-colors shrink-0 p-0.5"
+        >
+          <X size={16} />
+        </button>
+      </div>
+
+      {/* Suggestions dropdown — positioned below the navbar bar */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 6 }}
+            transition={{ duration: 0.18 }}
+            className="absolute top-full left-0 right-0 mt-2 bg-light rounded-2xl shadow-2xl shadow-brown/15 border border-cream overflow-hidden z-60"
+          >
+            <div className="px-4 py-2.5 border-b border-cream">
+              <p className="text-taupe text-xs font-inter">
+                {results.length} result{results.length !== 1 ? "s" : ""} untuk
+                &ldquo;{debouncedQuery}&rdquo;
+              </p>
+            </div>
+            <ul className="py-2 max-h-60 overflow-y-auto">
+              {results.map((item, idx) => (
+                <li key={idx}>
+                  <button
+                    onClick={() => handleSelect(item.href)}
+                    className="w-full text-left flex items-center gap-3 px-4 py-3 hover:bg-cream/60 active:bg-cream transition-colors group"
+                  >
+                    <div className="w-7 h-7 rounded-full bg-wine/10 flex items-center justify-center shrink-0">
+                      <Search size={13} className="text-wine" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-brown text-sm font-inter truncate">
+                        {highlightMatch(item.label, debouncedQuery)}
+                      </p>
+                      <p className="text-taupe/70 text-xs">{item.category}</p>
+                    </div>
+                    <ChevronRight size={14} className="text-taupe shrink-0" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+// ── Main Navbar ──────────
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [isActive, setIsActive] = useState(false);
@@ -126,27 +441,17 @@ const Navbar = () => {
       const malaysiaTime = new Date().toLocaleString("en-US", {
         timeZone: "Asia/Kuala_Lumpur",
       });
-
       const now = new Date(malaysiaTime);
       const hour = now.getHours();
-
-      if (hour >= 9 && hour < 18) {
-        setIsActive(true);
-      } else {
-        setIsActive(false);
-      }
+      setIsActive(hour >= 9 && hour < 18);
     };
-
     checkTime();
     const interval = setInterval(checkTime, 60000);
-
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -157,9 +462,7 @@ const Navbar = () => {
   };
 
   const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setActiveDropdown(null);
-    }, 150);
+    timeoutRef.current = setTimeout(() => setActiveDropdown(null), 150);
   };
 
   useEffect(() => {
@@ -173,6 +476,7 @@ const Navbar = () => {
       if (window.innerWidth >= 1024) {
         setIsMenuOpen(false);
         setMobileSubmenu(null);
+        setIsMobileSearchOpen(false);
       }
     };
     window.addEventListener("resize", handleResize);
@@ -180,15 +484,21 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
+
+  const openMobileSearch = () => {
+    setIsMobileSearchOpen(true);
+    setIsMenuOpen(false);
+    setMobileSubmenu(null);
+  };
+
+  const closeMobileSearch = () => {
+    setIsMobileSearchOpen(false);
+  };
 
   return (
     <>
@@ -202,7 +512,7 @@ const Navbar = () => {
             : "bg-transparent"
         }`}
       >
-        {/* Top Bar - Hidden on scroll */}
+        {/* Top Bar */}
         <AnimatePresence>
           {!isScrolled && (
             <motion.div
@@ -241,23 +551,31 @@ const Navbar = () => {
         </AnimatePresence>
 
         {/* Main Nav */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <motion.a
-              href="/"
-              whileTap={{ scale: 0.98 }}
-              className="shrink-0 relative z-10"
-            >
-              <img
-                src="/images/logo.png"
-                alt="Nexus Clinic Logo"
-                className="h-24 md:h-32 w-auto"
-              />
-            </motion.a>
+        <div className="max-w-screen mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center h-16 lg:h-20 gap-3">
+            {/* Logo — hidden when mobile search is open to give space */}
+            <AnimatePresence>
+              {!isMobileSearchOpen && (
+                <motion.a
+                  href="/"
+                  whileTap={{ scale: 0.98 }}
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, width: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="shrink-0 relative z-10 overflow-hidden"
+                >
+                  <img
+                    src="/images/logo.png"
+                    alt="Nexus Clinic Logo"
+                    className="h-24 md:h-32 w-auto"
+                  />
+                </motion.a>
+              )}
+            </AnimatePresence>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-1 ml-auto">
               {navItems.map((item) => (
                 <div
                   key={item.label}
@@ -279,7 +597,6 @@ const Navbar = () => {
                           : "text-wine/90 hover:bg-light/10"
                     }`}
                   >
-                    {item.icon && <item.icon size={16} />}
                     <span>{item.label}</span>
                     {item.submenu && (
                       <motion.div
@@ -293,7 +610,7 @@ const Navbar = () => {
                     )}
                   </a>
 
-                  {/* Dropdown Menu */}
+                  {/* Dropdown */}
                   <AnimatePresence>
                     {item.submenu && activeDropdown === item.label && (
                       <motion.div
@@ -311,9 +628,7 @@ const Navbar = () => {
                         onMouseEnter={() => handleMouseEnter(item.label)}
                         onMouseLeave={handleMouseLeave}
                       >
-                        {/* Dropdown Arrow */}
                         <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-light rotate-45 rounded-sm shadow-lg" />
-
                         <div className="relative bg-light rounded-2xl shadow-2xl shadow-brown/10 border border-cream overflow-hidden">
                           <div className="p-6">
                             <div
@@ -327,9 +642,6 @@ const Navbar = () => {
                                 ([category, items]) => (
                                   <div key={category}>
                                     <div className="flex items-center gap-2 mb-4">
-                                      {/* <span className="text-lg">
-                                        {[category]}
-                                      </span> */}
                                       <h4 className="text-brown font-georgia font-semibold text-sm">
                                         {categoryLabels[category]}
                                       </h4>
@@ -356,8 +668,6 @@ const Navbar = () => {
                               )}
                             </div>
                           </div>
-
-                          {/* Bottom CTA */}
                           <div className="bg-linear-to-r from-cream to-cream/50 px-6 py-4 border-t border-rose/10">
                             <a
                               href="/contact-us"
@@ -392,6 +702,11 @@ const Navbar = () => {
                 </div>
               ))}
 
+              {/* Desktop Search */}
+              <div className="ml-2">
+                <DesktopSearchBox isScrolled={isScrolled} />
+              </div>
+
               {/* Language Selector */}
               <div className="relative ml-2">
                 <motion.button
@@ -412,7 +727,6 @@ const Navbar = () => {
                 <AnimatePresence>
                   {isLangOpen && (
                     <>
-                      {/* Backdrop */}
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -459,7 +773,7 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {/* CTA Button */}
+              {/* CTA */}
               <motion.a
                 href="/contact-us"
                 whileHover={{
@@ -474,72 +788,112 @@ const Navbar = () => {
               </motion.a>
             </nav>
 
-            {/* Mobile: Right Actions */}
-            <div className="flex items-center gap-2 lg:hidden">
-              <motion.button
-                whileTap={{ scale: 0.9 }}
-                onClick={() => {
-                  setIsMenuOpen(!isMenuOpen);
-                  setMobileSubmenu(null);
-                }}
-                className={`p-2.5 mr-6 rounded-full transition-colors ${
-                  isScrolled
-                    ? "text-brown hover:bg-cream"
-                    : "text-brown hover:bg-light/10"
-                }`}
-              >
-                <AnimatePresence mode="wait">
-                  {isMenuOpen ? (
-                    <motion.div
-                      key="close"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.15 }}
+            {/* ── Mobile: Right Actions ── */}
+            <div className="flex items-center gap-1 ml-auto lg:hidden">
+              <AnimatePresence mode="wait">
+                {isMobileSearchOpen ? (
+                  /* Full-width inline search bar */
+                  <motion.div
+                    key="search-open"
+                    initial={{ opacity: 0, scaleX: 0.8 }}
+                    animate={{ opacity: 1, scaleX: 1 }}
+                    exit={{ opacity: 0, scaleX: 0.8 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    style={{ transformOrigin: "right center" }}
+                    className="w-full"
+                  >
+                    <MobileInlineSearch
+                      isScrolled={isScrolled}
+                      onClose={closeMobileSearch}
+                    />
+                  </motion.div>
+                ) : (
+                  /* Search icon + hamburger */
+                  <motion.div
+                    key="icons"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex items-center gap-1"
+                  >
+                    {/* Search button */}
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      onClick={openMobileSearch}
+                      className={`p-2.5 rounded-full transition-colors ${
+                        isScrolled
+                          ? "text-brown hover:bg-cream"
+                          : "text-brown hover:bg-light/10"
+                      }`}
+                      aria-label="Open search"
                     >
-                      <X size={22} />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="menu"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.15 }}
+                      <Search size={20} />
+                    </motion.button>
+
+                    {/* Hamburger / Close */}
+                    <motion.button
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => {
+                        setIsMenuOpen(!isMenuOpen);
+                        setMobileSubmenu(null);
+                      }}
+                      className={`p-2.5 mr-4 rounded-full transition-colors ${
+                        isScrolled
+                          ? "text-brown hover:bg-cream"
+                          : "text-brown hover:bg-light/10"
+                      }`}
+                      aria-label="Toggle menu"
                     >
-                      <Menu size={22} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.button>
+                      <AnimatePresence mode="wait">
+                        {isMenuOpen ? (
+                          <motion.div
+                            key="close"
+                            initial={{ rotate: -90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: 90, opacity: 0 }}
+                            transition={{ duration: 0.15 }}
+                          >
+                            <X size={22} />
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="menu"
+                            initial={{ rotate: 90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: -90, opacity: 0 }}
+                            transition={{ duration: 0.15 }}
+                          >
+                            <Menu size={22} />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* ── Mobile Menu ── */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="lg:hidden bg-light border-t border-cream overflow-hidden"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="lg:hidden bg-light border-t border-cream shadow-xl shadow-brown/10"
             >
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ delay: 0.1 }}
-                className="max-h-[calc(100vh-64px)] overflow-y-auto overscroll-contain"
-              >
-                <div className="px-4 py-6 space-y-2">
+              <div className="max-h-[calc(100dvh-64px)] overflow-y-auto overscroll-contain max-w-screen">
+                <div className="px-4 py-6 max-w-screen space-y-2">
                   {navItems.map((item, index) => (
                     <motion.div
                       key={item.label}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.05 }}
+                      transition={{ delay: index * 0.04 }}
                     >
                       {item.submenu ? (
                         <>
@@ -625,7 +979,6 @@ const Navbar = () => {
                           href={item.href}
                           className="flex items-center gap-3 text-brown hover:text-wine hover:bg-cream/50 py-3.5 px-4 rounded-xl font-inter font-medium transition-all duration-200"
                         >
-                          {item.icon && <item.icon size={18} />}
                           {item.label}
                         </a>
                       )}
@@ -700,7 +1053,7 @@ const Navbar = () => {
                     </p>
                   </motion.div>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

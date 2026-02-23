@@ -209,45 +209,13 @@ const HeroSection = () => {
               >
                 <div className="relative rounded-[40px] lg:rounded-[60px] overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&auto=format&fit=crop"
+                    src="/images/treatment/face-scan.png"
                     alt="Beauty Treatment"
                     className="w-full aspect-4/4 object-cover"
                   />
 
                   {/* Overlay linear */}
                   <div className="absolute inset-0 bg-linear-to-t from-cream/40 to-transparent" />
-
-                  {/* Decorative dotted lines */}
-                  <svg className="absolute inset-0 w-full h-full opacity-60">
-                    <motion.path
-                      d="M 200 150 Q 250 200 280 280"
-                      className="stroke-cream"
-                      strokeWidth="2"
-                      strokeDasharray="4 4"
-                      fill="none"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 2, delay: 1 }}
-                    />
-                    <motion.circle
-                      cx="200"
-                      cy="150"
-                      r="6"
-                      className="fill-cream"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 1.5 }}
-                    />
-                    <motion.circle
-                      cx="280"
-                      cy="280"
-                      r="6"
-                      className="fill-cream"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 2 }}
-                    />
-                  </svg>
                 </div>
 
                 {/* Floating Cards */}
@@ -308,12 +276,12 @@ const HeroSection = () => {
                         className="w-12 h-12 rounded-xl overflow-hidden"
                       >
                         <img
-                          src={`https://images.unsplash.com/photo-${
+                          src={`/images/treatment/${
                             [
-                              "1596755389378-c31d21fd1273",
-                              "1515377905703-c4788e51af15",
-                              "1570172619644-dfd03ed5d881",
-                              "1552693673-1bf958298935",
+                              "face-filler.png",
+                              "weight-loss.png",
+                              "facial.png",
+                              "hair-restoration.png",
                             ][i - 1]
                           }?w=100&auto=format&fit=crop`}
                           alt=""
@@ -365,24 +333,21 @@ const ServicesSection = () => {
       title: "Facial Rejuvenation",
       subtitle: "Anti-Aging & Contouring",
       description: "Botox, fillers, and advanced lifting treatments",
-      image:
-        "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600",
+      image: "/images/treatment/facial.png",
       span: "lg:col-span-2 lg:row-span-2",
     },
     {
       title: "Medical Weight Loss",
       subtitle: "Science-Based Programs",
       description: "Ozempic, Mounjaro & body contouring",
-      image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400",
+      image: "/images/treatment/weight-loss.png?w=400&auto=format&fit=crop",
       span: "",
     },
     {
       title: "Skin Treatments",
       subtitle: "Acne & Pigmentation",
       description: "Laser therapy & chemical peels",
-      image:
-        "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400",
+      image: "/images/treatment/face-scan.png?w=400&auto=format&fit=crop",
       span: "",
     },
     {
@@ -390,7 +355,7 @@ const ServicesSection = () => {
       subtitle: "PRP & Mesotherapy",
       description: "Advanced hair loss solutions",
       image:
-        "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600",
+        "/images/treatment/hair-restoration.png?w=600&auto=format&fit=crop",
       span: "lg:col-span-2",
     },
   ];
@@ -521,7 +486,7 @@ const WhyChooseSection = () => {
                 className="rounded-3xl lg:rounded-[40px] overflow-hidden"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=800&auto=format&fit=crop"
+                  src="/images/treatment/face-filler.png"
                   alt="Clinic Interior"
                   className="w-full aspect-4/5 object-cover"
                 />
@@ -689,7 +654,7 @@ const TestimonialsSection = () => {
           >
             <div className="rounded-3xl lg:rounded-[40px] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&auto=format&fit=crop"
+                src="/images/treatment/happy-patient.png"
                 alt="Happy Patient"
                 className="w-full aspect-square object-cover"
               />
@@ -874,7 +839,7 @@ export default function HomePageNexus() {
     },
   ];
   return (
-    <div className="min-h-screen bg-cream font-inter">
+    <div className="min-h-screen overflow-hidden bg-cream font-inter">
       {/* <Navigation /> */}
       <Navbar />
       <HeroSection />
