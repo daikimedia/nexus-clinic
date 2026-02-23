@@ -31,29 +31,24 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
-const FinasterideLanding = () => {
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
+
+const FinasterideLanding = ({
+  locale = fallbackLng,
+}: {
+  locale?: string;
+}) => {
+  const { t } = useTranslation(locale, "finasteride");
+
   const faqs = [
-    {
-      q: "Does finasteride regrow hair or just stop hair loss?",
-      a: "It can do both. Many men see slower hair loss, and some experience new growth. Results vary by stage and consistency of use.",
-    },
-    {
-      q: "How long does finasteride take to work?",
-      a: "Most people need 3 to 6 months to notice improvement. A full assessment typically requires closer to 12 months of consistent use.",
-    },
-    {
-      q: "What happens if I stop taking finasteride?",
-      a: "The benefits gradually fade over time, and hair loss usually resumes. Finasteride only works while you're taking it consistently.",
-    },
-    {
-      q: "Can finasteride cause depression or anxiety?",
-      a: "Mood changes have been reported. Regulators advise vigilance and to stop finasteride 1mg for hair loss if depression or suicidal thoughts occur.",
-    },
-    {
-      q: "Is finasteride safe for long-term use?",
-      a: "Many people use it for months or years. Long-term use should include regular monitoring for side effects with your healthcare provider.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
   ];
+
   return (
     <>
       <main className="min-h-screen bg-cream font-[--font-inter] overflow-hidden">
@@ -76,18 +71,17 @@ const FinasterideLanding = () => {
                 <div className="inline-flex items-center gap-2 bg-glass backdrop-blur-sm px-4 py-2 rounded-full border border-taupe/20">
                   <Gem className="w-4 h-4 text-wine" />
                   <span className="text-sm text-brown">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </div>
 
                 <h1 className="font-[--font-georgia] text-5xl md:text-7xl text-brown leading-tight">
-                  Stop the DHT.
-                  <span className="block text-wine">Slow the shedding.</span>
+                  {t("hero.title1")}
+                  <span className="block text-wine">{t("hero.title2")}</span>
                 </h1>
 
                 <p className="text-xl text-taupe max-w-lg">
-                  Keep the hair you still have with doctor-prescribed
-                  finasteride treatment for male pattern hair loss.
+                  {t("hero.desc")}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -96,7 +90,7 @@ const FinasterideLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="group bg-wine text-white px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-shadow"
                   >
-                    Book Your Assessment
+                    {t("hero.bookBtn")}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
 
@@ -105,16 +99,16 @@ const FinasterideLanding = () => {
                     whileTap={{ scale: 0.95 }}
                     className="border-2 border-wine text-wine px-8 py-4 rounded-full text-lg font-semibold hover:bg-wine hover:text-white transition-colors"
                   >
-                    Learn More
+                    {t("hero.learnBtn")}
                   </motion.button>
                 </div>
 
                 {/* Trust Indicators */}
                 <div className="grid grid-cols-3 gap-4 pt-8">
                   {[
-                    { icon: Shield, text: "Doctor Led" },
-                    { icon: MapPin, text: "KLCC Location" },
-                    { icon: Users, text: "Expert Care" },
+                    { icon: Shield, text: t("hero.trust1") },
+                    { icon: MapPin, text: t("hero.trust2") },
+                    { icon: Users, text: t("hero.trust3") },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -152,11 +146,11 @@ const FinasterideLanding = () => {
                       <Pill className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <p className="text-sm text-brown">Starting from</p>
+                      <p className="text-sm text-brown">{t("hero.startingFrom")}</p>
                       <p className="text-2xl font-bold text-wine">
-                        RM94
+                        {t("hero.price")}
                         <span className="text-sm font-normal text-taupe">
-                          /month
+                          {t("hero.perMonth")}
                         </span>
                       </p>
                     </div>
@@ -180,10 +174,10 @@ const FinasterideLanding = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="font-[--font-georgia] text-4xl md:text-5xl text-brown mb-6">
-                How Finasteride Works
+                {t("howItWorks.title")}
               </h2>
               <p className="text-xl text-taupe">
-                Understanding the science behind hair loss treatment
+                {t("howItWorks.desc")}
               </p>
             </motion.div>
 
@@ -191,21 +185,18 @@ const FinasterideLanding = () => {
               {[
                 {
                   icon: Droplets,
-                  title: "Blocks DHT",
-                  description:
-                    "Finasteride inhibits 5-alpha reductase, reducing DHT levels by up to 70%",
+                  title: t("howItWorks.h1Title"),
+                  description: t("howItWorks.h1Desc"),
                 },
                 {
                   icon: Target,
-                  title: "Protects Follicles",
-                  description:
-                    "Less DHT means reduced miniaturization of sensitive hair follicles",
+                  title: t("howItWorks.h2Title"),
+                  description: t("howItWorks.h2Desc"),
                 },
                 {
                   icon: Sparkles,
-                  title: "Preserves Hair",
-                  description:
-                    "Helps maintain existing hair and may stimulate regrowth over time",
+                  title: t("howItWorks.h3Title"),
+                  description: t("howItWorks.h3Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -240,10 +231,10 @@ const FinasterideLanding = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="font-[--font-georgia] text-4xl md:text-5xl text-brown mb-6">
-                Your Treatment Timeline
+                {t("timeline.title")}
               </h2>
               <p className="text-xl text-taupe">
-                What to expect on your hair restoration journey
+                {t("timeline.desc")}
               </p>
             </motion.div>
 
@@ -254,26 +245,23 @@ const FinasterideLanding = () => {
               <div className="space-y-12 lg:space-y-0">
                 {[
                   {
-                    time: "Weeks 1-8",
-                    title: "Foundation Phase",
-                    description:
-                      "No visible changes yet. Your body is adjusting to the medication.",
+                    time: t("timeline.t1Time"),
+                    title: t("timeline.t1Title"),
+                    description: t("timeline.t1Desc"),
                     icon: Clock,
                     position: "left",
                   },
                   {
-                    time: "Months 3-6",
-                    title: "Early Results",
-                    description:
-                      "Reduced shedding and subtle improvements begin to appear.",
+                    time: t("timeline.t2Time"),
+                    title: t("timeline.t2Title"),
+                    description: t("timeline.t2Desc"),
                     icon: Activity,
                     position: "right",
                   },
                   {
-                    time: "Months 9-12",
-                    title: "Optimal Results",
-                    description:
-                      "Clear improvements visible. Best time to assess effectiveness.",
+                    time: t("timeline.t3Time"),
+                    title: t("timeline.t3Title"),
+                    description: t("timeline.t3Desc"),
                     icon: Calendar,
                     position: "left",
                   },
@@ -289,7 +277,7 @@ const FinasterideLanding = () => {
                       <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-shadow relative">
                         {/* Timeline Dot */}
                         <div
-                          className="absolute top-1/2 -translate-y-1/2 hidden lg:block w-4 h-4 bg-wine rounded-full 
+                          className="absolute top-1/2 -translate-y-1/2 hidden lg:block w-4 h-4 bg-wine rounded-full
                         ${item.position === 'left' ? '-right-8' : '-left-8'}"
                         />
 
@@ -327,10 +315,10 @@ const FinasterideLanding = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="font-[--font-georgia] text-4xl md:text-5xl text-brown mb-6">
-                Is Finasteride Right For You?
+                {t("fit.title")}
               </h2>
               <p className="text-xl text-taupe">
-                Understanding candidacy for treatment
+                {t("fit.desc")}
               </p>
             </motion.div>
 
@@ -346,15 +334,15 @@ const FinasterideLanding = () => {
                     <CheckCircle2 className="w-6 h-6 text-green-600" />
                   </div>
                   <h3 className="text-2xl font-[--font-georgia] text-brown">
-                    Good Fit For
+                    {t("fit.goodTitle")}
                   </h3>
                 </div>
                 <ul className="space-y-4">
                   {[
-                    "Male pattern hair loss (temples, crown, mid scalp)",
-                    "Early to moderate stages of thinning",
-                    "Consistent with daily medication routine",
-                    "Realistic expectations about results",
+                    t("fit.g1"),
+                    t("fit.g2"),
+                    t("fit.g3"),
+                    t("fit.g4"),
                   ].map((text, index) => (
                     <motion.li
                       key={index}
@@ -379,15 +367,15 @@ const FinasterideLanding = () => {
                     <XCircle className="w-6 h-6 text-red-600" />
                   </div>
                   <h3 className="text-2xl font-[--font-georgia] text-brown">
-                    Not Recommended For
+                    {t("fit.notTitle")}
                   </h3>
                 </div>
                 <ul className="space-y-4">
                   {[
-                    "Women or children",
-                    "Patchy bald spots (alopecia areata)",
-                    "Sudden shedding from stress/illness",
-                    "Pregnant women (do not handle tablets)",
+                    t("fit.n1"),
+                    t("fit.n2"),
+                    t("fit.n3"),
+                    t("fit.n4"),
                   ].map((text, index) => (
                     <motion.li
                       key={index}
@@ -418,13 +406,13 @@ const FinasterideLanding = () => {
             >
               <div className="inline-flex items-center gap-2 bg-wine/10 px-4 py-2 rounded-full mb-4">
                 <Heart className="w-4 h-4 text-wine" />
-                <span className="text-sm text-brown">Honest & Transparent</span>
+                <span className="text-sm text-brown">{t("safety.badge")}</span>
               </div>
               <h2 className="font-[--font-georgia] text-4xl md:text-5xl text-brown mb-6">
-                Side Effects & Safety
+                {t("safety.title")}
               </h2>
               <p className="text-xl text-taupe">
-                What you need to know before starting treatment
+                {t("safety.desc")}
               </p>
             </motion.div>
 
@@ -432,27 +420,23 @@ const FinasterideLanding = () => {
               {[
                 {
                   icon: Activity,
-                  title: "Sexual Side Effects",
-                  description:
-                    "Decreased libido, erectile dysfunction, and ejaculation disorders reported. Most resolve after stopping.",
+                  title: t("safety.se1Title"),
+                  description: t("safety.se1Desc"),
                 },
                 {
                   icon: Brain,
-                  title: "Mood Changes",
-                  description:
-                    "Monitor for depression or anxiety. Stop immediately if suicidal thoughts occur and contact your doctor.",
+                  title: t("safety.se2Title"),
+                  description: t("safety.se2Desc"),
                 },
                 {
                   icon: FlaskConical,
-                  title: "PSA Testing",
-                  description:
-                    "Finasteride lowers PSA levels. Inform your doctor before any PSA tests.",
+                  title: t("safety.se3Title"),
+                  description: t("safety.se3Desc"),
                 },
                 {
                   icon: AlertCircle,
-                  title: "Breast Changes",
-                  description:
-                    "Seek medical advice if you notice lumps, pain, swelling, or nipple discharge.",
+                  title: t("safety.se4Title"),
+                  description: t("safety.se4Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -483,12 +467,8 @@ const FinasterideLanding = () => {
               <div className="flex items-start gap-4">
                 <Scale className="w-6 h-6 text-wine shrink-0 mt-1" />
                 <p className="text-sm text-brown">
-                  <span className="font-semibold">Note:</span> Most men take
-                  finasteride without major issues. Side effects are possible
-                  but often reversible. The key is awareness and early action.
-                  Discuss your full medical history, including any history of
-                  depression or sexual health concerns, during your
-                  consultation.
+                  <span className="font-semibold">{t("safety.noteLabel")}</span>{" "}
+                  {t("safety.noteText")}
                 </p>
               </div>
             </motion.div>
@@ -508,43 +488,43 @@ const FinasterideLanding = () => {
               className="text-center max-w-3xl mx-auto mb-16"
             >
               <h2 className="font-[--font-georgia] text-4xl md:text-5xl text-brown mb-6">
-                Transparent Pricing
+                {t("cost.title")}
               </h2>
-              <p className="text-xl text-taupe">Clear costs, no surprises</p>
+              <p className="text-xl text-taupe">{t("cost.desc")}</p>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {[
                 {
-                  title: "Generic Finasteride",
-                  price: "RM94",
-                  period: "per month",
+                  title: t("cost.p1Title"),
+                  price: t("cost.p1Price"),
+                  period: t("cost.p1Period"),
                   features: [
-                    "30 tablets",
-                    "Doctor consultation included",
-                    "Online prescription",
+                    t("cost.p1F1"),
+                    t("cost.p1F2"),
+                    t("cost.p1F3"),
                   ],
                   popular: false,
                 },
                 {
-                  title: "Branded Option",
-                  price: "RM206",
-                  period: "per month",
+                  title: t("cost.p2Title"),
+                  price: t("cost.p2Price"),
+                  period: t("cost.p2Period"),
                   features: [
-                    "Propecia",
-                    "Follow-up monitoring",
-                    "Priority support",
+                    t("cost.p2F1"),
+                    t("cost.p2F2"),
+                    t("cost.p2F3"),
                   ],
                   popular: true,
                 },
                 {
-                  title: "Complete Package",
-                  price: "RM240",
-                  period: "per month",
+                  title: t("cost.p3Title"),
+                  price: t("cost.p3Price"),
+                  period: t("cost.p3Period"),
                   features: [
-                    "Finasteride + Minoxidil",
-                    "Monthly check-ins",
-                    "PRP add-on available",
+                    t("cost.p3F1"),
+                    t("cost.p3F2"),
+                    t("cost.p3F3"),
                   ],
                   popular: false,
                 },
@@ -561,7 +541,7 @@ const FinasterideLanding = () => {
                 >
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-wine text-white px-4 py-1 rounded-full text-sm">
-                      Most Popular
+                      {t("cost.popular")}
                     </div>
                   )}
                   <h3 className="text-xl font-[--font-georgia] text-brown mb-4">
@@ -590,7 +570,7 @@ const FinasterideLanding = () => {
                         : "border-2 border-wine text-wine hover:bg-wine hover:text-white"
                     }`}
                   >
-                    Select Plan
+                    {t("cost.selectBtn")}
                   </motion.button>
                 </motion.div>
               ))}
@@ -600,8 +580,7 @@ const FinasterideLanding = () => {
               variants={fadeInUp}
               className="text-center text-sm text-taupe mt-8"
             >
-              *Prices are estimates and may vary based on your specific
-              treatment plan
+              {t("cost.priceNote")}
             </motion.p>
           </div>
         </motion.section>
@@ -628,12 +607,10 @@ const FinasterideLanding = () => {
               className="text-center max-w-3xl mx-auto text-white"
             >
               <h2 className="font-[--font-georgia] text-4xl md:text-5xl mb-6">
-                Ready to Start Your Hair Restoration Journey?
+                {t("cta.title")}
               </h2>
               <p className="text-xl mb-8 text-white/90">
-                Don't wait until thinning becomes obvious. A short medical
-                consult can tell you what type of hair loss you have and whether
-                finasteride makes sense for you.
+                {t("cta.desc")}
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -642,7 +619,7 @@ const FinasterideLanding = () => {
                   whileTap={{ scale: 0.95 }}
                   className="bg-white text-wine px-8 py-4 rounded-full text-lg font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  Book Your Consultation
+                  {t("cta.bookBtn")}
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
 
@@ -651,13 +628,13 @@ const FinasterideLanding = () => {
                   whileTap={{ scale: 0.95 }}
                   className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-wine transition-colors"
                 >
-                  View Clinic Location
+                  {t("cta.locationBtn")}
                 </motion.button>
               </div>
 
               <div className="mt-12 flex items-center justify-center gap-2 text-white/80">
                 <MapPin className="w-5 h-5" />
-                <span>Wisma UOA II, Jalan Pinang, KLCC area, Kuala Lumpur</span>
+                <span>{t("cta.address")}</span>
               </div>
             </motion.div>
           </div>

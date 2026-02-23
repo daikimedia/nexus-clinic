@@ -24,80 +24,67 @@ import {
   fadeInUp,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const MinoxidilLanding = () => {
+const MinoxidilLanding = ({
+  locale = fallbackLng,
+}: {
+  locale?: string;
+}) => {
+  const { t } = useTranslation(locale, "minoxidil");
+
   const quickAnswers = [
-    {
-      question: "Apa itu minoxidil?",
-      answer:
-        "Membantu memperlambat rambut rontok dan merangsang pertumbuhan kembali, terutama pada tahap awal kebotakan.",
-    },
-    {
-      question: "Berapa lama hasilnya?",
-      answer:
-        "Hasil mulai terlihat dalam 4-6 bulan, dengan hasil optimal setelah 6 bulan pemakaian konsisten.",
-    },
-    {
-      question: "Apakah akan rontok di awal?",
-      answer:
-        "Ya, shedding ringan di 2-8 minggu pertama adalah normal sebagai bagian dari siklus regenerasi.",
-    },
+    { question: t("quickAnswers.q1"), answer: t("quickAnswers.a1") },
+    { question: t("quickAnswers.q2"), answer: t("quickAnswers.a2") },
+    { question: t("quickAnswers.q3"), answer: t("quickAnswers.a3") },
   ];
 
   const benefits = [
     {
       icon: <Target className="w-6 h-6" />,
-      title: "Targeted Treatment",
-      desc: "Dokter spesialis memastikan diagnosis tepat sebelum memulai treatment",
+      title: t("benefits.b1Title"),
+      desc: t("benefits.b1Desc"),
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      title: "MOH Registered",
-      desc: "Klinik terdaftar resmi dengan protokol keamanan ketat",
+      title: t("benefits.b2Title"),
+      desc: t("benefits.b2Desc"),
     },
     {
       icon: <TrendingUp className="w-6 h-6" />,
-      title: "Proven Results",
-      desc: "Ribuan pasien telah berhasil mempertahankan rambut mereka",
+      title: t("benefits.b3Title"),
+      desc: t("benefits.b3Desc"),
     },
     {
       icon: <Heart className="w-6 h-6" />,
-      title: "Holistic Care",
-      desc: "Pendekatan menyeluruh, bukan sekadar menjual produk",
+      title: t("benefits.b4Title"),
+      desc: t("benefits.b4Desc"),
     },
   ];
 
   const steps = [
     {
       number: "01",
-      title: "Diagnosis Akurat",
-      desc: "Konsultasi menyeluruh untuk menentukan jenis kerontokan",
+      title: t("journey.s1Title"),
+      desc: t("journey.s1Desc"),
     },
     {
       number: "02",
-      title: "Rencana Personal",
-      desc: "Dosis dan metode disesuaikan dengan gaya hidup Anda",
+      title: t("journey.s2Title"),
+      desc: t("journey.s2Desc"),
     },
     {
       number: "03",
-      title: "Monitoring Rutin",
-      desc: "Evaluasi berkala dengan foto progres dan adjustmen",
+      title: t("journey.s3Title"),
+      desc: t("journey.s3Desc"),
     },
   ];
 
   const faqs = [
-    {
-      q: "Apakah minoxidil aman untuk wanita?",
-      a: "Ya, FDA menyetujui minoxidil 2% dan 5% untuk wanita. Nexus Clinic menyesuaikan dosis berdasarkan sensitivitas kulit.",
-    },
-    {
-      q: "Apa bedanya foam dan solution?",
-      a: "Foam lebih ringan dan cepat kering, solution lebih ekonomis. Dokter akan merekomendasikan sesuai tipe kulit kepala.",
-    },
-    {
-      q: "Bagaimana dengan efek samping?",
-      a: "Iritasi ringan bisa terjadi. Tim dokter kami akan memonitor dan menyesuaikan treatment jika diperlukan.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
   ];
 
   return (
@@ -124,19 +111,17 @@ const MinoxidilLanding = () => {
               <div className="inline-flex items-center gap-2 bg-wine/10 px-4 py-2 rounded-full mb-6">
                 <Sparkles className="w-4 h-4 text-wine" />
                 <span className="text-sm text-wine font-inter">
-                  Minoxidil Treatment in Kuala Lumpur
+                  {t("hero.badge")}
                 </span>
               </div>
 
               <h1 className="font-georgia text-5xl md:text-6xl text-brown mb-6 leading-tight">
-                Keep Your Hair
-                <span className="block text-wine">Longer, Thicker</span>
+                {t("hero.title1")}
+                <span className="block text-wine">{t("hero.title2")}</span>
               </h1>
 
               <p className="text-lg text-taupe mb-8 max-w-2xl mx-auto font-inter">
-                Minoxidil adalah solusi paling terpercaya untuk rambut rontok.
-                Mulai lebih awal, dapatkan hasil optimal dengan bimbingan dokter
-                spesialis.
+                {t("hero.desc")}
               </p>
 
               <motion.div
@@ -144,11 +129,11 @@ const MinoxidilLanding = () => {
                 className="flex flex-wrap gap-4 justify-center"
               >
                 <button className="bg-wine text-white px-8 py-4 rounded-full font-inter hover:bg-rose transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-2 group">
-                  Konsultasi Gratis
+                  {t("hero.consultBtn")}
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button className="border-2 border-wine text-wine px-8 py-4 rounded-full font-inter hover:bg-wine hover:text-white transition-all duration-300">
-                  Pelajari Dulu
+                  {t("hero.learnBtn")}
                 </button>
               </motion.div>
             </motion.div>
@@ -185,13 +170,13 @@ const MinoxidilLanding = () => {
               variants={fadeInUp}
               className="font-georgia text-4xl text-brown text-center mb-4"
             >
-              Quick Answers
+              {t("quickAnswers.title")}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-taupe text-center mb-12 max-w-2xl mx-auto"
             >
-              Pertanyaan yang paling sering dicari, dijawab langsung
+              {t("quickAnswers.desc")}
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -227,16 +212,16 @@ const MinoxidilLanding = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft}>
                 <h2 className="font-georgia text-4xl text-brown mb-6">
-                  Who is Minoxidil
+                  {t("whoFor.title1")}
                   <br />
-                  Treatment For?
+                  {t("whoFor.title2")}
                 </h2>
                 <div className="space-y-4">
                   {[
-                    "Pria dengan pola kebotakan pria",
-                    "Wanita dengan pola kebotakan wanita (FDA approved)",
-                    "Mereka dengan rambut menipis di tahap awal",
-                    "Kombinasi dengan treatment lain seperti PRP",
+                    t("whoFor.w1"),
+                    t("whoFor.w2"),
+                    t("whoFor.w3"),
+                    t("whoFor.w4"),
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-3">
                       <CheckCircle2 className="w-5 h-5 text-wine shrink-0" />
@@ -252,21 +237,21 @@ const MinoxidilLanding = () => {
               >
                 <div className="bg-wine rounded-2xl p-6 text-white">
                   <Users className="w-8 h-8 mb-3 opacity-80" />
-                  <p className="font-georgia text-2xl mb-1">1,000+</p>
-                  <p className="text-sm opacity-90">Pasien Pria</p>
+                  <p className="font-georgia text-2xl mb-1">{t("whoFor.stat1Value")}</p>
+                  <p className="text-sm opacity-90">{t("whoFor.stat1Label")}</p>
                 </div>
                 <div className="bg-rose rounded-2xl p-6 text-white">
                   <Heart className="w-8 h-8 mb-3 opacity-80" />
-                  <p className="font-georgia text-2xl mb-1">800+</p>
-                  <p className="text-sm opacity-90">Pasien Wanita</p>
+                  <p className="font-georgia text-2xl mb-1">{t("whoFor.stat2Value")}</p>
+                  <p className="text-sm opacity-90">{t("whoFor.stat2Label")}</p>
                 </div>
                 <div className="col-span-2 bg-brown rounded-2xl p-6 text-white">
                   <Award className="w-8 h-8 mb-3 opacity-80" />
                   <p className="font-georgia text-xl mb-1">
-                    6+ Tahun Pengalaman
+                    {t("whoFor.stat3Value")}
                   </p>
                   <p className="text-sm opacity-90">
-                    Specialized in hair restoration
+                    {t("whoFor.stat3Desc")}
                   </p>
                 </div>
               </motion.div>
@@ -287,7 +272,7 @@ const MinoxidilLanding = () => {
               variants={fadeInUp}
               className="font-georgia text-4xl text-brown text-center mb-16"
             >
-              Types of Minoxidil
+              {t("types.title")}
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
@@ -297,19 +282,19 @@ const MinoxidilLanding = () => {
               >
                 <Droplets className="w-12 h-12 text-wine mb-4" />
                 <h3 className="font-georgia text-2xl text-brown mb-3">
-                  Topical Minoxidil
+                  {t("types.topicalTitle")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  Solution atau foam untuk aplikasi langsung
+                  {t("types.topicalDesc")}
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2 text-sm">
                     <CheckCircle2 className="w-4 h-4 text-wine" />
-                    <span>Pria: 5% sekali/hari</span>
+                    <span>{t("types.topicalF1")}</span>
                   </li>
                   <li className="flex items-center gap-2 text-sm">
                     <CheckCircle2 className="w-4 h-4 text-wine" />
-                    <span>Wanita: 2% atau 5% foam</span>
+                    <span>{t("types.topicalF2")}</span>
                   </li>
                 </ul>
               </motion.div>
@@ -320,17 +305,17 @@ const MinoxidilLanding = () => {
               >
                 <Pill className="w-12 h-12 text-wine mb-4" />
                 <h3 className="font-georgia text-2xl text-brown mb-3">
-                  Oral Minoxidil
+                  {t("types.oralTitle")}
                 </h3>
-                <p className="text-taupe mb-4">Low-dose, dokter-supervised</p>
+                <p className="text-taupe mb-4">{t("types.oralDesc")}</p>
                 <ul className="space-y-2">
                   <li className="flex items-center gap-2 text-sm">
                     <AlertCircle className="w-4 h-4 text-wine" />
-                    <span>Resep dokter wajib</span>
+                    <span>{t("types.oralF1")}</span>
                   </li>
                   <li className="flex items-center gap-2 text-sm">
                     <AlertCircle className="w-4 h-4 text-wine" />
-                    <span>Monitoring tekanan darah</span>
+                    <span>{t("types.oralF2")}</span>
                   </li>
                 </ul>
               </motion.div>
@@ -351,31 +336,37 @@ const MinoxidilLanding = () => {
               variants={fadeInUp}
               className="font-georgia text-4xl text-brown text-center mb-4"
             >
-              Realistic Timeline
+              {t("timeline.title")}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-taupe text-center mb-12"
             >
-              Perjalanan treatment Anda step by step
+              {t("timeline.desc")}
             </motion.p>
 
             <div className="max-w-3xl mx-auto">
               {[
                 {
-                  time: "2-8 minggu pertama",
-                  desc: "Shedding phase - normal, jangan panik",
+                  time: t("timeline.t1Time"),
+                  desc: t("timeline.t1Desc"),
                   color: "text-amber-600",
+                  barColor: "bg-amber-400",
+                  width: "30%",
                 },
                 {
-                  time: "2-4 bulan",
-                  desc: "Early signs mulai terlihat",
+                  time: t("timeline.t2Time"),
+                  desc: t("timeline.t2Desc"),
                   color: "text-emerald-600",
+                  barColor: "bg-emerald-400",
+                  width: "60%",
                 },
                 {
-                  time: "6 bulan+",
-                  desc: "Hasil optimal mulai terlihat",
+                  time: t("timeline.t3Time"),
+                  desc: t("timeline.t3Desc"),
                   color: "text-wine",
+                  barColor: "bg-wine",
+                  width: "100%",
                 },
               ].map((item, idx) => (
                 <motion.div
@@ -392,11 +383,9 @@ const MinoxidilLanding = () => {
                     <div className="h-2 bg-cream rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
-                        whileInView={{
-                          width: idx === 0 ? "30%" : idx === 1 ? "60%" : "100%",
-                        }}
+                        whileInView={{ width: item.width }}
                         transition={{ duration: 1, delay: idx * 0.3 }}
-                        className={`h-full rounded-full ${idx === 0 ? "bg-amber-400" : idx === 1 ? "bg-emerald-400" : "bg-wine"}`}
+                        className={`h-full rounded-full ${item.barColor}`}
                       />
                     </div>
                     <p className="mt-2 text-brown font-inter text-sm">
@@ -422,7 +411,7 @@ const MinoxidilLanding = () => {
               variants={fadeInUp}
               className="font-georgia text-4xl text-brown text-center mb-16"
             >
-              Your Journey at Nexus Clinic
+              {t("journey.title")}
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -463,18 +452,17 @@ const MinoxidilLanding = () => {
               variants={fadeInUp}
               className="font-georgia text-4xl text-white mb-6"
             >
-              Ready to Start Your Journey?
+              {t("cta.title")}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-white/90 mb-8 max-w-2xl mx-auto"
             >
-              Dapatkan assessment gratis dengan dokter spesialis kami. Diagnosis
-              tepat, treatment personal, hasil optimal.
+              {t("cta.desc")}
             </motion.p>
             <motion.div variants={scaleIn}>
               <button className="bg-white text-wine px-8 py-4 rounded-full font-inter hover:bg-light transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center gap-2 mx-auto">
-                Booking Konsultasi Sekarang
+                {t("cta.bookBtn")}
                 <ChevronRight className="w-4 h-4" />
               </button>
             </motion.div>
@@ -491,9 +479,7 @@ const MinoxidilLanding = () => {
           >
             <AlertCircle className="w-8 h-8 text-amber-400 mx-auto mb-3" />
             <p className="text-white/90 text-sm max-w-2xl mx-auto font-inter">
-              Important: Topical minoxidil can be highly toxic to pets,
-              especially cats. Always wash hands after use and keep away from
-              animals.
+              {t("petSafety.notice")}
             </p>
           </motion.div>
         </section>
