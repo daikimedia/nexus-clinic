@@ -81,6 +81,17 @@ const navItems = [
         "Minoxidil Treatment",
         "Finasteride",
       ],
+      regenerative: [
+        "Testosterone Therapy Malaysia",
+        "ED Treatment Malaysia",
+        "Hormone Replacement Therapy Malaysia",
+        "PCOS Treatment Malaysia",
+        "Hypothyroidism Treatment Malaysia",
+        "Stem Cell Therapy Malaysia",
+        "Anti-Aging Treatment Malaysia",
+        "Hormone Test Malaysia",
+        "Menopause Hormone Replacement Malaysia",
+      ],
     },
   },
   { label: "Products", href: "/products" },
@@ -101,6 +112,7 @@ const categoryLabels: Record<string, string> = {
   skin: "Skin",
   face: "Face",
   hair: "Hair",
+  regenerative: "Regenerative",
 };
 
 type SearchResult = { label: string; href: string; category: string };

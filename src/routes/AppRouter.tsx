@@ -52,10 +52,7 @@ const SkinWhiteningLanding = lazy(
   () => import("../pages/skinTreatment/SkinWhitening"),
 );
 const EczemaLandingPage = lazy(() => import("../pages/skinTreatment/Eczema"));
-const PageFatFreezingMalaysia = lazy(
-  () => import("../pages/PageFatFreezingMalaysia"),
-);
-const PageBodyContouring = lazy(() => import("../pages/PageBodyContouring"));
+
 const PageFraqtional = lazy(() => import("../pages/PageFractionalLaser"));
 const PageLEDPhototherapy = lazy(() => import("../pages/PageLedPhototherapy"));
 const PagePRPTreatment = lazy(() => import("../pages/PagePrpPreg"));
@@ -66,7 +63,6 @@ const PageMidlite = lazy(() => import("../pages/PageMidlite"));
 const PageMicroderMabrasion = lazy(
   () => import("../pages/PageMicroderMabrasion"),
 );
-const PageDermalFiler = lazy(() => import("../pages/PageDermalFiler"));
 const PageSkinPeelLED = lazy(() => import("../pages/PageSkinPeelLED"));
 const PageActiveAcne = lazy(() => import("../pages/PageActiveAcne"));
 
@@ -77,7 +73,6 @@ const PageOzempicMalaysia = lazy(
 const PageWegovyMalaysia = lazy(
   () => import("../pages/weightlossTreatment/PageWegovyMalaysia"),
 );
-const PageSaxendaMalaysia = lazy(() => import("../pages/PageSexandaMalaysia"));
 
 // WeightLOSS
 const CoolSculptingLanding = lazy(
@@ -155,24 +150,49 @@ const FinasterideLanding = lazy(
   () => import("../pages/hairTreatment/Finasteride"),
 );
 
+// REGENERATIVE
+
+const TestosteroneLanding = lazy(
+  () => import("../pages/regenerative/Testosterone"),
+);
+
+const EDTreatment = lazy(() => import("../pages/regenerative/EDTreatment"));
+
+const HormonReplaceLanding = lazy(
+  () => import("../pages/regenerative/HormoneReplacement"),
+);
+
+const PCOSPage = lazy(() => import("../pages/regenerative/PCOSTreatment"));
+
+// const HypothyroidLanding = lazy(() =>
+//   import("../pages/regenerative/Hypothyroidism")
+// );
+
+// const StemCellLanding = lazy(() =>
+//   import("../pages/regenerative/StemCell")
+// );
+
+// const AntiAgingLanding = lazy(() =>
+//   import("../pages/regenerative/AntiAging")
+// );
+
+// const HormoneTestLanding = lazy(() =>
+//   import("../pages/regenerative/HormoneTest")
+// );
+
+// const MonopauseLanding = lazy(() =>
+//   import("../pages/regenerative/Monopause")
+// );
+
 export default function AppRouter() {
   return (
     <BrowserRouter>
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<HomePageNexus />} />
-          <Route path="/saxenda-malaysia" element={<PageSaxendaMalaysia />} />
           <Route path="/duromine-malaysia" element={<PageDuromineMalaysia />} />
           <Route path="/products" element={<Products />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route
-            path="/fat-freezing-treatment"
-            element={<PageFatFreezingMalaysia />}
-          />
-          <Route
-            path="/body-contouring-malaysia"
-            element={<PageBodyContouring />}
-          />
           <Route
             path="/fraqtional-laser-resurfacing"
             element={<PageFraqtional />}
@@ -187,7 +207,6 @@ export default function AppRouter() {
             path="/microdermabrasion"
             element={<PageMicroderMabrasion />}
           />
-          <Route path="/dermal-fillers" element={<PageDermalFiler />} />
           <Route path="/mesotherapy" element={<PageMesoBrightening />} />
           <Route path="/skin-peel-led" element={<PageSkinPeelLED />} />
           <Route path="/acne-and-acne-scars" element={<PageActiveAcne />} />
@@ -267,6 +286,37 @@ export default function AppRouter() {
             element={<NoseThreadLiftLanding />}
           />
           <Route path="/masseter-botox/" element={<MasseterBotoxPage />} />
+          {/* REGENERATIVE */}
+          <Route
+            path="/testosterone-therapy-malaysia/"
+            element={<TestosteroneLanding />}
+          />
+          <Route path="/ed-treatment-malaysia/" element={<EDTreatment />} />
+          <Route
+            path="/hormone-replacement-therapy-malaysia/"
+            element={<HormonReplaceLanding />}
+          />
+          <Route path="/pcos-treatment-malaysia/" element={<PCOSPage />} />
+          {/* <Route
+            path="/hypothyroidism-treatment-malaysia/"
+            element={<HypothyroidLanding />}
+          /> */}
+          {/* <Route
+            path="/stem-cell-therapy-malaysia/"
+            element={<StemCellLanding />}
+          />
+          <Route
+            path="/anti-aging-therapy-malaysia/"
+            element={<AntiAgingLanding />}
+          />
+          <Route
+            path="/hormone-test-malaysia/"
+            element={<HormoneTestLanding />}
+          />
+          <Route
+            path="/menopause-hormone-replacement-malaysia/"
+            element={<MonopauseLanding />}
+          /> */}
         </Routes>
       </Suspense>
     </BrowserRouter>
