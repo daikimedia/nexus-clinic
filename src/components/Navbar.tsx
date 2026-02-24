@@ -61,6 +61,11 @@ const navItems = [
         "Dark Eye Circle Treatment KL",
         "Skin Whitening Treatment KL",
         "Eczema Treatment KL",
+        "Keloid Treatment Malaysia",
+        "Rosacea Treatment Malaysia",
+        "Stretch Mark Removal Malaysia",
+        "Laser Hair Removal Malaysia",
+        "Tattoo Removal Malaysia",
       ],
       face: [
         "Dermal Filler",
@@ -91,6 +96,9 @@ const navItems = [
         "Anti-Aging Therapy Malaysia",
         "Hormone Test Malaysia",
         "Menopause Hormone Replacement Malaysia",
+        "P Shot Malaysia",
+        "O Shot Malaysia",
+        "Shockwave Therapy Malaysia",
       ],
     },
   },
@@ -641,7 +649,7 @@ const Navbar = () => {
                         onMouseLeave={handleMouseLeave}
                       >
                         <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-light rotate-45 rounded-sm shadow-lg" />
-                        <div className="relative bg-light rounded-2xl shadow-2xl shadow-brown/10 border border-cream overflow-hidden">
+                        <div className="relative bg-light md:w-5xl rounded-2xl shadow-2xl shadow-brown/10 border border-cream overflow-hidden">
                           <div className="p-6">
                             <div
                               className={`grid gap-8 ${
@@ -666,7 +674,7 @@ const Navbar = () => {
                                             <motion.a
                                               href={toSlug(subItem)}
                                               whileHover={{ x: 4 }}
-                                              className="group/item flex items-center gap-2 text-taupe hover:text-wine text-sm py-1.5 transition-all duration-200"
+                                              className="group/item flex items-center gap-2 text-taupe hover:text-wine text-sm py-1.5 md:w-52 transition-all duration-200"
                                             >
                                               <span className="w-1.5 h-1.5 rounded-full bg-taupe/30 group-hover/item:bg-wine group-hover/item:scale-125 transition-all duration-200" />
                                               <span>{subItem}</span>

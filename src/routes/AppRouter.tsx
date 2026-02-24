@@ -26,6 +26,8 @@ const NoseThreadLiftLanding = lazy(
 const MasseterBotoxPage = lazy(
   () => import("../pages/faceTreatment/MasseterBotox"),
 );
+
+// SKIN TREATMENT
 const AcneLandingPage = lazy(
   () => import("../pages/skinTreatment/AcneTreatment"),
 );
@@ -52,7 +54,39 @@ const SkinWhiteningLanding = lazy(
   () => import("../pages/skinTreatment/SkinWhitening"),
 );
 const EczemaLandingPage = lazy(() => import("../pages/skinTreatment/Eczema"));
+const PShotLanding = lazy(
+  () => import("../pages/regenerative/PShotInMalaysia"),
+);
 
+const OShotLanding = lazy(
+  () => import("../pages/regenerative/OShotInMalaysia"),
+);
+
+const ShockwaveLanding = lazy(
+  () => import("../pages/regenerative/ShockwaveTherapy"),
+);
+
+const KeloidLandingPage = lazy(
+  () => import("../pages/skinTreatment/KeloidTreatment"),
+);
+
+const RosaceaLanding = lazy(
+  () => import("../pages/skinTreatment/RosaceaTreatment"),
+);
+
+const StretchMarkLanding = lazy(
+  () => import("../pages/skinTreatment/StretchMark"),
+);
+
+const LaserHairRemoval = lazy(
+  () => import("../pages/skinTreatment/LaserHairRemoval"),
+);
+
+const TattooRemovalLanding = lazy(
+  () => import("../pages/skinTreatment/TattooRemoval"),
+);
+
+//acne
 const PageFraqtional = lazy(() => import("../pages/PageFractionalLaser"));
 const PageLEDPhototherapy = lazy(() => import("../pages/PageLedPhototherapy"));
 const PagePRPTreatment = lazy(() => import("../pages/PagePrpPreg"));
@@ -203,6 +237,7 @@ export default function AppRouter() {
           />
           <Route path="/mesotherapy" element={<PageMesoBrightening />} />
           <Route path="/skin-peel-led" element={<PageSkinPeelLED />} />
+          //SKIN TREATMENT URL
           <Route path="/acne-and-acne-scars" element={<PageActiveAcne />} />
           <Route path="acne-treatment-kl/" element={<AcneLandingPage />} />
           <Route path="acne-scar-treatment-kl/" element={<AcneScarLanding />} />
@@ -223,6 +258,26 @@ export default function AppRouter() {
             element={<SkinWhiteningLanding />}
           />
           <Route path="eczema-treatment-kl/" element={<EczemaLandingPage />} />
+          <Route
+            path="/keloid-treatment-malaysia/"
+            element={<KeloidLandingPage />}
+          />
+          <Route
+            path="/rosacea-treatment-malaysia/"
+            element={<RosaceaLanding />}
+          />
+          <Route
+            path="/stretch-mark-removal-malaysia/"
+            element={<StretchMarkLanding />}
+          />
+          <Route
+            path="/laser-hair-removal-malaysia/"
+            element={<LaserHairRemoval />}
+          />
+          <Route
+            path="/tattoo-removal-malaysia/"
+            element={<TattooRemovalLanding />}
+          />
           {/* WEIGHT LOSS PAGES */}
           <Route path="/ozempic-malaysia" element={<PageOzempicMalaysia />} />
           <Route path="/wegovy-malaysia" element={<PageWegovyMalaysia />} />
@@ -310,6 +365,12 @@ export default function AppRouter() {
           <Route
             path="/menopause-hormone-replacement-malaysia/"
             element={<MonopauseLanding />}
+          />
+          <Route path="/p-shot-malaysia/" element={<PShotLanding />} />
+          <Route path="/o-shot-malaysia/" element={<OShotLanding />} />
+          <Route
+            path="/shockwave-therapy-malaysia/"
+            element={<ShockwaveLanding />}
           />
         </Routes>
       </Suspense>
