@@ -88,7 +88,7 @@ const navItems = [
         "PCOS Treatment Malaysia",
         "Hypothyroidism Treatment Malaysia",
         "Stem Cell Therapy Malaysia",
-        "Anti-Aging Treatment Malaysia",
+        "Anti-Aging Therapy Malaysia",
         "Hormone Test Malaysia",
         "Menopause Hormone Replacement Malaysia",
       ],

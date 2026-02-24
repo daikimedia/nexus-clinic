@@ -164,25 +164,19 @@ const HormonReplaceLanding = lazy(
 
 const PCOSPage = lazy(() => import("../pages/regenerative/PCOSTreatment"));
 
-// const HypothyroidLanding = lazy(() =>
-//   import("../pages/regenerative/Hypothyroidism")
-// );
+const HypothyroidLanding = lazy(
+  () => import("../pages/regenerative/Hypothyroidism"),
+);
 
-// const StemCellLanding = lazy(() =>
-//   import("../pages/regenerative/StemCell")
-// );
+const StemCellLanding = lazy(() => import("../pages/regenerative/StemCell"));
 
-// const AntiAgingLanding = lazy(() =>
-//   import("../pages/regenerative/AntiAging")
-// );
+const AntiAgingLanding = lazy(() => import("../pages/regenerative/AntiAging"));
 
-// const HormoneTestLanding = lazy(() =>
-//   import("../pages/regenerative/HormoneTest")
-// );
+const HormoneTestLanding = lazy(
+  () => import("../pages/regenerative/HormoneTest"),
+);
 
-// const MonopauseLanding = lazy(() =>
-//   import("../pages/regenerative/Monopause")
-// );
+const MonopauseLanding = lazy(() => import("../pages/regenerative/Monopause"));
 
 export default function AppRouter() {
   return (
@@ -297,11 +291,11 @@ export default function AppRouter() {
             element={<HormonReplaceLanding />}
           />
           <Route path="/pcos-treatment-malaysia/" element={<PCOSPage />} />
-          {/* <Route
+          <Route
             path="/hypothyroidism-treatment-malaysia/"
             element={<HypothyroidLanding />}
-          /> */}
-          {/* <Route
+          />
+          <Route
             path="/stem-cell-therapy-malaysia/"
             element={<StemCellLanding />}
           />
@@ -316,7 +310,7 @@ export default function AppRouter() {
           <Route
             path="/menopause-hormone-replacement-malaysia/"
             element={<MonopauseLanding />}
-          /> */}
+          />
         </Routes>
       </Suspense>
     </BrowserRouter>
