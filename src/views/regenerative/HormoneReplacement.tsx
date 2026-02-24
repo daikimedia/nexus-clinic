@@ -22,8 +22,12 @@ import {
   fadeInRight,
   scaleIn,
 } from "../../lib/animations";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const HormonReplaceLanding = () => {
+const HormonReplaceLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "hormoneReplacement");
+
   const images = {
     heroWoman:
       "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80",
@@ -36,6 +40,7 @@ const HormonReplaceLanding = () => {
     wellness:
       "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1220&q=80",
   };
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-light to-cream">
@@ -59,7 +64,7 @@ const HormonReplaceLanding = () => {
               <motion.div variants={fadeInLeft} className="space-y-8">
                 <motion.div variants={fadeInUp} className="inline-block">
                   <span className="bg-wine/10 text-wine px-4 py-2 rounded-full text-sm font-semibold tracking-wide">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </motion.div>
 
@@ -68,25 +73,23 @@ const HormonReplaceLanding = () => {
                   className="text-5xl lg:text-6xl font-bold leading-tight"
                   style={{ fontFamily: "Georgia, serif", color: "#4B3A33" }}
                 >
-                  Feel like yourself again,
-                  <span className="block text-wine">without guessing</span>
-                  what your hormones are doing.
+                  {t("hero.title1")}
+                  <span className="block text-wine">{t("hero.title2")}</span>
+                  {t("hero.title3")}
                 </motion.h1>
 
                 <motion.p
                   variants={fadeInUp}
                   className="text-xl text-taupe leading-relaxed"
                 >
-                  Menopause symptoms, low energy, poor sleep, brain fog, and low
-                  libido can make daily life feel heavier than it should.
+                  {t("hero.desc")}
                 </motion.p>
 
                 <motion.p
                   variants={fadeInUp}
                   className="text-lg text-brown bg-cream p-6 rounded-2xl border-l-4 border-wine"
                 >
-                  At Nexus Clinic Kuala Lumpur, we keep HRT simple, medical, and
-                  personalised, so you get a plan you can actually trust.
+                  {t("hero.highlight")}
                 </motion.p>
 
                 <motion.div
@@ -94,11 +97,11 @@ const HormonReplaceLanding = () => {
                   className="flex flex-col sm:flex-row gap-4"
                 >
                   <button className="group bg-wine text-white px-8 py-4 rounded-full font-semibold hover:bg-rose transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
-                    Book Consultation
+                    {t("hero.cta1")}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button className="border-2 border-taupe text-brown px-8 py-4 rounded-full font-semibold hover:bg-taupe/10 transition-all duration-300">
-                    Learn More
+                    {t("hero.cta2")}
                   </button>
                 </motion.div>
               </motion.div>
@@ -123,8 +126,8 @@ const HormonReplaceLanding = () => {
                 >
                   <Shield className="w-8 h-8 text-wine" />
                   <div>
-                    <p className="font-bold text-brown">15+ Years</p>
-                    <p className="text-sm text-taupe">Of Excellence</p>
+                    <p className="font-bold text-brown">{t("hero.trustTitle")}</p>
+                    <p className="text-sm text-taupe">{t("hero.trustDesc")}</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -154,29 +157,22 @@ const HormonReplaceLanding = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft}>
                 <span className="text-wine font-semibold tracking-wide">
-                  UNDERSTANDING HRT
+                  {t("whatIs.badge")}
                 </span>
                 <h2
                   className="text-4xl md:text-5xl font-bold mt-4 mb-6"
                   style={{ fontFamily: "Georgia, serif", color: "#4B3A33" }}
                 >
-                  What Is Hormone Replacement Therapy (HRT)?
+                  {t("whatIs.title")}
                 </h2>
                 <div className="w-24 h-1 bg-wine rounded-full mb-8"></div>
 
                 <div className="space-y-6">
                   <p className="text-lg text-brown leading-relaxed">
-                    Hormone Replacement Therapy (HRT) is a medical treatment
-                    that replaces hormones that have dropped, most commonly
-                    during menopause. For many women, that means replacing
-                    oestrogen, and in women who still have a uterus, adding
-                    progestogen to protect the womb lining.
+                    {t("whatIs.desc1")}
                   </p>
                   <p className="text-lg text-brown leading-relaxed bg-cream p-6 rounded-2xl border-l-4 border-rose">
-                    In Malaysia, some clinics also use the term HRT more broadly
-                    to describe hormone balancing for both women and men. Nexus
-                    Clinic positions HRT as support for hormonal imbalance in
-                    both genders, aimed at improving quality of life.
+                    {t("whatIs.desc2")}
                   </p>
                 </div>
               </motion.div>
@@ -203,8 +199,8 @@ const HormonReplaceLanding = () => {
                       <Users className="w-6 h-6 text-wine" />
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-brown">5000+</p>
-                      <p className="text-sm text-taupe">Happy Patients</p>
+                      <p className="text-2xl font-bold text-brown">{t("whatIs.statsNumber")}</p>
+                      <p className="text-sm text-taupe">{t("whatIs.statsLabel")}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -239,7 +235,7 @@ const HormonReplaceLanding = () => {
                     <div className="flex items-center gap-2">
                       <ThermometerSun className="w-5 h-5 text-wine" />
                       <span className="text-sm font-medium text-brown">
-                        Hot Flushes
+                        {t("symptoms.floatingCard1")}
                       </span>
                     </div>
                   </motion.div>
@@ -252,7 +248,7 @@ const HormonReplaceLanding = () => {
                     <div className="flex items-center gap-2">
                       <Moon className="w-5 h-5 text-rose" />
                       <span className="text-sm font-medium text-brown">
-                        Night Sweats
+                        {t("symptoms.floatingCard2")}
                       </span>
                     </div>
                   </motion.div>
@@ -261,42 +257,24 @@ const HormonReplaceLanding = () => {
 
               <motion.div variants={fadeInRight} className="order-1 lg:order-2">
                 <span className="text-wine font-semibold tracking-wide">
-                  RECOGNIZE THE SIGNS
+                  {t("symptoms.badge")}
                 </span>
                 <h2
                   className="text-4xl md:text-5xl font-bold mt-4 mb-6"
                   style={{ fontFamily: "Georgia, serif", color: "#4B3A33" }}
                 >
-                  The Symptoms That Make People Search for HRT in Kuala Lumpur
+                  {t("symptoms.title")}
                 </h2>
                 <div className="w-24 h-1 bg-wine rounded-full mb-8"></div>
 
                 <div className="space-y-4">
                   {[
-                    {
-                      icon: <Activity className="w-5 h-5" />,
-                      text: '"I wake up tired even after sleeping."',
-                    },
-                    {
-                      icon: <Brain className="w-5 h-5" />,
-                      text: '"My mood feels off and I do not know why."',
-                    },
-                    {
-                      icon: <ThermometerSun className="w-5 h-5" />,
-                      text: '"My hot flushes are embarrassing."',
-                    },
-                    {
-                      icon: <Droplet className="w-5 h-5" />,
-                      text: '"I feel dry, irritated, and intimacy hurts."',
-                    },
-                    {
-                      icon: <Heart className="w-5 h-5" />,
-                      text: '"My libido disappeared."',
-                    },
-                    {
-                      icon: <Scale className="w-5 h-5" />,
-                      text: '"I keep gaining belly weight."',
-                    },
+                    { icon: <Activity className="w-5 h-5" />, text: t("symptoms.s1") },
+                    { icon: <Brain className="w-5 h-5" />, text: t("symptoms.s2") },
+                    { icon: <ThermometerSun className="w-5 h-5" />, text: t("symptoms.s3") },
+                    { icon: <Droplet className="w-5 h-5" />, text: t("symptoms.s4") },
+                    { icon: <Heart className="w-5 h-5" />, text: t("symptoms.s5") },
+                    { icon: <Scale className="w-5 h-5" />, text: t("symptoms.s6") },
                   ].map((quote, index) => (
                     <motion.div
                       key={index}
@@ -313,10 +291,7 @@ const HormonReplaceLanding = () => {
                   variants={fadeInUp}
                   className="mt-6 text-lg text-brown bg-wine/5 p-4 rounded-xl"
                 >
-                  Hospitals in Malaysia describe common menopause symptoms such
-                  as hot flushes, night sweats, sleep disturbance, weight
-                  changes, reduced interest in sex or pain during intercourse,
-                  and urinary issues.
+                  {t("symptoms.note")}
                 </motion.p>
               </motion.div>
             </div>
@@ -337,36 +312,21 @@ const HormonReplaceLanding = () => {
                   className="text-4xl md:text-5xl font-bold mb-6"
                   style={{ fontFamily: "Georgia, serif", color: "#4B3A33" }}
                 >
-                  Your Comfort{" "}
-                  <span className="text-wine">Is Our Priority</span>
+                  {t("comfort.title1")}{" "}
+                  <span className="text-wine">{t("comfort.title2")}</span>
                 </h2>
 
                 <div className="space-y-6">
                   <p className="text-lg text-brown leading-relaxed">
-                    A good HRT journey feels calm and structured. At our
-                    centrally located clinic near KLCC, we've created an
-                    environment where you can feel at ease discussing your
-                    health concerns.
+                    {t("comfort.desc")}
                   </p>
 
                   <div className="grid grid-cols-2 gap-4">
                     {[
-                      {
-                        icon: <Shield className="w-6 h-6" />,
-                        text: "Private & Confidential",
-                      },
-                      {
-                        icon: <Heart className="w-6 h-6" />,
-                        text: "Compassionate Care",
-                      },
-                      {
-                        icon: <Clock className="w-6 h-6" />,
-                        text: "Flexible Hours",
-                      },
-                      {
-                        icon: <Users className="w-6 h-6" />,
-                        text: "Expert Team",
-                      },
+                      { icon: <Shield className="w-6 h-6" />, text: t("comfort.item1") },
+                      { icon: <Heart className="w-6 h-6" />, text: t("comfort.item2") },
+                      { icon: <Clock className="w-6 h-6" />, text: t("comfort.item3") },
+                      { icon: <Users className="w-6 h-6" />, text: t("comfort.item4") },
                     ].map((item, index) => (
                       <motion.div
                         key={index}
@@ -385,11 +345,10 @@ const HormonReplaceLanding = () => {
 
                   <div className="bg-cream p-6 rounded-xl">
                     <p className="text-brown font-medium">
-                      📍 LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang,
-                      50450 Kuala Lumpur
+                      📍 {t("comfort.address")}
                     </p>
                     <p className="text-wine font-bold mt-2">
-                      016-7025699 / 03-21635699
+                      {t("comfort.phone")}
                     </p>
                   </div>
                 </div>
@@ -414,8 +373,8 @@ const HormonReplaceLanding = () => {
                 >
                   <MapPin className="w-6 h-6" />
                   <div>
-                    <p className="font-bold">KLCC Area</p>
-                    <p className="text-sm opacity-90">5 min walk</p>
+                    <p className="font-bold">{t("comfort.locationTitle")}</p>
+                    <p className="text-sm opacity-90">{t("comfort.locationDesc")}</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -445,36 +404,20 @@ const HormonReplaceLanding = () => {
                   className="text-4xl md:text-5xl font-bold mb-6"
                   style={{ fontFamily: "Georgia, serif", color: "#4B3A33" }}
                 >
-                  What to Expect{" "}
-                  <span className="text-wine">at Your Consultation</span>
+                  {t("consultation.title1")}{" "}
+                  <span className="text-wine">{t("consultation.title2")}</span>
                 </h2>
 
                 <p className="text-lg text-brown mb-8">
-                  A typical plan looks like:
+                  {t("consultation.desc")}
                 </p>
 
                 <div className="space-y-6">
                   {[
-                    {
-                      step: "1",
-                      title: "Private consultation",
-                      desc: "symptoms, goals, medical history, family history",
-                    },
-                    {
-                      step: "2",
-                      title: "Baseline checks",
-                      desc: "if needed, especially when risk screening is important",
-                    },
-                    {
-                      step: "3",
-                      title: "A personalised recommendation",
-                      desc: "type of HRT, route, and a realistic timeline",
-                    },
-                    {
-                      step: "4",
-                      title: "Follow-up and monitoring",
-                      desc: "how you feel, side effects, and whether adjustments are needed",
-                    },
+                    { step: "1", title: t("consultation.step1Title"), desc: t("consultation.step1Desc") },
+                    { step: "2", title: t("consultation.step2Title"), desc: t("consultation.step2Desc") },
+                    { step: "3", title: t("consultation.step3Title"), desc: t("consultation.step3Desc") },
+                    { step: "4", title: t("consultation.step4Title"), desc: t("consultation.step4Desc") },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -512,9 +455,9 @@ const HormonReplaceLanding = () => {
                 className="text-4xl md:text-5xl font-bold mb-6"
                 style={{ fontFamily: "Georgia, serif", color: "#4B3A33" }}
               >
-                Benefits of HRT{" "}
+                {t("benefits.title1")}{" "}
                 <span className="text-wine">
-                  (What It Can Actually Help With)
+                  {t("benefits.title2")}
                 </span>
               </motion.h2>
             </div>
@@ -522,24 +465,14 @@ const HormonReplaceLanding = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft} className="space-y-6">
                 <p className="text-lg text-brown leading-relaxed">
-                  Major menopause societies and clinical resources consistently
-                  state that hormone therapy is the most effective option for:
+                  {t("benefits.desc")}
                 </p>
 
                 <div className="space-y-4">
                   {[
-                    {
-                      icon: <ThermometerSun />,
-                      text: "Vasomotor symptoms – hot flushes and night sweats",
-                    },
-                    {
-                      icon: <Droplet />,
-                      text: "Genitourinary syndrome of menopause like vaginal dryness and discomfort",
-                    },
-                    {
-                      icon: <Heart />,
-                      text: "It can also help prevent bone loss and fractures in suitable patients.",
-                    },
+                    { icon: <ThermometerSun />, text: t("benefits.b1") },
+                    { icon: <Droplet />, text: t("benefits.b2") },
+                    { icon: <Heart />, text: t("benefits.b3") },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -556,12 +489,12 @@ const HormonReplaceLanding = () => {
 
                 <div className="grid grid-cols-2 gap-4 mt-8">
                   <div className="bg-linear-to-br from-wine to-rose text-white p-4 rounded-xl text-center">
-                    <p className="text-3xl font-bold">80%</p>
-                    <p className="text-sm">Reduction in hot flushes</p>
+                    <p className="text-3xl font-bold">{t("benefits.stat1Number")}</p>
+                    <p className="text-sm">{t("benefits.stat1Label")}</p>
                   </div>
                   <div className="bg-linear-to-br from-brown to-taupe text-white p-4 rounded-xl text-center">
-                    <p className="text-3xl font-bold">90%</p>
-                    <p className="text-sm">Improved sleep quality</p>
+                    <p className="text-3xl font-bold">{t("benefits.stat2Number")}</p>
+                    <p className="text-sm">{t("benefits.stat2Label")}</p>
                   </div>
                 </div>
               </motion.div>
@@ -613,10 +546,10 @@ const HormonReplaceLanding = () => {
                   className="text-4xl md:text-5xl font-bold mb-6"
                   style={{ fontFamily: "Georgia, serif", color: "#4B3A33" }}
                 >
-                  Frequently Asked <span className="text-wine">Questions</span>
+                  {t("faq.title1")} <span className="text-wine">{t("faq.title2")}</span>
                 </h2>
                 <p className="text-lg text-brown mb-8">
-                  Get answers to common questions about HRT and what to expect.
+                  {t("faq.desc")}
                 </p>
 
                 <div className="relative rounded-3xl overflow-hidden shadow-xl h-100">
@@ -627,7 +560,7 @@ const HormonReplaceLanding = () => {
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-brown/70 to-transparent flex items-end p-6">
                     <p className="text-white text-lg">
-                      Have more questions? Our doctors are here to help.
+                      {t("faq.moreQuestions")}
                     </p>
                   </div>
                 </div>
@@ -637,28 +570,10 @@ const HormonReplaceLanding = () => {
                 variants={fadeInRight}
                 className="space-y-4 max-h-150 overflow-y-auto pr-4"
               >
-                {[
-                  {
-                    q: "What is HRT and why is it used?",
-                    a: "HRT replaces declining hormones, mainly oestrogen and sometimes progestogen, to ease menopause symptoms like hot flushes, night sweats, mood changes, and vaginal dryness.",
-                  },
-                  {
-                    q: "What are the two main types of HRT?",
-                    a: "Oestrogen-only HRT is usually for women after hysterectomy. Combined HRT is for women with a uterus to protect the womb lining.",
-                  },
-                  {
-                    q: "Is HRT safe?",
-                    a: "For many women, especially under 60 or within around 10 years of menopause, HRT can be safe when prescribed appropriately and reviewed regularly. Risks vary by type and personal health history.",
-                  },
-                  {
-                    q: "Can HRT cause weight gain?",
-                    a: "Most evidence and NHS guidance suggest HRT is not strongly linked to weight gain. Menopause itself can affect weight and fat distribution.",
-                  },
-                  {
-                    q: "How soon does HRT start working?",
-                    a: "Some people feel improvements in weeks, but timing varies depending on symptoms and formulation.",
-                  },
-                ].map((faq, index) => (
+                {Array.from({ length: 5 }, (_, i) => ({
+                  q: t(`faq.q${i + 1}`),
+                  a: t(`faq.a${i + 1}`),
+                })).map((faq, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
@@ -704,16 +619,14 @@ const HormonReplaceLanding = () => {
               className="text-4xl md:text-5xl font-bold mb-8 text-white"
               style={{ fontFamily: "Georgia, serif" }}
             >
-              Ready to Start Your Journey?
+              {t("cta.title")}
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl mb-12 max-w-2xl mx-auto text-white/90"
             >
-              If you're searching for hormone replacement therapy in Kuala
-              Lumpur or HRT in Malaysia, start with a private consultation and a
-              clear plan.
+              {t("cta.desc")}
             </motion.p>
 
             <motion.div
@@ -721,18 +634,17 @@ const HormonReplaceLanding = () => {
               className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 max-w-lg mx-auto border border-white/20"
             >
               <h3 className="text-2xl font-bold mb-4 text-white">
-                Nexus Clinic Kuala Lumpur
+                {t("cta.clinicName")}
               </h3>
               <p className="mb-2 text-white/90">
-                LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                Kuala Lumpur
+                {t("cta.address")}
               </p>
               <p className="text-2xl font-bold mt-4 text-white">
-                016-7025699 / 03-21635699
+                {t("cta.phone")}
               </p>
 
               <button className="mt-6 bg-white text-wine px-8 py-4 rounded-full font-semibold hover:bg-cream transition-all duration-300 transform hover:scale-105 shadow-lg w-full">
-                Book Your Consultation
+                {t("cta.button")}
               </button>
             </motion.div>
           </motion.div>

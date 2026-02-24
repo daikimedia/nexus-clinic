@@ -39,21 +39,25 @@ import {
   scaleIn,
   staggerContainer,
 } from "../../lib/animations";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-export default function EDTreatment() {
+export default function EDTreatment({ locale = fallbackLng }: { locale?: string }) {
+  const { t } = useTranslation(locale, "edTreatment");
+
   const images = {
     doctorConsultation:
-      "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?q=80&w=2070&auto=format&fit=crop", // Doctor consulting patient
+      "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?q=80&w=2070&auto=format&fit=crop",
     modernClinic:
-      "https://images.unsplash.com/photo-1631545796175-7e7c94e41a4b?q=80&w=2070&auto=format&fit=crop", // Modern clinic interior
+      "https://images.unsplash.com/photo-1631545796175-7e7c94e41a4b?q=80&w=2070&auto=format&fit=crop",
     medicalTeam:
-      "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop", // Medical team
+      "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=2070&auto=format&fit=crop",
     healthyLifestyle:
-      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop", // Man exercising/healthy lifestyle
+      "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop",
     kualaLumpur:
-      "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?q=80&w=2069&auto=format&fit=crop", // Kuala Lumpur cityscape
+      "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?q=80&w=2069&auto=format&fit=crop",
     consultation:
-      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop", // Private consultation
+      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=2080&auto=format&fit=crop",
   };
 
   return (
@@ -65,7 +69,6 @@ export default function EDTreatment() {
           animate="visible"
           className="relative min-h-screen flex items-center justify-center overflow-hidden"
         >
-          {/* Background Image with Overlay */}
           <div className="absolute inset-0">
             <img
               src={images.modernClinic}
@@ -95,7 +98,7 @@ export default function EDTreatment() {
                 >
                   <HeartPulse className="w-4 h-4 text-wine" />
                   <span className="text-sm text-brown">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </motion.div>
 
@@ -104,9 +107,9 @@ export default function EDTreatment() {
                   className="text-5xl lg:text-6xl font-serif font-bold"
                   style={{ color: "#4B3A33" }}
                 >
-                  It's not "in your head."
+                  {t("hero.title1")}
                   <span className="block text-wine">
-                    ED is often a health signal, and it's treatable.
+                    {t("hero.title2")}
                   </span>
                 </motion.h1>
 
@@ -114,11 +117,7 @@ export default function EDTreatment() {
                   variants={fadeInUp}
                   className="text-lg text-taupe leading-relaxed max-w-lg"
                 >
-                  If erections feel unpredictable, weaker, or don't last long
-                  enough, it can mess with your confidence and your
-                  relationship. At Nexus Clinic Kuala Lumpur, we keep it
-                  private, medical, and practical, so you can get answers
-                  without the awkwardness.
+                  {t("hero.desc")}
                 </motion.p>
 
                 <motion.div
@@ -135,7 +134,7 @@ export default function EDTreatment() {
                       boxShadow: "0 10px 25px -5px rgba(140, 79, 88, 0.3)",
                     }}
                   >
-                    Book Private Consult
+                    {t("hero.cta1")}
                     <ArrowRight className="w-5 h-5" />
                   </motion.button>
                   <motion.button
@@ -149,7 +148,7 @@ export default function EDTreatment() {
                       color: "#4B3A33",
                     }}
                   >
-                    Learn More
+                    {t("hero.cta2")}
                   </motion.button>
                 </motion.div>
 
@@ -159,16 +158,10 @@ export default function EDTreatment() {
                   className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8"
                 >
                   {[
-                    {
-                      icon: Lock,
-                      text: "Confidential, judgement-free consults",
-                    },
-                    { icon: Target, text: "Root-cause focused approach" },
-                    { icon: Shield, text: "Clear treatment options" },
-                    {
-                      icon: ShieldCheck,
-                      text: "Safety checks before you start",
-                    },
+                    { icon: Lock, text: t("hero.trust1") },
+                    { icon: Target, text: t("hero.trust2") },
+                    { icon: Shield, text: t("hero.trust3") },
+                    { icon: ShieldCheck, text: t("hero.trust4") },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -193,8 +186,7 @@ export default function EDTreatment() {
                 >
                   <MapPin className="w-5 h-5 text-wine" />
                   <span className="text-sm text-brown">
-                    LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                    Kuala Lumpur
+                    {t("hero.location")}
                   </span>
                 </motion.div>
               </motion.div>
@@ -211,24 +203,17 @@ export default function EDTreatment() {
                 >
                   <div className="p-8 space-y-6">
                     <h3 className="text-2xl font-serif font-semibold text-brown">
-                      Quick Reality Check: What ED Really Means
+                      {t("hero.realityTitle")}
                     </h3>
                     <p className="text-taupe">
-                      Erectile dysfunction (ED) means you often struggle to get
-                      or keep an erection firm enough for sex. One bad night
-                      does not mean you have ED. But if it keeps happening and
-                      it causes stress, it is worth checking.
+                      {t("hero.realityDesc")}
                     </p>
                     <div
                       className="p-4 rounded-lg"
                       style={{ background: "rgba(140, 79, 88, 0.1)" }}
                     >
                       <p className="text-wine font-medium">
-                        Here's the part most men do not hear early enough: ED
-                        can be an early sign of other health issues, especially
-                        blood flow and heart-related problems. That is why a
-                        proper medical review can protect more than your sex
-                        life.
+                        {t("hero.realityWarning")}
                       </p>
                     </div>
                   </div>
@@ -252,7 +237,7 @@ export default function EDTreatment() {
               className="text-4xl font-serif font-bold text-center mb-16"
               style={{ color: "#4B3A33" }}
             >
-              Who ED Treatment Is For
+              {t("whoFor.title")}
             </motion.h2>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
@@ -280,16 +265,10 @@ export default function EDTreatment() {
                   className="grid md:grid-cols-2 gap-6"
                 >
                   {[
-                    { icon: Activity, text: "Difficulty getting an erection" },
-                    { icon: TrendingUp, text: "Losing firmness during sex" },
-                    {
-                      icon: Users,
-                      text: "Lower sexual confidence or avoidance",
-                    },
-                    {
-                      icon: Brain,
-                      text: "Performance anxiety after repeated 'fails'",
-                    },
+                    { icon: Activity, text: t("whoFor.item1") },
+                    { icon: TrendingUp, text: t("whoFor.item2") },
+                    { icon: Users, text: t("whoFor.item3") },
+                    { icon: Brain, text: t("whoFor.item4") },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -323,13 +302,10 @@ export default function EDTreatment() {
                 }}
               >
                 <p className="text-wine font-medium">
-                  Erectile issues after diabetes, high blood pressure, smoking,
-                  stress, or weight gain (these are common drivers)
+                  {t("whoFor.driversNote")}
                 </p>
                 <p className="text-brown mt-4">
-                  ED is not only an "older man" thing. It can happen at any age,
-                  especially with stress, lifestyle factors, and metabolic
-                  health.
+                  {t("whoFor.ageNote")}
                 </p>
               </div>
             </motion.div>
@@ -350,42 +326,24 @@ export default function EDTreatment() {
               className="text-4xl font-serif font-bold text-center mb-8"
               style={{ color: "#4B3A33" }}
             >
-              Why ED Happens{" "}
-              <span className="text-wine">(In Simple Words)</span>
+              {t("whyHappens.title")}{" "}
+              <span className="text-wine">{t("whyHappens.titleHighlight")}</span>
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-center text-taupe mb-16 max-w-2xl mx-auto"
             >
-              An erection depends on blood flow, nerves, hormones, and your mind
-              working together.
+              {t("whyHappens.desc")}
             </motion.p>
 
             <div className="grid lg:grid-cols-2 gap-12">
               <motion.div variants={staggerContainer} className="space-y-6">
                 {[
-                  {
-                    icon: Heart,
-                    title: "1) Blood flow issues (most common)",
-                    desc: "If blood vessels are not working well, erections become weaker. This is also why ED can show up before bigger heart symptoms.",
-                  },
-                  {
-                    icon: Stethoscope,
-                    title: "2) Medical conditions and medications",
-                    desc: "Diabetes, high blood pressure, cholesterol issues, and some medicines can affect erections.",
-                  },
-                  {
-                    icon: TestTube,
-                    title: "3) Hormones (especially low testosterone)",
-                    desc: "Low testosterone can affect desire and contribute to ED. Guidelines discuss checking hormones where relevant and tailoring care.",
-                  },
-                  {
-                    icon: Brain,
-                    title:
-                      "4) Stress, anxiety, depression, relationship tension",
-                    desc: "Your brain is the 'starter motor.' If you're stressed or anxious, the body can block arousal even if you want intimacy.",
-                  },
+                  { icon: Heart, title: t("whyHappens.cause1Title"), desc: t("whyHappens.cause1Desc") },
+                  { icon: Stethoscope, title: t("whyHappens.cause2Title"), desc: t("whyHappens.cause2Desc") },
+                  { icon: TestTube, title: t("whyHappens.cause3Title"), desc: t("whyHappens.cause3Desc") },
+                  { icon: Brain, title: t("whyHappens.cause4Title"), desc: t("whyHappens.cause4Desc") },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -432,14 +390,14 @@ export default function EDTreatment() {
                   }}
                 >
                   <h3 className="text-2xl font-serif font-semibold text-brown mb-6">
-                    When You Should See a Doctor (Not Google)
+                    {t("whyHappens.seeDocTitle")}
                   </h3>
                   <ul className="space-y-4">
                     {[
-                      "The issue lasts more than a few weeks",
-                      "It affects your relationship or confidence",
-                      "You also have chest pain, breathlessness, diabetes, or high blood pressure",
-                      "You are tempted to buy ED pills online",
+                      t("whyHappens.seeDoc1"),
+                      t("whyHappens.seeDoc2"),
+                      t("whyHappens.seeDoc3"),
+                      t("whyHappens.seeDoc4"),
                     ].map((item, index) => (
                       <motion.li
                         key={index}
@@ -456,10 +414,7 @@ export default function EDTreatment() {
                     style={{ background: "rgba(140, 79, 88, 0.1)" }}
                   >
                     <p className="text-sm text-wine">
-                      Why the online warning? Fake ED meds are a real global
-                      problem, and they can contain the wrong dose, hidden
-                      substances, or no active ingredient at all. Always use a
-                      licensed doctor and pharmacy route.
+                      {t("whyHappens.onlineWarning")}
                     </p>
                   </div>
                 </div>
@@ -495,17 +450,17 @@ export default function EDTreatment() {
                 <div className="container mx-auto px-4">
                   <motion.div variants={fadeInLeft} className="max-w-2xl">
                     <h2 className="text-4xl font-serif font-bold text-white mb-6">
-                      How ED Is Assessed at a Good Clinic
+                      {t("assessment.title")}
                     </h2>
                     <p className="text-white/90 text-lg mb-8">
-                      A proper ED work-up usually includes:
+                      {t("assessment.desc")}
                     </p>
                     <div className="space-y-4">
                       {[
-                        "Your symptoms, timeline, and what situations it happens in",
-                        "Medical history (diabetes, BP, sleep, smoking, meds)",
-                        "Basic physical checks",
-                        "Targeted blood tests (often testosterone and general health markers)",
+                        t("assessment.step1"),
+                        t("assessment.step2"),
+                        t("assessment.step3"),
+                        t("assessment.step4"),
                       ].map((item, index) => (
                         <motion.div
                           key={index}
@@ -518,8 +473,7 @@ export default function EDTreatment() {
                       ))}
                     </div>
                     <p className="text-white/80 text-sm mt-6">
-                      This "whole picture" approach is recommended in urology
-                      guidance and patient education resources.
+                      {t("assessment.wholePicture")}
                     </p>
                   </motion.div>
                 </div>
@@ -532,9 +486,7 @@ export default function EDTreatment() {
               style={{ background: "rgba(140, 79, 88, 0.05)" }}
             >
               <p className="text-wine text-lg">
-                At Nexus Clinic Kuala Lumpur, the goal is simple: find the
-                cause, then match the treatment to your body and lifestyle, not
-                someone else's plan.
+                {t("assessment.nexusGoal")}
               </p>
             </motion.div>
           </div>
@@ -554,8 +506,8 @@ export default function EDTreatment() {
               className="text-4xl font-serif font-bold text-center mb-16"
               style={{ color: "#4B3A33" }}
             >
-              ED Treatment Options in Malaysia{" "}
-              <span className="text-wine">(From Simple to Advanced)</span>
+              {t("treatmentOptions.title")}{" "}
+              <span className="text-wine">{t("treatmentOptions.titleHighlight")}</span>
             </motion.h2>
 
             <div className="grid lg:grid-cols-2 gap-12 mb-12">
@@ -571,28 +523,17 @@ export default function EDTreatment() {
                   }}
                 >
                   <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                    1) Lifestyle Fixes That Actually Work (Especially for Mild
-                    ED)
+                    {t("lifestyle.title")}
                   </h3>
                   <p className="text-taupe mb-6">
-                    This is not a lecture. This is the foundation that makes
-                    every other treatment work better.
+                    {t("lifestyle.desc")}
                   </p>
                   <div className="grid grid-cols-2 gap-4">
                     {[
-                      {
-                        icon: Moon,
-                        text: "Better sleep (poor sleep can wreck hormones and arousal)",
-                      },
-                      { icon: Wine, text: "Cutting smoking and heavy alcohol" },
-                      {
-                        icon: Dumbbell,
-                        text: "Moving your body most days (even brisk walking helps circulation)",
-                      },
-                      {
-                        icon: Scale,
-                        text: "Weight management and blood sugar control if needed",
-                      },
+                      { icon: Moon, text: t("lifestyle.item1") },
+                      { icon: Wine, text: t("lifestyle.item2") },
+                      { icon: Dumbbell, text: t("lifestyle.item3") },
+                      { icon: Scale, text: t("lifestyle.item4") },
                     ].map((item, index) => (
                       <div
                         key={index}
@@ -605,8 +546,7 @@ export default function EDTreatment() {
                     ))}
                   </div>
                   <p className="mt-4 text-wine">
-                    If your ED is driven by blood flow and lifestyle factors,
-                    these changes can move the needle.
+                    {t("lifestyle.note")}
                   </p>
                 </motion.div>
 
@@ -621,14 +561,10 @@ export default function EDTreatment() {
                   }}
                 >
                   <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                    2) Performance Anxiety and Relationship Support
+                    {t("anxiety.title")}
                   </h3>
                   <p className="text-taupe">
-                    If ED started after stress, one bad experience, or pressure
-                    to "perform," you may be stuck in a loop: Worry → less
-                    arousal → weaker erection → more worry. Sometimes the best
-                    "treatment" is removing shame and building a plan with your
-                    partner. A clinic that normalizes the conversation helps.
+                    {t("anxiety.desc")}
                   </p>
                 </motion.div>
               </motion.div>
@@ -652,7 +588,7 @@ export default function EDTreatment() {
               </motion.div>
             </div>
 
-            {/* Rest of treatment options (same as before) */}
+            {/* Rest of treatment options */}
             <div className="space-y-8">
               {/* ED Tablets */}
               <motion.div
@@ -665,57 +601,43 @@ export default function EDTreatment() {
                 }}
               >
                 <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                  3) Prescription ED Tablets (PDE5 Inhibitors)
+                  {t("tablets.title")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  These are the most common first-line medical treatment for ED,
-                  recommended in major guidelines.
+                  {t("tablets.desc1")}
                 </p>
                 <p className="text-brown mb-4">
-                  Examples include sildenafil and tadalafil (you may know them
-                  by brand names like Viagra or Cialis). They help blood flow to
-                  the penis, but they still require sexual stimulation. They do
-                  not create instant desire.
+                  {t("tablets.desc2")}
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-6 mt-6">
                   <div>
                     <h4 className="font-medium text-wine mb-2">
-                      How to use them properly (small details matter)
+                      {t("tablets.useTitle")}
                     </h4>
                     <ul className="space-y-2">
-                      <li className="flex items-start gap-2 text-sm text-brown">
-                        <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                        Take as directed by your doctor
-                      </li>
-                      <li className="flex items-start gap-2 text-sm text-brown">
-                        <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                        Timing matters
-                      </li>
-                      <li className="flex items-start gap-2 text-sm text-brown">
-                        <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                        High-fat meals can delay the effect of some options (a
-                        common reason men think "it didn't work")
-                      </li>
+                      {[t("tablets.use1"), t("tablets.use2"), t("tablets.use3")].map((item, index) => (
+                        <li key={index} className="flex items-start gap-2 text-sm text-brown">
+                          <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
+                          {item}
+                        </li>
+                      ))}
                     </ul>
                   </div>
 
                   <div>
                     <h4 className="font-medium text-wine mb-2">
-                      Common side effects
+                      {t("tablets.sideEffectsTitle")}
                     </h4>
                     <p className="text-sm text-taupe mb-4">
-                      Headache, flushing, blocked nose, indigestion. These are
-                      widely listed in prescribing guidance.
+                      {t("tablets.sideEffectsDesc")}
                     </p>
 
                     <h4 className="font-medium text-wine mb-2">
-                      Who should NOT take them
+                      {t("tablets.contraTitle")}
                     </h4>
                     <p className="text-sm text-taupe">
-                      If you take nitrates for chest pain (angina), you must not
-                      use sildenafil or similar ED meds because it can cause
-                      dangerous drops in blood pressure.
+                      {t("tablets.contraDesc")}
                     </p>
                   </div>
                 </div>
@@ -732,14 +654,10 @@ export default function EDTreatment() {
                 }}
               >
                 <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                  4) Testosterone Support (Only If You're Truly Low)
+                  {t("testosterone.title")}
                 </h3>
                 <p className="text-taupe">
-                  If blood tests show low testosterone and symptoms match,
-                  hormone treatment may be considered as part of a broader plan,
-                  especially if pills are not working well and hypogonadism is
-                  present. This is not for everyone. Done right, it is careful
-                  medicine, not a "quick boost."
+                  {t("testosterone.desc")}
                 </p>
               </motion.div>
 
@@ -754,27 +672,19 @@ export default function EDTreatment() {
                 }}
               >
                 <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                  5) Vacuum Erection Devices (Penis Pumps)
+                  {t("vacuum.title")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  A penis pump draws blood into the penis and a ring helps
-                  maintain the erection. It is a non-drug option and can be
-                  useful when tablets are not suitable.
+                  {t("vacuum.desc")}
                 </p>
-                <p className="text-wine font-medium mb-2">Best for:</p>
+                <p className="text-wine font-medium mb-2">{t("vacuum.bestForTitle")}</p>
                 <ul className="space-y-2">
-                  <li className="flex items-start gap-2 text-sm text-brown">
-                    <CheckCircle2 className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    Men who cannot take ED tablets
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-brown">
-                    <CheckCircle2 className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    Men who want a non-medication approach
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-brown">
-                    <CheckCircle2 className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    Some post-surgery situations (doctor guidance matters)
-                  </li>
+                  {[t("vacuum.bestFor1"), t("vacuum.bestFor2"), t("vacuum.bestFor3")].map((item, index) => (
+                    <li key={index} className="flex items-start gap-2 text-sm text-brown">
+                      <CheckCircle2 className="w-4 h-4 text-wine mt-1 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </motion.div>
 
@@ -789,14 +699,10 @@ export default function EDTreatment() {
                 }}
               >
                 <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                  6) Penile Injections or Urethral Medication (Alprostadil)
+                  {t("injections.title")}
                 </h3>
                 <p className="text-taupe">
-                  If tablets fail or are not safe for you, doctors may offer
-                  alprostadil options. Mayo Clinic outlines intraurethral
-                  medication and notes possible side effects like burning and
-                  minor bleeding. Some Malaysia clinics also discuss alprostadil
-                  (for example, Caverject) as an ED treatment option.
+                  {t("injections.desc")}
                 </p>
               </motion.div>
 
@@ -811,27 +717,21 @@ export default function EDTreatment() {
                 }}
               >
                 <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                  7) Shockwave Therapy (Li-ESWT / ESWT) in Kuala Lumpur
+                  {t("shockwave.title")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  Shockwave therapy for ED is widely marketed in Malaysia and KL
-                  clinics. Competitor pages commonly position it as non-invasive
-                  and drug-free.
+                  {t("shockwave.desc")}
                 </p>
                 <p className="text-wine font-medium mb-2">
-                  What matters is who it is for and what results are realistic.
+                  {t("shockwave.note")}
                 </p>
                 <ul className="space-y-2 mb-4">
-                  <li className="flex items-start gap-2 text-sm text-brown">
-                    <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    It is often discussed for men with mild to moderate
-                    vasculogenic ED, where blood flow is the main issue.
-                  </li>
-                  <li className="flex items-start gap-2 text-sm text-brown">
-                    <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    Evidence exists, but outcomes vary, and it is not a magic
-                    switch.
-                  </li>
+                  {[t("shockwave.point1"), t("shockwave.point2")].map((item, index) => (
+                    <li key={index} className="flex items-start gap-2 text-sm text-brown">
+                      <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
                 </ul>
 
                 <div
@@ -839,22 +739,15 @@ export default function EDTreatment() {
                   style={{ background: "rgba(140, 79, 88, 0.05)" }}
                 >
                   <h4 className="font-medium text-wine mb-2">
-                    If you are considering shockwave therapy in Kuala Lumpur,
-                    ask these questions:
+                    {t("shockwave.questionsTitle")}
                   </h4>
                   <ol className="space-y-2 list-decimal list-inside text-sm text-brown">
-                    <li>"What type of ED do you think I have and why?"</li>
-                    <li>
-                      "How many sessions do you recommend and what is the plan
-                      if it doesn't work?"
-                    </li>
-                    <li>
-                      "Will you still check heart risk and metabolic health?"
-                    </li>
+                    <li>{t("shockwave.q1")}</li>
+                    <li>{t("shockwave.q2")}</li>
+                    <li>{t("shockwave.q3")}</li>
                   </ol>
                   <p className="mt-2 text-sm text-taupe">
-                    A clinic should guide you through suitability instead of
-                    pushing packages.
+                    {t("shockwave.questionsNote")}
                   </p>
                 </div>
               </motion.div>
@@ -870,12 +763,10 @@ export default function EDTreatment() {
                 }}
               >
                 <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                  8) PRP (P-Shot) at Nexus Clinic Kuala Lumpur
+                  {t("prp.title")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  Nexus Clinic offers a P-Shot page describing it as PRP derived
-                  from your own blood, injected with the goal of supporting
-                  blood flow and sensitivity, while noting results can vary.
+                  {t("prp.desc")}
                 </p>
 
                 <div
@@ -883,21 +774,15 @@ export default function EDTreatment() {
                   style={{ background: "rgba(140, 79, 88, 0.05)" }}
                 >
                   <h4 className="font-medium text-wine mb-2">
-                    If you are thinking about PRP:
+                    {t("prp.thinkingTitle")}
                   </h4>
                   <ul className="space-y-2">
-                    <li className="flex items-start gap-2 text-sm text-brown">
-                      <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                      Treat it as an option to discuss, not a guaranteed cure
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-brown">
-                      <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                      Ask about expected outcomes for your ED type
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-brown">
-                      <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                      Ask what evidence the clinic relies on for your case
-                    </li>
+                    {[t("prp.think1"), t("prp.think2"), t("prp.think3")].map((item, index) => (
+                      <li key={index} className="flex items-start gap-2 text-sm text-brown">
+                        <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </motion.div>
@@ -913,11 +798,10 @@ export default function EDTreatment() {
                 }}
               >
                 <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                  9) Stem Cell Based Approaches (Emerging)
+                  {t("stemCell.title")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  Nexus Clinic also describes stem cell therapy for ED as an
-                  emerging area and notes results can vary.
+                  {t("stemCell.desc")}
                 </p>
 
                 <div
@@ -925,23 +809,15 @@ export default function EDTreatment() {
                   style={{ background: "rgba(140, 79, 88, 0.05)" }}
                 >
                   <h4 className="font-medium text-wine mb-2">
-                    Because this space can be heavily marketed, your best
-                    protection is:
+                    {t("stemCell.protectionTitle")}
                   </h4>
                   <ul className="space-y-2">
-                    <li className="flex items-start gap-2 text-sm text-brown">
-                      <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                      Clear explanation of what is proven vs what is still
-                      developing
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-brown">
-                      <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                      Transparent risks, costs, and realistic expectations
-                    </li>
-                    <li className="flex items-start gap-2 text-sm text-brown">
-                      <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
-                      A medical plan that starts with diagnosis first
-                    </li>
+                    {[t("stemCell.protect1"), t("stemCell.protect2"), t("stemCell.protect3")].map((item, index) => (
+                      <li key={index} className="flex items-start gap-2 text-sm text-brown">
+                        <ArrowRight className="w-4 h-4 text-wine mt-1 shrink-0" />
+                        {item}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </motion.div>
@@ -957,14 +833,10 @@ export default function EDTreatment() {
                 }}
               >
                 <h3 className="text-2xl font-serif font-semibold text-brown mb-4">
-                  10) Surgery (Penile Implants)
+                  {t("surgery.title")}
                 </h3>
                 <p className="text-taupe">
-                  For severe ED that does not respond to other treatments,
-                  penile implants are a recognized option. Mayo Clinic lists
-                  implants as a treatment route when other methods fail. This is
-                  typically managed by a urologist, and a clinic can refer if
-                  needed.
+                  {t("surgery.desc")}
                 </p>
               </motion.div>
             </div>
@@ -1005,8 +877,7 @@ export default function EDTreatment() {
                 }}
               >
                 <p className="text-white text-xl font-serif">
-                  Nexus Clinic Kuala Lumpur — LG 10, Lower Ground Floor, Wisma
-                  UOA II, Jalan Pinang
+                  {t("locationBanner.text")}
                 </p>
               </div>
             </motion.div>
@@ -1027,8 +898,8 @@ export default function EDTreatment() {
               className="text-4xl font-serif font-bold text-center mb-16"
               style={{ color: "#4B3A33" }}
             >
-              Pros and Cons{" "}
-              <span className="text-wine">(Simple Comparison)</span>
+              {t("proscons.title")}{" "}
+              <span className="text-wine">{t("proscons.titleHighlight")}</span>
             </motion.h2>
 
             <motion.div
@@ -1047,22 +918,16 @@ export default function EDTreatment() {
               >
                 <Pill className="w-8 h-8 text-wine mb-4" />
                 <h3 className="font-serif text-xl font-semibold text-brown mb-4">
-                  Tablets (sildenafil, tadalafil)
+                  {t("proscons.tabletsTitle")}
                 </h3>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600 mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Pros: convenient, proven first-line, fast acting for many
-                      men
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.tabletsPros")}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Cons: not safe with nitrates, may cause side effects, may
-                      not help severe cases
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.tabletsCons")}</span>
                   </div>
                 </div>
               </motion.div>
@@ -1079,20 +944,16 @@ export default function EDTreatment() {
               >
                 <Zap className="w-8 h-8 text-wine mb-4" />
                 <h3 className="font-serif text-xl font-semibold text-brown mb-4">
-                  Shockwave therapy
+                  {t("proscons.shockwaveTitle")}
                 </h3>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600 mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Pros: non-invasive, no daily meds, popular in KL clinics
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.shockwavePros")}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Cons: not for everyone, needs sessions, results vary
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.shockwaveCons")}</span>
                   </div>
                 </div>
               </motion.div>
@@ -1109,21 +970,16 @@ export default function EDTreatment() {
               >
                 <Activity className="w-8 h-8 text-wine mb-4" />
                 <h3 className="font-serif text-xl font-semibold text-brown mb-4">
-                  Vacuum device
+                  {t("proscons.vacuumTitle")}
                 </h3>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600 mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Pros: drug-free option, useful when meds are
-                      contraindicated
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.vacuumPros")}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Cons: some men find it awkward; learning curve
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.vacuumCons")}</span>
                   </div>
                 </div>
               </motion.div>
@@ -1140,20 +996,16 @@ export default function EDTreatment() {
               >
                 <Syringe className="w-8 h-8 text-wine mb-4" />
                 <h3 className="font-serif text-xl font-semibold text-brown mb-4">
-                  Injections / intraurethral medicine
+                  {t("proscons.injectionsTitle")}
                 </h3>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600 mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Pros: works when tablets fail, targeted action
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.injectionsPros")}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Cons: discomfort, technique matters, side effects possible
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.injectionsCons")}</span>
                   </div>
                 </div>
               </motion.div>
@@ -1170,22 +1022,16 @@ export default function EDTreatment() {
               >
                 <Sparkles className="w-8 h-8 text-wine mb-4" />
                 <h3 className="font-serif text-xl font-semibold text-brown mb-4">
-                  PRP (P-Shot) and stem cell approaches
+                  {t("proscons.prpStemTitle")}
                 </h3>
                 <div className="space-y-2">
                   <div className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600 mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Pros: regenerative intent; some men explore it when
-                      standard options are limited
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.prpStemPros")}</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <XCircle className="w-4 h-4 text-wine mt-1 shrink-0" />
-                    <span className="text-sm text-brown">
-                      Cons: evidence and outcomes vary; needs careful medical
-                      discussion
-                    </span>
+                    <span className="text-sm text-brown">{t("proscons.prpStemCons")}</span>
                   </div>
                 </div>
               </motion.div>
@@ -1207,15 +1053,15 @@ export default function EDTreatment() {
               className="text-4xl font-serif font-bold text-center mb-16"
               style={{ color: "#4B3A33" }}
             >
-              ED Treatment Cost in Malaysia{" "}
-              <span className="text-wine">(Kuala Lumpur)</span>
+              {t("cost.title")}{" "}
+              <span className="text-wine">{t("cost.titleHighlight")}</span>
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-center text-taupe mb-12 max-w-2xl mx-auto"
             >
-              Costs vary based on the cause, tests needed, and treatment choice.
+              {t("cost.desc")}
             </motion.p>
 
             <motion.div
@@ -1223,29 +1069,10 @@ export default function EDTreatment() {
               className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto"
             >
               {[
-                {
-                  title: "Consultation",
-                  price: "RM 150-300",
-                  icon: Stethoscope,
-                },
-                {
-                  title: "Sildenafil tablets",
-                  price: "RM 30-50 per pill",
-                  note: "brand, cheaper for generics",
-                  icon: Pill,
-                },
-                {
-                  title: "Shockwave therapy",
-                  price: "RM 1,000-3,000",
-                  note: "per session",
-                  icon: Zap,
-                },
-                {
-                  title: "Penile implants",
-                  price: "RM 30,000-60,000",
-                  note: "surgical route",
-                  icon: Syringe,
-                },
+                { title: t("cost.consultTitle"), price: t("cost.consultPrice"), icon: Stethoscope },
+                { title: t("cost.sildenafTitle"), price: t("cost.sildenafPrice"), note: t("cost.sildenafNote"), icon: Pill },
+                { title: t("cost.shockwaveTitle"), price: t("cost.shockwavePrice"), note: t("cost.shockwaveNote"), icon: Zap },
+                { title: t("cost.implantsTitle"), price: t("cost.implantsPrice"), note: t("cost.implantsNote"), icon: Syringe },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -1273,9 +1100,7 @@ export default function EDTreatment() {
               variants={fadeInUp}
               className="text-center text-sm text-taupe mt-8"
             >
-              Use these as rough references, not a guaranteed price list. Your
-              real cost depends on your plan and how many sessions or follow-ups
-              you need.
+              {t("cost.disclaimer")}
             </motion.p>
           </div>
         </motion.section>
@@ -1294,7 +1119,7 @@ export default function EDTreatment() {
               className="text-4xl font-serif font-bold text-center mb-16"
               style={{ color: "#4B3A33" }}
             >
-              Your Journey at Nexus Clinic
+              {t("process.title")}
             </motion.h2>
 
             <motion.div
@@ -1302,36 +1127,11 @@ export default function EDTreatment() {
               className="grid md:grid-cols-2 lg:grid-cols-5 gap-4"
             >
               {[
-                {
-                  step: 1,
-                  title: "Private consult",
-                  desc: "symptom review",
-                  icon: MessageCircle,
-                },
-                {
-                  step: 2,
-                  title: "Quick risk screening",
-                  desc: "blood pressure, lifestyle, medical conditions",
-                  icon: Activity,
-                },
-                {
-                  step: 3,
-                  title: "Tests if needed",
-                  desc: "hormones, diabetes, cardiovascular risk",
-                  icon: TestTube,
-                },
-                {
-                  step: 4,
-                  title: "Step-by-step plan",
-                  desc: "options and timelines",
-                  icon: Calendar,
-                },
-                {
-                  step: 5,
-                  title: "Follow-up",
-                  desc: "to adjust treatment",
-                  icon: Timer,
-                },
+                { step: 1, title: t("process.step1Title"), desc: t("process.step1Desc"), icon: MessageCircle },
+                { step: 2, title: t("process.step2Title"), desc: t("process.step2Desc"), icon: Activity },
+                { step: 3, title: t("process.step3Title"), desc: t("process.step3Desc"), icon: TestTube },
+                { step: 4, title: t("process.step4Title"), desc: t("process.step4Desc"), icon: Calendar },
+                { step: 5, title: t("process.step5Title"), desc: t("process.step5Desc"), icon: Timer },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -1357,8 +1157,7 @@ export default function EDTreatment() {
               variants={fadeInUp}
               className="text-center mt-8 text-taupe"
             >
-              And yes, privacy matters. Nexus Clinic Kuala Lumpur location and
-              contact details are listed on their KL pages.
+              {t("process.privacyNote")}
             </motion.p>
           </div>
         </motion.section>
@@ -1377,17 +1176,15 @@ export default function EDTreatment() {
               className="text-4xl font-serif font-bold text-center mb-8"
               style={{ color: "#4B3A33" }}
             >
-              Competitor Snapshot: What Top Clinics in Malaysia Emphasize{" "}
-              <span className="text-wine">(and How to Beat Them)</span>
+              {t("competitor.title")}{" "}
+              <span className="text-wine">{t("competitor.titleHighlight")}</span>
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-center text-taupe mb-12 max-w-2xl mx-auto"
             >
-              When you look at common ranking pages for "ED treatment Malaysia"
-              and "erectile dysfunction treatment Kuala Lumpur," you will see
-              patterns:
+              {t("competitor.desc")}
             </motion.p>
 
             <motion.div
@@ -1395,15 +1192,9 @@ export default function EDTreatment() {
               className="grid md:grid-cols-3 gap-6"
             >
               {[
-                {
-                  text: "Discreet ED testing and treatment pages (PULSE Clinic)",
-                },
-                {
-                  text: '"Men\'s health doctor" positioning plus injection and shockwave packages (Universal Clinic, Alpha Clinic)',
-                },
-                {
-                  text: "Strong push on shockwave as a non-invasive solution (Alpha, HE Medical, Universal)",
-                },
+                t("competitor.item1"),
+                t("competitor.item2"),
+                t("competitor.item3"),
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -1415,7 +1206,7 @@ export default function EDTreatment() {
                     border: "1px solid rgba(172, 153, 144, 0.3)",
                   }}
                 >
-                  <p className="text-brown text-sm">{item.text}</p>
+                  <p className="text-brown text-sm">{item}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -1436,63 +1227,17 @@ export default function EDTreatment() {
               className="text-4xl font-serif font-bold text-center mb-16"
               style={{ color: "#4B3A33" }}
             >
-              Frequently Asked Questions
+              {t("faq.title")}
             </motion.h2>
 
             <motion.div
               variants={staggerContainer}
               className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
             >
-              {[
-                {
-                  q: "What is the best treatment for ED in Malaysia?",
-                  a: "There is no single best option. Guidelines commonly start with lifestyle improvements and prescription tablets (PDE5 inhibitors) when safe, then move to devices, injections, shockwave therapy, or surgery depending on the cause and severity.",
-                },
-                {
-                  q: "Can ED be cured permanently?",
-                  a: "Sometimes ED improves a lot when the root cause is treated, like better blood sugar control, weight loss, stopping smoking, or fixing medication issues. Other cases need ongoing support. Many hospital pages note ED can signal underlying conditions, so treating those matters.",
-                },
-                {
-                  q: "Is ED a normal part of ageing?",
-                  a: "ED becomes more common with age, but it is often linked to health factors like blood flow and heart health. It is worth checking instead of assuming it is 'normal.'",
-                },
-                {
-                  q: "How do I know if my ED is physical or psychological?",
-                  a: "If it happens in every situation and morning erections are gone, physical causes are more likely. If it happens mainly in high-pressure situations, anxiety can play a big role. Many men have a mix of both, which is why proper assessment helps.",
-                },
-                {
-                  q: "Are sildenafil or tadalafil safe?",
-                  a: "They can be safe for many men when prescribed properly. But they are not safe with nitrate heart medications because of dangerous blood pressure drops. Always speak to a doctor first.",
-                },
-                {
-                  q: "How fast do ED pills work?",
-                  a: "Timing depends on the medication and how you take it. Mayo Clinic notes oral ED medicine increases blood flow and effect can start within minutes for some, but correct use matters.",
-                },
-                {
-                  q: "What if ED pills do not work?",
-                  a: "Next steps can include checking correct usage, adjusting dose, treating underlying causes, then considering vacuum devices, alprostadil injections or urethral options, or shockwave therapy depending on suitability.",
-                },
-                {
-                  q: "Is shockwave therapy effective for ED?",
-                  a: "It may help some men, especially when blood flow is the main issue, and many KL clinics offer it. Results vary, so suitability screening is key.",
-                },
-                {
-                  q: "How much does ED treatment cost in Kuala Lumpur?",
-                  a: "Costs vary. Some private clinic estimates include consults around RM 150-300 and shockwave sessions around RM 1,000-3,000 per session, with medication costs depending on brand and dose.",
-                },
-                {
-                  q: "Can ED be a sign of heart disease?",
-                  a: "Yes, ED is often connected to blood flow problems and can be linked with cardiovascular disease risk. This is why a medical review is important.",
-                },
-                {
-                  q: "Should I buy ED medication online?",
-                  a: "Be careful. Counterfeit ED pills are widely seized internationally and can be unsafe. Use a licensed doctor and pharmacy route.",
-                },
-                {
-                  q: "Does PRP (P-Shot) help ED?",
-                  a: "Nexus Clinic describes P-Shot as PRP from your own blood that may support blood flow and sensitivity, and notes results can vary. It is best discussed after diagnosis so you understand if it fits your ED type.",
-                },
-              ].map((item, index) => (
+              {Array.from({ length: 12 }, (_, i) => ({
+                q: t(`faq.q${i + 1}`),
+                a: t(`faq.a${i + 1}`),
+              })).map((item, index) => (
                 <motion.div
                   key={index}
                   variants={fadeInUp}
@@ -1542,16 +1287,14 @@ export default function EDTreatment() {
                 variants={fadeInUp}
                 className="text-4xl font-serif font-bold text-white mb-6"
               >
-                Start with a Private Consult and a Real Diagnosis
+                {t("cta.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-white/90 mb-8 text-lg"
               >
-                If you are searching for ED treatment in Kuala Lumpur or
-                erectile dysfunction treatment in Malaysia, start with a private
-                consult and a real diagnosis.
+                {t("cta.desc")}
               </motion.p>
 
               <motion.div
@@ -1566,25 +1309,24 @@ export default function EDTreatment() {
                     boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.2)",
                   }}
                 >
-                  Book Your Private Consult
+                  {t("cta.button")}
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
 
                 <div className="flex items-center gap-4 text-white">
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4" />
-                    <span>016-7025699</span>
+                    <span>{t("cta.phone1")}</span>
                   </div>
                   <span>|</span>
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4" />
-                    <span>03-21635699</span>
+                    <span>{t("cta.phone2")}</span>
                   </div>
                 </div>
 
                 <p className="text-white/80 text-sm">
-                  LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                  Kuala Lumpur
+                  {t("cta.address")}
                 </p>
               </motion.div>
             </motion.div>

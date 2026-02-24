@@ -37,8 +37,12 @@ import {
 } from "../../lib/animations";
 import React from "react";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const TestosteroneLanding = () => {
+const TestosteroneLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "testosterone");
+
   const images = {
     doctorConsultation:
       "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
@@ -48,56 +52,98 @@ const TestosteroneLanding = () => {
       "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2091&q=80",
     patientCare: "/images/treatment/happy-patient.png",
   };
+
   const faqs = [
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
+    { q: t("faq.q6"), a: t("faq.a6") },
+    { q: t("faq.q7"), a: t("faq.a7") },
+    { q: t("faq.q8"), a: t("faq.a8") },
+    { q: t("faq.q9"), a: t("faq.a9") },
+    { q: t("faq.q10"), a: t("faq.a10") },
+    { q: t("faq.q11"), a: t("faq.a11") },
+    { q: t("faq.q12"), a: t("faq.a12") },
+  ];
+
+  const symptoms = [
+    { icon: <Zap />, text: t("symptoms.s1") },
+    { icon: <Heart />, text: t("symptoms.s2") },
+    { icon: <Activity />, text: t("symptoms.s3") },
+    { icon: <Brain />, text: t("symptoms.s4") },
+    { icon: <Sparkles />, text: t("symptoms.s5") },
+    { icon: <Scale />, text: t("symptoms.s6") },
+    { icon: <Dumbbell />, text: t("symptoms.s7") },
+    { icon: <Moon />, text: t("symptoms.s8") },
+  ];
+
+  const diagnosisSteps = [
+    { icon: <Clock />, text: t("diagnosis.step1") },
+    { icon: <Calendar />, text: t("diagnosis.step2") },
+    { icon: <BarChart3 />, text: t("diagnosis.step3") },
+  ];
+
+  const treatmentOptions = [
     {
-      q: "How do I know if I need testosterone therapy?",
-      a: "If you have symptoms like low energy, low libido, brain fog, or reduced strength, the next step is a medical review and blood tests. Diagnosis usually requires symptoms plus consistently low results on repeat morning tests.",
+      icon: <Syringe />,
+      title: t("treatment.opt1Title"),
+      desc: t("treatment.opt1Desc"),
+      price: t("treatment.opt1Price"),
+      image:
+        "https://images.unsplash.com/photo-1584362917165-526a968579e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     },
     {
-      q: "Is testosterone therapy safe?",
-      a: "It can be safe when prescribed for true deficiency and monitored. You need follow-ups because side effects like increased red blood cells and blood pressure changes can occur.",
+      icon: <Droplets />,
+      title: t("treatment.opt2Title"),
+      desc: t("treatment.opt2Desc"),
+      price: t("treatment.opt2Price"),
+      image:
+        "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     },
     {
-      q: "How long does it take for TRT to work?",
-      a: "Many men notice changes within weeks, but full benefits can take months. Clinicians often check levels around 30 days after starting, and sexual function changes may take longer.",
+      icon: <Pill />,
+      title: t("treatment.opt3Title"),
+      desc: t("treatment.opt3Desc"),
+      price: t("treatment.opt3Price"),
+      image:
+        "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     },
     {
-      q: "What are the side effects of TRT?",
-      a: "Possible side effects include acne, fluid retention, breast tenderness, increased red blood cell count, and possible worsening of sleep apnea. Monitoring is part of safe care.",
-    },
-    {
-      q: "Can TRT cause infertility?",
-      a: "Yes. TRT can reduce sperm count and fertility. If you want children, talk to your doctor before starting, because alternatives may be considered in specialist care.",
-    },
-    {
-      q: "Can I increase testosterone naturally?",
-      a: "Sometimes, yes. Sleep, strength training, healthy weight, and stress reduction can support testosterone. Supplements are a different story and many are not well regulated.",
-    },
-    {
-      q: "How much does testosterone therapy cost in Malaysia?",
-      a: "Typical published ranges vary by method. Injections around RM 800-2,500 per session and gels/pouches around RM 300-700 per month, but your total depends on labs and follow-ups.",
-    },
-    {
-      q: "Do I need blood tests before testosterone therapy?",
-      a: "Yes. Always. Testing confirms deficiency and rules out other causes. This is non-negotiable for safe care.",
-    },
-    {
-      q: "Will TRT help with erectile dysfunction?",
-      a: "TRT can help if ED is related to low testosterone, but ED has many causes. Some men may need separate ED treatment or a combined plan after assessment.",
-    },
-    {
-      q: "Can I stop TRT once I start?",
-      a: "Some men stop if symptoms do not improve after a trial period, or if side effects appear. Always stop only with medical guidance.",
-    },
-    {
-      q: "Does TRT increase heart risk?",
-      a: "Large trial evidence (TRAVERSE) found testosterone therapy was noninferior to placebo for major cardiovascular events. The FDA updated labeling in 2025 with blood pressure warnings. This is why monitoring matters.",
-    },
-    {
-      q: "Which type of TRT is best: injections or gel?",
-      a: "There is no 'best' for everyone. Injections may be convenient for some. Gels avoid needles but need daily use and careful handling to avoid transferring to others.",
+      icon: <Briefcase />,
+      title: t("treatment.opt4Title"),
+      desc: t("treatment.opt4Desc"),
+      price: t("treatment.opt4Price"),
+      image:
+        "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     },
   ];
+
+  const benefits = [
+    { icon: <Zap />, text: t("benefits.b1") },
+    { icon: <Heart />, text: t("benefits.b2") },
+    { icon: <Brain />, text: t("benefits.b3") },
+    { icon: <Dumbbell />, text: t("benefits.b4") },
+    { icon: <Scale />, text: t("benefits.b5") },
+    { icon: <Activity />, text: t("benefits.b6") },
+  ];
+
+  const risks = [
+    { icon: <Thermometer />, text: t("risks.r1") },
+    { icon: <Droplets />, text: t("risks.r2") },
+    { icon: <Heart />, text: t("risks.r3") },
+    { icon: <Moon />, text: t("risks.r4") },
+    { icon: <Activity />, text: t("risks.r5") },
+    { icon: <HeartPulse />, text: t("risks.r6") },
+  ];
+
+  const timelineItems = [
+    { time: t("timeline.time1"), desc: t("timeline.time1Desc") },
+    { time: t("timeline.time2"), desc: t("timeline.time2Desc") },
+    { time: t("timeline.time3"), desc: t("timeline.time3Desc") },
+  ];
+
   return (
     <>
       <main className="bg-color-light font-inter overflow-hidden">
@@ -110,7 +156,6 @@ const TestosteroneLanding = () => {
           className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20"
           style={{ backgroundColor: "var(--color-cream)" }}
         >
-          {/* Background Image with Overlay */}
           <div className="absolute inset-0 overflow-hidden">
             <img
               src={images.clinicInterior}
@@ -147,10 +192,10 @@ const TestosteroneLanding = () => {
               className="text-5xl md:text-7xl font-georgia mb-6 leading-tight"
               style={{ color: "var(--color-brown)" }}
             >
-              You're not "just getting older."
+              {t("hero.title1")}
               <br />
               <span style={{ color: "var(--color-wine)" }}>
-                You might be running low on testosterone.
+                {t("hero.title2")}
               </span>
             </motion.h1>
 
@@ -159,11 +204,7 @@ const TestosteroneLanding = () => {
               className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto"
               style={{ color: "var(--color-taupe)" }}
             >
-              If you feel tired all the time, your drive is gone, and your
-              workouts do not hit the same, it can be frustrating and confusing.
-              At Nexus Clinic Kuala Lumpur, we help you check what's really
-              happening, then build a safe plan that fits your body and your
-              life.
+              {t("hero.desc")}
             </motion.p>
 
             <motion.div
@@ -176,7 +217,7 @@ const TestosteroneLanding = () => {
                 className="px-8 py-4 rounded-xl text-white font-semibold text-lg"
                 style={{ backgroundColor: "var(--color-wine)" }}
               >
-                Book Your Consultation
+                {t("hero.cta1")}
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -189,7 +230,7 @@ const TestosteroneLanding = () => {
                   border: "1px solid var(--color-taupe)",
                 }}
               >
-                Learn More
+                {t("hero.cta2")}
               </motion.button>
             </motion.div>
           </div>
@@ -210,22 +251,10 @@ const TestosteroneLanding = () => {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
             >
               {[
-                {
-                  icon: <Award />,
-                  text: "Doctor-led assessment and clear next steps (no guessing, no hype)",
-                },
-                {
-                  icon: <Flask />,
-                  text: "Full hormone and health screening before treatment, with follow-up monitoring (this matters for safety)",
-                },
-                {
-                  icon: <MapPin />,
-                  text: "Central Kuala Lumpur location: LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450 Kuala Lumpur",
-                },
-                {
-                  icon: <Shield />,
-                  text: "Private, discreet care, because men's health is personal",
-                },
+                { icon: <Award />, text: t("trust.trust1") },
+                { icon: <Flask />, text: t("trust.trust2") },
+                { icon: <MapPin />, text: t("trust.trust3") },
+                { icon: <Shield />, text: t("trust.trust4") },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -251,9 +280,7 @@ const TestosteroneLanding = () => {
               style={{ backgroundColor: "var(--color-wine)", opacity: 0.9 }}
             >
               <p className="text-white italic">
-                Quick note: Testosterone therapy is a medical treatment, not a
-                "performance upgrade." Good care starts with proper diagnosis
-                and repeat testing.
+                {t("trust.quickNote")}
               </p>
             </motion.div>
           </div>
@@ -275,21 +302,16 @@ const TestosteroneLanding = () => {
                   className="text-4xl md:text-5xl font-georgia mb-6"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  What is Testosterone Therapy (TRT)?
+                  {t("whatIs.title")}
                 </h2>
                 <p
                   className="text-lg mb-4"
                   style={{ color: "var(--color-taupe)" }}
                 >
-                  Testosterone therapy, often called TRT (Testosterone
-                  Replacement Therapy), is treatment that raises testosterone to
-                  a healthy range for men who have:
+                  {t("whatIs.desc")}
                 </p>
                 <ul className="space-y-3">
-                  {[
-                    "symptoms, and",
-                    "consistently low testosterone confirmed on blood tests (usually morning tests, repeated)",
-                  ].map((item, index) => (
+                  {[t("whatIs.criteria1"), t("whatIs.criteria2")].map((item, index) => (
                     <motion.li
                       key={index}
                       variants={fadeInUp}
@@ -309,10 +331,7 @@ const TestosteroneLanding = () => {
                   className="mt-6 text-lg"
                   style={{ color: "var(--color-taupe)" }}
                 >
-                  Testosterone is linked to energy, sex drive, erections, mood,
-                  sleep quality, muscle mass, fat distribution, and bone
-                  strength. When it drops too low, you can feel like your
-                  "engine" is always running on empty.
+                  {t("whatIs.explanation")}
                 </p>
               </motion.div>
               <motion.div
@@ -334,7 +353,7 @@ const TestosteroneLanding = () => {
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/50 to-transparent">
                   <p className="text-white font-semibold">
-                    Expert medical consultation at Nexus Clinic KL
+                    {t("whatIs.imageCaption")}
                   </p>
                 </div>
               </motion.div>
@@ -357,7 +376,7 @@ const TestosteroneLanding = () => {
               className="text-4xl md:text-5xl font-georgia mb-12 text-center"
               style={{ color: "var(--color-brown)" }}
             >
-              Signs You Might Have Low Testosterone
+              {t("symptoms.title")}
             </motion.h2>
 
             <motion.p
@@ -365,26 +384,11 @@ const TestosteroneLanding = () => {
               className="text-xl text-center mb-12 max-w-3xl mx-auto italic"
               style={{ color: "var(--color-taupe)" }}
             >
-              "I'm functioning... but I'm not myself."
+              {t("symptoms.quote")}
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { icon: <Zap />, text: "Low energy and constant tiredness" },
-                {
-                  icon: <Heart />,
-                  text: "Lower sex drive, fewer morning erections",
-                },
-                { icon: <Activity />, text: "Erectile issues (sometimes)" },
-                {
-                  icon: <Brain />,
-                  text: "Low mood, irritability, anxiety, loss of confidence",
-                },
-                { icon: <Sparkles />, text: "Brain fog, poor focus" },
-                { icon: <Scale />, text: "More belly fat, less muscle" },
-                { icon: <Dumbbell />, text: "Poor recovery after workouts" },
-                { icon: <Moon />, text: "Sleep problems" },
-              ].map((symptom, index) => (
+              {symptoms.map((symptom, index) => (
                 <motion.div
                   key={index}
                   variants={fadeInUp}
@@ -413,9 +417,7 @@ const TestosteroneLanding = () => {
               className="mt-8 p-6 rounded-xl text-center"
               style={{ backgroundColor: "var(--color-rose)", color: "white" }}
             >
-              Important: these symptoms can also come from stress, poor sleep,
-              obesity, thyroid issues, diabetes, depression, or sleep apnea.
-              That's why testing and a proper medical review matter.
+              {t("symptoms.importantNote")}
             </motion.p>
           </div>
         </motion.section>
@@ -450,7 +452,7 @@ const TestosteroneLanding = () => {
                 />
                 <div className="absolute bottom-0 left-0 right-0 p-6 bg-linear-to-t from-black/50 to-transparent">
                   <p className="text-white font-semibold">
-                    State-of-the-art diagnostic equipment
+                    {t("diagnosis.imageCaption")}
                   </p>
                 </div>
               </motion.div>
@@ -460,12 +462,12 @@ const TestosteroneLanding = () => {
                   className="text-4xl md:text-5xl font-georgia mb-6"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  How Diagnosis Works
+                  {t("diagnosis.title")}
                   <span
                     className="block text-xl mt-2"
                     style={{ color: "var(--color-taupe)" }}
                   >
-                    (What Good Clinics Do)
+                    {t("diagnosis.subtitle")}
                   </span>
                 </h2>
 
@@ -474,25 +476,11 @@ const TestosteroneLanding = () => {
                   className="text-lg mb-8"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  Medical guidelines recommend diagnosing low testosterone only
-                  when symptoms and repeated lab results match.
+                  {t("diagnosis.desc")}
                 </motion.p>
 
                 <div className="space-y-4">
-                  {[
-                    {
-                      icon: <Clock />,
-                      text: "Morning blood tests, sometimes fasting",
-                    },
-                    {
-                      icon: <Calendar />,
-                      text: "Repeat confirmation (because testosterone can fluctuate)",
-                    },
-                    {
-                      icon: <BarChart3 />,
-                      text: "A broader panel to understand why it's low and to set safe baselines (often includes blood count, lipids, liver markers, and sometimes PSA depending on age and risk)",
-                    },
-                  ].map((item, index) => (
+                  {diagnosisSteps.map((item, index) => (
                     <motion.div
                       key={index}
                       variants={fadeInUp}
@@ -531,50 +519,17 @@ const TestosteroneLanding = () => {
               className="text-4xl md:text-5xl font-georgia mb-12 text-center"
               style={{ color: "var(--color-brown)" }}
             >
-              Testosterone Therapy Options in Malaysia
+              {t("treatment.title")}
               <span
                 className="block text-xl mt-2"
                 style={{ color: "var(--color-taupe)" }}
               >
-                (What You Can Choose)
+                {t("treatment.subtitle")}
               </span>
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  icon: <Syringe />,
-                  title: "Injections",
-                  desc: "Simple schedule, strong results, no daily application. Trade-offs: peaks and dips can happen.",
-                  price: "RM 800-2,500/session",
-                  image:
-                    "https://images.unsplash.com/photo-1584362917165-526a968579e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                },
-                {
-                  icon: <Droplets />,
-                  title: "Gels",
-                  desc: "No needles, easy dose adjustment, steady daily rhythm. Must apply daily, risk of transfer.",
-                  price: "RM 300-700/month",
-                  image:
-                    "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                },
-                {
-                  icon: <Pill />,
-                  title: "Patches",
-                  desc: "Less common than gels and injections, but still an option in some settings.",
-                  price: "Varies",
-                  image:
-                    "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                },
-                {
-                  icon: <Briefcase />,
-                  title: "Pellets",
-                  desc: "Rare in Malaysia, require minor procedure.",
-                  price: "Contact for pricing",
-                  image:
-                    "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-                },
-              ].map((option, index) => (
+              {treatmentOptions.map((option, index) => (
                 <motion.div
                   key={index}
                   variants={scaleIn}
@@ -644,19 +599,17 @@ const TestosteroneLanding = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft} className="text-white">
                 <h2 className="text-4xl md:text-5xl font-georgia mb-6">
-                  Private, Discreet, Professional Care
+                  {t("patientCare.title")}
                 </h2>
                 <p className="text-xl mb-6 opacity-90">
-                  At Nexus Clinic Kuala Lumpur, we understand that men's health
-                  is personal. Our approach combines medical expertise with
-                  complete privacy and discretion.
+                  {t("patientCare.desc")}
                 </p>
                 <ul className="space-y-4">
                   {[
-                    "One-on-one consultations in private rooms",
-                    "Confidential medical records and testing",
-                    "Flexible appointment scheduling",
-                    "Continuity of care with the same doctor",
+                    t("patientCare.item1"),
+                    t("patientCare.item2"),
+                    t("patientCare.item3"),
+                    t("patientCare.item4"),
                   ].map((item, index) => (
                     <motion.li
                       key={index}
@@ -694,11 +647,6 @@ const TestosteroneLanding = () => {
           </div>
         </motion.section>
 
-        {/* Rest of the sections remain the same but with enhanced styling */}
-        {/* ... (sections from previous code from Results Timeline to CTA) ... */}
-
-        {/* For brevity, I'll continue with the remaining sections but maintain the same pattern */}
-
         {/* Results Timeline Section */}
         <motion.section
           variants={staggerContainer}
@@ -714,7 +662,7 @@ const TestosteroneLanding = () => {
               className="text-4xl md:text-5xl font-georgia mb-12 text-center"
               style={{ color: "var(--color-brown)" }}
             >
-              What Results to Expect (and When)
+              {t("timeline.title")}
             </motion.h2>
 
             <motion.p
@@ -722,8 +670,7 @@ const TestosteroneLanding = () => {
               className="text-lg text-center mb-12 italic"
               style={{ color: "var(--color-taupe)" }}
             >
-              TRT is not instant. A realistic timeline helps you stay patient
-              and safe.
+              {t("timeline.desc")}
             </motion.p>
 
             <div className="relative">
@@ -732,20 +679,7 @@ const TestosteroneLanding = () => {
                 style={{ backgroundColor: "var(--color-rose)" }}
               />
 
-              {[
-                {
-                  time: "Weeks",
-                  desc: "Many men notice mood and body changes after a few weeks, and clinicians often re-check levels around the first month.",
-                },
-                {
-                  time: "Months",
-                  desc: "Sexual interest can improve within weeks, while erections and ejaculation changes may take longer, sometimes months.",
-                },
-                {
-                  time: "3-6 Months",
-                  desc: "If you have been on TRT for 3-6 months and nothing improves, your clinician may reassess whether testosterone was really the cause.",
-                },
-              ].map((item, index) => (
+              {timelineItems.map((item, index) => (
                 <motion.div
                   key={index}
                   variants={fadeInUp}
@@ -791,27 +725,11 @@ const TestosteroneLanding = () => {
               className="text-4xl md:text-5xl font-georgia mb-12"
               style={{ color: "var(--color-brown)" }}
             >
-              Benefits Men Commonly Want From TRT
+              {t("benefits.title")}
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { icon: <Zap />, text: "Better energy and stamina" },
-                {
-                  icon: <Heart />,
-                  text: "Improved libido and sexual function",
-                },
-                { icon: <Brain />, text: "Better mood and mental clarity" },
-                { icon: <Dumbbell />, text: "Stronger workouts and recovery" },
-                {
-                  icon: <Scale />,
-                  text: "Improved body composition (with training and diet)",
-                },
-                {
-                  icon: <Activity />,
-                  text: "Follow-up monitoring ensures safety",
-                },
-              ].map((benefit, index) => (
+              {benefits.map((benefit, index) => (
                 <motion.div
                   key={index}
                   variants={scaleIn}
@@ -854,12 +772,12 @@ const TestosteroneLanding = () => {
               className="text-4xl md:text-5xl font-georgia mb-12 text-center"
               style={{ color: "var(--color-brown)" }}
             >
-              Risks and Side Effects
+              {t("risks.title")}
               <span
                 className="block text-xl mt-2"
                 style={{ color: "var(--color-taupe)" }}
               >
-                (Real Talk)
+                {t("risks.subtitle")}
               </span>
             </motion.h2>
 
@@ -868,22 +786,11 @@ const TestosteroneLanding = () => {
               className="text-lg text-center mb-12 max-w-3xl mx-auto"
               style={{ color: "var(--color-brown)" }}
             >
-              TRT can be life-changing for the right person. It can also cause
-              problems if used casually.
+              {t("risks.desc")}
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { icon: <Thermometer />, text: "Acne or oily skin" },
-                { icon: <Droplets />, text: "Fluid retention" },
-                { icon: <Heart />, text: "Breast tenderness or gynecomastia" },
-                { icon: <Moon />, text: "Worsening sleep apnea in some men" },
-                {
-                  icon: <Activity />,
-                  text: "Increased red blood cell count (hematocrit), which needs monitoring",
-                },
-                { icon: <HeartPulse />, text: "Blood pressure and heart risk" },
-              ].map((risk, index) => (
+              {risks.map((risk, index) => (
                 <motion.div
                   key={index}
                   variants={fadeInUp}
@@ -905,19 +812,13 @@ const TestosteroneLanding = () => {
               style={{ backgroundColor: "var(--color-cream)" }}
             >
               <p style={{ color: "var(--color-brown)" }}>
-                In 2025, the FDA announced class-wide labeling changes after
-                reviewing the TRAVERSE trial and blood pressure monitoring
-                studies. The FDA noted TRAVERSE showed no increased risk of
-                major cardiovascular outcomes for the studied group, while blood
-                pressure increases were confirmed across testosterone products,
-                leading to blood pressure warnings.
+                {t("risks.fdaNote")}
               </p>
               <p
                 className="mt-4 font-semibold"
                 style={{ color: "var(--color-wine)" }}
               >
-                Bottom line: you want TRT managed medically, with follow-ups,
-                not guessed.
+                {t("risks.bottomLine")}
               </p>
             </motion.div>
           </div>
@@ -939,33 +840,28 @@ const TestosteroneLanding = () => {
                   className="text-4xl md:text-5xl font-georgia mb-6"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  TRT and Fertility
+                  {t("fertility.title")}
                   <span
                     className="block text-lg mt-2"
                     style={{ color: "var(--color-wine)" }}
                   >
-                    (Most Men Are Not Told This Early Enough)
+                    {t("fertility.subtitle")}
                   </span>
                 </h2>
                 <p
                   className="text-lg mb-4"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  If you want children, this part matters.
+                  {t("fertility.intro")}
                 </p>
                 <p className="mb-4" style={{ color: "var(--color-taupe)" }}>
-                  TRT can lower sperm count significantly and may cause
-                  fertility issues. Some fertility education resources note
-                  sperm can return after stopping testosterone, often around a
-                  few months, but the timeline varies and it is not something to
-                  gamble with.
+                  {t("fertility.desc")}
                 </p>
                 <p
                   className="font-semibold"
                   style={{ color: "var(--color-wine)" }}
                 >
-                  If you are trying to conceive soon (or even "maybe this
-                  year"), tell the doctor before starting.
+                  {t("fertility.warning")}
                 </p>
               </motion.div>
               <motion.div
@@ -981,8 +877,7 @@ const TestosteroneLanding = () => {
                   style={{ color: "var(--color-wine)" }}
                 />
                 <p style={{ color: "var(--color-brown)" }}>
-                  There are fertility-preserving approaches in specialist care,
-                  but the right choice depends on your case.
+                  {t("fertility.preserving")}
                 </p>
               </motion.div>
             </div>
@@ -1009,21 +904,16 @@ const TestosteroneLanding = () => {
                   className="text-2xl font-georgia mb-4"
                   style={{ color: "var(--color-wine)" }}
                 >
-                  TRT vs "Testosterone Boosters" (Supplements)
+                  {t("trtVs.card1Title")}
                 </h3>
                 <p className="mb-4" style={{ color: "var(--color-brown)" }}>
-                  A lot of men in Malaysia try supplements first because it
-                  feels easier.
+                  {t("trtVs.card1P1")}
                 </p>
                 <p className="mb-4" style={{ color: "var(--color-taupe)" }}>
-                  But many over-the-counter "boosters" are not regulated like
-                  prescription medicine, and effectiveness is often
-                  questionable.
+                  {t("trtVs.card1P2")}
                 </p>
                 <p style={{ color: "var(--color-brown)" }}>
-                  If you want to raise testosterone naturally, basics like
-                  sleep, resistance training, weight management, and stress
-                  reduction can help, even before you consider TRT.
+                  {t("trtVs.card1P3")}
                 </p>
               </motion.div>
 
@@ -1036,15 +926,13 @@ const TestosteroneLanding = () => {
                   className="text-2xl font-georgia mb-4"
                   style={{ color: "var(--color-wine)" }}
                 >
-                  TRT vs ED Medications (They Are Not the Same)
+                  {t("trtVs.card2Title")}
                 </h3>
                 <p className="mb-4" style={{ color: "var(--color-brown)" }}>
-                  ED medications (like PDE5 inhibitors) help blood flow and
-                  erections. TRT supports hormone balance.
+                  {t("trtVs.card2P1")}
                 </p>
                 <p style={{ color: "var(--color-taupe)" }}>
-                  Some men need one, some need the other, some need both. A
-                  proper assessment avoids wasting money and time.
+                  {t("trtVs.card2P2")}
                 </p>
               </motion.div>
             </div>
@@ -1066,7 +954,7 @@ const TestosteroneLanding = () => {
               className="text-4xl md:text-5xl font-georgia mb-12 text-center"
               style={{ color: "var(--color-brown)" }}
             >
-              Cost of Testosterone Therapy in Malaysia (Kuala Lumpur)
+              {t("cost.title")}
             </motion.h2>
 
             <motion.p
@@ -1074,8 +962,7 @@ const TestosteroneLanding = () => {
               className="text-lg text-center mb-12 max-w-3xl mx-auto"
               style={{ color: "var(--color-taupe)" }}
             >
-              Prices vary a lot depending on your baseline tests, your treatment
-              type, and how often you need follow-ups.
+              {t("cost.desc")}
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
@@ -1091,16 +978,16 @@ const TestosteroneLanding = () => {
                   className="text-2xl font-georgia mb-4"
                   style={{ color: "var(--color-wine)" }}
                 >
-                  Injections
+                  {t("cost.injectionsTitle")}
                 </h3>
                 <p
                   className="text-3xl font-bold mb-2"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  RM 800-2,500
+                  {t("cost.injectionsPrice")}
                 </p>
                 <p style={{ color: "var(--color-taupe)" }}>
-                  per session (depends on type)
+                  {t("cost.injectionsNote")}
                 </p>
               </motion.div>
 
@@ -1116,15 +1003,17 @@ const TestosteroneLanding = () => {
                   className="text-2xl font-georgia mb-4"
                   style={{ color: "var(--color-wine)" }}
                 >
-                  Gels/Patches
+                  {t("cost.gelsTitle")}
                 </h3>
                 <p
                   className="text-3xl font-bold mb-2"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  RM 300-700
+                  {t("cost.gelsPrice")}
                 </p>
-                <p style={{ color: "var(--color-taupe)" }}>per month</p>
+                <p style={{ color: "var(--color-taupe)" }}>
+                  {t("cost.gelsNote")}
+                </p>
               </motion.div>
             </div>
 
@@ -1134,15 +1023,14 @@ const TestosteroneLanding = () => {
               style={{ backgroundColor: "var(--color-brown)" }}
             >
               <p className="text-white text-center">
-                Simple tip: when you compare clinics, do not compare only the
-                injection price. Compare the full plan:
+                {t("cost.tip")}
               </p>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
                 {[
-                  "baseline lab panel",
-                  "follow-up labs schedule",
-                  "doctor review frequency",
-                  "safety monitoring",
+                  t("cost.tipItem1"),
+                  t("cost.tipItem2"),
+                  t("cost.tipItem3"),
+                  t("cost.tipItem4"),
                 ].map((item, index) => (
                   <div
                     key={index}
@@ -1172,7 +1060,7 @@ const TestosteroneLanding = () => {
               className="text-4xl md:text-5xl font-georgia mb-12 text-center"
               style={{ color: "var(--color-brown)" }}
             >
-              What We Noticed From Top-Ranking Competitors
+              {t("competitor.title")}
             </motion.h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -1185,13 +1073,13 @@ const TestosteroneLanding = () => {
                   className="text-2xl font-georgia mb-4"
                   style={{ color: "var(--color-wine)" }}
                 >
-                  Common patterns on competitor pages:
+                  {t("competitor.card1Title")}
                 </h3>
                 <ul className="space-y-3">
                   {[
-                    "Strong focus on benefits and symptom lists",
-                    "Social proof and privacy messaging (example: 'served more than 46,000 international patients')",
-                    "Many pages mention 'assessment + monitoring,' but often keep the actual step-by-step process brief",
+                    t("competitor.card1Item1"),
+                    t("competitor.card1Item2"),
+                    t("competitor.card1Item3"),
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-2">
                       <span className="text-wine">•</span>
@@ -1209,14 +1097,14 @@ const TestosteroneLanding = () => {
                 style={{ backgroundColor: "var(--color-wine)" }}
               >
                 <h3 className="text-2xl font-georgia mb-4 text-white">
-                  How Nexus Clinic KL content should win:
+                  {t("competitor.card2Title")}
                 </h3>
                 <ul className="space-y-3">
                   {[
-                    "Make diagnosis standards clear (symptoms + repeat morning labs)",
-                    "Explain monitoring and safety in plain language (hematocrit, BP, prostate checks when appropriate)",
-                    "Give honest cost ranges and what drives price",
-                    "Address fertility clearly, early, and directly",
+                    t("competitor.card2Item1"),
+                    t("competitor.card2Item2"),
+                    t("competitor.card2Item3"),
+                    t("competitor.card2Item4"),
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-2">
                       <Star className="w-4 h-4 text-white mt-1 shrink-0" />
@@ -1244,7 +1132,7 @@ const TestosteroneLanding = () => {
               className="text-4xl md:text-5xl font-georgia mb-12"
               style={{ color: "var(--color-brown)" }}
             >
-              Why Nexus Clinic Kuala Lumpur
+              {t("whyNexus.title")}
             </motion.h2>
 
             <motion.p
@@ -1252,8 +1140,7 @@ const TestosteroneLanding = () => {
               className="text-xl mb-12 max-w-4xl mx-auto"
               style={{ color: "var(--color-taupe)" }}
             >
-              If you're considering testosterone therapy in Kuala Lumpur, you
-              want a clinic that treats this like healthcare, not like a trend.
+              {t("whyNexus.desc")}
             </motion.p>
 
             <motion.div
@@ -1272,24 +1159,23 @@ const TestosteroneLanding = () => {
                 className="mb-2 font-semibold"
                 style={{ color: "var(--color-brown)" }}
               >
-                Nexus Clinic Kuala Lumpur
+                {t("whyNexus.clinicName")}
               </p>
               <p className="mb-4" style={{ color: "var(--color-taupe)" }}>
-                LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                Kuala Lumpur
+                {t("whyNexus.address")}
               </p>
               <div className="flex justify-center gap-4">
                 <span
                   className="flex items-center gap-1"
                   style={{ color: "var(--color-wine)" }}
                 >
-                  <Phone className="w-4 h-4" /> 016-7025699
+                  <Phone className="w-4 h-4" /> {t("whyNexus.phone1")}
                 </span>
                 <span
                   className="flex items-center gap-1"
                   style={{ color: "var(--color-wine)" }}
                 >
-                  <Phone className="w-4 h-4" /> 03-21635699
+                  <Phone className="w-4 h-4" /> {t("whyNexus.phone2")}
                 </span>
               </div>
             </motion.div>
@@ -1313,12 +1199,12 @@ const TestosteroneLanding = () => {
               variants={fadeInUp}
               className="text-4xl md:text-5xl font-georgia mb-6 text-white"
             >
-              Start with the step most men skip:
+              {t("cta.title")}
               <span
                 className="block text-2xl mt-2"
                 style={{ color: "var(--color-rose)" }}
               >
-                a proper diagnosis.
+                {t("cta.titleHighlight")}
               </span>
             </motion.h2>
 
@@ -1326,8 +1212,7 @@ const TestosteroneLanding = () => {
               variants={fadeInUp}
               className="text-xl mb-8 text-white opacity-90"
             >
-              Book a consultation at Nexus Clinic Kuala Lumpur and get a clear
-              plan based on symptoms, repeat blood tests, and safe monitoring.
+              {t("cta.desc")}
             </motion.p>
 
             <motion.button
@@ -1337,15 +1222,14 @@ const TestosteroneLanding = () => {
               className="px-12 py-4 rounded-xl text-lg font-semibold"
               style={{ backgroundColor: "var(--color-wine)", color: "white" }}
             >
-              Book Your Consultation
+              {t("cta.button")}
             </motion.button>
 
             <motion.p
               variants={fadeInUp}
               className="mt-6 text-white opacity-75"
             >
-              Nexus Clinic Kuala Lumpur, LG 10, Lower Ground Floor, Wisma UOA
-              II, Jalan Pinang, 50450 Kuala Lumpur
+              {t("cta.address")}
             </motion.p>
           </div>
         </motion.section>

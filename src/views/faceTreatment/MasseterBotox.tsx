@@ -22,30 +22,57 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const MasseterBotoxPage = () => {
+const MasseterBotoxPage = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "masseterBotox");
+
   const faqs = [
-    {
-      q: "How long does masseter Botox last?",
-      a: "Most people see results for about 3 to 6 months. Stronger muscles may wear off faster at first.",
-    },
-    {
-      q: "How soon will I see results?",
-      a: "Some people feel less tension within days. Visible jaw slimming usually becomes clearer around 4 to 6 weeks.",
-    },
-    {
-      q: "Does masseter Botox help teeth grinding?",
-      a: "It can reduce the force of grinding and clenching by relaxing the masseter muscle. Some people feel fewer jaw tension symptoms after treatment.",
-    },
-    {
-      q: "Will masseter Botox make my face sag?",
-      a: "It can, in some cases, especially if the goal is aggressive cosmetic slimming and the skin has less elasticity. A careful plan and realistic goals reduce the risk.",
-    },
-    {
-      q: "Can men do masseter Botox?",
-      a: "Yes. Men often request it for jaw tension, grinding, or to soften a bulky lower face. The dosing approach may differ based on muscle strength.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
   ];
+
+  const trustBadges = [
+    { icon: Shield, text: t("hero.trust1") },
+    { icon: Heart, text: t("hero.trust2") },
+    { icon: MapPin, text: t("hero.trust3") },
+    { icon: Award, text: t("hero.trust4") },
+  ];
+
+  const summaryPoints = [t("summary.point1"), t("summary.point2")];
+
+  const wideReasons = [t("summary.wide1"), t("summary.wide2"), t("summary.wide3"), t("summary.wide4")];
+
+  const bestForCards = [
+    { icon: Droplets, title: t("bestFor.card1Title"), description: t("bestFor.card1Desc"), color: "from-wine to-rose" },
+    { icon: Brain, title: t("bestFor.card2Title"), description: t("bestFor.card2Desc"), color: "from-rose to-taupe" },
+    { icon: Heart, title: t("bestFor.card3Title"), description: t("bestFor.card3Desc"), color: "from-taupe to-brown" },
+  ];
+
+  const timelineItems = [
+    { time: t("timeline.time1"), desc: t("timeline.time1Desc") },
+    { time: t("timeline.time2"), desc: t("timeline.time2Desc") },
+    { time: t("timeline.time3"), desc: t("timeline.time3Desc") },
+    { time: t("timeline.time4"), desc: t("timeline.time4Desc") },
+  ];
+
+  const priceItems = [
+    { label: t("pricing.price1Label"), value: t("pricing.price1Value") },
+    { label: t("pricing.price2Label"), value: t("pricing.price2Value") },
+    { label: t("pricing.price3Label"), value: t("pricing.price3Value") },
+  ];
+
+  const comparisons = [
+    { title: t("compare.comp1Title"), botox: t("compare.comp1Botox"), alt: t("compare.comp1Alt"), note: t("compare.comp1Note") },
+    { title: t("compare.comp2Title"), botox: t("compare.comp2Botox"), alt: t("compare.comp2Alt"), note: t("compare.comp2Note") },
+    { title: t("compare.comp3Title"), botox: t("compare.comp3Botox"), alt: t("compare.comp3Alt"), note: t("compare.comp3Note") },
+    { title: t("compare.comp4Title"), botox: t("compare.comp4Botox"), alt: t("compare.comp4Alt"), note: t("compare.comp4Note") },
+  ];
+
   return (
     <>
       <main className="bg-light font-[--font-inter] overflow-hidden">
@@ -83,7 +110,7 @@ const MasseterBotoxPage = () => {
             <motion.div variants={fadeInUp} className="mb-6">
               <span className="inline-flex items-center px-4 py-2 rounded-full bg-glass backdrop-blur-sm border border-taupe/20 text-brown text-sm font-medium">
                 <Sparkles className="w-4 h-4 mr-2 text-wine" />
-                Nexus Clinic Kuala Lumpur
+                {t("hero.badge")}
               </span>
             </motion.div>
 
@@ -91,18 +118,17 @@ const MasseterBotoxPage = () => {
               variants={fadeInUp}
               className="font-[--font-georgia] text-5xl sm:text-6xl lg:text-7xl text-brown mb-6 leading-tight"
             >
-              A softer jawline.
+              {t("hero.title1")}
               <br />
-              <span className="text-wine">A quieter jaw.</span>
-              <br />A more relaxed face.
+              <span className="text-wine">{t("hero.title2")}</span>
+              <br />{t("hero.title3")}
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
               className="text-xl text-taupe max-w-2xl mx-auto mb-10"
             >
-              Masseter Botox helps slim a square jaw caused by muscle bulk. It
-              can also ease jaw tension from clenching and teeth grinding.
+              {t("hero.desc")}
             </motion.p>
 
             <motion.div
@@ -114,7 +140,7 @@ const MasseterBotoxPage = () => {
                 whileTap={{ scale: 0.95 }}
                 className="group px-8 py-4 bg-wine text-white rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center"
               >
-                Book Your Consultation
+                {t("hero.cta1")}
                 <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
@@ -123,7 +149,7 @@ const MasseterBotoxPage = () => {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-glass backdrop-blur-sm border border-taupe/30 text-brown rounded-full font-medium text-lg hover:bg-white transition-all duration-300"
               >
-                Learn More
+                {t("hero.cta2")}
               </motion.button>
             </motion.div>
 
@@ -132,12 +158,7 @@ const MasseterBotoxPage = () => {
               variants={fadeInUp}
               className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-16 border-t border-taupe/20"
             >
-              {[
-                { icon: Shield, text: "Doctor-led assessment" },
-                { icon: Heart, text: "Natural-looking results" },
-                { icon: MapPin, text: "Central KL location" },
-                { icon: Award, text: "Core service expertise" },
-              ].map((item, index) => (
+              {trustBadges.map((item, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
@@ -164,23 +185,17 @@ const MasseterBotoxPage = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <motion.div variants={fadeInLeft}>
                 <span className="text-wine font-medium mb-4 block">
-                  Quick Summary
+                  {t("summary.badge")}
                 </span>
                 <h2 className="font-[--font-georgia] text-4xl text-brown mb-6">
-                  What Masseter Botox Does
+                  {t("summary.title")}
                 </h2>
                 <p className="text-lg text-taupe mb-8 leading-relaxed">
-                  Masseter Botox is a treatment where botulinum toxin is
-                  injected into the masseter muscles, the strong chewing muscles
-                  at the sides of your jaw. When these muscles relax, two things
-                  can happen:
+                  {t("summary.desc")}
                 </p>
 
                 <div className="space-y-6">
-                  {[
-                    "Your jaw looks slimmer if the width came mainly from muscle size",
-                    "Your jaw feels less tight if you clench, grind, or wake up with soreness",
-                  ].map((item, index) => (
+                  {summaryPoints.map((item, index) => (
                     <motion.div
                       key={index}
                       whileHover={{ x: 10 }}
@@ -202,11 +217,10 @@ const MasseterBotoxPage = () => {
                     <Clock className="w-8 h-8 text-wine" />
                     <div>
                       <p className="font-medium text-brown">
-                        Quick in-clinic treatment
+                        {t("summary.quickTitle")}
                       </p>
                       <p className="text-taupe">
-                        Takes about 10-15 minutes • Return to normal routine
-                        same day
+                        {t("summary.quickDesc")}
                       </p>
                     </div>
                   </div>
@@ -217,15 +231,10 @@ const MasseterBotoxPage = () => {
                 <div className="relative z-10 bg-linear-to-br from-wine to-rose p-1 rounded-3xl">
                   <div className="bg-white rounded-3xl p-8">
                     <h3 className="font-[--font-georgia] text-2xl text-brown mb-6">
-                      Why Your Jaw Looks "Wide"
+                      {t("summary.wideTitle")}
                     </h3>
                     <div className="space-y-4">
-                      {[
-                        "Masseter hypertrophy from clenching",
-                        "Jaw bone structure prominence",
-                        "Combination of both factors",
-                        "Age-related volume changes",
-                      ].map((item, index) => (
+                      {wideReasons.map((item, index) => (
                         <motion.div
                           key={index}
                           whileHover={{ scale: 1.02 }}
@@ -236,8 +245,7 @@ const MasseterBotoxPage = () => {
                       ))}
                     </div>
                     <p className="mt-6 text-taupe text-sm italic">
-                      *Masseter Botox works best when muscle bulk is a major
-                      cause
+                      {t("summary.wideNote")}
                     </p>
                   </div>
                 </div>
@@ -259,37 +267,15 @@ const MasseterBotoxPage = () => {
           <div className="max-w-7xl mx-auto">
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <span className="text-wine font-medium mb-4 block">
-                At Nexus Clinic KL
+                {t("bestFor.badge")}
               </span>
               <h2 className="font-[--font-georgia] text-4xl text-brown mb-6">
-                What Masseter Botox Is Best For
+                {t("bestFor.title")}
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  icon: Droplets,
-                  title: "Jaw Slimming",
-                  description:
-                    "Create a softer, more tapered contour over time by relaxing overactive masseter muscles",
-                  color: "from-wine to-rose",
-                },
-                {
-                  icon: Brain,
-                  title: "Teeth Grinding",
-                  description:
-                    "Reduce the force of clenching and grinding, leading to fewer 'tight jaw' mornings",
-                  color: "from-rose to-taupe",
-                },
-                {
-                  icon: Heart,
-                  title: "TMJ Tension Relief",
-                  description:
-                    "Supportive treatment for jaw pain and TMD symptoms by reducing muscle overwork",
-                  color: "from-taupe to-brown",
-                },
-              ].map((item, index) => (
+              {bestForCards.map((item, index) => (
                 <motion.div
                   key={index}
                   variants={scaleIn}
@@ -329,26 +315,17 @@ const MasseterBotoxPage = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <motion.div variants={fadeInLeft}>
                 <span className="text-wine font-medium mb-4 block">
-                  What to Expect
+                  {t("timeline.badge")}
                 </span>
                 <h2 className="font-[--font-georgia] text-4xl text-brown mb-6">
-                  Results Timeline
+                  {t("timeline.title")}
                 </h2>
                 <p className="text-lg text-taupe mb-8">
-                  Masseter Botox is not a "one-night" change. It's gradual, and
-                  that is actually a good thing because it looks natural.
+                  {t("timeline.desc")}
                 </p>
 
                 <div className="space-y-6">
-                  {[
-                    {
-                      time: "Within days to 2 weeks",
-                      desc: "First changes in tension",
-                    },
-                    { time: "1 to 2 weeks", desc: "Visible slimming begins" },
-                    { time: "4 to 6 weeks", desc: "Results become clearer" },
-                    { time: "3 to 6 months", desc: "Results typically last" },
-                  ].map((item, index) => (
+                  {timelineItems.map((item, index) => (
                     <motion.div
                       key={index}
                       whileHover={{ x: 10 }}
@@ -371,18 +348,14 @@ const MasseterBotoxPage = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="relative z-10 bg-[--color-cream] p-8 rounded-3xl">
                   <h3 className="font-[--font-georgia] text-2xl text-brown mb-6">
-                    Treatment Experience
+                    {t("timeline.expTitle")}
                   </h3>
                   <p className="text-taupe mb-6 leading-relaxed">
-                    Most patients describe it as quick and manageable. You may
-                    feel small pinches and slight pressure. Some people choose
-                    numbing cream, especially if they are nervous, but many do
-                    not need it.
+                    {t("timeline.expDesc")}
                   </p>
                   <div className="p-6 bg-white rounded-2xl">
                     <p className="text-brown italic">
-                      "The most common 'after' feeling is mild tenderness at the
-                      injection points for a short time."
+                      {t("timeline.expQuote")}
                     </p>
                   </div>
                 </div>
@@ -405,10 +378,10 @@ const MasseterBotoxPage = () => {
           <div className="max-w-7xl mx-auto">
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <span className="text-wine font-medium mb-4 block">
-                Investment
+                {t("pricing.badge")}
               </span>
               <h2 className="font-[--font-georgia] text-4xl text-brown mb-6">
-                Units & Pricing
+                {t("pricing.title")}
               </h2>
             </motion.div>
 
@@ -418,23 +391,21 @@ const MasseterBotoxPage = () => {
                 className="bg-white p-8 rounded-3xl shadow-lg"
               >
                 <h3 className="font-[--font-georgia] text-2xl text-brown mb-6">
-                  Units Needed
+                  {t("pricing.unitsTitle")}
                 </h3>
                 <p className="text-taupe mb-6">
-                  Units depend on your masseter size, facial shape goals, and
-                  whether you want help for grinding.
+                  {t("pricing.unitsDesc")}
                 </p>
                 <div className="p-6 bg-[--color-cream] rounded-2xl">
                   <p className="text-3xl font-[--font-georgia] text-wine mb-2">
-                    20-50 units
+                    {t("pricing.unitsValue")}
                   </p>
                   <p className="text-taupe">
-                    per side, based on muscle strength
+                    {t("pricing.unitsNote")}
                   </p>
                 </div>
                 <p className="mt-4 text-sm text-taupe italic">
-                  At Nexus Clinic KL, your plan should be based on your face,
-                  not a one-size template.
+                  {t("pricing.unitsDisclaimer")}
                 </p>
               </motion.div>
 
@@ -443,18 +414,14 @@ const MasseterBotoxPage = () => {
                 className="bg-white p-8 rounded-3xl shadow-lg"
               >
                 <h3 className="font-[--font-georgia] text-2xl text-brown mb-6">
-                  Price Range
+                  {t("pricing.priceTitle")}
                 </h3>
                 <p className="text-taupe mb-6">
-                  Malaysia price references for masseter Botox:
+                  {t("pricing.priceDesc")}
                 </p>
 
                 <div className="space-y-4 mb-6">
-                  {[
-                    { label: "Per unit range", value: "RM30 - RM50" },
-                    { label: "Average total", value: "RM1,200 - RM2,000" },
-                    { label: "Nexus Clinic KL", value: "RM1,500 - RM2,500" },
-                  ].map((item, index) => (
+                  {priceItems.map((item, index) => (
                     <div
                       key={index}
                       className="flex justify-between items-center py-2 border-b border-taupe/10"
@@ -468,8 +435,7 @@ const MasseterBotoxPage = () => {
                 </div>
 
                 <p className="text-sm text-taupe italic">
-                  *If you see "too cheap to be true" promos, be careful. Always
-                  choose qualified medical providers.
+                  {t("pricing.priceNote")}
                 </p>
               </motion.div>
             </div>
@@ -486,40 +452,15 @@ const MasseterBotoxPage = () => {
           <div className="max-w-7xl mx-auto">
             <motion.div variants={fadeInUp} className="text-center mb-16">
               <span className="text-wine font-medium mb-4 block">
-                Compare Options
+                {t("compare.badge")}
               </span>
               <h2 className="font-[--font-georgia] text-4xl text-brown mb-6">
-                Masseter Botox vs Other Treatments
+                {t("compare.title")}
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  title: "vs Jawline Filler",
-                  botox: "Relaxes muscle, reduces bulk over time",
-                  filler: "Adds structure and definition instantly",
-                  note: "If jaw looks wide mainly from muscle, Botox is first choice",
-                },
-                {
-                  title: "vs HIFU",
-                  botox: "Changes muscle activity and bulk",
-                  filler: "Focuses on lifting and tightening skin",
-                  note: "HIFU alone will not 'shrink' the masseter",
-                },
-                {
-                  title: "vs Surgery",
-                  botox: "Non-surgical and temporary",
-                  filler: "Permanent and more invasive",
-                  note: "Most choose Botox first for lower commitment",
-                },
-                {
-                  title: "for Teeth Grinding",
-                  botox: "Reduces muscle force",
-                  filler: "Night guard protects teeth",
-                  note: "Some people use both",
-                },
-              ].map((item, index) => (
+              {comparisons.map((item, index) => (
                 <motion.div
                   key={index}
                   variants={scaleIn}
@@ -531,14 +472,14 @@ const MasseterBotoxPage = () => {
                   </h3>
                   <div className="space-y-3 mb-4">
                     <p className="flex items-start gap-2">
-                      <span className="text-wine font-medium">Botox:</span>
+                      <span className="text-wine font-medium">{t("compare.botoxLabel")}</span>
                       <span className="text-taupe">{item.botox}</span>
                     </p>
                     <p className="flex items-start gap-2">
                       <span className="text-wine font-medium">
-                        Alternative:
+                        {t("compare.altLabel")}
                       </span>
-                      <span className="text-taupe">{item.filler}</span>
+                      <span className="text-taupe">{item.alt}</span>
                     </p>
                   </div>
                   <p className="text-sm text-brown italic bg-white p-3 rounded-xl">
@@ -576,7 +517,7 @@ const MasseterBotoxPage = () => {
             <motion.div variants={fadeInUp}>
               <span className="inline-flex items-center px-4 py-2 rounded-full bg-wine/10 text-wine text-sm font-medium mb-6">
                 <Heart className="w-4 h-4 mr-2" />
-                Ready for a Change?
+                {t("cta.badge")}
               </span>
             </motion.div>
 
@@ -584,14 +525,13 @@ const MasseterBotoxPage = () => {
               variants={fadeInUp}
               className="font-[--font-georgia] text-4xl md:text-5xl text-brown mb-6"
             >
-              Ready for a softer jawline
+              {t("cta.title")}
               <br />
-              <span className="text-wine">and a calmer jaw?</span>
+              <span className="text-wine">{t("cta.titleHighlight")}</span>
             </motion.h2>
 
             <motion.p variants={fadeInUp} className="text-xl text-taupe mb-10">
-              Book a consultation at Nexus Clinic Kuala Lumpur to get a plan
-              based on your face shape, muscle strength, and goals.
+              {t("cta.desc")}
             </motion.p>
 
             <motion.div variants={fadeInUp}>
@@ -600,7 +540,7 @@ const MasseterBotoxPage = () => {
                 whileTap={{ scale: 0.95 }}
                 className="group px-10 py-5 bg-wine text-white rounded-full font-medium text-xl shadow-2xl hover:shadow-3xl transition-all duration-300 inline-flex items-center"
               >
-                Schedule Your Consultation
+                {t("cta.button")}
                 <ChevronRight className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" />
               </motion.button>
             </motion.div>
@@ -611,12 +551,12 @@ const MasseterBotoxPage = () => {
             >
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-wine" />
-                <span>Wisma UOA II, Jalan Pinang</span>
+                <span>{t("cta.location1")}</span>
               </div>
               <div className="w-1 h-1 rounded-full bg-taupe" />
               <div className="flex items-center gap-2">
                 <Clock className="w-4 h-4 text-wine" />
-                <span>LG 10, Lower Ground Floor</span>
+                <span>{t("cta.location2")}</span>
               </div>
             </motion.div>
           </div>

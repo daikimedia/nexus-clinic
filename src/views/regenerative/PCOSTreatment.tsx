@@ -24,102 +24,42 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const PCOSPage = () => {
+const PCOSPage = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "pcosTreatment");
+
   const symptoms = [
-    {
-      icon: Calendar,
-      text: "Irregular periods (late, missed, or very long cycles)",
-    },
-    { icon: Droplets, text: "Acne and oily skin" },
-    { icon: Sparkles, text: "Unwanted facial or body hair (hirsutism)" },
-    { icon: Weight, text: "Weight gain or difficulty losing weight" },
-    { icon: Sun, text: "Darkened skin patches (acanthosis nigricans)" },
-    { icon: Moon, text: "Sleep issues, sometimes sleep apnoea" },
-    { icon: Heart, text: "Fertility challenges" },
+    { icon: Calendar, key: "s1" },
+    { icon: Droplets, key: "s2" },
+    { icon: Sparkles, key: "s3" },
+    { icon: Weight, key: "s4" },
+    { icon: Sun, key: "s5" },
+    { icon: Moon, key: "s6" },
+    { icon: Heart, key: "s7" },
   ];
 
   const treatmentSteps = [
     {
-      phase: "Phase 1: Diagnosis and clarity",
-      description:
-        "You bring symptoms. We confirm what's going on using guideline-based criteria and sensible testing.",
+      phaseKey: "phase1",
+      descKey: "phase1Desc",
     },
     {
-      phase: "Phase 2: Build your plan around your main goal",
-      options: [
-        "Cycle control",
-        "Clearer skin",
-        "Hair reduction",
-        "Weight and insulin resistance",
-        "Fertility support",
-      ],
-      description: "Think of your care in phases:",
+      phaseKey: "phase2",
+      descKey: "phase2Desc",
+      optionKeys: ["phase2Opt1", "phase2Opt2", "phase2Opt3", "phase2Opt4", "phase2Opt5"],
     },
     {
-      phase: "Phase 3: Track progress and adjust",
-      description: "PCOS changes over time. Your plan should too.",
+      phaseKey: "phase3",
+      descKey: "phase3Desc",
     },
   ];
 
-  const faqs = [
-    {
-      q: "Can PCOS be cured permanently?",
-      a: "PCOS usually cannot be 'cured,' but symptoms can be treated and controlled long term.",
-    },
-    {
-      q: "What is the best treatment for PCOS?",
-      a: "There is no single best treatment. The best plan depends on your goal: cycle control, acne and hair, weight and insulin resistance, or fertility. The international guideline recommends tailored care based on symptoms and life stage.",
-    },
-    {
-      q: "Can I get pregnant if I have PCOS?",
-      a: "Yes. Many women with PCOS can get pregnant, sometimes naturally and sometimes with ovulation support.",
-    },
-    {
-      q: "What is the first-line fertility medication for PCOS?",
-      a: "The 2023 International PCOS Guideline summary states letrozole should be first-line for ovulation induction in infertile anovulatory women with PCOS (with no other infertility factors).",
-    },
-    {
-      q: "How is PCOS diagnosed in adults?",
-      a: "Diagnosis uses revised Rotterdam criteria, usually requiring two of: hyperandrogenism, ovulatory dysfunction, or polycystic ovaries on ultrasound, while excluding other conditions like thyroid disease and high prolactin.",
-    },
-    {
-      q: "Do I need an ultrasound to confirm PCOS?",
-      a: "Not always. The guideline notes diagnosis can often be made based on clinical features, and ultrasound or AMH may be used in adults depending on the diagnostic pathway.",
-    },
-    {
-      q: "Why do I gain weight so easily with PCOS?",
-      a: "Insulin resistance is a common driver in PCOS. It can increase hunger, cravings, and fat storage, and can worsen hormone imbalance.",
-    },
-    {
-      q: "How much weight loss helps PCOS symptoms?",
-      a: "Even modest changes can help. NHS guidance notes that around 5% weight loss can significantly improve PCOS symptoms in overweight women.",
-    },
-    {
-      q: "Does metformin help PCOS?",
-      a: "Metformin may help in selected PCOS patients, especially where insulin resistance or anovulatory infertility is involved, and the guideline highlights counselling about GI side effects.",
-    },
-    {
-      q: "Is inositol better than metformin for PCOS?",
-      a: "The guideline notes metformin should be considered over inositol for hirsutism and central adiposity, and encourages women using complementary therapies to tell their health professional.",
-    },
-    {
-      q: "What is the best treatment for unwanted facial hair in PCOS?",
-      a: "Options include hormonal approaches and hair-reduction methods. The guideline specifically states laser and light therapies should be considered for facial hirsutism and quality of life, and more sessions may be needed in PCOS.",
-    },
-    {
-      q: "Does PCOS cause acne?",
-      a: "Yes, acne is a common symptom in PCOS. Malaysian hospital pages list acne as a PCOS symptom, and the guideline recommends assessing acne as part of hyperandrogenism review.",
-    },
-    {
-      q: "Should I worry about long-term health if I have PCOS?",
-      a: "PCOS is linked with metabolic risks and mental health concerns, so long-term monitoring and early lifestyle support matter.",
-    },
-    {
-      q: "Where can I get PCOS support in Kuala Lumpur?",
-      a: "Many women start at hospitals and O&G clinics for diagnosis. If your main concerns include weight, insulin resistance, acne, and unwanted hair, Nexus Clinic Kuala Lumpur is centrally located at Wisma UOA II, Jalan Pinang.",
-    },
-  ];
+  const faqs = Array.from({ length: 14 }, (_, i) => ({
+    q: t(`faq.q${i + 1}`),
+    a: t(`faq.a${i + 1}`),
+  }));
 
   return (
     <>
@@ -149,7 +89,7 @@ const PCOSPage = () => {
             <div className="max-w-4xl mx-auto text-center">
               <motion.div variants={fadeInUp} className="mb-6">
                 <span className="inline-block px-4 py-2 bg-wine text-light rounded-full text-sm font-medium tracking-wide">
-                  Nexus Clinic Kuala Lumpur
+                  {t("hero.badge")}
                 </span>
               </motion.div>
 
@@ -158,8 +98,8 @@ const PCOSPage = () => {
                 className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
                 style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
               >
-                PCOS is not "just
-                <span className="block text-wine">irregular periods."</span>
+                {t("hero.title1")}
+                <span className="block text-wine">{t("hero.title2")}</span>
               </motion.h1>
 
               <motion.p
@@ -167,8 +107,7 @@ const PCOSPage = () => {
                 className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto"
                 style={{ color: "#AC9990" }}
               >
-                It affects your skin, weight, mood, and fertility. Let's treat
-                the whole you.
+                {t("hero.desc")}
               </motion.p>
 
               <motion.p
@@ -176,11 +115,7 @@ const PCOSPage = () => {
                 className="text-lg mb-12 max-w-3xl mx-auto"
                 style={{ color: "#4B3A33" }}
               >
-                If your cycles are unpredictable, your acne will not calm down,
-                or your body feels like it is working against you, you are not
-                being dramatic. At Nexus Clinic Kuala Lumpur, we build a
-                realistic PCOS plan that fits your goals, your schedule, and
-                your body.
+                {t("hero.longDesc")}
               </motion.p>
 
               <motion.div
@@ -191,13 +126,13 @@ const PCOSPage = () => {
                   className="px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
                   style={{ backgroundColor: "#8C4F58", color: "#FAF8F7" }}
                 >
-                  Start Your Journey
+                  {t("hero.cta1")}
                 </button>
                 <button
                   className="px-8 py-4 rounded-full text-lg font-medium border-2 transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1"
                   style={{ borderColor: "#8C4F58", color: "#8C4F58" }}
                 >
-                  Learn More
+                  {t("hero.cta2")}
                 </button>
               </motion.div>
             </div>
@@ -218,23 +153,23 @@ const PCOSPage = () => {
               {[
                 {
                   icon: Shield,
-                  title: "Confidential, doctor-led consults",
-                  desc: "in central Kuala Lumpur",
+                  title: t("trust.t1Title"),
+                  desc: t("trust.t1Desc"),
                 },
                 {
                   icon: Users,
-                  title: "PCOS support that covers symptoms",
-                  desc: "you feel daily, including weight and insulin resistance, acne, unwanted hair, and cycle tracking",
+                  title: t("trust.t2Title"),
+                  desc: t("trust.t2Desc"),
                 },
                 {
                   icon: Award,
-                  title: "Evidence-based approach",
-                  desc: "guided by the 2023 International PCOS Guideline (Rotterdam criteria and treatment pathways)",
+                  title: t("trust.t3Title"),
+                  desc: t("trust.t3Desc"),
                 },
                 {
                   icon: MapPin,
-                  title: "Nexus Clinic Kuala Lumpur",
-                  desc: "LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450 Kuala Lumpur",
+                  title: t("trust.t4Title"),
+                  desc: t("trust.t4Desc"),
                 },
               ].map((item, index) => (
                 <motion.div
@@ -259,7 +194,7 @@ const PCOSPage = () => {
                   <p style={{ color: "#AC9990" }}>{item.desc}</p>
                   {index === 3 && (
                     <p className="mt-2 text-sm" style={{ color: "#8C4F58" }}>
-                      Mobile: 016-7025699 / 03-21635699
+                      {t("trust.phone")}
                     </p>
                   )}
                 </motion.div>
@@ -284,26 +219,20 @@ const PCOSPage = () => {
                   className="text-4xl md:text-5xl font-bold mb-6"
                   style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
                 >
-                  What Is PCOS
-                  <span className="block text-wine">(In Simple Words)</span>
+                  {t("whatIs.title")}
+                  <span className="block text-wine">{t("whatIs.titleHighlight")}</span>
                 </h2>
 
                 <p className="text-lg mb-4" style={{ color: "#4B3A33" }}>
-                  PCOS (Polycystic Ovary Syndrome) is a common hormone condition
-                  in women of reproductive age. It is linked to irregular
-                  ovulation, higher androgens (male-type hormones), and
-                  sometimes ovaries that look "polycystic" on ultrasound.
+                  {t("whatIs.desc1")}
                 </p>
 
                 <p className="text-lg italic" style={{ color: "#AC9990" }}>
-                  Important detail: PCOS does not always mean you have true
-                  cysts. Many sources explain the ovaries may contain many small
-                  follicles, and "cysts" is often a confusing word for patients.
+                  {t("whatIs.desc2")}
                 </p>
 
                 <p className="text-lg mt-4" style={{ color: "#8C4F58" }}>
-                  13% globally using Rotterdam criteria, and it may be higher in
-                  some regions including South East Asia.
+                  {t("whatIs.stat")}
                 </p>
               </motion.div>
 
@@ -322,7 +251,7 @@ const PCOSPage = () => {
                     className="text-sm font-medium"
                     style={{ color: "#4B3A33" }}
                   >
-                    Understanding PCOS is the first step to healing
+                    {t("whatIs.imageCaption")}
                   </p>
                 </div>
               </motion.div>
@@ -360,15 +289,14 @@ const PCOSPage = () => {
                   className="text-4xl md:text-5xl font-bold mb-6"
                   style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
                 >
-                  Signs and Symptoms
+                  {t("symptoms.title")}
                   <span className="block text-wine text-2xl mt-2">
-                    That Make Women Search "PCOS Treatment Kuala Lumpur"
+                    {t("symptoms.subtitle")}
                   </span>
                 </h2>
 
                 <p className="mb-6 text-lg" style={{ color: "#AC9990" }}>
-                  PCOS can look different from one woman to another. Common
-                  symptoms include:
+                  {t("symptoms.desc")}
                 </p>
 
                 <div className="space-y-4">
@@ -381,7 +309,7 @@ const PCOSPage = () => {
                         className="w-6 h-6 mt-1 shrink-0"
                         style={{ color: "#8C4F58" }}
                       />
-                      <span style={{ color: "#4B3A33" }}>{symptom.text}</span>
+                      <span style={{ color: "#4B3A33" }}>{t(`symptoms.${symptom.key}`)}</span>
                     </div>
                   ))}
                 </div>
@@ -390,17 +318,14 @@ const PCOSPage = () => {
                   className="mt-6 italic p-4 rounded-xl"
                   style={{ backgroundColor: "#F3EFEE", color: "#AC9990" }}
                 >
-                  PCOS can also affect mental health. Some Malaysian hospital
-                  education pages mention depression, anxiety, and even
-                  disordered eating patterns in women with PCOS.
+                  {t("symptoms.mentalNote")}
                 </p>
 
                 <p
                   className="mt-4 font-medium text-lg"
                   style={{ color: "#8C4F58" }}
                 >
-                  If you read that and thought "That is me," you deserve care
-                  that takes it seriously.
+                  {t("symptoms.empathy")}
                 </p>
               </motion.div>
             </div>
@@ -423,40 +348,29 @@ const PCOSPage = () => {
                   className="text-4xl md:text-5xl font-bold mb-6"
                   style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
                 >
-                  Step 1: Lifestyle That Actually Helps
+                  {t("lifestyle.title")}
                   <span className="block text-wine text-2xl mt-2">
-                    (Without Shame)
+                    {t("lifestyle.subtitle")}
                   </span>
                 </h2>
 
                 <p className="text-lg mb-4" style={{ color: "#4B3A33" }}>
-                  This is not about "just lose weight." It is about improving
-                  insulin sensitivity and reducing hormone chaos.
+                  {t("lifestyle.desc")}
                 </p>
 
                 <p className="mb-6" style={{ color: "#AC9990" }}>
-                  Even small changes can help. NHS guidance notes that in
-                  overweight women, losing around 5% of body weight can lead to
-                  significant improvement in PCOS. Malaysian hospital pages also
-                  highlight regular exercise, a balanced diet, and weight
-                  management as core strategies.
+                  {t("lifestyle.evidence")}
                 </p>
 
                 <h3
                   className="text-2xl font-bold mb-4"
                   style={{ color: "#4B3A33" }}
                 >
-                  Simple, realistic KL-friendly habits:
+                  {t("lifestyle.habitsTitle")}
                 </h3>
 
                 <div className="space-y-4">
-                  {[
-                    "Walk daily (start with 20 minutes)",
-                    "Build muscle 2 to 3 times a week (home workouts count)",
-                    "Prioritise protein and fibre in meals",
-                    "Reduce sugary drinks and frequent desserts (not forever, just less often)",
-                    "Sleep earlier when possible (PCOS and poor sleep feed each other)",
-                  ].map((habit, index) => (
+                  {["h1", "h2", "h3", "h4", "h5"].map((key, index) => (
                     <div
                       key={index}
                       className="flex items-center gap-3 p-3 rounded-xl bg-white/30 backdrop-blur-sm"
@@ -467,7 +381,7 @@ const PCOSPage = () => {
                           style={{ color: "#8C4F58" }}
                         />
                       </div>
-                      <span style={{ color: "#4B3A33" }}>{habit}</span>
+                      <span style={{ color: "#4B3A33" }}>{t(`lifestyle.${key}`)}</span>
                     </div>
                   ))}
                 </div>
@@ -476,8 +390,7 @@ const PCOSPage = () => {
                   className="mt-6 italic font-medium"
                   style={{ color: "#8C4F58" }}
                 >
-                  This is the base that makes medication work better, and makes
-                  symptoms return less often.
+                  {t("lifestyle.note")}
                 </p>
               </motion.div>
 
@@ -490,8 +403,8 @@ const PCOSPage = () => {
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-brown to-transparent opacity-60"></div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <p className="text-lg font-bold">Start with small steps</p>
-                    <p className="text-sm">20 minutes walk daily</p>
+                    <p className="text-lg font-bold">{t("lifestyle.imageTitle")}</p>
+                    <p className="text-sm">{t("lifestyle.imageDesc")}</p>
                   </div>
                 </div>
 
@@ -501,11 +414,10 @@ const PCOSPage = () => {
                     style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
                   >
                     <h4 className="font-bold mb-2" style={{ color: "#4B3A33" }}>
-                      Step 2: Irregular Periods
+                      {t("lifestyle.step2Title")}
                     </h4>
                     <p className="text-sm" style={{ color: "#AC9990" }}>
-                      Combined oral contraceptive pills and other hormone
-                      options
+                      {t("lifestyle.step2Desc")}
                     </p>
                   </div>
                   <div
@@ -513,10 +425,10 @@ const PCOSPage = () => {
                     style={{ backgroundColor: "rgba(255, 255, 255, 0.7)" }}
                   >
                     <h4 className="font-bold mb-2" style={{ color: "#4B3A33" }}>
-                      Step 3: Acne Treatment
+                      {t("lifestyle.step3Title")}
                     </h4>
                     <p className="text-sm" style={{ color: "#AC9990" }}>
-                      Hormonal regulation & medical-grade skincare
+                      {t("lifestyle.step3Desc")}
                     </p>
                   </div>
                 </div>
@@ -545,17 +457,14 @@ const PCOSPage = () => {
                     className="text-3xl font-bold mb-4"
                     style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
                   >
-                    Step 4: Unwanted Hair and Hair Thinning
+                    {t("hair.title")}
                     <span className="block text-xl text-wine mt-1">
-                      (Hirsutism and PCOS)
+                      {t("hair.subtitle")}
                     </span>
                   </h3>
 
                   <p className="mb-4" style={{ color: "#AC9990" }}>
-                    Unwanted facial hair is one of the most emotionally heavy
-                    PCOS symptoms. The guideline even notes the psychosocial
-                    impact and encourages clinicians to take patient reporting
-                    seriously.
+                    {t("hair.desc")}
                   </p>
 
                   <div className="relative h-48 rounded-xl overflow-hidden mb-4">
@@ -567,20 +476,12 @@ const PCOSPage = () => {
                   </div>
 
                   <p className="font-medium mb-2" style={{ color: "#4B3A33" }}>
-                    Treatment options include:
+                    {t("hair.optionsTitle")}
                   </p>
                   <ul className="list-disc list-inside space-y-2">
-                    <li style={{ color: "#4B3A33" }}>
-                      Hormonal options (doctor-led)
-                    </li>
-                    <li style={{ color: "#4B3A33" }}>
-                      Anti-androgens in selected patients, with strong
-                      contraception guidance
-                    </li>
-                    <li style={{ color: "#4B3A33" }}>
-                      Laser and light hair reduction (more sessions may be
-                      needed in PCOS)
-                    </li>
+                    <li style={{ color: "#4B3A33" }}>{t("hair.opt1")}</li>
+                    <li style={{ color: "#4B3A33" }}>{t("hair.opt2")}</li>
+                    <li style={{ color: "#4B3A33" }}>{t("hair.opt3")}</li>
                   </ul>
                 </div>
               </motion.div>
@@ -594,12 +495,11 @@ const PCOSPage = () => {
                     className="text-3xl font-bold mb-4"
                     style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
                   >
-                    Step 5: Insulin Resistance and Weight Support
+                    {t("insulin.title")}
                   </h3>
 
                   <p className="mb-4" style={{ color: "#AC9990" }}>
-                    Many women with PCOS feel like they eat less and still gain
-                    weight. Insulin resistance can be part of that story.
+                    {t("insulin.desc")}
                   </p>
 
                   <div className="relative h-48 rounded-xl overflow-hidden mb-4">
@@ -615,12 +515,10 @@ const PCOSPage = () => {
                       className="font-medium mb-2"
                       style={{ color: "#4B3A33" }}
                     >
-                      Metformin
+                      {t("insulin.metforminTitle")}
                     </p>
                     <p style={{ color: "#AC9990" }}>
-                      Can be used in certain PCOS situations, including
-                      anovulatory infertility. May be considered over inositol
-                      for hirsutism and central adiposity.
+                      {t("insulin.metforminDesc")}
                     </p>
                   </div>
 
@@ -629,11 +527,10 @@ const PCOSPage = () => {
                       className="font-medium mb-2"
                       style={{ color: "#4B3A33" }}
                     >
-                      Modern weight-loss medications
+                      {t("insulin.glp1Title")}
                     </p>
                     <p style={{ color: "#AC9990" }}>
-                      GLP-1 medications in selected PCOS patients under medical
-                      care, depending on BMI and health history.
+                      {t("insulin.glp1Desc")}
                     </p>
                   </div>
                 </div>
@@ -658,16 +555,14 @@ const PCOSPage = () => {
                   className="text-4xl md:text-5xl font-bold mb-6"
                   style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
                 >
-                  Step 6: PCOS and Fertility
+                  {t("fertility.title")}
                   <span className="block text-wine text-2xl">
-                    (If You Want to Get Pregnant)
+                    {t("fertility.subtitle")}
                   </span>
                 </h2>
 
                 <p className="text-lg mb-4" style={{ color: "#4B3A33" }}>
-                  PCOS is one of the most common causes of infertility, but it
-                  is also treatable. Many women with PCOS can still get
-                  pregnant.
+                  {t("fertility.desc")}
                 </p>
 
                 <div
@@ -678,28 +573,20 @@ const PCOSPage = () => {
                     className="font-bold text-lg mb-2"
                     style={{ color: "#8C4F58" }}
                   >
-                    Ovulation induction:
+                    {t("fertility.ovulationTitle")}
                   </p>
                   <p>
-                    Letrozole should be first-line pharmacological treatment for
-                    ovulation induction in infertile anovulatory women with
-                    PCOS.
+                    {t("fertility.ovulationDesc")}
                   </p>
                 </div>
 
                 <p className="font-medium mb-2" style={{ color: "#4B3A33" }}>
-                  Your plan may include:
+                  {t("fertility.planTitle")}
                 </p>
                 <ul className="list-disc list-inside space-y-1">
-                  <li style={{ color: "#4B3A33" }}>
-                    Cycle tracking and timed intercourse guidance
-                  </li>
-                  <li style={{ color: "#4B3A33" }}>
-                    Ovulation medications (doctor-prescribed)
-                  </li>
-                  <li style={{ color: "#4B3A33" }}>
-                    Referral to fertility specialists if needed
-                  </li>
+                  <li style={{ color: "#4B3A33" }}>{t("fertility.plan1")}</li>
+                  <li style={{ color: "#4B3A33" }}>{t("fertility.plan2")}</li>
+                  <li style={{ color: "#4B3A33" }}>{t("fertility.plan3")}</li>
                 </ul>
               </motion.div>
 
@@ -711,7 +598,7 @@ const PCOSPage = () => {
                   className="relative rounded-3xl shadow-2xl w-full h-100 object-cover"
                 />
                 <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-wine flex items-center justify-center text-white text-2xl font-bold">
-                  Hope
+                  {t("fertility.hopeBadge")}
                 </div>
               </motion.div>
             </div>
@@ -743,7 +630,7 @@ const PCOSPage = () => {
                     className="text-sm font-medium"
                     style={{ color: "#8C4F58" }}
                   >
-                    Transparent pricing
+                    {t("cost.transparentBadge")}
                   </p>
                 </div>
               </motion.div>
@@ -753,14 +640,14 @@ const PCOSPage = () => {
                   className="text-4xl md:text-5xl font-bold mb-6"
                   style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
                 >
-                  Cost of PCOS Treatment
+                  {t("cost.title")}
                   <span className="block text-wine text-2xl">
-                    (Realistic, Not Guessy)
+                    {t("cost.subtitle")}
                   </span>
                 </h2>
 
                 <p className="text-lg mb-6" style={{ color: "#AC9990" }}>
-                  PCOS costs vary because PCOS is not one treatment.
+                  {t("cost.desc")}
                 </p>
 
                 <div
@@ -768,19 +655,13 @@ const PCOSPage = () => {
                   style={{ backgroundColor: "#F3EFEE" }}
                 >
                   <p className="font-bold mb-3" style={{ color: "#4B3A33" }}>
-                    What usually drives cost:
+                    {t("cost.driversTitle")}
                   </p>
                   <ul className="space-y-2">
-                    {[
-                      "Consultation and follow-ups",
-                      "Blood tests",
-                      "Pelvic ultrasound",
-                      "Medications",
-                      "Hair reduction or acne-scar treatments",
-                    ].map((item, i) => (
+                    {["d1", "d2", "d3", "d4", "d5"].map((key, i) => (
                       <li key={i} className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-wine"></div>
-                        <span style={{ color: "#4B3A33" }}>{item}</span>
+                        <span style={{ color: "#4B3A33" }}>{t(`cost.${key}`)}</span>
                       </li>
                     ))}
                   </ul>
@@ -788,30 +669,26 @@ const PCOSPage = () => {
 
                 <div className="grid grid-cols-3 gap-3 mb-4">
                   <div className="p-3 text-center rounded-xl bg-white">
-                    <p className="text-xs text-taupe">Specialist Test</p>
-                    <p className="text-lg font-bold text-wine">RM138</p>
+                    <p className="text-xs text-taupe">{t("cost.price1Label")}</p>
+                    <p className="text-lg font-bold text-wine">{t("cost.price1Value")}</p>
                   </div>
                   <div className="p-3 text-center rounded-xl bg-white">
-                    <p className="text-xs text-taupe">Screening</p>
-                    <p className="text-lg font-bold text-wine">RM480</p>
+                    <p className="text-xs text-taupe">{t("cost.price2Label")}</p>
+                    <p className="text-lg font-bold text-wine">{t("cost.price2Value")}</p>
                   </div>
                   <div className="p-3 text-center rounded-xl bg-white">
-                    <p className="text-xs text-taupe">Ultrasound</p>
-                    <p className="text-lg font-bold text-wine">RM285</p>
+                    <p className="text-xs text-taupe">{t("cost.price3Label")}</p>
+                    <p className="text-lg font-bold text-wine">{t("cost.price3Value")}</p>
                   </div>
                 </div>
 
                 <p className="text-sm italic" style={{ color: "#8C4F58" }}>
-                  Your exact cost depends on what you actually need, not what a
-                  package includes.
+                  {t("cost.disclaimer")}
                 </p>
               </motion.div>
             </div>
           </div>
         </motion.section>
-
-        {/* Rest of sections remain the same but with adjusted styling */}
-        {/* ... (Treatment Phases, FAQ, CTA sections with existing content) ... */}
 
         {/* Treatment Phases */}
         <motion.section
@@ -828,9 +705,9 @@ const PCOSPage = () => {
               className="text-4xl md:text-5xl font-bold text-center mb-12"
               style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
             >
-              What PCOS Treatment Looks Like
+              {t("phases.title")}
               <span className="block text-wine">
-                at Nexus Clinic Kuala Lumpur
+                {t("phases.titleHighlight")}
               </span>
             </motion.h2>
 
@@ -839,7 +716,7 @@ const PCOSPage = () => {
               className="text-center text-lg mb-12"
               style={{ color: "#AC9990" }}
             >
-              Think of your care in phases:
+              {t("phases.desc")}
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -863,28 +740,28 @@ const PCOSPage = () => {
                     className="text-xl font-bold mb-3"
                     style={{ color: "#4B3A33" }}
                   >
-                    {step.phase}
+                    {t(`phases.${step.phaseKey}`)}
                   </h3>
 
-                  {step.options && (
+                  {step.optionKeys && (
                     <div className="mb-3">
                       <p
                         className="font-medium mb-2"
                         style={{ color: "#8C4F58" }}
                       >
-                        Main goals:
+                        {t("phases.phase2Goals")}
                       </p>
                       <ul className="list-disc list-inside space-y-1">
-                        {step.options.map((option, i) => (
+                        {step.optionKeys.map((key, i) => (
                           <li key={i} style={{ color: "#AC9990" }}>
-                            {option}
+                            {t(`phases.${key}`)}
                           </li>
                         ))}
                       </ul>
                     </div>
                   )}
 
-                  <p style={{ color: "#4B3A33" }}>{step.description}</p>
+                  <p style={{ color: "#4B3A33" }}>{t(`phases.${step.descKey}`)}</p>
                 </motion.div>
               ))}
             </div>
@@ -906,7 +783,7 @@ const PCOSPage = () => {
               className="text-4xl md:text-5xl font-bold text-center mb-12"
               style={{ color: "#4B3A33", fontFamily: "Georgia, serif" }}
             >
-              Competitor Snapshot
+              {t("competitor.title")}
             </motion.h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -919,22 +796,16 @@ const PCOSPage = () => {
                   className="text-2xl font-bold mb-4"
                   style={{ color: "#8C4F58" }}
                 >
-                  What top PCOS pages do:
+                  {t("competitor.card1Title")}
                 </h3>
                 <ul className="space-y-3">
-                  {[
-                    "Pantai Hospitals: clear symptoms list, diagnosis approach",
-                    "Gleneagles: OCPs for cycle regulation and hirsutism",
-                    "Prince Court: patient-friendly education",
-                    "KL women specialist: weight-loss with metformin and GLP-1",
-                    "Fertility centres: PCOS and fertility FAQs",
-                  ].map((item, i) => (
+                  {["c1Item1", "c1Item2", "c1Item3", "c1Item4", "c1Item5"].map((key, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <ChevronRight
                         className="w-5 h-5 mt-1 shrink-0"
                         style={{ color: "#AC9990" }}
                       />
-                      <span style={{ color: "#4B3A33" }}>{item}</span>
+                      <span style={{ color: "#4B3A33" }}>{t(`competitor.${key}`)}</span>
                     </li>
                   ))}
                 </ul>
@@ -949,21 +820,16 @@ const PCOSPage = () => {
                   className="text-2xl font-bold mb-4"
                   style={{ color: "#8C4F58" }}
                 >
-                  Where Nexus Clinic wins:
+                  {t("competitor.card2Title")}
                 </h3>
                 <ul className="space-y-3">
-                  {[
-                    "More human language, less 'textbook'",
-                    "Clear symptom-based pathways",
-                    "Evidence-based choices (Rotterdam criteria)",
-                    "Aesthetic support aligned with guidelines",
-                  ].map((item, i) => (
+                  {["c2Item1", "c2Item2", "c2Item3", "c2Item4"].map((key, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <Star
                         className="w-5 h-5 mt-1 shrink-0"
                         style={{ color: "#8C4F58" }}
                       />
-                      <span style={{ color: "#4B3A33" }}>{item}</span>
+                      <span style={{ color: "#4B3A33" }}>{t(`competitor.${key}`)}</span>
                     </li>
                   ))}
                 </ul>
@@ -1003,16 +869,15 @@ const PCOSPage = () => {
                 className="text-4xl md:text-5xl font-bold mb-6 text-white"
                 style={{ fontFamily: "Georgia, serif" }}
               >
-                Start with clarity.
-                <span className="block text-cream">Not self-blame.</span>
+                {t("cta.title1")}
+                <span className="block text-cream">{t("cta.title2")}</span>
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-xl mb-8 text-white/90"
               >
-                If you are searching for PCOS treatment in Kuala Lumpur or PCOS
-                treatment in Malaysia, start with clarity. Not self-blame.
+                {t("cta.desc")}
               </motion.p>
 
               <motion.div variants={fadeInUp}>
@@ -1020,16 +885,15 @@ const PCOSPage = () => {
                   className="px-10 py-5 rounded-full text-lg font-bold transition-all duration-300 hover:shadow-2xl transform hover:-translate-y-1"
                   style={{ backgroundColor: "#FAF8F7", color: "#8C4F58" }}
                 >
-                  Book Your Consultation
+                  {t("cta.button")}
                 </button>
               </motion.div>
 
               <motion.p variants={fadeInUp} className="mt-6 text-white/80">
-                LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                Kuala Lumpur
+                {t("cta.address")}
               </motion.p>
               <motion.p variants={fadeInUp} className="text-white/80">
-                Mobile: 016-7025699 / 03-21635699
+                {t("cta.phone")}
               </motion.p>
             </div>
           </div>
