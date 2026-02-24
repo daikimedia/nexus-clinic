@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -17,7 +18,7 @@ import {
   Quote,
   Scan,
 } from "lucide-react";
-import { useTranslation } from "@/src/i18n/client";
+import SectionBeforeAfter from "../components/BeforeAfterCustomize";
 
 const GlassCard = ({
   children,
@@ -39,17 +40,44 @@ const GlassCard = ({
   </motion.div>
 );
 
-const HeroSection = ({ t }: { t: (key: string) => string }) => {
+const HeroSection = () => {
+  const [count, setCount] = useState(23456);
+
+  useEffect(() => {
+    const today = new Date().toDateString();
+    const savedDate = localStorage.getItem("counterDate");
+    const savedCount = localStorage.getItem("counterValue");
+
+    if (savedDate === today && savedCount) {
+      setCount(parseInt(savedCount));
+    } else {
+      const base = 23000 + Math.floor(Math.random() * 1000);
+      localStorage.setItem("counterDate", today);
+      localStorage.setItem("counterValue", base.toString());
+      setCount(base);
+    }
+
+    const interval = setInterval(() => {
+      setCount((prev) => {
+        const newCount = prev + Math.floor(Math.random() * 5);
+        localStorage.setItem("counterValue", newCount.toString());
+        return newCount;
+      });
+    }, 3600000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative min-h-screen pt-24 lg:pt-0 overflow-hidden bg-cream">
+    <section className="relative min-h-screen pt-12 md:pt-24 lg:pt-0 overflow-hidden bg-cream">
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-0 right-0 w-200 h-200 rounded-full blur-3xl bg-linear-radial from-rose/20 to-transparent" />
+        <div className="absolute top-0 right-0 w-200 h-100 rounded-full blur-3xl bg-linear-radial from-rose/20 to-transparent" />
         <div className="absolute bottom-0 left-0 w-150 h-150 rounded-full blur-3xl bg-linear-radial from-taupe/15 to-transparent" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-screen py-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-screen py-0 md:py-12">
           {/* Left Content */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <motion.div
@@ -62,9 +90,9 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3 }}
-                className="inline-block text-6xl lg:text-8xl mb-4 opacity-20 font-georgia text-wine"
+                className="md:inline-block hidden text-6xl lg:text-8xl mb-4 opacity-20 font-georgia text-wine"
               >
-                &ldquo;
+                "
               </motion.span>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 font-georgia text-brown">
@@ -74,7 +102,15 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                   transition={{ delay: 0.2, duration: 0.8 }}
                   className="block"
                 >
-                  {t("hero.heading1")}
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="inline-block md:hidden text-6xl lg:text-8xl mb-4 opacity-20 font-georgia text-wine"
+                  >
+                    "
+                  </motion.span>
+                  Redefine Your
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, y: 30 }}
@@ -82,7 +118,7 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                   transition={{ delay: 0.4, duration: 0.8 }}
                   className="block text-wine"
                 >
-                  {t("hero.heading2")}
+                  Natural Beauty
                 </motion.span>
               </h1>
 
@@ -92,7 +128,8 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                 transition={{ delay: 0.6, duration: 0.8 }}
                 className="text-base lg:text-lg mb-10 max-w-md mx-auto lg:mx-0 text-taupe leading-relaxed"
               >
-                {t("hero.description")}
+                We specialize in enhancing your natural beauty, creating
+                timeless radiance with a harmony of science & artistry.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -100,7 +137,7 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+                className="flex sm:flex-row items-center justify-center lg:justify-start gap-4"
               >
                 <motion.button
                   whileHover={{
@@ -108,9 +145,9 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                     boxShadow: "0 20px 40px rgba(140, 79, 88, 0.25)",
                   }}
                   whileTap={{ scale: 0.98 }}
-                  className="px-8 py-4 rounded-full text-white text-sm tracking-wider flex items-center gap-3 bg-brown hover:bg-wine transition-colors"
+                  className=" px-4 py-2 lg:px-8 lg:py-4 rounded-full text-white text-sm tracking-wider flex items-center gap-3 bg-brown hover:bg-wine transition-colors"
                 >
-                  {t("hero.cta1")}
+                  Arrange Schedule
                 </motion.button>
 
                 <motion.button
@@ -121,7 +158,7 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                   <span className="w-12 h-12 rounded-full border-2 border-brown flex items-center justify-center hover:bg-brown hover:text-white transition-colors">
                     <Play size={16} className="fill-current" />
                   </span>
-                  {t("hero.cta2")}
+                  View Your Treatment
                 </motion.button>
               </motion.div>
             </motion.div>
@@ -131,27 +168,27 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
-              className="flex items-center justify-center lg:justify-start gap-12 mt-16"
+              className="flex items-center justify-center lg:justify-start gap-12 mt-4 lg:mt-16"
             >
               <div className="text-center lg:text-left">
                 <span className="text-5xl lg:text-6xl font-light font-georgia text-brown">
-                  {t("hero.stat1Value")}
+                  35
                 </span>
                 <p className="text-sm mt-2 text-taupe">
-                  {t("hero.stat1Label1")}
+                  Traditional & Modern
                   <br />
-                  {t("hero.stat1Label2")}
+                  Beauty Treatments
                 </p>
               </div>
               <div className="w-px h-16 bg-taupe/30" />
               <div className="text-center lg:text-left">
                 <span className="text-5xl lg:text-6xl font-light font-georgia text-brown">
-                  {t("hero.stat2Value")}
+                  50+
                 </span>
                 <p className="text-sm mt-2 text-taupe">
-                  {t("hero.stat2Label1")}
+                  Professional Expert
                   <br />
-                  {t("hero.stat2Label2")}
+                  Beauticians
                 </p>
               </div>
             </motion.div>
@@ -172,52 +209,20 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
               >
                 <div className="relative rounded-[40px] lg:rounded-[60px] overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&auto=format&fit=crop"
+                    src="/images/treatment/face-scan.png"
                     alt="Beauty Treatment"
-                    className="w-full aspect-3/4 object-cover"
+                    className="w-full aspect-4/4 object-cover"
                   />
 
                   {/* Overlay linear */}
                   <div className="absolute inset-0 bg-linear-to-t from-cream/40 to-transparent" />
-
-                  {/* Decorative dotted lines */}
-                  <svg className="absolute inset-0 w-full h-full opacity-60">
-                    <motion.path
-                      d="M 200 150 Q 250 200 280 280"
-                      className="stroke-cream"
-                      strokeWidth="2"
-                      strokeDasharray="4 4"
-                      fill="none"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 2, delay: 1 }}
-                    />
-                    <motion.circle
-                      cx="200"
-                      cy="150"
-                      r="6"
-                      className="fill-cream"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 1.5 }}
-                    />
-                    <motion.circle
-                      cx="280"
-                      cy="280"
-                      r="6"
-                      className="fill-cream"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 2 }}
-                    />
-                  </svg>
                 </div>
 
                 {/* Floating Cards */}
 
                 {/* Scan Face Card */}
                 <GlassCard
-                  className="absolute -top-4 lg:top-8 right-0 lg:-right-8 p-3 lg:p-4"
+                  className="absolute hidden lg:block -top-4 lg:top-8 right-0 lg:-right-8 p-3 lg:p-4"
                   delay={1.2}
                 >
                   <div className="flex items-center gap-3">
@@ -225,19 +230,41 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                       <Scan size={20} className="text-wine" />
                     </div>
                     <span className="text-sm font-medium pr-2 text-brown">
-                      {t("hero.scanFace")}
+                      Scan Your Face
                     </span>
+                  </div>
+                </GlassCard>
+
+                <GlassCard
+                  className="absolute bottom-5 md:bottom-10 -left-4 lg:-left-12 p-3 lg:p-5"
+                  delay={0.5}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={16}
+                          className="text-wine fill-wine"
+                        />
+                      ))}
+                    </div>
+                    <span className="font-semibold text-brown">5.0</span>
+                    <span className="text-sm text-taupe">(500+ Reviews)</span>
+                  </div>
+                  <div className="text-sm text-taupe mt-2">
+                    {count.toLocaleString()}+ Customers Visited Us
                   </div>
                 </GlassCard>
 
                 {/* Treatment Gallery Card */}
                 <GlassCard
-                  className="absolute -bottom-8 lg:bottom-8 -right-4 lg:-right-12 p-4 lg:p-5 max-w-70"
+                  className="absolute -top-8 lg:top-90 lg:bottom-8 -right-4 lg:-right-12 p-2 lg:p-5 max-w-70"
                   delay={1.6}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className="font-semibold text-brown">
-                      {t("hero.skinTreatment")}
+                      Natural Skin Treatment
                     </span>
                     <ChevronRight size={18} className="text-taupe" />
                   </div>
@@ -249,12 +276,12 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                         className="w-12 h-12 rounded-xl overflow-hidden"
                       >
                         <img
-                          src={`https://images.unsplash.com/photo-${
+                          src={`/images/treatment/${
                             [
-                              "1596755389378-c31d21fd1273",
-                              "1515377905703-c4788e51af15",
-                              "1570172619644-dfd03ed5d881",
-                              "1552693673-1bf958298935",
+                              "face-filler.png",
+                              "weight-loss.png",
+                              "facial.png",
+                              "hair-restoration.png",
                             ][i - 1]
                           }?w=100&auto=format&fit=crop`}
                           alt=""
@@ -267,7 +294,7 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
                     whileHover={{ scale: 1.02 }}
                     className="w-full py-2 rounded-full text-sm border border-taupe text-brown text-center hover:bg-brown hover:text-white hover:border-brown transition-colors"
                   >
-                    {t("hero.viewRecommendations")}
+                    View Recommendations
                   </motion.button>
                 </GlassCard>
               </motion.div>
@@ -283,7 +310,7 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
         transition={{ delay: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs tracking-widest text-taupe">{t("hero.scroll")}</span>
+        <span className="text-xs tracking-widest text-taupe">SCROLL</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
@@ -300,38 +327,35 @@ const HeroSection = ({ t }: { t: (key: string) => string }) => {
   );
 };
 
-const ServicesSection = ({ t }: { t: (key: string) => string }) => {
+const ServicesSection = () => {
   const services = [
     {
-      title: t("services.items.facial.title"),
-      subtitle: t("services.items.facial.subtitle"),
-      description: t("services.items.facial.description"),
-      image:
-        "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600",
+      title: "Facial Rejuvenation",
+      subtitle: "Anti-Aging & Contouring",
+      description: "Botox, fillers, and advanced lifting treatments",
+      image: "/images/treatment/facial.png",
       span: "lg:col-span-2 lg:row-span-2",
     },
     {
-      title: t("services.items.weightLoss.title"),
-      subtitle: t("services.items.weightLoss.subtitle"),
-      description: t("services.items.weightLoss.description"),
-      image:
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400",
+      title: "Medical Weight Loss",
+      subtitle: "Science-Based Programs",
+      description: "Ozempic, Mounjaro & body contouring",
+      image: "/images/treatment/weight-loss.png?w=400&auto=format&fit=crop",
       span: "",
     },
     {
-      title: t("services.items.skin.title"),
-      subtitle: t("services.items.skin.subtitle"),
-      description: t("services.items.skin.description"),
-      image:
-        "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400",
+      title: "Skin Treatments",
+      subtitle: "Acne & Pigmentation",
+      description: "Laser therapy & chemical peels",
+      image: "/images/treatment/face-scan.png?w=400&auto=format&fit=crop",
       span: "",
     },
     {
-      title: t("services.items.hair.title"),
-      subtitle: t("services.items.hair.subtitle"),
-      description: t("services.items.hair.description"),
+      title: "Hair Restoration",
+      subtitle: "PRP & Mesotherapy",
+      description: "Advanced hair loss solutions",
       image:
-        "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600",
+        "/images/treatment/hair-restoration.png?w=600&auto=format&fit=crop",
       span: "lg:col-span-2",
     },
   ];
@@ -349,16 +373,16 @@ const ServicesSection = ({ t }: { t: (key: string) => string }) => {
         >
           <div>
             <span className="text-sm tracking-widest uppercase mb-4 block text-wine">
-              {t("services.subtitle")}
+              Our Expertise
             </span>
             <h2 className="text-3xl lg:text-5xl font-georgia text-brown">
-              {t("services.title")}{" "}
-              <br className="hidden lg:block" />
-              <span className="text-wine">{t("services.titleHighlight")}</span>
+              Specialized <br className="hidden lg:block" />
+              <span className="text-wine">Treatments</span>
             </h2>
           </div>
           <p className="max-w-md mt-6 lg:mt-0 text-taupe">
-            {t("services.description")}
+            Discover our comprehensive range of medical aesthetic services, each
+            tailored to your unique needs.
           </p>
         </motion.div>
 
@@ -407,7 +431,7 @@ const ServicesSection = ({ t }: { t: (key: string) => string }) => {
                   whileInView={{ opacity: 1, x: 0 }}
                   className="flex items-center gap-2 text-white text-sm group-hover:gap-4 transition-all"
                 >
-                  <span>{t("services.explore")}</span>
+                  <span>Explore</span>
                   <ArrowRight size={16} />
                 </motion.div>
               </div>
@@ -419,27 +443,27 @@ const ServicesSection = ({ t }: { t: (key: string) => string }) => {
   );
 };
 
-const WhyChooseSection = ({ t }: { t: (key: string) => string }) => {
+const WhyChooseSection = () => {
   const features = [
     {
       icon: Shield,
-      title: t("whyChoose.features.moh.title"),
-      desc: t("whyChoose.features.moh.desc"),
+      title: "MOH Registered",
+      desc: "Fully compliant with medical standards",
     },
     {
       icon: Award,
-      title: t("whyChoose.features.doctor.title"),
-      desc: t("whyChoose.features.doctor.desc"),
+      title: "Doctor-Led Care",
+      desc: "Licensed medical professionals",
     },
     {
       icon: Heart,
-      title: t("whyChoose.features.personalized.title"),
-      desc: t("whyChoose.features.personalized.desc"),
+      title: "Personalized Plans",
+      desc: "Tailored to your unique needs",
     },
     {
       icon: Sparkles,
-      title: t("whyChoose.features.premium.title"),
-      desc: t("whyChoose.features.premium.desc"),
+      title: "Premium Products",
+      desc: "FDA approved treatments",
     },
   ];
 
@@ -462,7 +486,7 @@ const WhyChooseSection = ({ t }: { t: (key: string) => string }) => {
                 className="rounded-3xl lg:rounded-[40px] overflow-hidden"
               >
                 <img
-                  src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=800&auto=format&fit=crop"
+                  src="/images/treatment/face-filler.png"
                   alt="Clinic Interior"
                   className="w-full aspect-4/5 object-cover"
                 />
@@ -475,12 +499,12 @@ const WhyChooseSection = ({ t }: { t: (key: string) => string }) => {
               >
                 <div className="text-center">
                   <span className="text-5xl font-light font-georgia text-wine">
-                    {t("whyChoose.yearsValue")}
+                    15+
                   </span>
                   <p className="text-sm mt-2 text-taupe">
-                    {t("whyChoose.yearsLabel1")}
+                    Years of
                     <br />
-                    {t("whyChoose.yearsLabel2")}
+                    Excellence
                   </p>
                 </div>
               </GlassCard>
@@ -502,13 +526,15 @@ const WhyChooseSection = ({ t }: { t: (key: string) => string }) => {
             transition={{ duration: 0.8 }}
           >
             <span className="text-sm tracking-widest uppercase mb-4 block text-wine">
-              {t("whyChoose.subtitle")}
+              Why Nexus Clinic
             </span>
             <h2 className="text-3xl lg:text-5xl mb-6 font-georgia text-brown">
-              {t("whyChoose.title")} <span className="text-wine">{t("whyChoose.titleHighlight")}</span>
+              Where Science Meets <span className="text-wine">Artistry</span>
             </h2>
             <p className="text-lg mb-12 text-taupe leading-relaxed">
-              {t("whyChoose.description")}
+              At Nexus Clinic, we believe in enhancing your natural beauty
+              through evidence-based treatments. Our doctor-led approach ensures
+              safety, efficacy, and results you'll love.
             </p>
 
             {/* Feature Grid */}
@@ -538,23 +564,26 @@ const WhyChooseSection = ({ t }: { t: (key: string) => string }) => {
   );
 };
 
-const TestimonialsSection = ({ t }: { t: (key: string) => string }) => {
+const TestimonialsSection = () => {
   const [current, setCurrent] = useState(0);
   const testimonials = [
     {
-      quote: t("testimonials.items.0.quote"),
-      author: t("testimonials.items.0.author"),
-      role: t("testimonials.items.0.role"),
+      quote:
+        "Nexus Clinic transformed not just my appearance, but my confidence. The doctors truly listen and create personalized solutions.",
+      author: "Sarah Chen",
+      role: "Business Executive",
     },
     {
-      quote: t("testimonials.items.1.quote"),
-      author: t("testimonials.items.1.author"),
-      role: t("testimonials.items.1.role"),
+      quote:
+        "I was impressed by their transparent approach. They never push unnecessary treatments. A clinic you can truly trust.",
+      author: "Michael Tan",
+      role: "Entrepreneur",
     },
     {
-      quote: t("testimonials.items.2.quote"),
-      author: t("testimonials.items.2.author"),
-      role: t("testimonials.items.2.role"),
+      quote:
+        "The weight loss program changed my life. With proper medical guidance, I achieved my goals safely and sustainably.",
+      author: "Emily Wong",
+      role: "Creative Director",
     },
   ];
 
@@ -572,10 +601,10 @@ const TestimonialsSection = ({ t }: { t: (key: string) => string }) => {
           {/* Left - Content */}
           <div>
             <span className="text-sm tracking-widest uppercase mb-4 block text-wine">
-              {t("testimonials.subtitle")}
+              Testimonials
             </span>
             <h2 className="text-3xl lg:text-5xl mb-12 font-georgia text-brown">
-              {t("testimonials.title")} <span className="text-wine">{t("testimonials.titleHighlight")}</span> {t("testimonials.titleEnd")}
+              What Our <span className="text-wine">Patients</span> Say
             </h2>
 
             <AnimatePresence mode="wait">
@@ -588,7 +617,7 @@ const TestimonialsSection = ({ t }: { t: (key: string) => string }) => {
               >
                 <Quote size={48} className="text-wine mb-6 opacity-30" />
                 <p className="text-xl lg:text-2xl mb-8 leading-relaxed font-georgia text-brown">
-                  &ldquo;{testimonials[current].quote}&rdquo;
+                  "{testimonials[current].quote}"
                 </p>
                 <div>
                   <p className="font-semibold text-brown">
@@ -625,7 +654,7 @@ const TestimonialsSection = ({ t }: { t: (key: string) => string }) => {
           >
             <div className="rounded-3xl lg:rounded-[40px] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1552693673-1bf958298935?w=800&auto=format&fit=crop"
+                src="/images/treatment/happy-patient.png"
                 alt="Happy Patient"
                 className="w-full aspect-square object-cover"
               />
@@ -643,7 +672,7 @@ const TestimonialsSection = ({ t }: { t: (key: string) => string }) => {
                   ))}
                 </div>
                 <span className="font-semibold text-brown">5.0</span>
-                <span className="text-sm text-taupe">{t("testimonials.reviews")}</span>
+                <span className="text-sm text-taupe">(500+ Reviews)</span>
               </div>
             </GlassCard>
           </motion.div>
@@ -653,7 +682,7 @@ const TestimonialsSection = ({ t }: { t: (key: string) => string }) => {
   );
 };
 
-const ContactSection = ({ t }: { t: (key: string) => string }) => {
+const ContactSection = () => {
   return (
     <section id="contact" className="py-24 lg:py-32 bg-brown">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -665,17 +694,17 @@ const ContactSection = ({ t }: { t: (key: string) => string }) => {
             viewport={{ once: true }}
           >
             <span className="text-sm tracking-widest uppercase mb-4 block text-rose">
-              {t("contact.subtitle")}
+              Get in Touch
             </span>
             <h2 className="text-3xl lg:text-5xl text-white mb-8 font-georgia">
-              {t("contact.title")} <span className="text-rose">{t("contact.titleHighlight")}</span>
+              Visit <span className="text-rose">Nexus Clinic</span>
             </h2>
 
             <div className="space-y-6 mb-12">
               {[
-                { icon: MapPin, text: t("contact.address") },
-                { icon: Phone, text: t("contact.phone") },
-                { icon: Clock, text: t("contact.hours") },
+                { icon: MapPin, text: "LG 10, Wisma UOA II, Jalan Pinang, KL" },
+                { icon: Phone, text: "016-702 5699 / 03-2163 5699" },
+                { icon: Clock, text: "Mon - Sat: 9:00 AM - 6:00 PM" },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -717,37 +746,37 @@ const ContactSection = ({ t }: { t: (key: string) => string }) => {
           >
             <div className="bg-white rounded-3xl p-8 lg:p-10">
               <h3 className="text-2xl mb-8 font-georgia text-brown">
-                {t("contact.formTitle")}
+                Book Your Consultation
               </h3>
 
               <form className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <input
                     type="text"
-                    placeholder={t("contact.placeholderName")}
+                    placeholder="Your Name"
                     className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine transition-colors text-brown placeholder:text-taupe"
                   />
                   <input
                     type="email"
-                    placeholder={t("contact.placeholderEmail")}
+                    placeholder="Email Address"
                     className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine transition-colors text-brown placeholder:text-taupe"
                   />
                 </div>
                 <input
                   type="tel"
-                  placeholder={t("contact.placeholderPhone")}
+                  placeholder="Phone Number"
                   className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine transition-colors text-brown placeholder:text-taupe"
                 />
                 <select className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine transition-colors text-taupe">
-                  <option>{t("contact.selectTreatment")}</option>
-                  <option>{t("contact.optionFacial")}</option>
-                  <option>{t("contact.optionWeightLoss")}</option>
-                  <option>{t("contact.optionSkin")}</option>
-                  <option>{t("contact.optionHair")}</option>
+                  <option>Select Treatment Interest</option>
+                  <option>Facial & Anti-Aging</option>
+                  <option>Weight Loss Program</option>
+                  <option>Skin Treatments</option>
+                  <option>Hair Restoration</option>
                 </select>
                 <textarea
                   rows={4}
-                  placeholder={t("contact.placeholderMessage")}
+                  placeholder="Your Message"
                   className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine resize-none transition-colors text-brown placeholder:text-taupe"
                 />
                 <motion.button
@@ -756,7 +785,7 @@ const ContactSection = ({ t }: { t: (key: string) => string }) => {
                   whileTap={{ scale: 0.98 }}
                   className="w-full py-4 rounded-xl text-white font-medium tracking-wide bg-wine hover:bg-rose transition-colors"
                 >
-                  {t("contact.submitButton")}
+                  Submit Enquiry
                 </motion.button>
               </form>
             </div>
@@ -767,25 +796,80 @@ const ContactSection = ({ t }: { t: (key: string) => string }) => {
   );
 };
 
-export default function HomePageNexus({ locale = "en" }: { locale?: string }) {
-  const { t } = useTranslation(locale, "home");
+export default function HomePageNexus({ locale }: { locale?: string }) {
+  const [isActive, setIsActive] = useState(false);
 
+  useEffect(() => {
+    const checkTime = () => {
+      const malaysiaTime = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Kuala_Lumpur",
+      });
+
+      const now = new Date(malaysiaTime);
+      const hour = now.getHours();
+
+      if (hour >= 9 && hour < 18) {
+        setIsActive(true);
+      } else {
+        setIsActive(false);
+      }
+    };
+
+    checkTime();
+    const interval = setInterval(checkTime, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/before-after-face/before-clinic.png",
+      after: "/images/before-after-face/after-clinic.png",
+    },
+    {
+      id: 2,
+      before: "/images/before-after-face/before-face.png",
+      after: "/images/before-after-face/after-face.png",
+    },
+    {
+      id: 3,
+      before: "/images/before-after-face/before-face2.png",
+      after: "/images/before-after-face/after-face2.png",
+    },
+  ];
   return (
-    <div className="min-h-screen bg-cream font-inter">
-      <HeroSection t={t} />
-      <ServicesSection t={t} />
-      <WhyChooseSection t={t} />
-      <TestimonialsSection t={t} />
-      <ContactSection t={t} />
+    <div className="min-h-screen overflow-hidden bg-cream font-inter">
+      <HeroSection />
+      <SectionBeforeAfter transformations={transformations} />
+      <ServicesSection />
+      <WhyChooseSection />
+      <TestimonialsSection />
+      <ContactSection />
 
-      {/* WhatsApp Button */}
       <motion.a
         href="https://wa.me/60167025699"
         target="_blank"
         rel="noopener noreferrer"
         initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
+        animate={
+          isActive
+            ? {
+                scale: [1, 1.15, 1],
+                opacity: [1, 0.6, 1],
+              }
+            : { scale: 1, opacity: 1 }
+        }
+        transition={
+          isActive
+            ? {
+                duration: 1,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }
+            : { duration: 0.3 }
+        }
+        whileHover={{ scale: 1.2 }}
         className="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-50 bg-[#25D366]"
       >
         <MessageCircle className="text-white" size={24} />
