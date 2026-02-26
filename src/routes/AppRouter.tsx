@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 
 const Blogs = lazy(() => import("../pages/Blog"));
+const BlogPost = lazy(() => import("../pages/BlogPost"));
 const Products = lazy(() => import("../pages/Products"));
 const Loading = lazy(() => import("../components/Loading"));
 
@@ -221,6 +222,7 @@ export default function AppRouter() {
           <Route path="/duromine-malaysia" element={<PageDuromineMalaysia />} />
           <Route path="/products" element={<Products />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogPost />} />
           <Route
             path="/fraqtional-laser-resurfacing"
             element={<PageFraqtional />}

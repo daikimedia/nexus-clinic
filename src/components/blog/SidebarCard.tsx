@@ -2,12 +2,14 @@ import { motion } from "framer-motion";
 import type { Post } from "../../types/blog";
 import { TagBadge } from "./TagBadge";
 import { fadeInRight } from "../../lib/animations";
+import { Link } from 'react-router-dom';
 
 interface SidebarCardProps {
   post: Post;
 }
 
 export function SidebarCard({ post }: SidebarCardProps) {
+  const slug = post.href.split('/').filter(Boolean).pop() || post.id.toString();
   return (
     <motion.article
       variants={fadeInRight}
@@ -21,7 +23,7 @@ export function SidebarCard({ post }: SidebarCardProps) {
         borderColor: "rgba(172,153,144,0.2)",
       }}
     >
-      <a href={post.href} className="flex gap-4 w-full">
+      <Link to={`/blogs/${slug}`} className="flex gap-4 w-full"> 
         <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden">
           <img
             src={post.image}
@@ -35,13 +37,13 @@ export function SidebarCard({ post }: SidebarCardProps) {
             className="text-sm font-bold leading-snug line-clamp-2 transition-colors group-hover:text-wine"
             style={{ fontFamily: "Georgia, serif", color: "var(--color-brown)" }}
           >
-            {post.title}
+            <span dangerouslySetInnerHTML={{ __html: post.title }} />
           </h3>
           <span className="text-xs" style={{ color: "var(--color-taupe)" }}>
             {post.date}
           </span>
         </div>
-      </a>
+      </Link>
     </motion.article>
   );
 }

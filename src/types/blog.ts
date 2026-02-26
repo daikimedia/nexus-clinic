@@ -13,6 +13,7 @@ export interface Post {
   category: Omit<CategoryValue, "all">;
   tag: string;
   title: string;
+  content?: string;
   date: string;
   readTime: string;
   image: string;

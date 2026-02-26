@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import {ChevronRight } from "lucide-react";
+import { Link } from 'react-router-dom'; // Make sure this is imported
 import type { Post } from "../../types/blog";
 import { TagBadge } from "./TagBadge";
 import { fadeInUp } from "../../lib/animations";
@@ -10,6 +11,8 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ post, index }: BlogCardProps) {
+  const slug = post.href.split('/').filter(Boolean).pop() || post.id.toString();
+
   return (
     <motion.article
       variants={fadeInUp}
@@ -23,11 +26,12 @@ export function BlogCard({ post, index }: BlogCardProps) {
         borderColor: "rgba(172,153,144,0.2)",
       }}
     >
-      <a href={post.href} className="flex flex-col h-full">
+      <Link to={`/blogs/${slug}`} className="flex flex-col h-full">
+        {/* Rest of your component remains the same */}
         <div className="relative overflow-hidden h-48">
           <img
             src={post.image}
-            alt={post.title}
+            alt={post.title.replace(/<[^>]*>/g, '')}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
@@ -46,9 +50,8 @@ export function BlogCard({ post, index }: BlogCardProps) {
           <h3
             className="text-base font-bold leading-snug mb-4 flex-1 transition-colors duration-200 group-hover:text-wine line-clamp-3"
             style={{ fontFamily: "Georgia, serif", color: "var(--color-brown)" }}
-          >
-            {post.title}
-          </h3>
+            dangerouslySetInnerHTML={{ __html: post.title }}
+          />
 
           <div
             className="flex items-center gap-1.5 text-xs font-semibold tracking-wide mt-auto pt-3 border-t transition-all duration-200 group-hover:gap-2.5"
@@ -61,7 +64,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
             <ChevronRight size={13} className="transition-transform duration-200 group-hover:translate-x-1" />
           </div>
         </div>
-      </a>
+      </Link>
     </motion.article>
   );
 }

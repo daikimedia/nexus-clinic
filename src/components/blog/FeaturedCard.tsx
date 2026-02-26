@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Calendar, Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 import type { Post } from "../../types/blog";
 import { TagBadge } from "./TagBadge";
 import { scaleIn } from "../../lib/animations";
@@ -9,6 +10,7 @@ interface FeaturedCardProps {
 }
 
 export function FeaturedCard({ post }: FeaturedCardProps) {
+  const slug = post.href.split('/').filter(Boolean).pop() || post.id.toString();
   return (
     <motion.article
       variants={scaleIn}
@@ -19,7 +21,7 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
       className="group relative overflow-hidden rounded-3xl cursor-pointer"
       style={{ background: "var(--color-cream)" }}
     >
-      <a href={post.href} className="block">
+      <Link to={`/blogs/${slug}`} className="block">
         <div className="relative overflow-hidden h-72 lg:h-80">
           <img
             src={post.image}
@@ -56,7 +58,7 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
             className="text-xl lg:text-2xl font-bold leading-snug mb-4 transition-colors duration-200 group-hover:text-wine"
             style={{ fontFamily: "Georgia, serif", color: "var(--color-brown)" }}
           >
-            {post.title}
+            <span dangerouslySetInnerHTML={{ __html: post.title }} />
           </h2>
 
           <div
@@ -70,7 +72,7 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
             />
           </div>
         </div>
-      </a>
+      </Link>
     </motion.article>
   );
 }
