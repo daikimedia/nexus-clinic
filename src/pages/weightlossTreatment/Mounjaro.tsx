@@ -30,6 +30,7 @@ import {
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import FAQ from "../../components/FAQ";
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 const MounjaroLanding = () => {
   const faqs = [
@@ -52,6 +53,24 @@ const MounjaroLanding = () => {
     {
       q: "How much does Mounjaro cost in Malaysia?",
       a: "Cost depends on dose and clinic support. Some Malaysia listings show around RM 1,150 for certain strengths, while other providers list higher ranges. Your total cost may include consults, labs, and follow-ups.",
+    },
+  ];
+
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-mounjaro1.webp",
+      after: "/images/B&A-w/B&A-mounjaro1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-mounjaro2.webp",
+      after: "/images/B&A-w/B&A-mounjaro2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-mounjaro3.webp",
+      after: "/images/B&A-w/B&A-mounjaro3.webp",
     },
   ];
   return (
@@ -306,37 +325,45 @@ const MounjaroLanding = () => {
                       </div>
                     </motion.div>
                   ))}
+                  <div className="bg-wine bg-opacity-5 rounded-3xl p-8 border border-wine border-opacity-20">
+                    <h3 className="text-2xl font-serif font-bold text-cream/80 mb-6 flex items-center gap-2">
+                      <AlertCircle className="w-6 h-6 text-cream/80" />
+                      Important Contraindications
+                    </h3>
+
+                    <div className="space-y-4">
+                      {[
+                        "Personal or family history of medullary thyroid carcinoma (MTC)",
+                        "MEN 2 (multiple endocrine neoplasia type 2)",
+                        "Pregnancy or trying to conceive",
+                        "Past pancreatitis or gallbladder disease",
+                      ].map((text, index) => (
+                        <motion.div
+                          key={index}
+                          variants={fadeInUp}
+                          className="flex items-start gap-3"
+                        >
+                          <div className="w-1.5 h-1.5 rounded-full bg-wine mt-2"></div>
+                          <p className="text-light/70">{text}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <p className="mt-6 text-sm text-cream italic">
+                      Your plan should always be doctor-led. No shortcuts.
+                    </p>
+                  </div>
                 </div>
               </motion.div>
 
               <motion.div variants={fadeInRight} className="space-y-6">
-                <div className="bg-wine bg-opacity-5 rounded-3xl p-8 border border-wine border-opacity-20">
-                  <h3 className="text-2xl font-serif font-bold text-cream/80 mb-6 flex items-center gap-2">
-                    <AlertCircle className="w-6 h-6 text-cream/80" />
-                    Important Contraindications
-                  </h3>
-
-                  <div className="space-y-4">
-                    {[
-                      "Personal or family history of medullary thyroid carcinoma (MTC)",
-                      "MEN 2 (multiple endocrine neoplasia type 2)",
-                      "Pregnancy or trying to conceive",
-                      "Past pancreatitis or gallbladder disease",
-                    ].map((text, index) => (
-                      <motion.div
-                        key={index}
-                        variants={fadeInUp}
-                        className="flex items-start gap-3"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-wine mt-2"></div>
-                        <p className="text-light/70">{text}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  <p className="mt-6 text-sm text-cream italic">
-                    Your plan should always be doctor-led. No shortcuts.
-                  </p>
+                <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                  <img
+                    src="/images/main/mounjaro.webp"
+                    alt="Mounjaro"
+                    className="w-full h-auto"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
                 </div>
               </motion.div>
             </div>
@@ -418,6 +445,9 @@ const MounjaroLanding = () => {
             </div>
           </div>
         </motion.section>
+
+        {/* Before & After */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* Side Effects & Safety */}
         <motion.section

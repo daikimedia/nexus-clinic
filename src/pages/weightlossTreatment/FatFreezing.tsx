@@ -29,6 +29,7 @@ import {
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import FAQ from "../../components/FAQ";
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 const FatFreezingLanding = () => {
   const faqs = [
@@ -51,6 +52,24 @@ const FatFreezingLanding = () => {
     {
       q: "What's the rare risk?",
       a: "Paradoxical Adipose Hyperplasia (PAH) is rare but possible. We discuss all risks during consultation.",
+    },
+  ];
+
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-fat-freezing1.webp",
+      after: "/images/B&A-w/B&A-fat-freezing1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-fat-freezing2.webp",
+      after: "/images/B&A-w/B&A-fat-freezing2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-fat-freezing3.webp",
+      after: "/images/B&A-w/B&A-fat-freezing3.webp",
     },
   ];
   return (
@@ -90,6 +109,11 @@ const FatFreezingLanding = () => {
                   Some fat just refuses to move. Target those "last mile" fat
                   areas without surgery. Natural-looking results with minimal
                   downtime.
+                </p>
+                <p className="font-inter text-lg text-taupe max-w-lg">
+                  At Nexus Clinic Kuala Lumpur, we plan fat freezing like a body
+                  contouring project. We map the area, pick the right
+                  applicator, and guide you through realistic results.
                 </p>
 
                 <div className="flex flex-wrap gap-4">
@@ -201,6 +225,52 @@ const FatFreezingLanding = () => {
               </motion.div>
             </motion.div>
           </div>
+        </section>
+
+        <section className="py-24 px-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center"
+          >
+            <motion.div variants={fadeInLeft} className="space-y-6">
+              <h2 className="font-georgia text-4xl text-brown">
+                First, a quick truth about “weight loss”
+              </h2>
+
+              <p className="text-lg text-taupe font-inter leading-relaxed">
+                People search “fat freezing weight loss treatment” because they
+                want a slimmer look fast. Fair. But medically, fat freezing is
+                mainly for fat reduction and body contouring, not scale weight
+                loss. You may lose a little weight, but the real win is shape
+                and fit. The FDA also describes cryolipolysis as a non-invasive
+                method to reduce visible fat bulges, not a general weight-loss
+                solution.
+              </p>
+
+              <div className="bg-cream p-8 rounded-3xl border border-taupe/10">
+                <p className="font-inter text-brown italic">
+                  <span className="font-bold text-wine">Important note:</span>{" "}
+                  If your goal is “drop 10 to 15 kg,” we usually combine
+                  lifestyle support and other medical options. If your goal is
+                  “flatten this belly area” or “reduce love handles,” fat
+                  freezing can be a strong choice.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInRight}>
+              <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                <img
+                  src="/images/main/fat-freezing.webp"
+                  alt="Fat Freezing"
+                  className="w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+              </div>
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* Understanding Fat Freezing Section */}
@@ -364,6 +434,9 @@ const FatFreezingLanding = () => {
             </div>
           </div>
         </section>
+
+        {/* Before & after */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* Treatment Areas */}
         <section className="py-24 px-4 bg-wine/5">

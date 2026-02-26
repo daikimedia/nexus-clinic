@@ -243,6 +243,14 @@ const HCGWeightLossLanding = () => {
                         loss drug.
                       </p>
                     </div>
+                    <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                      <img
+                        src="/images/main/HCG-weight-loss-treatment.webp"
+                        alt="HCG weight loss treatment"
+                        className="w-full h-auto"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+                    </div>
                   </div>
                 </motion.div>
 

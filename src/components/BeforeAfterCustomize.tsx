@@ -281,7 +281,6 @@ const SectionBeforeAfter = ({
             className="text-wine/70 font-inter max-w-2xl mx-auto"
           >
             Slide to see the incredible transformations achieved by our clients
-            with GLP-1 treatment
           </motion.p>
         </motion.div>
 

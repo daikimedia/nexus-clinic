@@ -1,21 +1,18 @@
-import React from "react";
 import { motion } from "framer-motion";
 import {
-  Syringe,
-  Clock,
-  Zap,
-  ShieldCheck,
-  ChevronDown,
-  Star,
   ArrowRight,
-  Sparkles,
-  Heart,
+  Shield,
   TrendingDown,
-  Users,
-  Phone,
-  MessageCircle,
-  Calendar,
-  MapPin,
+  AlertCircle,
+  CheckCircle2,
+  XCircle,
+  Clock,
+  Heart,
+  Scale,
+  Apple,
+  Activity,
+  Info,
+  Brain,
 } from "lucide-react";
 import {
   fadeInUp,
@@ -23,814 +20,776 @@ import {
   fadeInLeft,
   fadeInRight,
   scaleIn,
-  floatAnimation,
 } from "../../lib/animations";
-import BeforeAfterSection from "../../components/BeforeAfter";
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
+import FAQ from "../../components/FAQ";
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 const PageOzempicMalaysia = () => {
-  const treatments = [
-    {
-      icon: Syringe,
-      label: "Treated Area",
-      value: "Stomach, thighs, or upper arms",
-    },
-    { icon: Clock, label: "Duration", value: "A few minutes" },
-    { icon: Zap, label: "Frequency", value: "1 injection per day" },
-    { icon: ShieldCheck, label: "Downtime", value: "Minimal" },
-  ];
-
-  const benefits = [
-    {
-      icon: TrendingDown,
-      title: "Reduces Hunger",
-      description:
-        "Suppresses appetite naturally, making it easier to resist cravings",
-    },
-    {
-      icon: Heart,
-      title: "Increases Fullness",
-      description: "Feel satisfied longer, making healthy eating effortless",
-    },
-    {
-      icon: Sparkles,
-      title: "Sustainable Results",
-      description:
-        "Gradual weight loss without the risk of rebound weight gain",
-    },
-  ];
-
-  const doctors = [
-    { name: "Dr. Aris", specialty: "Metabolic Health Expert" },
-    { name: "Dr. Preetha", specialty: "Holistic Wellness" },
-    { name: "Dr. Ashvinia", specialty: "Evidence-Based Solutions" },
-    { name: "Dr. Charmaine", specialty: "Aesthetic & Weight Management" },
-  ];
-
-  const testimonials = [
-    {
-      name: "Hana Aisya",
-      text: "I lost 15 pounds very quickly. This is the best treatment for weight loss to see results within weeks!",
-      rating: 5,
-    },
-    {
-      name: "Liya Lee",
-      text: "I lost 25 kg, which wouldn't have been possible without the GLP-1 injections. Quick and non-invasive!",
-      rating: 5,
-    },
-    {
-      name: "Nina Patel",
-      text: "My overall experience was beyond expectations. The treatment was smooth and pain-free.",
-      rating: 5,
-    },
-  ];
-
   const faqs = [
     {
-      q: "What is the best injection for weight loss?",
-      a: "GLP-1 receptor agonist injections are among the most effective options, supporting significant weight reduction and long-term management.",
+      q: "Is Ozempic approved for weight loss?",
+      a: "Ozempic is not a weight loss drug. It is mainly for type 2 diabetes, although weight loss may happen. For weight management, semaglutide is studied and marketed as Wegovy.",
     },
     {
-      q: "Are there any side effects?",
-      a: "Side effects may include nausea, vomiting, diarrhea, and abdominal pain. Always consult your healthcare provider before beginning treatment.",
+      q: "How much weight can you lose on Ozempic?",
+      a: "Results vary. In obesity trials using semaglutide 2.4 mg, average weight loss was about 14.9% at 68 weeks with lifestyle support.",
     },
     {
-      q: "How long does it take to show results?",
-      a: "It typically takes 4 to 6 weeks to begin noticing visible results from GLP-1 receptor agonist treatment.",
+      q: "What happens when you stop Ozempic?",
+      a: "Weight regain is common if you stop without a maintenance plan. Studies show many people regain a meaningful portion of lost weight after stopping.",
     },
     {
-      q: "Who is not suitable for the treatment?",
-      a: "GLP-1 receptor agonists are not recommended for children under 18, pregnant women, or individuals with eating disorders.",
+      q: "Can Ozempic cause 'Ozempic face'?",
+      a: "Rapid weight loss can reduce facial volume in some people. The best prevention is steady loss, good protein intake, and doctor-guided pacing.",
+    },
+    {
+      q: "Is Ozempic available in Malaysia, and how do I avoid fake products?",
+      a: "Use licensed providers and check product registration status through NPRA tools. Avoid unverified online sellers and suspicious 'cheap pens.'",
     },
   ];
 
-  const [openFaq, setOpenFaq] = React.useState<number | null>(0);
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-ozempic-malaysia1.webp",
+      after: "/images/B&A-w/B&A-ozempic-malaysia1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-ozempic-malaysia2.webp",
+      after: "/images/B&A-w/B&A-ozempic-malaysia2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-ozempic-malaysia3.webp",
+      after: "/images/B&A-w/B&A-ozempic-malaysia3.webp",
+    },
+  ];
 
   return (
     <>
       <Navbar />
-      <div className="bg-light min-h-screen overflow-hidden">
+      <main className="min-h-screen bg-linear-to-b from-light to-cream">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-cream to-transparent" />
-            <motion.div
-              animate={floatAnimation}
-              className="absolute top-20 right-20 w-72 h-72 bg-rose/10 rounded-full blur-3xl"
-            />
-            <motion.div
-              animate={{
-                ...floatAnimation,
-                transition: { ...floatAnimation.transition, delay: 1 },
-              }}
-              className="absolute bottom-20 left-20 w-96 h-96 bg-wine/5 rounded-full blur-3xl"
-            />
-          </div>
-
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                animate="visible"
-                className="space-y-8"
-              >
-                <motion.div variants={fadeInUp}>
-                  <span className="inline-flex items-center gap-2 px-4 py-2 bg-wine/10 text-wine rounded-full text-sm font-inter font-medium">
-                    <Sparkles className="w-4 h-4" />
-                    Medical Weight Loss Solution
-                  </span>
-                </motion.div>
-
-                <motion.h1
-                  variants={fadeInUp}
-                  className="font-georgia text-4xl sm:text-5xl lg:text-6xl text-brown leading-tight"
-                >
-                  Transform Your Life with{" "}
-                  <span className="text-wine italic">Ozempic</span>
-                </motion.h1>
-
-                <motion.p
-                  variants={fadeInUp}
-                  className="text-taupe font-inter text-lg leading-relaxed max-w-xl"
-                >
-                  Experience clinically proven weight management at Nexus Clinic
-                  Kuala Lumpur. Our GLP-1 Liraglutide treatment helps you
-                  achieve sustainable weight loss without feeling deprived.
-                </motion.p>
-
-                <motion.div
-                  variants={fadeInUp}
-                  className="flex flex-wrap gap-4"
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-wine text-white rounded-full font-inter font-medium inline-flex items-center gap-2 shadow-lg shadow-wine/25 hover:bg-wine/90 transition-colors"
-                  >
-                    <Calendar className="w-5 h-5" />
-                    Book Consultation
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-8 py-4 bg-glass backdrop-blur-sm border border-taupe/20 text-brown rounded-full font-inter font-medium inline-flex items-center gap-2 hover:bg-cream transition-colors"
-                  >
-                    <MessageCircle className="w-5 h-5" />
-                    Chat with Us
-                  </motion.button>
-                </motion.div>
-
-                <motion.div
-                  variants={fadeInUp}
-                  className="flex items-center gap-6 pt-4"
-                >
-                  <div className="flex -space-x-3">
-                    <div className="flex -space-x-4 rtl:space-x-reverse">
-                      <img
-                        className="w-10 h-10 border-2 border-buffer rounded-full"
-                        src="/images/profile1.png"
-                        alt="p1"
-                      />
-                      <img
-                        className="w-10 h-10 border-2 border-buffer rounded-full"
-                        src="/images/profile2.png"
-                        alt="p2"
-                      />
-                      <img
-                        className="w-10 h-10 border-2 border-buffer rounded-full"
-                        src="/images/profile3.png"
-                        alt="p3"
-                      />
-                      <img
-                        className="w-10 h-10 border-2 border-buffer rounded-full"
-                        src="/images/profile4.png"
-                        alt="p4"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-1 text-wine">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-current" />
-                      ))}
-                    </div>
-                    <p className="text-taupe text-sm font-inter">
-                      500+ satisfied patients
-                    </p>
-                  </div>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                variants={fadeInRight}
-                initial="hidden"
-                animate="visible"
-                className="relative hidden lg:block"
-              >
-                <div className="relative">
-                  <motion.div
-                    animate={floatAnimation}
-                    className="w-full aspect-square bg-linear-to-br from-cream via-rose/20 to-wine/10 rounded-[3rem] overflow-hidden shadow-2xl"
-                  >
-                    <div className="absolute inset-0 bg-linear-to-t from-brown/20 to-transparent" />
-                    <img
-                      src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=600&fit=crop"
-                      alt="Weight Loss Treatment"
-                      className="w-full h-full object-cover mix-blend-overlay opacity-60"
-                    />
-                  </motion.div>
-
-                  {/* Floating Cards */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.8, duration: 0.6 }}
-                    className="absolute -left-8 top-1/4 bg-glass backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-wine/10 rounded-xl flex items-center justify-center">
-                        <TrendingDown className="w-6 h-6 text-wine" />
-                      </div>
-                      <div>
-                        <p className="text-brown font-inter font-semibold">
-                          -15kg
-                        </p>
-                        <p className="text-taupe text-sm">Average Result</p>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1, duration: 0.6 }}
-                    className="absolute -right-4 bottom-1/4 bg-glass backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-rose/10 rounded-xl flex items-center justify-center">
-                        <ShieldCheck className="w-6 h-6 text-rose" />
-                      </div>
-                      <div>
-                        <p className="text-brown font-inter font-semibold">
-                          FDA Approved
-                        </p>
-                        <p className="text-taupe text-sm">Safe & Effective</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Scroll Indicator */}
+        <section className="relative overflow-hidden pt-16 pb-24 px-4">
           <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center"
           >
-            <ChevronDown className="w-8 h-8 text-taupe" />
+            <motion.div variants={fadeInLeft} className="space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-glass backdrop-blur-sm rounded-full border border-taupe/20">
+                <Shield className="w-4 h-4 text-wine" />
+                <span className="text-sm font-inter text-brown">
+                  Doctor-Led Weight Loss in Kuala Lumpur
+                </span>
+              </div>
+
+              <h1 className="font-georgia text-5xl md:text-6xl text-brown leading-tight">
+                Lose weight with
+                <span className="text-wine block">medical support,</span>
+                not guesswork
+              </h1>
+
+              <p className="text-lg text-taupe font-inter leading-relaxed max-w-xl">
+                Ozempic can reduce appetite and support steady weight loss for
+                suitable patients. At Nexus Clinic Kuala Lumpur, your plan stays
+                doctor led, safe, and realistic.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-8 py-4 bg-wine text-light font-inter rounded-full hover:bg-rose transition-colors flex items-center gap-2 group"
+                >
+                  Start Your Consultation
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="px-8 py-4 border-2 border-wine/30 text-wine font-inter rounded-full hover:bg-wine/5 transition-colors"
+                >
+                  Learn More
+                </motion.button>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
+                {[
+                  { icon: <TrendingDown />, text: "From RM1,800/pen" },
+                  { icon: <Shield />, text: "Doctor Screening" },
+                  { icon: <Clock />, text: "Progress Tracking" },
+                  { icon: <Heart />, text: "Side-Effect Support" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    variants={scaleIn}
+                    className="flex flex-col items-center text-center gap-2"
+                  >
+                    <div className="text-wine">{item.icon}</div>
+                    <span className="text-xs font-inter text-brown">
+                      {item.text}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeInRight} className="relative">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <img
+                  src="/images/treatment/hero-ozempic.webp"
+                  alt="Nexus Clinic KL - Professional medical consultation for weight loss"
+                  className="w-full h-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-brown/20 to-transparent"></div>
+              </div>
+
+              {/* Trust Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+                className="absolute -bottom-6 -left-6 bg-glass backdrop-blur-md p-6 rounded-2xl border border-light shadow-xl max-w-xs"
+              >
+                <p className="text-sm font-inter text-brown">
+                  <span className="font-bold">Quick Facts:</span> Ozempic is
+                  primarily for type 2 diabetes. For weight management, Wegovy
+                  is specifically studied. Always verify MAL numbers.
+                </p>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </section>
 
-        {/* Treatment Stats */}
-        <section className="py-16 bg-cream">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {treatments.map((item, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  whileHover={{ y: -5 }}
-                  className="bg-light p-6 rounded-2xl text-center shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="w-14 h-14 bg-wine/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <item.icon className="w-7 h-7 text-wine" />
-                  </div>
-                  <h3 className="font-georgia text-brown text-lg mb-1">
-                    {item.label}
-                  </h3>
-                  <p className="text-taupe font-inter text-sm">{item.value}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* About GLP-1 */}
-        <section className="py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <motion.div
-                variants={fadeInLeft}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="relative"
-              >
-                <div className="relative z-10">
-                  <div className="aspect-5/5 rounded-4xl overflow-hidden bg-linear-to-br from-rose/20 to-wine/20">
-                    <img
-                      src="/images/liraglutide.png"
-                      alt="Medical Treatment"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-cream rounded-2xl -z-10" />
-                <div className="absolute -top-8 -left-8 w-32 h-32 bg-wine/10 rounded-full -z-10" />
-              </motion.div>
-
-              <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="space-y-8"
-              >
-                <motion.span
-                  variants={fadeInUp}
-                  className="inline-block px-4 py-2 bg-rose/10 text-rose rounded-full text-sm font-inter font-medium"
-                >
-                  About The Treatment
-                </motion.span>
-
-                <motion.h2
-                  variants={fadeInUp}
-                  className="font-georgia text-3xl sm:text-4xl text-brown leading-tight"
-                >
-                  What is{" "}
-                  <span className="text-wine italic">GLP-1 Liraglutide?</span>
-                </motion.h2>
-
-                <motion.p
-                  variants={fadeInUp}
-                  className="text-taupe font-inter leading-relaxed"
-                >
-                  Originally developed to manage diabetes, GLP-1 Liraglutide has
-                  been proven highly effective for weight management. It mimics
-                  a hormone that helps regulate appetite and satiety, making it
-                  easier to lose weight without feeling deprived or constantly
-                  hungry.
-                </motion.p>
-
-                <motion.div variants={fadeInUp} className="space-y-4">
-                  {benefits.map((benefit, index) => (
-                    <motion.div
-                      key={index}
-                      whileHover={{ x: 5 }}
-                      className="flex items-start gap-4 p-4 bg-cream/50 rounded-xl"
-                    >
-                      <div className="w-12 h-12 bg-wine/10 rounded-xl flex items-center justify-center shrink-0">
-                        <benefit.icon className="w-6 h-6 text-wine" />
-                      </div>
-                      <div>
-                        <h4 className="font-georgia text-brown text-lg">
-                          {benefit.title}
-                        </h4>
-                        <p className="text-taupe font-inter text-sm">
-                          {benefit.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="py-24 bg-brown text-light relative overflow-hidden">
+        {/* Quick Answers Section */}
+        <section className="py-16 px-4 bg-glass backdrop-blur-sm border-y border-taupe/10">
           <motion.div
-            animate={floatAnimation}
-            className="absolute top-0 right-0 w-96 h-96 bg-wine/20 rounded-full blur-3xl"
-          />
-
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto"
+          >
             <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <motion.span
-                variants={fadeInUp}
-                className="inline-block px-4 py-2 bg-wine/30 text-rose rounded-full text-sm font-inter font-medium mb-4"
-              >
-                Our Process
-              </motion.span>
-              <motion.h2
-                variants={fadeInUp}
-                className="font-georgia text-3xl sm:text-4xl lg:text-5xl text-light"
-              >
-                How Treatment Works
-              </motion.h2>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+              variants={fadeInUp}
               className="grid md:grid-cols-3 gap-8"
             >
               {[
                 {
-                  step: "01",
-                  title: "Consultation",
-                  desc: "Expert assessment of your medical history, goals, and challenges to create a personalized plan.",
+                  icon: <AlertCircle className="text-wine" />,
+                  title: "Ozempic vs Fat Freezing",
+                  text: "Ozempic affects overall weight through appetite, not spot reduction. Fat freezing targets specific areas.",
                 },
                 {
-                  step: "02",
-                  title: "Custom Treatment",
-                  desc: "Daily GLP-1 injections combined with dietary and lifestyle recommendations tailored to you.",
+                  icon: <Shield className="text-wine" />,
+                  title: "Safe Sourcing",
+                  text: "Never buy from random sellers. All our medications have traceable supply chains and valid MAL numbers.",
                 },
                 {
-                  step: "03",
-                  title: "Ongoing Support",
-                  desc: "Regular monitoring and adjustments to ensure optimal results throughout your journey.",
-                },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  whileHover={{ y: -10 }}
-                  className="relative group"
-                >
-                  <div className="absolute -top-4 -left-4 text-5xl z-10 font-georgia text-glass/50 font-bold">
-                    {item.step}
-                  </div>
-                  <div className="relative bg-glass/10 backdrop-blur-sm p-8 rounded-2xl border border-light/10 h-full">
-                    <h3 className="font-georgia text-2xl text-light mb-4">
-                      {item.title}
-                    </h3>
-                    <p className="text-taupe font-inter">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Benefits Section */}
-        <section className="py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <motion.span
-                variants={fadeInUp}
-                className="inline-block px-4 py-2 bg-wine/10 text-wine rounded-full text-sm font-inter font-medium mb-4"
-              >
-                Why Choose Us
-              </motion.span>
-              <motion.h2
-                variants={fadeInUp}
-                className="font-georgia text-3xl sm:text-4xl lg:text-5xl text-brown"
-              >
-                What You Can <span className="text-wine italic">Expect</span>
-              </motion.h2>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {[
-                {
-                  icon: TrendingDown,
-                  title: "Gradual Weight Loss",
-                  desc: "Steady, long-lasting results without drastic lifestyle changes",
-                },
-                {
-                  icon: Heart,
-                  title: "Appetite Control",
-                  desc: "Manage hunger and cravings effortlessly",
-                },
-                {
-                  icon: Sparkles,
-                  title: "Improved Health",
-                  desc: "More energy and reduced weight-related health risks",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Clinically Proven",
-                  desc: "Safe and effective with medical supervision",
+                  icon: <Info className="text-wine" />,
+                  title: "Medical Clarity",
+                  text: "Ozempic is approved for diabetes. Weight loss can occur, but proper medical screening is essential.",
                 },
               ].map((item, index) => (
                 <motion.div
                   key={index}
                   variants={scaleIn}
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-cream p-8 rounded-2xl text-center group hover:bg-wine transition-colors duration-300"
+                  className="flex gap-4 items-start"
                 >
-                  <div className="w-16 h-16 bg-wine/10 group-hover:bg-light/20 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-colors">
-                    <item.icon className="w-8 h-8 text-wine group-hover:text-light transition-colors" />
+                  <div className="p-3 bg-wine/10 rounded-xl shrink-0">
+                    {item.icon}
                   </div>
-                  <h3 className="font-georgia text-xl text-brown group-hover:text-light mb-3 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-taupe group-hover:text-light/80 font-inter text-sm transition-colors">
-                    {item.desc}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Doctors Section */}
-        <section className="py-24 bg-cream">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <motion.span
-                variants={fadeInUp}
-                className="inline-block px-4 py-2 bg-rose/10 text-rose rounded-full text-sm font-inter font-medium mb-4"
-              >
-                Our Experts
-              </motion.span>
-              <motion.h2
-                variants={fadeInUp}
-                className="font-georgia text-3xl sm:text-4xl lg:text-5xl text-brown"
-              >
-                Meet Our <span className="text-wine italic">Doctors</span>
-              </motion.h2>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
-            >
-              {doctors.map((doctor, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  whileHover={{ y: -10 }}
-                  className="bg-light rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow group"
-                >
-                  <div className="aspect-square bg-linear-to-br from-rose/20 to-wine/20 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-wine/20 group-hover:bg-wine/40 transition-colors" />
-                    <Users className="w-20 h-20 text-wine/30 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-                  </div>
-                  <div className="p-6 text-center">
-                    <h3 className="font-georgia text-xl text-brown mb-1">
-                      {doctor.name}
+                  <div>
+                    <h3 className="font-georgia text-brown mb-2">
+                      {item.title}
                     </h3>
-                    <p className="text-taupe font-inter text-sm">
-                      {doctor.specialty}
-                    </p>
+                    <p className="text-sm text-taupe font-inter">{item.text}</p>
                   </div>
                 </motion.div>
               ))}
             </motion.div>
-          </div>
+          </motion.div>
         </section>
 
-        {/* Testimonials */}
-        <section className="py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <motion.span
-                variants={fadeInUp}
-                className="inline-block px-4 py-2 bg-wine/10 text-wine rounded-full text-sm font-inter font-medium mb-4"
-              >
-                Success Stories
-              </motion.span>
-              <motion.h2
-                variants={fadeInUp}
-                className="font-georgia text-3xl sm:text-4xl lg:text-5xl text-brown"
-              >
-                Client <span className="text-wine italic">Reviews</span>
-              </motion.h2>
+        {/* What is Ozempic */}
+        <section className="py-24 px-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center"
+          >
+            <motion.div variants={fadeInLeft} className="space-y-6">
+              <h2 className="font-georgia text-4xl text-brown">
+                What is Ozempic, and why is everyone talking about it?
+              </h2>
+
+              <p className="text-lg text-taupe font-inter leading-relaxed">
+                Ozempic is the brand name for semaglutide, a medicine in the
+                GLP-1 receptor agonist family. It was developed for type 2
+                diabetes, and it can also lead to weight loss in many patients.
+              </p>
+
+              <div className="bg-cream p-8 rounded-3xl border border-taupe/10">
+                <p className="font-inter text-brown italic">
+                  <span className="font-bold text-wine">Important note:</span>{" "}
+                  Ozempic is not marketed as a weight loss drug in the way
+                  Wegovy is. Ozempic may support weight loss, but it is still a
+                  prescription medicine that needs proper screening and
+                  monitoring.
+                </p>
+              </div>
+
+              <div className="space-y-4 pt-4">
+                <h3 className="font-georgia text-2xl text-brown">
+                  How it works:
+                </h3>
+                {[
+                  { icon: <Apple />, text: "You get full faster" },
+                  { icon: <Brain />, text: "Cravings feel quieter" },
+                  {
+                    icon: <Scale />,
+                    text: "Portions become easier to control",
+                  },
+                  { icon: <Activity />, text: "Blood sugar swings may reduce" },
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="flex items-center gap-4 p-4 bg-glass rounded-xl"
+                  >
+                    <div className="text-wine">{item.icon}</div>
+                    <span className="font-inter text-brown">{item.text}</span>
+                  </motion.div>
+                ))}
+                <p className="text-sm text-taupe mt-4 italic">
+                  This is why people describe it as "food noise goes down." It
+                  doesn't replace healthy eating, but it makes healthy choices
+                  feel less exhausting.
+                </p>
+              </div>
             </motion.div>
 
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="grid md:grid-cols-3 gap-8"
+            <motion.div variants={fadeInRight}>
+              <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                <img
+                  src="/images/main/ozempic-malaysia.webp"
+                  alt="Medical professional explaining Ozempic treatment"
+                  className="w-full h-auto"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* Suitability Section */}
+        <section className="py-24 px-4 bg-cream">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto"
+          >
+            <motion.h2
+              variants={fadeInUp}
+              className="font-georgia text-4xl text-brown text-center mb-16"
             >
-              {testimonials.map((testimonial, index) => (
+              Who may be suitable for Ozempic weight loss in Malaysia?
+            </motion.h2>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <motion.div variants={fadeInLeft} className="space-y-6">
+                <p className="text-taupe font-inter">
+                  At Nexus Clinic Kuala Lumpur, suitability is not based on
+                  vibes or trends. It is based on health, risk, and goals.
+                </p>
+
+                <div className="space-y-4">
+                  {[
+                    "Adults with overweight or obesity who struggle despite consistent efforts",
+                    "People with insulin resistance, prediabetes, or type 2 diabetes",
+                    "People with weight-related issues like high BP, fatty liver risk, sleep problems, or PCOS symptoms",
+                  ].map((text, index) => (
+                    <motion.div
+                      key={index}
+                      variants={fadeInUp}
+                      className="flex gap-3 p-4 bg-light rounded-xl border border-taupe/10"
+                    >
+                      <CheckCircle2 className="w-5 h-5 text-wine shrink-0 mt-1" />
+                      <span className="font-inter text-brown">{text}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={fadeInRight}
+                className="bg-wine/5 p-8 rounded-3xl border border-wine/20"
+              >
+                <h3 className="font-georgia text-2xl text-wine mb-6 flex items-center gap-2">
+                  <XCircle className="w-6 h-6" />
+                  Who should NOT use Ozempic
+                </h3>
+
+                <div className="space-y-4">
+                  {[
+                    "Personal or family history of medullary thyroid cancer or MEN2",
+                    "History of pancreatitis",
+                    "Pregnancy, trying to conceive, or breastfeeding",
+                    "Significant stomach or gut conditions",
+                    "Planning surgery or endoscopy soon",
+                  ].map((text, index) => (
+                    <motion.div
+                      key={index}
+                      variants={fadeInUp}
+                      className="flex gap-3 items-start p-3 bg-light rounded-lg"
+                    >
+                      <AlertCircle className="w-4 h-4 text-wine shrink-0 mt-1" />
+                      <span className="text-sm font-inter text-brown">
+                        {text}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+                <p className="text-xs text-taupe mt-6">
+                  *Ozempic is not for everyone. A doctor must screen properly.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Timeline & Results */}
+        <section className="py-24 px-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto"
+          >
+            <motion.h2
+              variants={fadeInUp}
+              className="font-georgia text-4xl text-brown text-center mb-6"
+            >
+              What results can you expect, and how fast?
+            </motion.h2>
+            <motion.p
+              variants={fadeInUp}
+              className="text-center text-taupe font-inter max-w-2xl mx-auto mb-16"
+            >
+              Real talk: results vary. Your dose, starting weight, sleep,
+              stress, food quality, and activity all matter.
+            </motion.p>
+
+            <div className="grid md:grid-cols-4 gap-4 mb-16">
+              {[
+                {
+                  period: "Weeks 1-4",
+                  desc: "Appetite changes start. Some nausea is common.",
+                },
+                {
+                  period: "Weeks 4-12",
+                  desc: "Weight loss becomes more noticeable.",
+                },
+                {
+                  period: "3-6 months",
+                  desc: "Steadier momentum, better habit patterns.",
+                },
+                {
+                  period: "6-12 months",
+                  desc: "Bigger health changes with consistency.",
+                },
+              ].map((item, index) => (
                 <motion.div
                   key={index}
-                  variants={fadeInUp}
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-cream p-8 rounded-2xl relative"
+                  variants={scaleIn}
+                  className="p-6 bg-glass backdrop-blur-sm rounded-2xl border border-taupe/10"
                 >
-                  <div className="absolute -top-3 -left-3 text-6xl text-wine/20 font-georgia">
-                    "
+                  <div className="text-2xl font-georgia text-wine mb-2">
+                    {item.period}
                   </div>
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 text-wine fill-current"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-taupe font-inter mb-6 relative z-10">
-                    "{testimonial.text}"
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center">
-                      <span className="text-wine font-georgia font-bold">
-                        {testimonial.name[0]}
-                      </span>
-                    </div>
-                    <p className="font-georgia text-brown">
-                      {testimonial.name}
-                    </p>
-                  </div>
+                  <p className="text-sm font-inter text-brown">{item.desc}</p>
                 </motion.div>
               ))}
+            </div>
+
+            <motion.div
+              variants={fadeInUp}
+              className="bg-wine/5 p-8 rounded-3xl max-w-3xl mx-auto"
+            >
+              <h3 className="font-georgia text-2xl text-wine mb-4">
+                What studies show
+              </h3>
+              <p className="font-inter text-brown">
+                In major clinical trials of semaglutide (2.4mg), average weight
+                loss was around 14.9% at 68 weeks when combined with lifestyle
+                changes. That doesn't mean everyone gets that result, but it
+                gives you a real-world "range" to discuss with a doctor.
+              </p>
             </motion.div>
-          </div>
+          </motion.div>
         </section>
 
-        {/* Before/After */}
-        <BeforeAfterSection />
+        {/* Before & After */}
+        <SectionBeforeAfter transformations={transformations} />
+
+        {/* Pros & Cons */}
+        <section className="py-24 px-4 bg-cream">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto"
+          >
+            <motion.h2
+              variants={fadeInUp}
+              className="font-georgia text-4xl text-brown text-center mb-16"
+            >
+              Pros and cons of Ozempic for weight loss (honest version)
+            </motion.h2>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <motion.div
+                variants={fadeInLeft}
+                className="bg-light p-8 rounded-3xl border border-green-200"
+              >
+                <h3 className="font-georgia text-2xl text-green-700 mb-6 flex items-center gap-2">
+                  <CheckCircle2 className="w-6 h-6" />
+                  Pros
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    "Helps reduce appetite and portions without feeling constantly deprived",
+                    "Supports steady, progressive weight loss when combined with lifestyle changes",
+                    "Can improve metabolic markers in suitable patients (doctor monitored)",
+                  ].map((text, index) => (
+                    <motion.li
+                      key={index}
+                      variants={fadeInUp}
+                      className="flex gap-3 items-start"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0 mt-1" />
+                      <span className="font-inter text-brown">{text}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              <motion.div
+                variants={fadeInRight}
+                className="bg-light p-8 rounded-3xl border border-red-200"
+              >
+                <h3 className="font-georgia text-2xl text-wine mb-6 flex items-center gap-2">
+                  <XCircle className="w-6 h-6" />
+                  Cons
+                </h3>
+                <ul className="space-y-4">
+                  {[
+                    "Side effects can be uncomfortable at the start",
+                    "Cost can add up if you stay on it long term",
+                    "You may regain weight if you stop without a plan",
+                    "Not suitable for everyone, especially with certain thyroid cancer risks",
+                  ].map((text, index) => (
+                    <motion.li
+                      key={index}
+                      variants={fadeInUp}
+                      className="flex gap-3 items-start"
+                    >
+                      <XCircle className="w-4 h-4 text-wine shrink-0 mt-1" />
+                      <span className="font-inter text-brown">{text}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Side Effects & Safety */}
+        <section className="py-24 px-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto"
+          >
+            <motion.h2
+              variants={fadeInUp}
+              className="font-georgia text-4xl text-brown text-center mb-6"
+            >
+              Side effects and safety: what to expect
+            </motion.h2>
+            <motion.p
+              variants={fadeInUp}
+              className="text-center text-taupe font-inter max-w-2xl mx-auto mb-16"
+            >
+              Most side effects are digestive and often improve as your body
+              adapts.
+            </motion.p>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <motion.div variants={fadeInLeft} className="space-y-6">
+                <h3 className="font-georgia text-2xl text-brown">
+                  Common side effects
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    "Nausea",
+                    "Constipation",
+                    "Diarrhea",
+                    "Bloating",
+                    "Reflux",
+                    "Stomach discomfort",
+                    "Reduced appetite",
+                  ].map((effect, index) => (
+                    <motion.div
+                      key={index}
+                      variants={scaleIn}
+                      className="p-3 bg-glass rounded-xl border border-taupe/10 text-center"
+                    >
+                      <span className="text-sm font-inter text-brown">
+                        {effect}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={fadeInRight}
+                className="bg-wine/5 p-8 rounded-3xl"
+              >
+                <h3 className="font-georgia text-2xl text-wine mb-6">
+                  Serious side effects (rare, but important)
+                </h3>
+                <p className="font-inter text-sm text-brown mb-4">
+                  Seek medical advice urgently if you have:
+                </p>
+                <ul className="space-y-4">
+                  {[
+                    "Severe belly pain that does not go away",
+                    "Signs of gallbladder issues (upper right abdominal pain, fever, jaundice)",
+                    "Signs of dehydration or kidney strain after vomiting/diarrhea",
+                  ].map((text, index) => (
+                    <motion.li
+                      key={index}
+                      variants={fadeInUp}
+                      className="flex gap-3 items-start"
+                    >
+                      <AlertCircle className="w-4 h-4 text-wine shrink-0 mt-1" />
+                      <span className="text-sm font-inter text-brown">
+                        {text}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+
+                <div className="mt-8 p-4 bg-light rounded-xl border border-wine/20">
+                  <p className="text-xs font-inter text-brown">
+                    <span className="font-bold">Surgery safety note:</span>{" "}
+                    Malaysia's NPRA has highlighted aspiration risk. If you have
+                    a procedure coming up, tell your anesthetist early.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Pricing & Comparison */}
+        <section className="py-24 px-4 bg-cream">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto"
+          >
+            <motion.h2
+              variants={fadeInUp}
+              className="font-georgia text-4xl text-brown text-center mb-16"
+            >
+              Ozempic price in Malaysia (Kuala Lumpur)
+            </motion.h2>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <motion.div variants={fadeInLeft} className="space-y-6">
+                <div className="bg-light p-8 rounded-3xl border-2 border-wine/20">
+                  <h3 className="font-georgia text-3xl text-wine mb-2">
+                    From RM1,800
+                  </h3>
+                  <p className="text-taupe font-inter mb-6">
+                    per pen at Nexus Clinic KL
+                  </p>
+                  <p className="text-sm font-inter text-brown">
+                    Multi-pen packages available subject to medical
+                    consultation. Price includes medical supervision, not just
+                    medication.
+                  </p>
+                </div>
+
+                <div className="bg-glass p-6 rounded-2xl">
+                  <p className="text-sm font-inter text-brown">
+                    Other clinics may quote RM800-1,000/month. Always confirm
+                    what's included: consultation, follow-ups, education,
+                    sourcing, storage, and safety monitoring.
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInRight} className="space-y-6">
+                <h3 className="font-georgia text-2xl text-brown">
+                  Ozempic vs Wegovy vs Mounjaro vs Saxenda
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    {
+                      name: "Ozempic",
+                      desc: "Primarily for type 2 diabetes; weight loss can occur",
+                    },
+                    {
+                      name: "Wegovy",
+                      desc: "Developed for chronic weight management at higher dosing",
+                    },
+                    {
+                      name: "Mounjaro",
+                      desc: "Targets GLP-1 and GIP hormones",
+                    },
+                    {
+                      name: "Saxenda",
+                      desc: "Daily injection for weight management",
+                    },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      variants={fadeInUp}
+                      className="flex gap-4 p-4 bg-light rounded-xl"
+                    >
+                      <span className="font-bold text-wine min-w-24">
+                        {item.name}
+                      </span>
+                      <span className="text-sm font-inter text-brown">
+                        {item.desc}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* Nexus Approach */}
+        <section className="py-24 px-4">
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-7xl mx-auto"
+          >
+            <motion.h2
+              variants={fadeInUp}
+              className="font-georgia text-4xl text-brown text-center mb-6"
+            >
+              The Nexus Clinic Kuala Lumpur approach
+            </motion.h2>
+            <motion.p
+              variants={fadeInUp}
+              className="text-center text-taupe font-inter max-w-2xl mx-auto mb-16"
+            >
+              People don't want a lecture. They want a plan that fits real life.
+            </motion.p>
+
+            <div className="grid md:grid-cols-5 gap-4">
+              {[
+                {
+                  step: "1",
+                  title: "Suitability screening",
+                  desc: "Medical history, risk checks, goal setting",
+                },
+                {
+                  step: "2",
+                  title: "Gradual dose approach",
+                  desc: "Paced changes to reduce side effects",
+                },
+                {
+                  step: "3",
+                  title: "Food strategy",
+                  desc: "Protein, fibre, smart portions, Malaysian food friendly",
+                },
+                {
+                  step: "4",
+                  title: "Tracking & support",
+                  desc: "Quick guidance when side effects hit",
+                },
+                {
+                  step: "5",
+                  title: "Maintenance planning",
+                  desc: "Prevent regain with early next-step planning",
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={scaleIn}
+                  className="p-6 bg-glass backdrop-blur-sm rounded-2xl border border-taupe/10 text-center"
+                >
+                  <div className="w-10 h-10 bg-wine text-light rounded-full flex items-center justify-center mx-auto mb-4 font-bold">
+                    {item.step}
+                  </div>
+                  <h4 className="font-georgia text-lg text-brown mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-xs font-inter text-taupe">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </section>
 
         {/* FAQ Section */}
-        <section className="py-24">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-center mb-16"
-            >
-              <motion.span
-                variants={fadeInUp}
-                className="inline-block px-4 py-2 bg-wine/10 text-wine rounded-full text-sm font-inter font-medium mb-4"
-              >
-                Got Questions?
-              </motion.span>
-              <motion.h2
-                variants={fadeInUp}
-                className="font-georgia text-3xl sm:text-4xl lg:text-5xl text-brown"
-              >
-                Frequently Asked{" "}
-                <span className="text-wine italic">Questions</span>
-              </motion.h2>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="space-y-4"
-            >
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="bg-cream rounded-2xl overflow-hidden"
-                >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full p-6 flex items-center justify-between text-left"
-                  >
-                    <h3 className="font-georgia text-lg text-brown pr-8">
-                      {faq.q}
-                    </h3>
-                    <motion.div
-                      animate={{ rotate: openFaq === index ? 180 : 0 }}
-                      className="shrink-0"
-                    >
-                      <ChevronDown className="w-5 h-5 text-wine" />
-                    </motion.div>
-                  </button>
-                  <motion.div
-                    initial={false}
-                    animate={{
-                      height: openFaq === index ? "auto" : 0,
-                      opacity: openFaq === index ? 1 : 0,
-                    }}
-                    className="overflow-hidden"
-                  >
-                    <p className="px-6 pb-6 text-taupe font-inter">{faq.a}</p>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
+        <FAQ data={faqs} />
 
         {/* CTA Section */}
-        <section className="py-24 bg-linear-to-br from-wine to-brown relative overflow-hidden">
+        <section className="py-24 px-4">
           <motion.div
-            animate={floatAnimation}
-            className="absolute top-0 left-0 w-96 h-96 bg-rose/20 rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{
-              ...floatAnimation,
-              transition: { ...floatAnimation.transition, delay: 1.5 },
-            }}
-            className="absolute bottom-0 right-0 w-72 h-72 bg-light/10 rounded-full blur-3xl"
-          />
-
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-center max-w-3xl mx-auto"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            className="max-w-4xl mx-auto text-center"
+          >
+            <motion.h2
+              variants={fadeInUp}
+              className="font-georgia text-4xl text-brown mb-6"
             >
-              <motion.h2
-                variants={fadeInUp}
-                className="font-georgia text-3xl sm:text-4xl lg:text-5xl text-light mb-6"
-              >
-                Ready to Start Your{" "}
-                <span className="italic text-rose">Transformation?</span>
-              </motion.h2>
+              Ready for a doctor-led Ozempic consultation in Kuala Lumpur?
+            </motion.h2>
 
-              <motion.p
-                variants={fadeInUp}
-                className="text-light/80 font-inter text-lg mb-10"
-              >
-                Take the first step towards a healthier you. Book your
-                consultation today and discover how GLP-1 treatment can help you
-                achieve your weight loss goals.
-              </motion.p>
+            <motion.p
+              variants={fadeInUp}
+              className="text-taupe font-inter text-lg mb-12 max-w-2xl mx-auto"
+            >
+              If you are considering Ozempic weight loss treatment in Malaysia,
+              start with a proper medical discussion. Nexus Clinic Kuala Lumpur
+              focuses on safe prescribing, transparent pricing, and a plan you
+              can actually follow.
+            </motion.p>
 
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-              >
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-light text-wine rounded-full font-inter font-medium inline-flex items-center justify-center gap-2 shadow-xl"
-                >
-                  <Calendar className="w-5 h-5" />
-                  Book Appointment
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-transparent border-2 border-light/50 text-light rounded-full font-inter font-medium inline-flex items-center justify-center gap-2 hover:bg-light/10 transition-colors"
-                >
-                  <Phone className="w-5 h-5" />
-                  Call Us Now
-                </motion.button>
-              </motion.div>
-
-              <motion.div
-                variants={fadeInUp}
-                className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 text-light/70 font-inter text-sm"
-              >
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>Wisma UOA II, Kuala Lumpur</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  <span>+60 16-702 5699</span>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
+            <motion.button
+              variants={scaleIn}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-12 py-5 bg-wine text-light font-inter text-lg rounded-full hover:bg-rose transition-colors shadow-xl hover:shadow-2xl"
+            >
+              Book Your Consultation
+            </motion.button>
+          </motion.div>
         </section>
-      </div>
+      </main>
       <Footer />
     </>
   );

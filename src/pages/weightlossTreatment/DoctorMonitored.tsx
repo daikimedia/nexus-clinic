@@ -277,6 +277,17 @@ export default function DoctorMonitoredLanding() {
                     </motion.div>
                   ))}
                 </div>
+                <motion.div variants={fadeInRight}>
+                  <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                    <img
+                      src="/images/main/doctor-monitored-malaysia.webp"
+                      alt="Doctor Monitored Malaysia"
+                      className="w-full h-auto"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+                  </div>
+                </motion.div>
+
                 <p className="text-taupe text-lg">
                   Weight gain isn't just about willpower. Hormones, insulin
                   resistance, medications, and stress can push appetite and

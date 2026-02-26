@@ -26,20 +26,6 @@ import { Footer } from "../../components/Footer";
 import FAQ from "../../components/FAQ";
 
 const StemCellLanding = () => {
-  const images = {
-    hero: "/images/clinic/interior.png", // Modern medical clinic
-    stemCells: "/images/clinic/micro.png", // Microscopic cells
-    consultation: "/images/clinic/consultation.png", // Doctor consultation
-    labResearch:
-      "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080&auto=format&fit=crop", // Lab research
-    patientCare: "/images/clinic/patient-care.png", // Patient care
-    medicalTeam:
-      "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=2070&auto=format&fit=crop", // Medical team
-    dna: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop", // DNA/Research
-    clinic:
-      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop", // Clinic interior
-  };
-
   const faqs = [
     {
       q: "What is stem cell therapy?",
@@ -104,8 +90,8 @@ const StemCellLanding = () => {
           {/* Background Image dengan overlay */}
           <div className="absolute inset-0 z-0">
             <img
-              src={images.hero}
-              alt="Modern medical clinic interior"
+              src={"/images/clinic/interior.png"}
+              alt="Stem Cell Therapy"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-linear-to-r from-light via-light/90 to-transparent"></div>
@@ -227,7 +213,9 @@ const StemCellLanding = () => {
                 className="relative rounded-2xl overflow-hidden group cursor-pointer h-64"
               >
                 <img
-                  src={images.medicalTeam}
+                  src={
+                    "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=2070&auto=format&fit=crop"
+                  }
                   alt="Medical team at Nexus Clinic"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
@@ -366,7 +354,7 @@ const StemCellLanding = () => {
                 {/* Stem Cells Image */}
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <img
-                    src={images.stemCells}
+                    src={"/images/regenerative/what-is-stem-cell.webp"}
                     alt="Microscopic view of stem cells"
                     className="w-full h-100 object-cover"
                   />
@@ -445,7 +433,7 @@ const StemCellLanding = () => {
               >
                 <div className="h-48 overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1532187643603-ba119ca4109e?q=80&w=2070&auto=format&fit=crop"
+                    src="/images/regenerative/hematopoietic-stem-cells.webp"
                     alt="Hematopoietic stem cells"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -495,7 +483,7 @@ const StemCellLanding = () => {
               >
                 <div className="h-48 overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080&auto=format&fit=crop"
+                    src="/images/regenerative/mysenchymal-stem-cell.webp"
                     alt="Mesenchymal stem cells in lab"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -546,7 +534,7 @@ const StemCellLanding = () => {
               >
                 <div className="h-48 overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop"
+                    src="/images/regenerative/embryonic.webp"
                     alt="DNA research"
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -631,7 +619,7 @@ const StemCellLanding = () => {
               {/* Right side - Image with overlay text */}
               <motion.div variants={fadeInRight} className="relative">
                 <img
-                  src={images.labResearch}
+                  src={"/images/regenerative/hematopoietic-stem-cells2.webp"}
                   alt="Medical research laboratory"
                   className="rounded-3xl w-full h-100 object-cover"
                 />
@@ -693,7 +681,7 @@ const StemCellLanding = () => {
               </motion.div>
               <motion.div variants={fadeInRight} className="relative">
                 <img
-                  src={images.consultation}
+                  src={"/images/clinic/consultation.png"}
                   alt="Private consultation at Nexus Clinic"
                   className="rounded-2xl shadow-xl w-full h-64 object-cover"
                 />
@@ -771,7 +759,7 @@ const StemCellLanding = () => {
           className="relative h-125 overflow-hidden"
         >
           <img
-            src={images.patientCare}
+            src={"/images/clinic/patient-care.png"}
             alt="Patient care at Nexus Clinic"
             className="w-full h-full object-cover"
           />
@@ -870,7 +858,7 @@ const StemCellLanding = () => {
               <motion.div variants={fadeInRight}>
                 <div className="rounded-3xl overflow-hidden mb-6">
                   <img
-                    src="https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?q=80&w=1932&auto=format&fit=crop"
+                    src="/images/regenerative/benefits-people-hope.webp"
                     alt="Medical consultation discussing risks"
                     className="w-full h-48 object-cover"
                   />
@@ -934,7 +922,7 @@ const StemCellLanding = () => {
           className="relative h-100 overflow-hidden"
         >
           <img
-            src={images.clinic}
+            src={"/images/clinic/interior.png"}
             alt="Nexus Clinic interior"
             className="w-full h-full object-cover"
           />

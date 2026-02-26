@@ -1,354 +1,180 @@
 import { motion } from "framer-motion";
 import {
-  CheckCircle2,
-  Clock,
-  Users,
-  Star,
-  ArrowRight,
-  Phone,
-  MessageCircle,
-  Calendar,
-  Shield,
-  TrendingDown,
-  Heart,
   Sparkles,
-  Award,
-  ChevronDown,
-  MapPin,
+  Shield,
+  Clock,
+  AlertCircle,
+  CheckCircle2,
+  XCircle,
+  Apple,
+  Droplets,
+  Heart,
   Zap,
+  Award,
+  Leaf,
+  Scale,
+  MapPin,
+  ChevronRight,
 } from "lucide-react";
 import {
   fadeInUp,
   staggerContainer,
   fadeInLeft,
   fadeInRight,
-  rowVariants,
-  containerVariants,
+  scaleIn,
 } from "../../lib/animations";
-import BeforeAfterSection from "../../components/BeforeAfter";
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import FAQ from "../../components/FAQ";
-
-const pulseGlow = {
-  initial: { boxShadow: "0 0 0 0 rgba(140, 79, 88, 0.4)" },
-  animate: {
-    boxShadow: [
-      "0 0 0 0 rgba(140, 79, 88, 0.4)",
-      "0 0 0 20px rgba(140, 79, 88, 0)",
-      "0 0 0 0 rgba(140, 79, 88, 0)",
-    ],
-    transition: { duration: 2, repeat: Infinity },
-  },
-};
-
-const dataFaq = [
-  {
-    q: "Is Wegovy safe for weight loss in Malaysia?",
-    a: "Yes, Wegovy is prescribed under medical guidance in Malaysia and is considered safe for most adults. Our doctors conduct thorough assessments before prescribing.",
-  },
-  {
-    q: "Can I get Wegovy without diabetes?",
-    a: "Yes! Wegovy is specifically designed for weight loss, even if you do not have diabetes. It's approved for chronic weight management in eligible adults.",
-  },
-  {
-    q: "What are Wegovy's side effects?",
-    a: "Mild side effects include nausea and tiredness, which typically improve over time. More serious but rare side effects may include pancreatitis or gallbladder issues.",
-  },
-  {
-    q: "How fast can I lose weight with Wegovy?",
-    a: "Many people see changes in 2–4 weeks. Results improve significantly with healthy eating and regular exercise. Individual results vary.",
-  },
-  {
-    q: "How do I use Wegovy?",
-    a: "It's a weekly pen injection in the stomach, thigh, or upper arm. Our medical team will provide complete training and ongoing support.",
-  },
-];
-
-const features = [
-  {
-    feature: "Active Ingredient",
-    mounjaro: "Tirzepatide",
-    ozempic: "Semaglutide",
-    saxenda: "Liraglutide",
-  },
-  {
-    feature: "Frequency",
-    mounjaro: "Once weekly",
-    ozempic: "Once weekly",
-    saxenda: "Daily",
-  },
-  {
-    feature: "Weight Loss Avg",
-    mounjaro: "Up to 22%",
-    ozempic: "Up to 15%",
-    saxenda: "Up to 10%",
-    highlight: "mounjaro",
-  },
-  {
-    feature: "Dual-Hormone Action",
-    mounjaro: "Yes (GIP + GLP-1)",
-    ozempic: "No (GLP-1 only)",
-    saxenda: "No (GLP-1 only)",
-    highlight: "mounjaro",
-  },
-  {
-    feature: "Suitable For",
-    mounjaro: "Obesity, Diabetes, PCOS",
-    ozempic: "Diabetes, Obesity",
-    saxenda: "General Weight Loss",
-  },
-];
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 export default function PageWegovyMalaysia() {
+  const faqs = [
+    {
+      q: "How much weight can I lose with Wegovy?",
+      a: "In clinical trials, average weight loss around 68 weeks was about 14.9% with semaglutide 2.4 mg alongside lifestyle intervention, but real results vary.",
+    },
+    {
+      q: "How fast does Wegovy start working?",
+      a: "Many people feel appetite changes early, but visible body changes usually build over several weeks. Longer studies show weight loss can plateau later, which is normal.",
+    },
+    {
+      q: "Is Wegovy safe?",
+      a: "Wegovy has well-documented benefits and risks. It also has important warnings, including serious side effects to discuss with a clinician. It must be prescribed and monitored.",
+    },
+    {
+      q: "Is Wegovy approved and available in Malaysia?",
+      a: "Wegovy has launched in Malaysia, and NPRA materials discuss Wegovy under GLP-1 medicines and reference product registration sources.",
+    },
+    {
+      q: "What are the most common side effects?",
+      a: "Nausea, vomiting, diarrhoea, constipation, and abdominal discomfort are commonly listed. These often improve as your body adjusts.",
+    },
+    {
+      q: "Do you gain weight back after stopping Wegovy?",
+      a: "Many people regain weight after stopping. A published extension analysis showed substantial regain after withdrawal, which is why long-term planning matters.",
+    },
+    {
+      q: "Is Wegovy the same as Ozempic?",
+      a: "They share the same active ingredient (semaglutide), but they are used at different doses and for different labelled purposes.",
+    },
+    {
+      q: "Where do you inject Wegovy?",
+      a: "It is given as a subcutaneous injection. Your prescribing clinic will teach correct technique and safe injection habits.",
+    },
+    {
+      q: "What foods should I avoid on Wegovy?",
+      a: "There is no single 'banned' food list, but many people feel worse with oily, heavy, very sweet foods, especially during dose increases. A personalised plan helps.",
+    },
+    {
+      q: "Can I drink alcohol while on Wegovy?",
+      a: "Alcohol can worsen nausea for some people and adds empty calories. If you drink, keep it moderate and discuss your risks with your doctor, especially if you have liver or pancreas concerns.",
+    },
+    {
+      q: "Can I take Wegovy if I have surgery planned?",
+      a: "Tell your doctors. NPRA has highlighted aspiration risk with GLP-1 medicines during general anaesthesia or deep sedation. Your care team will advise what to do before procedures.",
+    },
+    {
+      q: "How much does Wegovy cost in Malaysia?",
+      a: "Costs vary by dose and provider. Some Malaysia-based listings show dose-based pen pricing in RM, and some clinics advertise promos. The most accurate quote comes after a medical consult.",
+    },
+    {
+      q: "Do I need to exercise for Wegovy to work?",
+      a: "Wegovy is intended to be used with diet and increased physical activity. Even small, consistent movement helps outcomes and helps maintain results.",
+    },
+    {
+      q: "Who should not use Wegovy?",
+      a: "People with certain thyroid cancer risks (MTC/MEN2) and other contraindications should not use it. A clinician will screen you properly.",
+    },
+  ];
+
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-wegovy1.webp",
+      after: "/images/B&A-w/B&A-wegovy1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-wegovy2.webp",
+      after: "/images/B&A-w/B&A-wegovy2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-wegovy3.webp",
+      after: "/images/B&A-w/B&A-wegovy3.webp",
+    },
+  ];
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-light font-inter overflow-x-hidden">
+      <main className="min-h-screen bg-light overflow-hidden">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center bg-linear-to-br from-cream via-light to-cream overflow-hidden">
-          {/* Decorative Elements */}
-          <motion.div
-            className="absolute top-20 right-10 w-72 h-72 bg-wine/10 rounded-full blur-3xl"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 8, repeat: Infinity }}
-          />
-          <motion.div
-            className="absolute bottom-20 left-10 w-96 h-96 bg-rose/10 rounded-full blur-3xl"
-            animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
-            transition={{ duration: 10, repeat: Infinity }}
-          />
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="relative min-h-[90vh] flex items-center"
+        >
+          {/* Background Pattern */}
+          <div className="absolute inset-0 bg-linear-to-br from-cream via-light to-cream/50" />
 
-          <div className="container mx-auto px-4 py-20 relative z-10">
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               {/* Left Content */}
-              <motion.div
-                variants={staggerContainer}
-                initial="initial"
-                animate="animate"
-                className="space-y-8"
-              >
-                <motion.div
-                  variants={fadeInUp}
-                  className="inline-flex items-center gap-2 bg-wine/10 text-wine px-4 py-2 rounded-full text-sm font-medium"
-                >
-                  <Sparkles className="w-4 h-4" />
-                  FDA-Approved Weight Loss Solution
-                </motion.div>
-
-                <motion.h1
-                  variants={fadeInUp}
-                  className="text-4xl md:text-5xl lg:text-6xl font-georgia text-brown leading-tight"
-                >
-                  Transform Your Body with{" "}
-                  <span className="text-wine relative">
-                    Wegovy
-                    <motion.svg
-                      className="absolute -bottom-2 left-0 w-full"
-                      viewBox="0 0 200 12"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 1.5, delay: 0.5 }}
-                    >
-                      <motion.path
-                        d="M0 6 Q50 0 100 6 T200 6"
-                        fill="none"
-                        stroke="#8C4F58"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                      />
-                    </motion.svg>
+              <motion.div variants={fadeInLeft} className="space-y-8">
+                <div className="inline-flex items-center gap-2 bg-wine/10 px-4 py-2 rounded-full">
+                  <Sparkles className="w-4 h-4 text-wine" />
+                  <span className="text-wine font-inter text-sm font-medium">
+                    Now Available in Kuala Lumpur
                   </span>
-                </motion.h1>
-
-                <motion.p
-                  variants={fadeInUp}
-                  className="text-lg text-taupe leading-relaxed max-w-xl"
-                >
-                  Experience clinically proven weight loss with Malaysia's
-                  premier aesthetic clinic. Our expert physicians guide you
-                  through a personalized journey to sustainable results.
-                </motion.p>
-
-                {/* Stats Row */}
-                <motion.div
-                  variants={fadeInUp}
-                  className="flex flex-wrap gap-6"
-                >
-                  {[
-                    { number: "464+", label: "Happy Clients" },
-                    { number: "15-22%", label: "Avg Weight Loss" },
-                    { number: "Weekly", label: "Simple Dosing" },
-                  ].map((stat, i) => (
-                    <div key={i} className="text-center">
-                      <div className="text-3xl font-georgia text-wine font-bold">
-                        {stat.number}
-                      </div>
-                      <div className="text-sm text-taupe">{stat.label}</div>
-                    </div>
-                  ))}
-                </motion.div>
-
-                {/* CTA Buttons */}
-                <motion.div
-                  variants={fadeInUp}
-                  className="flex flex-wrap gap-4"
-                >
-                  <motion.a
-                    href="#booking"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 bg-wine text-white px-8 py-4 rounded-full font-medium shadow-lg shadow-wine/30 hover:bg-wine/90 transition-colors"
-                  >
-                    <Calendar className="w-5 h-5" />
-                    Book Consultation
-                  </motion.a>
-                  <motion.a
-                    href="https://wa.link/q64h1l"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 bg-glass backdrop-blur-sm border border-wine/20 text-wine px-8 py-4 rounded-full font-medium hover:bg-wine/10 transition-colors"
-                  >
-                    <MessageCircle className="w-5 h-5" />
-                    Chat with Doctor
-                  </motion.a>
-                </motion.div>
-              </motion.div>
-
-              {/* Right Content - Hero Image/Card */}
-              <motion.div
-                variants={fadeInRight}
-                initial="initial"
-                animate="animate"
-                className="relative"
-              >
-                <motion.div
-                  className="relative bg-glass backdrop-blur-xl rounded-3xl p-8 border border-white/50 shadow-2xl"
-                  whileHover={{ y: -10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="absolute -top-4 -right-4 bg-wine text-white px-4 py-2 rounded-full text-sm font-medium">
-                    Limited Offer
-                  </div>
-
-                  <div className="aspect-square rounded-2xl overflow-hidden mb-6 relative">
-                    <img
-                      src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=800&q=80"
-                      alt="Healthy Lifestyle"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-t from-wine/30 to-transparent" />
-                  </div>
-
-                  <h3 className="text-2xl font-georgia text-brown mb-2">
-                    Wegovy Injection
-                  </h3>
-                  <p className="text-taupe mb-4">
-                    Weekly subcutaneous injection for sustainable weight
-                    management
-                  </p>
-
-                  <div className="flex items-center justify-between border-t border-taupe/20 pt-4">
-                    <div>
-                      <span className="text-sm text-taupe">Starting from</span>
-                      <div className="text-2xl font-bold text-wine">
-                        RM 2,500
-                        <span className="text-sm font-normal">/month</span>
-                      </div>
-                    </div>
-                    <motion.div
-                      {...pulseGlow}
-                      className="w-12 h-12 bg-wine rounded-full flex items-center justify-center cursor-pointer"
-                    >
-                      <ArrowRight className="w-6 h-6 text-white" />
-                    </motion.div>
-                  </div>
-                </motion.div>
-
-                {/* Floating Badge */}
-                <motion.div
-                  className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 1, type: "spring" }}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                      <Shield className="w-6 h-6 text-green-600" />
-                    </div>
-                    <div>
-                      <div className="font-medium text-brown">FDA Approved</div>
-                      <div className="text-sm text-taupe">
-                        Clinically Tested
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <ChevronDown className="w-8 h-8 text-wine/50" />
-          </motion.div>
-        </section>
-
-        {/* What is Wegovy Section */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto px-4">
-            <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              className="grid lg:grid-cols-2 gap-16 items-center"
-            >
-              {/* Content */}
-              <motion.div variants={fadeInLeft} className="space-y-6">
-                <span className="text-wine font-medium tracking-wider uppercase text-sm">
-                  Understanding the Treatment
-                </span>
-                <h2 className="text-3xl md:text-4xl font-georgia text-brown">
-                  What is Wegovy & How Does It Work?
-                </h2>
-                <div className="space-y-4 text-taupe leading-relaxed">
-                  <p>
-                    <strong className="text-brown">Wegovy (semaglutide)</strong>{" "}
-                    is a revolutionary FDA-approved medication designed
-                    specifically for chronic weight management. It mimics a
-                    natural hormone called GLP-1 that regulates appetite and
-                    food intake.
-                  </p>
-                  <p>
-                    By activating GLP-1 receptors in the brain, Wegovy helps you
-                    feel fuller faster, reduces cravings, and supports
-                    sustainable weight loss when combined with a healthy
-                    lifestyle.
-                  </p>
                 </div>
 
-                {/* Key Points */}
-                <div className="grid sm:grid-cols-2 gap-4 pt-4">
+                <h1 className="font-georgia text-5xl md:text-6xl lg:text-7xl text-brown leading-tight">
+                  Feel lighter, eat with control, and lose weight safely with
+                  <span className="text-wine block mt-2">
+                    Wegovy in Kuala Lumpur
+                  </span>
+                </h1>
+
+                <p className="text-taupe font-inter text-lg leading-relaxed max-w-lg">
+                  If dieting feels like a daily fight, you are not alone. Wegovy
+                  supports appetite control so your plan finally feels doable.
+                </p>
+
+                <div className="flex flex-wrap gap-4">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-wine text-light px-8 py-4 rounded-full font-inter font-medium hover:bg-rose transition-colors shadow-lg shadow-wine/20"
+                  >
+                    Book Your Consultation
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="border-2 border-brown/20 text-brown px-8 py-4 rounded-full font-inter font-medium hover:border-wine hover:text-wine transition-colors"
+                  >
+                    Learn More
+                  </motion.button>
+                </div>
+
+                {/* Trust Indicators */}
+                <div className="grid grid-cols-3 gap-4 pt-8">
                   {[
-                    { icon: TrendingDown, text: "Reduces appetite naturally" },
-                    { icon: Clock, text: "Once weekly injection" },
-                    { icon: Heart, text: "Improves metabolic health" },
-                    { icon: Zap, text: "Visible results in weeks" },
-                  ].map((item, i) => (
+                    { icon: Shield, text: "Doctor-supervised" },
+                    { icon: Clock, text: "Ongoing follow-ups" },
+                    { icon: MapPin, text: "KLCC Location" },
+                  ].map((item, index) => (
                     <motion.div
-                      key={i}
-                      variants={fadeInUp}
-                      className="flex items-center gap-3 bg-cream/50 p-4 rounded-xl"
+                      key={index}
+                      whileHover={{ y: -5 }}
+                      className="flex items-center gap-2"
                     >
-                      <div className="w-10 h-10 bg-wine/10 rounded-lg flex items-center justify-center shrink-0">
-                        <item.icon className="w-5 h-5 text-wine" />
+                      <div className="bg-cream p-2 rounded-full">
+                        <item.icon className="w-4 h-4 text-wine" />
                       </div>
-                      <span className="text-brown font-medium">
+                      <span className="text-sm text-brown font-inter">
                         {item.text}
                       </span>
                     </motion.div>
@@ -356,872 +182,710 @@ export default function PageWegovyMalaysia() {
                 </div>
               </motion.div>
 
-              {/* Visual */}
-              <motion.div variants={fadeInRight} className="relative">
-                <div className="relative aspect-square max-w-md mx-auto">
-                  {/* Background circles */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      className="w-full h-full border-2 border-wine/10 rounded-full"
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    />
-                  </div>
-                  <div className="absolute inset-8 flex items-center justify-center">
-                    <motion.div
-                      className="w-full h-full border-2 border-rose/20 rounded-full"
-                      animate={{ rotate: -360 }}
-                      transition={{
-                        duration: 15,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    />
-                  </div>
-
-                  {/* Center content */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div
-                      className="w-48 h-48 bg-linear-to-br from-wine to-rose rounded-full flex items-center justify-center shadow-2xl shadow-wine/30"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring" }}
-                    >
-                      <div className="text-center text-white">
-                        <div className="text-4xl font-bold">15%</div>
-                        <div className="text-sm opacity-80">
-                          Avg Weight Loss
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Floating elements */}
-                  {[
-                    {
-                      top: "10%",
-                      left: "10%",
-                      label: "Muscle Preservation",
-                    },
-                    {
-                      top: "10%",
-                      right: "10%",
-                      label: "Targeted Action",
-                    },
-                    {
-                      bottom: "10%",
-                      left: "10%",
-                      label: "Fast Results",
-                    },
-                    {
-                      bottom: "10%",
-                      right: "10%",
-                      label: "Safe & Proven",
-                    },
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute bg-white rounded-xl p-3 shadow-lg"
-                      style={{
-                        top: item.top,
-                        left: item.left,
-                        right: item.right,
-                        bottom: item.bottom,
-                      }}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 * i }}
-                      whileHover={{ y: -5 }}
-                    >
-                      <div className="text-xs text-brown font-medium whitespace-nowrap">
-                        {item.label}
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Benefits Section */}
-        <section className="py-24 bg-linear-to-b from-cream to-light">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center max-w-2xl mx-auto mb-16"
-            >
-              <span className="text-wine font-medium tracking-wider uppercase text-sm">
-                Why Choose Wegovy
-              </span>
-              <h2 className="text-3xl md:text-4xl font-georgia text-brown mt-4">
-                Benefits That Transform Lives
-              </h2>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {[
-                {
-                  icon: TrendingDown,
-                  title: "Proven Weight Loss",
-                  description:
-                    "Clinical studies show average weight loss of 15-22% of body weight with consistent use.",
-                  highlight: "15-22%",
-                },
-                {
-                  icon: Heart,
-                  title: "Appetite Control",
-                  description:
-                    "Natural appetite suppression reduces cravings and helps you feel satisfied with less food.",
-                  highlight: "Natural",
-                },
-                {
-                  icon: Zap,
-                  title: "Metabolic Boost",
-                  description:
-                    "Improves insulin sensitivity and metabolic health for better overall wellness.",
-                  highlight: "Improved",
-                },
-                {
-                  icon: Clock,
-                  title: "Weekly Convenience",
-                  description:
-                    "Simple once-weekly injection that fits seamlessly into your busy lifestyle.",
-                  highlight: "1x/week",
-                },
-                {
-                  icon: Shield,
-                  title: "FDA Approved",
-                  description:
-                    "Rigorously tested and approved by FDA for safe, effective weight management.",
-                  highlight: "Safe",
-                },
-                {
-                  icon: Award,
-                  title: "Expert Guidance",
-                  description:
-                    "Personalized treatment plans supervised by experienced medical professionals.",
-                  highlight: "Custom",
-                },
-              ].map((benefit, i) => (
-                <motion.div key={i} variants={fadeInUp} className="group">
-                  <motion.div
-                    className="h-full bg-white rounded-2xl p-8 shadow-lg shadow-brown/5 border border-transparent hover:border-wine/20 transition-all duration-300"
-                    whileHover={{
-                      y: -10,
-                      boxShadow: "0 25px 50px -12px rgba(140, 79, 88, 0.15)",
-                    }}
-                  >
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="w-14 h-14 bg-wine/10 rounded-xl flex items-center justify-center group-hover:bg-wine transition-colors">
-                        <benefit.icon className="w-7 h-7 text-wine group-hover:text-white transition-colors" />
-                      </div>
-                      <span className="text-3xl font-bold text-wine/20 group-hover:text-wine/40 transition-colors">
-                        {benefit.highlight}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-georgia text-brown mb-3">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-taupe leading-relaxed">
-                      {benefit.description}
-                    </p>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-        {/* before after Section */}
-        <BeforeAfterSection />
-
-        {/* Comparison Section */}
-        <section className="py-16 px-4 bg-cream">
-          <div
-            className="text-center max-w-2xl mx-auto mb-16"
-            style={{ opacity: "1", transform: "none" }}
-          >
-            <span className="text-wine font-medium tracking-wider uppercase text-sm">
-              Compare Options
-            </span>
-            <h2 className="text-3xl md:text-4xl font-georgia text-brown mt-4">
-              Wegovy vs Other Treatments
-            </h2>
-            <p className="text-taupe mt-4">
-              Find the right solution for your weight loss journey
-            </p>
-          </div>
-          <div className="max-w-5xl mx-auto">
-            {/* Desktop Table */}
-            <motion.div
-              className="hidden md:block overflow-x-auto rounded-xl shadow-lg"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-            >
-              <table className="w-full">
-                <thead>
-                  <tr className="bg-wine text-light">
-                    <th className="px-6 py-4 text-left font-inter font-semibold">
-                      Feature
-                    </th>
-                    <th className="px-6 py-4 text-center font-inter font-semibold">
-                      Mounjaro
-                    </th>
-                    <th className="px-6 py-4 text-center font-inter font-semibold">
-                      Ozempic
-                    </th>
-                    <th className="px-6 py-4 text-center font-inter font-semibold">
-                      Saxenda
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {features.map((item, index) => (
-                    <motion.tr
-                      key={index}
-                      variants={rowVariants}
-                      className={`
-                  ${index % 2 === 0 ? "bg-light" : "bg-cream"}
-                  hover:bg-taupe/20 transition-colors duration-200
-                  border-b border-taupe/20
-                `}
-                    >
-                      <td className="px-6 py-4 font-inter font-semibold text-brown">
-                        {item.feature}
-                      </td>
-                      <td
-                        className={`px-6 py-4 font-inter text-center ${item.highlight === "mounjaro" ? "text-wine font-bold bg-wine/10" : "text-brown/80"}`}
-                      >
-                        {item.mounjaro}
-                      </td>
-                      <td className="px-6 py-4 font-inter text-center text-brown/80">
-                        {item.ozempic}
-                      </td>
-                      <td className="px-6 py-4 font-inter text-center text-brown/80">
-                        {item.saxenda}
-                      </td>
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-            </motion.div>
-
-            {/* Mobile Cards */}
-            <motion.div
-              className="md:hidden space-y-4"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-            >
-              {/* Mounjaro Card */}
-              <motion.div
-                variants={rowVariants}
-                className="bg-wine/10 rounded-xl p-5 shadow-md border-l-4 border-wine"
-              >
-                <h4 className="font-inter font-bold text-wine text-xl mb-3">
-                  Mounjaro
-                </h4>
-                <div className="space-y-2 text-sm">
-                  {features.map((item, idx) => (
-                    <p key={idx}>
-                      <span className="text-taupe">{item.feature}:</span>{" "}
-                      <span
-                        className={`${item.highlight === "mounjaro" ? "text-wine font-bold" : "text-brown/80"}`}
-                      >
-                        {item.mounjaro}
-                      </span>
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Ozempic Card */}
-              <motion.div
-                variants={rowVariants}
-                className="bg-light rounded-xl p-5 shadow-md border-l-4 border-rose"
-              >
-                <h4 className="font-inter font-bold text-brown text-xl mb-3">
-                  Ozempic
-                </h4>
-                <div className="space-y-2 text-sm">
-                  {features.map((item, idx) => (
-                    <p key={idx}>
-                      <span className="text-taupe">{item.feature}:</span>{" "}
-                      <span className="text-brown/80">{item.ozempic}</span>
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Saxenda Card */}
-              <motion.div
-                variants={rowVariants}
-                className="bg-light rounded-xl p-5 shadow-md border-l-4 border-taupe"
-              >
-                <h4 className="font-inter font-bold text-brown text-xl mb-3">
-                  Saxenda
-                </h4>
-                <div className="space-y-2 text-sm">
-                  {features.map((item, idx) => (
-                    <p key={idx}>
-                      <span className="text-taupe">{item.feature}:</span>{" "}
-                      <span className="text-brown/80">{item.saxenda}</span>
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* CTA Footer */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="mt-8 text-center text-brown font-inter"
-            >
-              Want help deciding which one is best for you?{" "}
-              <a
-                href="/contact-us"
-                className="text-wine hover:text-rose underline font-semibold transition-colors"
-              >
-                Speak to our specialists
-              </a>{" "}
-              today.
-            </motion.p>
-          </div>
-        </section>
-
-        {/* Is Wegovy Right For You */}
-        <section className="py-24 bg-brown text-white overflow-hidden">
-          <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <motion.div
-                variants={staggerContainer}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                className="space-y-8"
-              >
-                <motion.span
-                  variants={fadeInUp}
-                  className="text-rose font-medium tracking-wider uppercase text-sm"
-                >
-                  Eligibility
-                </motion.span>
-                <motion.h2
-                  variants={fadeInUp}
-                  className="text-3xl md:text-4xl font-georgia"
-                >
-                  Is Wegovy Right For You?
-                </motion.h2>
-                <motion.p
-                  variants={fadeInUp}
-                  className="text-cream/80 leading-relaxed"
-                >
-                  Wegovy may be suitable for adults who struggle with weight
-                  management, particularly those with:
-                </motion.p>
-
-                <motion.div variants={fadeInUp} className="space-y-4">
-                  {[
-                    "BMI of 30 or higher (obesity)",
-                    "BMI of 27+ with weight-related health conditions",
-                    "Type 2 diabetes or prediabetes",
-                    "PCOS or insulin resistance",
-                    "History of unsuccessful diet attempts",
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      className="flex items-center gap-4 bg-white/10 backdrop-blur-sm p-4 rounded-xl"
-                      initial={{ opacity: 0, x: -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                    >
-                      <CheckCircle2 className="w-6 h-6 text-rose shrink-0" />
-                      <span>{item}</span>
-                    </motion.div>
-                  ))}
-                </motion.div>
-
-                <motion.div
-                  variants={fadeInUp}
-                  className="flex flex-wrap gap-4 pt-4"
-                >
-                  <motion.a
-                    href="#booking"
-                    className="inline-flex items-center gap-2 bg-rose text-white px-6 py-3 rounded-full font-medium hover:bg-rose/90 transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Calendar className="w-5 h-5" />
-                    Book Assessment
-                  </motion.a>
-                </motion.div>
-              </motion.div>
-
-              {/* Decorative Visual */}
+              {/* Right Image */}
               <motion.div
                 variants={fadeInRight}
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                className="relative"
+                className="relative h-150 rounded-3xl overflow-hidden shadow-2xl"
               >
-                <div className="relative">
-                  {/* Glowing orbs */}
-                  <motion.div
-                    className="absolute top-1/4 left-1/4 w-32 h-32 bg-wine rounded-full blur-2xl"
-                    animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0.8, 0.5] }}
-                    transition={{ duration: 4, repeat: Infinity }}
-                  />
-                  <motion.div
-                    className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-rose rounded-full blur-2xl"
-                    animate={{ scale: [1.3, 1, 1.3], opacity: [0.4, 0.7, 0.4] }}
-                    transition={{ duration: 5, repeat: Infinity }}
-                  />
-
-                  {/* Main card */}
-                  <motion.div
-                    className="relative bg-glass backdrop-blur-xl rounded-3xl p-8 border border-white/20"
-                    whileHover={{ y: -10 }}
-                  >
-                    <div className="text-center space-y-6">
-                      <div className="w-20 h-20 bg-wine/30 rounded-full flex items-center justify-center mx-auto">
-                        <Users className="w-10 h-10 text-white" />
-                      </div>
-                      <div>
-                        <div className="text-5xl font-bold text-white">
-                          464+
-                        </div>
-                        <div className="text-cream/70 mt-2">
-                          Satisfied Clients
-                        </div>
-                      </div>
-                      <div className="flex justify-center gap-1">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className="w-6 h-6 fill-rose text-rose"
-                          />
-                        ))}
-                      </div>
-                      <p className="text-cream/80 italic">
-                        "The support from Nexus Clinic made all the difference
-                        in my weight loss journey."
-                      </p>
-                    </div>
-                  </motion.div>
+                <div className="absolute inset-0 bg-linear-to-tr from-wine/20 to-transparent z-10" />
+                <img
+                  src="/images/main/wegovy.webp"
+                  alt="Wegovy weight loss treatment in Kuala Lumpur"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-6 left-6 right-6 bg-glass backdrop-blur-md p-6 rounded-2xl z-20">
+                  <p className="text-brown font-inter text-sm">
+                    Get a doctor-led, monitored Wegovy weight loss programme at
+                    Nexus Clinic Kuala Lumpur, built around your body, your
+                    habits, and your health.
+                  </p>
                 </div>
               </motion.div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        {/* Testimonials */}
-        <section className="py-24 bg-cream">
-          <div className="container mx-auto px-4">
+        {/* What is Wegovy Section */}
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="py-24 bg-cream"
+        >
+          <div className="container mx-auto px-4 md:px-6">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center max-w-2xl mx-auto mb-16"
+              variants={fadeInUp}
+              className="max-w-3xl mx-auto text-center mb-16"
             >
-              <span className="text-wine font-medium tracking-wider uppercase text-sm">
-                Success Stories
-              </span>
-              <h2 className="text-3xl md:text-4xl font-georgia text-brown mt-4">
-                Real Results from Real People
+              <h2 className="font-georgia text-4xl md:text-5xl text-brown mb-6">
+                What is Wegovy, and why is everyone talking about it?
               </h2>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
-            >
-              {[
-                {
-                  name: "Fatimah, 43",
-                  location: "Johor Bahru",
-                  quote:
-                    "In just 3 months, I lost 14kg without starving myself. The support from Nexus Clinic made all the difference in my journey.",
-                  result: "-14 kg",
-                },
-                {
-                  name: "Raymond, 52",
-                  location: "KLCC",
-                  quote:
-                    "Dropped two clothing sizes and saw my blood sugar normalize. I feel like I got my life back after years of struggling.",
-                  result: "-2 sizes",
-                },
-              ].map((testimonial, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeInUp}
-                  className="bg-white rounded-2xl p-8 shadow-xl shadow-brown/5"
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="flex items-center gap-1 mb-4">
-                    {[...Array(5)].map((_, j) => (
-                      <Star key={j} className="w-5 h-5 fill-rose text-rose" />
-                    ))}
-                  </div>
-                  <p className="text-brown text-lg italic mb-6">
-                    "{testimonial.quote}"
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="font-medium text-brown">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-sm text-taupe flex items-center gap-1">
-                        <MapPin className="w-4 h-4" />
-                        {testimonial.location}
-                      </div>
-                    </div>
-                    <div className="bg-wine/10 text-wine px-4 py-2 rounded-full font-bold">
-                      {testimonial.result}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Pricing Section */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center max-w-2xl mx-auto mb-16"
-            >
-              <span className="text-wine font-medium tracking-wider uppercase text-sm">
-                Transparent Pricing
-              </span>
-              <h2 className="text-3xl md:text-4xl font-georgia text-brown mt-4">
-                Investment in Your Health
-              </h2>
-              <p className="text-taupe mt-4">
-                Flexible plans tailored to your weight loss goals
+              <p className="text-taupe font-inter text-lg">
+                Wegovy is a GLP-1 receptor agonist. In simple words, it works
+                like a natural gut hormone that talks to your brain and
+                digestion.
               </p>
             </motion.div>
 
-            <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
-            >
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
+                { icon: Heart, text: "feel full sooner" },
+                { icon: Clock, text: "stay full longer" },
+                { icon: Zap, text: "think about food less often" },
                 {
-                  name: "Starter Plan",
-                  price: "2,500",
-                  period: "/month",
-                  features: [
-                    "Initial consultation",
-                    "Body composition analysis",
-                    "Wegovy injections",
-                    "Monthly follow-up",
-                    "Diet guidance",
-                  ],
-                  popular: false,
+                  icon: Scale,
+                  text: "manage portions without feeling punished",
                 },
-                {
-                  name: "Extended Plan",
-                  price: "Custom",
-                  period: "pricing",
-                  features: [
-                    "Everything in Starter",
-                    "Extended treatment duration",
-                    "Priority scheduling",
-                    "Dedicated support line",
-                    "Progress tracking app",
-                  ],
-                  popular: true,
-                },
-              ].map((plan, i) => (
+              ].map((item, index) => (
                 <motion.div
-                  key={i}
-                  variants={fadeInUp}
-                  className={`relative rounded-2xl p-8 ${
-                    plan.popular
-                      ? "bg-linear-to-br from-wine to-rose text-white"
-                      : "bg-cream/50 border border-taupe/20"
-                  }`}
-                  whileHover={{
-                    y: -10,
-                    boxShadow: plan.popular
-                      ? "0 25px 50px -12px rgba(140, 79, 88, 0.4)"
-                      : "0 25px 50px -12px rgba(75, 58, 51, 0.1)",
-                  }}
+                  key={index}
+                  variants={scaleIn}
+                  whileHover={{ y: -10 }}
+                  className="bg-light p-8 rounded-3xl shadow-lg"
                 >
-                  {plan.popular && (
-                    <div className="absolute -top-3 right-6 bg-brown text-white px-4 py-1 rounded-full text-sm font-medium">
-                      Most Popular
-                    </div>
-                  )}
-
-                  <h3
-                    className={`text-2xl font-georgia mb-2 ${plan.popular ? "text-white" : "text-brown"}`}
-                  >
-                    {plan.name}
-                  </h3>
-                  <div className="flex items-baseline gap-1 mb-6">
-                    <span className="text-sm">RM</span>
-                    <span className="text-4xl font-bold">{plan.price}</span>
-                    <span
-                      className={plan.popular ? "text-white/70" : "text-taupe"}
-                    >
-                      {plan.period}
-                    </span>
+                  <div className="bg-wine/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-4">
+                    <item.icon className="w-8 h-8 text-wine" />
                   </div>
+                  <p className="text-brown font-georgia text-xl">{item.text}</p>
+                </motion.div>
+              ))}
+            </div>
 
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, j) => (
-                      <li key={j} className="flex items-center gap-3">
-                        <CheckCircle2
-                          className={`w-5 h-5 ${plan.popular ? "text-white" : "text-wine"}`}
-                        />
-                        <span
-                          className={
-                            plan.popular ? "text-white/90" : "text-brown"
-                          }
-                        >
-                          {feature}
+            <motion.div
+              variants={fadeInUp}
+              className="mt-12 p-8 bg-white/50 rounded-3xl"
+            >
+              <p className="text-brown font-inter">
+                Wegovy is prescription-only, and it is designed for long-term
+                weight management, not spot slimming. Wegovy has launched in
+                Malaysia and is being discussed widely by clinics and local
+                coverage. NPRA safety communications also list Wegovy among
+                GLP-1 medicines and reference the Malaysian product registration
+                database (QUEST), which supports that it is regulated as a
+                prescription medicine.
+              </p>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* Who Wegovy is For */}
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="py-24 bg-light"
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div variants={fadeInLeft} className="space-y-6">
+                <h2 className="font-georgia text-4xl md:text-5xl text-brown">
+                  Who Wegovy is for{" "}
+                  <span className="text-wine">(and who should avoid it)</span>
+                </h2>
+
+                <div className="space-y-4">
+                  <h3 className="font-georgia text-2xl text-brown">
+                    Wegovy may be considered if you:
+                  </h3>
+                  <div className="bg-cream p-6 rounded-2xl">
+                    <p className="text-brown font-inter mb-4">
+                      Wegovy is commonly used for adults with:
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-wine shrink-0" />
+                        <span className="text-brown font-inter">
+                          BMI 30+ (obesity)
                         </span>
                       </li>
-                    ))}
-                  </ul>
+                      <li className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-wine shrink-0" />
+                        <span className="text-brown font-inter">
+                          BMI 27+ (overweight) with weight-related health
+                          problems
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
 
-                  <motion.button
-                    className={`w-full py-4 rounded-xl font-medium transition-colors ${
-                      plan.popular
-                        ? "bg-white text-wine hover:bg-cream"
-                        : "bg-wine text-white hover:bg-wine/90"
-                    }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Get Started
-                  </motion.button>
-                </motion.div>
-              ))}
-            </motion.div>
+                <div className="bg-rose/10 p-6 rounded-2xl border-l-4 border-wine">
+                  <h3 className="font-georgia text-2xl text-brown mb-4 flex items-center gap-2">
+                    <AlertCircle className="w-6 h-6 text-wine" />
+                    Wegovy is not for everyone
+                  </h3>
+                  <p className="text-brown font-inter">
+                    You should not self-start Wegovy. It requires a medical
+                    assessment. Wegovy has important warnings and
+                    contraindications, including a warning about thyroid C-cell
+                    tumors (seen in rodents) and avoidance in people with
+                    certain thyroid cancer risks (like medullary thyroid
+                    carcinoma or MEN2). If you are pregnant, planning pregnancy,
+                    or breastfeeding, you should discuss safer alternatives with
+                    your doctor.
+                  </p>
+                </div>
+              </motion.div>
 
-            {/* Special Offer Banner */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="mt-12 bg-linear-to-r from-rose/20 to-wine/20 rounded-2xl p-8 text-center max-w-2xl mx-auto"
-            >
-              <Sparkles className="w-10 h-10 text-wine mx-auto mb-4" />
-              <h3 className="text-xl font-georgia text-brown mb-2">
-                Limited Time Offer
-              </h3>
-              <p className="text-taupe mb-4">
-                Get FREE consultation + Body Composition Analysis for first-time
-                patients
-              </p>
-              <motion.a
-                href="#booking"
-                className="inline-flex items-center gap-2 bg-wine text-white px-6 py-3 rounded-full font-medium"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Claim Offer
-                <ArrowRight className="w-5 h-5" />
-              </motion.a>
-            </motion.div>
+              <motion.div variants={fadeInRight} className="relative">
+                <div className="bg-linear-to-br from-wine to-rose p-1 rounded-3xl">
+                  <div className="bg-light p-8 rounded-3xl">
+                    <h3 className="font-georgia text-2xl text-brown mb-6">
+                      Quick Eligibility Check
+                    </h3>
+                    <div className="space-y-4">
+                      {[
+                        "BMI assessment required",
+                        "Medical history review",
+                        "Current medications check",
+                        "Thyroid health screening",
+                        "Pregnancy planning discussion",
+                      ].map((item, index) => (
+                        <div key={index} className="flex items-center gap-3">
+                          <div className="w-2 h-2 bg-wine rounded-full" />
+                          <span className="text-brown font-inter">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </section>
+        </motion.section>
 
-        {/* FAQ Section */}
-        {/* <section className="py-24 bg-cream">
-          <div className="container mx-auto px-4">
+        {/* Results Section */}
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="py-24 bg-cream"
+        >
+          <div className="container mx-auto px-4 md:px-6">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center max-w-2xl mx-auto mb-16"
+              variants={fadeInUp}
+              className="max-w-3xl mx-auto text-center mb-16"
             >
-              <span className="text-wine font-medium tracking-wider uppercase text-sm">
-                Got Questions?
-              </span>
-              <h2 className="text-3xl md:text-4xl font-georgia text-brown mt-4">
-                Frequently Asked Questions
+              <h2 className="font-georgia text-4xl md:text-5xl text-brown mb-6">
+                What results can you realistically expect?
+              </h2>
+              <p className="text-taupe font-inter text-lg">
+                Here is the honest answer: results vary, and the "wow" stories
+                online are not the standard.
+              </p>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              <motion.div
+                variants={scaleIn}
+                className="bg-light p-8 rounded-3xl shadow-lg"
+              >
+                <div className="text-5xl font-georgia text-wine mb-4">
+                  14.9%
+                </div>
+                <p className="text-brown font-inter">
+                  Average weight loss at 68 weeks with semaglutide in STEP 1
+                  clinical trial
+                </p>
+                <div className="mt-4 text-sm text-taupe">
+                  vs 2.4% with placebo
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={scaleIn}
+                className="bg-light p-8 rounded-3xl shadow-lg"
+              >
+                <h3 className="font-georgia text-2xl text-brown mb-4">
+                  When do people start noticing changes?
+                </h3>
+                <p className="text-brown font-inter">
+                  Many people notice appetite changes early. Visible weight
+                  changes often show up gradually over weeks, not days. A common
+                  pattern is steady loss, then a slower phase, then a plateau.
+                  Longer studies show weight loss tends to level off over time,
+                  which is normal.
+                </p>
+              </motion.div>
+
+              <motion.div
+                variants={scaleIn}
+                className="bg-light p-8 rounded-3xl shadow-lg"
+              >
+                <h3 className="font-georgia text-2xl text-brown mb-4">
+                  What happens if you stop Wegovy?
+                </h3>
+                <p className="text-brown font-inter">
+                  Stopping often leads to weight regain for many people. In a
+                  well-known extension analysis, participants regained a
+                  significant portion of lost weight after stopping semaglutide.
+                  That does not mean you can never stop. It means weight care
+                  should be planned like long-term health care, not a short
+                  "challenge".
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Your Journey at Nexus Clinic */}
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="py-24 bg-light"
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            <motion.div variants={fadeInUp} className="max-w-3xl mb-16">
+              <h2 className="font-georgia text-4xl md:text-5xl text-brown mb-6">
+                Wegovy at Nexus Clinic Kuala Lumpur: what your journey can look
+                like
+              </h2>
+              <p className="text-taupe font-inter text-lg">
+                At Nexus Clinic KL, the goal is simple: help you lose weight
+                safely while protecting your health.
+              </p>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-2 gap-12">
+              <div className="space-y-6">
+                {[
+                  {
+                    step: "Step 1",
+                    title: "A real consultation, not a sales pitch",
+                    desc: "We start with your story. Not just your weight. Sleep, stress, cravings, work routine, past diets, medical history and current meds. Because the right plan is the one you can actually follow.",
+                  },
+                  {
+                    step: "Step 2",
+                    title: "Safety screening and suitability checks",
+                    desc: "Wegovy is a prescription medicine, so we focus on safety first. You may be advised on baseline checks depending on your risks and history.",
+                  },
+                  {
+                    step: "Step 3",
+                    title: "A doctor-led dosing plan (slow and steady)",
+                    desc: "Wegovy is typically started at a low dose and increased gradually. Many guides describe stepping up about every 4 weeks until a maintenance dose is reached, based on response and tolerance.",
+                  },
+                  {
+                    step: "Step 4",
+                    title: "Follow-ups that keep you consistent",
+                    desc: "Most people do better with structure. Follow-ups help you manage side effects, adjust habits, and keep momentum when motivation dips.",
+                  },
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInLeft}
+                    className="bg-cream p-6 rounded-2xl hover:shadow-xl transition-shadow"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="bg-wine text-light w-10 h-10 rounded-full flex items-center justify-center font-bold font-inter">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <h3 className="font-georgia text-xl text-brown mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-brown font-inter text-sm">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div variants={fadeInRight} className="space-y-6">
+                <div className="bg-rose/5 p-8 rounded-3xl">
+                  <h3 className="font-georgia text-2xl text-brown mb-4 flex items-center gap-2">
+                    <Heart className="w-6 h-6 text-wine" />
+                    Areas we assess
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      "Sleep",
+                      "Stress",
+                      "Cravings",
+                      "Work routine",
+                      "Past diets",
+                      "Medical history",
+                    ].map((item, index) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 bg-wine rounded-full" />
+                        <span className="text-brown font-inter text-sm">
+                          {item}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Before & After Section */}
+        <SectionBeforeAfter transformations={transformations} />
+
+        {/* Side Effects Section */}
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="py-24 bg-cream"
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            <motion.div
+              variants={fadeInUp}
+              className="max-w-3xl mx-auto text-center mb-16"
+            >
+              <h2 className="font-georgia text-4xl md:text-5xl text-brown mb-6">
+                Side effects: what's common, what's serious, what to do
+              </h2>
+              <p className="text-taupe font-inter">
+                Most side effects are digestive and often improve over time.
+                Commonly reported effects include nausea, vomiting, diarrhea,
+                constipation, and stomach discomfort.
+              </p>
+            </motion.div>
+
+            <div className="grid lg:grid-cols-2 gap-12">
+              <motion.div variants={fadeInLeft} className="space-y-6">
+                <h3 className="font-georgia text-2xl text-brown mb-4">
+                  Simple ways doctors often reduce side effects
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { icon: Apple, text: "Slower eating" },
+                    { icon: Scale, text: "Smaller meals" },
+                    { icon: Leaf, text: "Higher protein and fibre" },
+                    { icon: Droplets, text: "Better hydration" },
+                    {
+                      icon: XCircle,
+                      text: "Avoid greasy, heavy meals during dose increases",
+                    },
+                  ].map((item, index) => (
+                    <motion.div
+                      key={index}
+                      whileHover={{ scale: 1.05 }}
+                      className="bg-light p-4 rounded-2xl flex items-center gap-3"
+                    >
+                      <item.icon className="w-5 h-5 text-wine" />
+                      <span className="text-brown font-inter text-sm">
+                        {item.text}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInRight} className="space-y-6">
+                <div className="bg-rose/10 p-6 rounded-2xl border-l-4 border-wine">
+                  <h3 className="font-georgia text-xl text-brown mb-3">
+                    When to get medical help urgently
+                  </h3>
+                  <p className="text-brown font-inter">
+                    Seek urgent medical care if you have severe symptoms that
+                    could suggest serious issues (your doctor will explain what
+                    to watch for). Wegovy prescribing safety information
+                    highlights serious risks and warning signs to discuss with a
+                    clinician.
+                  </p>
+                </div>
+
+                <div className="bg-wine/5 p-6 rounded-2xl">
+                  <h3 className="font-georgia text-xl text-brown mb-3">
+                    Extra Malaysia-specific safety note (important)
+                  </h3>
+                  <p className="text-brown font-inter">
+                    NPRA has published safety alerts discussing GLP-1 medicines
+                    (including semaglutide and tirzepatide) and the risk of
+                    aspiration during general anaesthesia or deep sedation. If
+                    you are planning surgery or sedation, tell your doctor and
+                    your anaesthetist.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Cost Section */}
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="py-24 bg-light"
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div variants={fadeInLeft} className="space-y-6">
+                <h2 className="font-georgia text-4xl md:text-5xl text-brown">
+                  Wegovy cost in Malaysia:{" "}
+                  <span className="text-wine">what affects the price?</span>
+                </h2>
+
+                <p className="text-brown font-inter">
+                  Wegovy pricing can vary based on:
+                </p>
+
+                <ul className="space-y-3">
+                  {[
+                    "dose stage (starter vs maintenance)",
+                    "supply and availability",
+                    "clinic support (monitoring, follow-ups, bundled programmes)",
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <ChevronRight className="w-5 h-5 text-wine" />
+                      <span className="text-brown font-inter">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <p className="text-brown font-inter">
+                  Online pharmacy listings in Malaysia show different prices by
+                  strength and packaging. For example, one Malaysia-based
+                  listing shows Wegovy pens at different RM price points
+                  depending on dose. Nexus Clinic Kuala Lumpur has also promoted
+                  Wegovy pricing on social posts (example: per-pen pricing and
+                  limited-time promos). If you want a "true cost" estimate, the
+                  best approach is a consultation because your dose and timeline
+                  depend on your tolerance and goals.
+                </p>
+              </motion.div>
+
+              <motion.div
+                variants={fadeInRight}
+                className="bg-cream p-8 rounded-3xl"
+              >
+                <h3 className="font-georgia text-2xl text-brown mb-6">
+                  Price Range Estimate
+                </h3>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center pb-4 border-b border-taupe/20">
+                    <span className="text-brown font-inter">Starter dose</span>
+                    <span className="text-wine font-georgia text-xl">
+                      RM X,XXX
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center pb-4 border-b border-taupe/20">
+                    <span className="text-brown font-inter">
+                      Maintenance dose
+                    </span>
+                    <span className="text-wine font-georgia text-xl">
+                      RM X,XXX
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-brown font-inter">
+                      Bundled programme
+                    </span>
+                    <span className="text-wine font-georgia text-xl">
+                      Contact clinic
+                    </span>
+                  </div>
+                </div>
+                <p className="text-sm text-taupe mt-6">
+                  *Prices are estimates. Actual cost depends on your specific
+                  treatment plan.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Comparison Section */}
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="py-24 bg-cream"
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            <motion.div
+              variants={fadeInUp}
+              className="max-w-3xl mx-auto text-center mb-16"
+            >
+              <h2 className="font-georgia text-4xl md:text-5xl text-brown mb-6">
+                Wegovy vs Ozempic vs Mounjaro: what is the difference?
               </h2>
             </motion.div>
 
-            <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              className="max-w-3xl mx-auto space-y-4"
-            >
+            <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  q: "Is Wegovy safe for weight loss in Malaysia?",
-                  a: "Yes, Wegovy is prescribed under medical guidance in Malaysia and is considered safe for most adults. Our doctors conduct thorough assessments before prescribing.",
+                  title: "Wegovy vs Ozempic",
+                  content:
+                    "Both use semaglutide, but they are not the same product or purpose. Ozempic is commonly associated with type 2 diabetes management, while Wegovy is designed and dosed for chronic weight management.",
                 },
                 {
-                  q: "Can I get Wegovy without diabetes?",
-                  a: "Yes! Wegovy is specifically designed for weight loss, even if you do not have diabetes. It's approved for chronic weight management in eligible adults.",
+                  title: "Wegovy vs Mounjaro",
+                  content:
+                    "Mounjaro (tirzepatide) works on two hormone pathways (GIP and GLP-1), while Wegovy targets GLP-1. Some trials show higher average weight loss with tirzepatide, but suitability, side effects, cost, and availability matter.",
                 },
                 {
-                  q: "What are Wegovy's side effects?",
-                  a: "Mild side effects include nausea and tiredness, which typically improve over time. More serious but rare side effects may include pancreatitis or gallbladder issues.",
+                  title: "Wegovy vs 'fat freezing'",
+                  content:
+                    "If your main issue is stubborn pockets (lower belly pooch, love handles, bra bulge), fat freezing may be a better fit. If your issue is overall appetite, portion control, and steady weight gain, Wegovy may be more relevant. Many people do best with a combined plan: medical weight management first, then contouring for shape.",
                 },
-                {
-                  q: "How fast can I lose weight with Wegovy?",
-                  a: "Many people see changes in 2–4 weeks. Results improve significantly with healthy eating and regular exercise. Individual results vary.",
-                },
-                {
-                  q: "How do I use Wegovy?",
-                  a: "It's a weekly pen injection in the stomach, thigh, or upper arm. Our medical team will provide complete training and ongoing support.",
-                },
-              ].map((faq, i) => (
-                <FAQItem key={i} question={faq.q} answer={faq.a} />
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  variants={scaleIn}
+                  className="bg-light p-8 rounded-3xl shadow-lg"
+                >
+                  <h3 className="font-georgia text-2xl text-brown mb-4">
+                    {item.title}
+                  </h3>
+                  <p className="text-brown font-inter">{item.content}</p>
+                </motion.div>
               ))}
-            </motion.div>
-          </div>
-        </section> */}
-        <FAQ data={dataFaq} />
+            </div>
 
-        {/* CTA Section */}
-        <section
-          id="booking"
-          className="py-24 bg-linear-to-br from-brown via-brown to-wine text-white overflow-hidden"
-        >
-          <div className="container mx-auto px-4">
             <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-              className="max-w-4xl mx-auto text-center"
+              variants={fadeInUp}
+              className="mt-12 p-8 bg-white/50 rounded-3xl"
             >
-              <motion.h2
-                variants={fadeInUp}
-                className="text-3xl md:text-5xl font-georgia mb-6"
-              >
-                Start Your Transformation Today
-              </motion.h2>
-              <motion.p
-                variants={fadeInUp}
-                className="text-xl text-cream/80 mb-10 max-w-2xl mx-auto"
-              >
-                Take the first step towards a healthier, more confident you.
-                Book your consultation with our expert physicians.
-              </motion.p>
-
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-wrap justify-center gap-6"
-              >
-                <motion.a
-                  href="https://api.leadconnectorhq.com/widget/booking/jcLccLXPVMWo5FAG6cUC"
-                  className="inline-flex items-center gap-3 bg-white text-wine px-8 py-4 rounded-full font-medium text-lg shadow-xl hover:shadow-2xl transition-shadow"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Calendar className="w-6 h-6" />
-                  Book Appointment
-                </motion.a>
-                <motion.a
-                  href="https://wa.link/q64h1l"
-                  className="inline-flex items-center gap-3 bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-medium text-lg hover:bg-white/10 transition-colors"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <MessageCircle className="w-6 h-6" />
-                  WhatsApp Us
-                </motion.a>
-              </motion.div>
-
-              {/* Contact Info */}
-              <motion.div
-                variants={fadeInUp}
-                className="mt-16 grid sm:grid-cols-3 gap-8"
-              >
-                {[
-                  {
-                    icon: MapPin,
-                    label: "KLCC, Bangsar, Mont Kiara, JB, Penang",
-                  },
-                  { icon: Phone, label: "+60 16-702 5699" },
-                  { icon: Clock, label: "Mon-Sat: 9AM - 6PM" },
-                ].map((item, i) => (
-                  <div key={i} className="flex flex-col items-center gap-3">
-                    <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
-                      <item.icon className="w-6 h-6 text-rose" />
-                    </div>
-                    <span className="text-cream/80">{item.label}</span>
-                  </div>
-                ))}
-              </motion.div>
+              <h3 className="font-georgia text-2xl text-brown mb-4">
+                Areas people commonly want help with
+              </h3>
+              <p className="text-brown font-inter mb-4">
+                Wegovy supports whole-body weight loss. That said, in real life,
+                people often ask about: belly fat and waistline, thighs, upper
+                arms, back fat, face changes.
+              </p>
+              <p className="text-brown font-inter">
+                Your body decides where it loses fat first. A doctor can help
+                you plan for realistic body composition changes over time.
+              </p>
             </motion.div>
           </div>
-        </section>
-      </div>
+        </motion.section>
+
+        {/* Competitor Analysis Section */}
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="py-24 bg-light"
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            <motion.div variants={fadeInUp} className="max-w-4xl mx-auto">
+              <h2 className="font-georgia text-4xl md:text-5xl text-brown mb-8 text-center">
+                "Top competitors" on Google in Malaysia: what they do well (and
+                where they fall short)
+              </h2>
+
+              <div className="bg-cream p-8 rounded-3xl mb-8">
+                <p className="text-brown font-inter mb-4">
+                  Based on commonly surfaced pages for queries like "Wegovy
+                  Malaysia" and "Wegovy Kuala Lumpur", you will see clinics and
+                  platforms such as:
+                </p>
+                <ul className="grid grid-cols-2 gap-3 mb-6">
+                  {[
+                    "CLEO Clinic",
+                    "Alainn Clinic",
+                    "PULSE Clinic",
+                    "Klinik Sentosa",
+                    "Online pharmacy listings",
+                  ].map((item, index) => (
+                    <li key={index} className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 bg-wine rounded-full" />
+                      <span className="text-brown font-inter">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-rose/5 p-6 rounded-2xl">
+                  <h3 className="font-georgia text-xl text-brown mb-4 flex items-center gap-2">
+                    <XCircle className="w-5 h-5 text-wine" />
+                    What most competitor pages miss
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="text-brown font-inter text-sm">
+                      • talk about benefits, but skip clear "who it is for"
+                      safety screening
+                    </li>
+                    <li className="text-brown font-inter text-sm">
+                      • mention results, but do not explain plateaus or regain
+                      risks
+                    </li>
+                    <li className="text-brown font-inter text-sm">
+                      • do not clearly address Malaysia safety alerts and
+                      sedation planning
+                    </li>
+                    <li className="text-brown font-inter text-sm">
+                      • do not explain what happens if side effects hit at
+                      higher doses
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-wine/5 p-6 rounded-2xl">
+                  <h3 className="font-georgia text-xl text-brown mb-4 flex items-center gap-2">
+                    <Award className="w-5 h-5 text-wine" />
+                    How Nexus Clinic KL positions differently
+                  </h3>
+                  <ul className="space-y-2">
+                    <li className="text-brown font-inter text-sm">
+                      ✓ doctor-led safety and patient selection
+                    </li>
+                    <li className="text-brown font-inter text-sm">
+                      ✓ structured follow-ups and habit support
+                    </li>
+                    <li className="text-brown font-inter text-sm">
+                      ✓ realistic expectations backed by clinical evidence
+                    </li>
+                    <li className="text-brown font-inter text-sm">
+                      ✓ clear guidance around NPRA safety alerts and surgery
+                      planning
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* FAQ Section */}
+        <FAQ data={faqs} />
+
+        {/* Final CTA Section */}
+        <motion.section
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          className="py-24 bg-linear-to-br from-wine to-rose relative overflow-hidden"
+        >
+          <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] opacity-10 mix-blend-overlay" />
+
+          <div className="container mx-auto px-4 md:px-6 relative z-10">
+            <motion.div
+              variants={fadeInUp}
+              className="max-w-3xl mx-auto text-center"
+            >
+              <h2 className="font-georgia text-4xl md:text-5xl text-light mb-6">
+                Ready to make weight loss feel more manageable?
+              </h2>
+              <p className="text-cream font-inter text-lg mb-8">
+                If you want a medically supervised Wegovy weight loss plan in
+                Kuala Lumpur, book a consultation with Nexus Clinic KL and get a
+                personalised roadmap that prioritises safety, consistency, and
+                real-life routines.
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-light text-wine px-10 py-5 rounded-full font-inter font-medium text-lg hover:bg-cream transition-colors shadow-2xl"
+              >
+                Book Your Consultation Today
+              </motion.button>
+            </motion.div>
+          </div>
+        </motion.section>
+      </main>
       <Footer />
     </>
   );
 }
-
-// function FAQItem({ question, answer }: { question: string; answer: string }) {
-//   const [isOpen, setIsOpen] = useState(false);
-
-//   return (
-//     <motion.div
-//       variants={fadeInUp}
-//       className="bg-white rounded-xl overflow-hidden shadow-sm"
-//     >
-//       <motion.button
-//         className="w-full flex items-center justify-between p-6 text-left"
-//         onClick={() => setIsOpen(!isOpen)}
-//       >
-//         <span className="font-medium text-brown pr-4">{question}</span>
-//         <motion.div
-//           animate={{ rotate: isOpen ? 180 : 0 }}
-//           transition={{ duration: 0.3 }}
-//           className="shrink-0"
-//         >
-//           <ChevronDown className="w-5 h-5 text-wine" />
-//         </motion.div>
-//       </motion.button>
-//       <motion.div
-//         initial={false}
-//         animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
-//         transition={{ duration: 0.3 }}
-//         className="overflow-hidden"
-//       >
-//         <p className="px-6 pb-6 text-taupe leading-relaxed">{answer}</p>
-//       </motion.div>
-//     </motion.div>
-//   );
-// }

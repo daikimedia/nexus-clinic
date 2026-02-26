@@ -41,6 +41,7 @@ import {
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import FAQ from "../../components/FAQ";
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 const DuromineLandingPage = () => {
   const faqs = [
@@ -63,6 +64,23 @@ const DuromineLandingPage = () => {
     {
       q: "Can I drink alcohol while taking Duromine?",
       a: "Alcohol can increase nervous system side effects like dizziness or confusion, so it is commonly advised to avoid combining them.",
+    },
+  ];
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-duromine1.webp",
+      after: "/images/B&A-w/B&A-duromine1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-duromine2.webp",
+      after: "/images/B&A-w/B&A-duromine2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-duromine3.webp",
+      after: "/images/B&A-w/B&A-duromine3.webp",
     },
   ];
   return (
@@ -316,6 +334,24 @@ const DuromineLandingPage = () => {
                       </div>
                     </motion.div>
                   ))}
+                  <div className="bg-linear-to-br from-wine to-rose rounded-3xl p-8 text-white">
+                    <h3 className="text-2xl font-[(--font-georgia)] mb-4">
+                      Important Note
+                    </h3>
+                    <p className="mb-4 opacity-90">
+                      Duromine is meant to be used with a structured diet and
+                      activity plan, under medical supervision.
+                    </p>
+                    <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
+                      <p className="text-sm">
+                        <span className="font-bold">
+                          Not a fat-melting pill.
+                        </span>{" "}
+                        It does not target belly fat overnight. It helps you eat
+                        less without constant hunger.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
 
@@ -326,38 +362,14 @@ const DuromineLandingPage = () => {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="bg-linear-to-br from-wine to-rose rounded-3xl p-8 text-white">
-                  <h3 className="text-2xl font-[(--font-georgia)] mb-4">
-                    Important Note
-                  </h3>
-                  <p className="mb-4 opacity-90">
-                    Duromine is meant to be used with a structured diet and
-                    activity plan, under medical supervision.
-                  </p>
-                  <div className="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                    <p className="text-sm">
-                      <span className="font-bold">Not a fat-melting pill.</span>{" "}
-                      It does not target belly fat overnight. It helps you eat
-                      less without constant hunger.
-                    </p>
-                  </div>
+                <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                  <img
+                    src="/images/main/duromine.webp"
+                    alt="Duromine"
+                    className="w-full h-auto"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
                 </div>
-
-                {/* Decorative pill */}
-                <motion.div
-                  animate={{
-                    y: [0, -10, 0],
-                    rotate: [0, 5, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -bottom-6 -right-6 w-24 h-24 bg-white rounded-full shadow-xl flex items-center justify-center"
-                >
-                  <Pill className="w-10 h-10 text-wine" />
-                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -794,6 +806,9 @@ const DuromineLandingPage = () => {
             </motion.div>
           </div>
         </section>
+
+        {/* Before & After */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* Pros & Cons */}
         <section className="py-20 bg-white/50 backdrop-blur-sm">

@@ -22,6 +22,7 @@ import {
 import FAQ from "../../components/FAQ";
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 const SimaglutideLanding = () => {
   const faqs = [
@@ -48,6 +49,24 @@ const SimaglutideLanding = () => {
     {
       q: "Do I still need diet and exercise?",
       a: "Yes. Wegovy is indicated with reduced-calorie diet and increased physical activity for best results.",
+    },
+  ];
+
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-semaglutide1.webp",
+      after: "/images/B&A-w/B&A-semaglutide1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-semaglutide2.webp",
+      after: "/images/B&A-w/B&A-semaglutide2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-semaglutide3.webp",
+      after: "/images/B&A-w/B&A-semaglutide3.webp",
     },
   ];
   return (
@@ -240,37 +259,13 @@ const SimaglutideLanding = () => {
                   signals in your body. For weight management, the well-known
                   brand name is Wegovy.
                 </p>
-
-                <motion.div
-                  variants={scaleIn}
-                  className="bg-linear-to-br from-cream to-white p-6 rounded-2xl border border-wine/10"
-                >
-                  <p className="text-brown italic">
-                    "Many people describe the change like this: You still enjoy
-                    food, but the 'food noise' becomes quieter. Portions feel
-                    easier. Snacking becomes less automatic."
-                  </p>
-                </motion.div>
-
-                <div className="grid grid-cols-2 gap-4 pt-4">
-                  <div className="bg-white p-4 rounded-xl border border-cream">
-                    <div className="w-10 h-10 bg-rose/10 rounded-full flex items-center justify-center mb-2">
-                      <Calendar className="w-5 h-5 text-rose" />
-                    </div>
-                    <h4 className="font-medium text-brown">Once-weekly</h4>
-                    <p className="text-xs text-taupe">Subcutaneous injection</p>
-                  </div>
-                  <div className="bg-white p-4 rounded-xl border border-cream">
-                    <div className="w-10 h-10 bg-wine/10 rounded-full flex items-center justify-center mb-2">
-                      <Target className="w-5 h-5 text-wine" />
-                    </div>
-                    <h4 className="font-medium text-brown">
-                      4 injection sites
-                    </h4>
-                    <p className="text-xs text-taupe">
-                      Abdomen, thigh, upper arm
-                    </p>
-                  </div>
+                <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                  <img
+                    src="/images/main/semaglutide.webp"
+                    alt="Semaglutide injection"
+                    className="w-full h-auto"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
                 </div>
               </motion.div>
 
@@ -306,6 +301,37 @@ const SimaglutideLanding = () => {
                     Off-label prescribing must be decided by a qualified doctor
                     based on your health profile.
                   </p>
+                </div>
+                <motion.div
+                  variants={scaleIn}
+                  className="bg-linear-to-br from-cream to-white p-6 mt-4 rounded-2xl border border-wine/10"
+                >
+                  <p className="text-brown italic">
+                    "Many people describe the change like this: You still enjoy
+                    food, but the 'food noise' becomes quieter. Portions feel
+                    easier. Snacking becomes less automatic."
+                  </p>
+                </motion.div>
+
+                <div className="grid grid-cols-2 gap-4 pt-4">
+                  <div className="bg-white p-4 rounded-xl border border-cream">
+                    <div className="w-10 h-10 bg-rose/10 rounded-full flex items-center justify-center mb-2">
+                      <Calendar className="w-5 h-5 text-rose" />
+                    </div>
+                    <h4 className="font-medium text-brown">Once-weekly</h4>
+                    <p className="text-xs text-taupe">Subcutaneous injection</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-xl border border-cream">
+                    <div className="w-10 h-10 bg-wine/10 rounded-full flex items-center justify-center mb-2">
+                      <Target className="w-5 h-5 text-wine" />
+                    </div>
+                    <h4 className="font-medium text-brown">
+                      4 injection sites
+                    </h4>
+                    <p className="text-xs text-taupe">
+                      Abdomen, thigh, upper arm
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -519,6 +545,9 @@ const SimaglutideLanding = () => {
             </motion.div>
           </div>
         </motion.section>
+
+        {/* Before After  */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* What Happens If You Stop */}
         <motion.section
