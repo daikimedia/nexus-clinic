@@ -30,6 +30,7 @@ import {
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import FAQ from "../../components/FAQ";
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 const CoolSculptingLanding = () => {
   const benefits = [
@@ -142,6 +143,24 @@ const CoolSculptingLanding = () => {
     },
   ];
 
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-coolsculpting1.webp",
+      after: "/images/B&A-w/B&A-coolsculpting1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-coolsculpting2.webp",
+      after: "/images/B&A-w/B&A-coolsculpting2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-coolsculpting3.webp",
+      after: "/images/B&A-w/B&A-coolsculpting3.webp",
+    },
+  ];
+
   const competitors = [
     {
       name: "Beverly Wilshire Clinic",
@@ -230,6 +249,12 @@ const CoolSculptingLanding = () => {
                   Just gradual and visible fat reduction.
                 </p>
 
+                <p className="text-lg text-taupe">
+                  Some fat stays no matter how clean you eat or how often you
+                  exercise. CoolSculpting offers a safe and modern way to remove
+                  these stubborn fat pockets without surgery.
+                </p>
+
                 <div className="flex flex-wrap gap-4 pt-4">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -284,7 +309,7 @@ const CoolSculptingLanding = () => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80"
+                    src="/images/main/coolsculpting.webp"
                     alt="Luxury clinic interior"
                     className="w-full h-auto object-cover rounded-2xl"
                   />
@@ -394,6 +419,13 @@ const CoolSculptingLanding = () => {
                 </motion.div>
               ))}
             </div>
+            <p className="text-lg text-taupe text-center mt-8">
+              CoolSculpting can reduce fat in treated areas by up to 20 to 25
+              percent after one session. This makes it ideal for people who are
+              close to their ideal weight but struggle with specific fat
+              pockets. At Nexus Clinic Kuala Lumpur, treatment plans are
+              designed around your body goals, lifestyle, and comfort.
+            </p>
           </div>
         </motion.section>
 
@@ -766,6 +798,8 @@ const CoolSculptingLanding = () => {
           </div>
         </motion.section>
 
+        {/* Before & After  */}
+        <SectionBeforeAfter transformations={transformations} />
         {/* Process Timeline */}
         <motion.section
           variants={staggerContainer}

@@ -26,6 +26,7 @@ import {
 import FAQ from "../../components/FAQ";
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 const TirzepatideLanding = () => {
   const faqs = [
@@ -48,6 +49,24 @@ const TirzepatideLanding = () => {
     {
       q: "Do I still need diet and exercise on tirzepatide?",
       a: "Yes. Even the FDA indication specifies use with reduced calorie diet and increased physical activity. The injection supports appetite control, but habits keep results.",
+    },
+  ];
+
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-tirzepatide1.webp",
+      after: "/images/B&A-w/B&A-tirzepatide1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-tirzepatide2.webp",
+      after: "/images/B&A-w/B&A-tirzepatide2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-tirzepatide3.webp",
+      after: "/images/B&A-w/B&A-tirzepatide3.webp",
     },
   ];
   return (
@@ -224,6 +243,14 @@ const TirzepatideLanding = () => {
                   If you have tried "eat less, move more" a hundred times, you
                   already know the truth. Some bodies fight back harder.
                 </p>
+                <div className="relative rounded-3xl overflow-hidden shadow-xl mt-4">
+                  <img
+                    src="/images/main/tirzepatide.webp"
+                    alt="Tirzepatide"
+                    className="w-full h-auto"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+                </div>
               </motion.div>
 
               <motion.div
@@ -579,6 +606,9 @@ const TirzepatideLanding = () => {
             </motion.div>
           </div>
         </section>
+
+        {/* Before After  */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* Side Effects Section */}
         <section className="py-24 bg-white">

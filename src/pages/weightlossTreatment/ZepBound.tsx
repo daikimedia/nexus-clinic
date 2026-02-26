@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
 import {
   Shield,
-  Clock,
   Heart,
-  Target,
   ChevronRight,
   AlertCircle,
   CheckCircle2,
@@ -36,6 +34,7 @@ import {
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import FAQ from "../../components/FAQ";
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 const ZepboundLanding = () => {
   const faqs = [
@@ -54,6 +53,24 @@ const ZepboundLanding = () => {
     {
       q: "Which is better, Zepbound or Wegovy?",
       a: "They work differently (tirzepatide acts on GIP and GLP-1; semaglutide is GLP-1 only). 'Better' depends on your health profile and side effect tolerance.",
+    },
+  ];
+
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-zepbound1.webp",
+      after: "/images/B&A-w/B&A-zepbound1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-zepbound2.webp",
+      after: "/images/B&A-w/B&A-zepbound2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-zepbound3.webp",
+      after: "/images/B&A-w/B&A-zepbound3.webp",
     },
   ];
   return (
@@ -143,25 +160,11 @@ const ZepboundLanding = () => {
                   className="relative z-10"
                 >
                   <div className="bg-white/60 backdrop-blur-xl rounded-3xl p-8 border border-white/50 shadow-2xl">
-                    <div className="grid grid-cols-2 gap-4">
-                      {[
-                        { icon: Shield, text: "Doctor-Led" },
-                        { icon: Clock, text: "Weekly Injections" },
-                        { icon: Heart, text: "Safe Monitoring" },
-                        { icon: Target, text: "Real Results" },
-                      ].map((item, idx) => (
-                        <motion.div
-                          key={idx}
-                          whileHover={{ scale: 1.05 }}
-                          className="bg-cream rounded-xl p-4 text-center"
-                        >
-                          <item.icon className="w-6 h-6 text-wine mx-auto mb-2" />
-                          <span className="text-sm text-brown">
-                            {item.text}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
+                    <img
+                      src="/images/main/zepbound.webp"
+                      alt="zepbound"
+                      className="rounded"
+                    />
 
                     <div className="mt-6 p-4 bg-linear-to-r from-wine/10 to-rose/10 rounded-xl">
                       <p className="text-brown text-sm">
@@ -323,6 +326,9 @@ const ZepboundLanding = () => {
             </motion.div>
           </div>
         </section>
+
+        {/* before after section  */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* How it Works Section */}
         <section className="py-24 bg-white">

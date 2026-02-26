@@ -26,6 +26,7 @@ import {
 import Navbar from "../../components/Navbar";
 import { Footer } from "../../components/Footer";
 import FAQ from "../../components/FAQ";
+import SectionBeforeAfter from "../../components/BeforeAfterCustomize";
 
 const GLP1LandingPage = () => {
   const faqs = [
@@ -44,6 +45,23 @@ const GLP1LandingPage = () => {
     {
       q: "Is GLP-1 the same as fat freezing?",
       a: "No. GLP-1 supports appetite control and overall weight loss. Fat freezing is a body contouring treatment for local fat pockets. Many people choose GLP-1 first to reduce overall fat, then consider contouring later if needed.",
+    },
+  ];
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-w/B&A-GLP1.webp",
+      after: "/images/B&A-w/B&A-GLP1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-w/B&A-GLP2.webp",
+      after: "/images/B&A-w/B&A-GLP2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-w/B&A-GLP3.webp",
+      after: "/images/B&A-w/B&A-GLP3.webp",
     },
   ];
   return (
@@ -153,6 +171,15 @@ const GLP1LandingPage = () => {
                 <h2 className="font-['Georgia'] text-4xl font-bold text-brown mb-6">
                   What is a GLP-1 weight loss programme?
                 </h2>
+                <div className="relative rounded-3xl my-4 overflow-hidden shadow-xl">
+                  <img
+                    src="/images/main/GLP-programme.webp"
+                    alt="GLP-1 weight loss programme"
+                    className="w-full h-auto"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+                </div>
+
                 <p className="text-taupe text-lg mb-6">
                   A GLP-1 weight loss programme is a medically supervised plan
                   that may use GLP-1 based medication to help with appetite
@@ -315,6 +342,9 @@ const GLP1LandingPage = () => {
             </motion.div>
           </div>
         </motion.section>
+
+        {/* Before & After  */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* Programme Structure */}
         <motion.section
