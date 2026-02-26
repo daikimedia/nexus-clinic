@@ -130,9 +130,9 @@ export default function PageWegovyMalaysia() {
                   </span>
                 </div>
 
-                <h1 className="font-georgia text-5xl md:text-6xl lg:text-7xl text-brown leading-tight">
+                <h1 className="font-['Georgia',serif] text-5xl lg:text-5xl text-brown leading-tight">
                   Feel lighter, eat with control, and lose weight safely with
-                  <span className="text-wine block mt-2">
+                  <span className="text-wine text-4xl block mt-2">
                     Wegovy in Kuala Lumpur
                   </span>
                 </h1>

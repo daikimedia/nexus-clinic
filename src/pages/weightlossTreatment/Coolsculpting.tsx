@@ -230,7 +230,7 @@ const CoolSculptingLanding = () => {
                 </div>
 
                 <h1
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+                  className="text-4xl md:text-3xl lg:text-5xl xl:text-6xl font-bold leading-tight"
                   style={{
                     color: "var(--color-brown)",
                     fontFamily: "var(--font-georgia)",
@@ -243,13 +243,16 @@ const CoolSculptingLanding = () => {
                   </span>
                 </h1>
 
-                <p className="text-lg" style={{ color: "var(--color-taupe)" }}>
+                <p
+                  className="text-md xl:text-lg"
+                  style={{ color: "var(--color-taupe)" }}
+                >
                   At Nexus Clinic Kuala Lumpur, advanced fat freezing technology
                   helps reshape your body naturally. No needles. No downtime.
                   Just gradual and visible fat reduction.
                 </p>
 
-                <p className="text-lg text-taupe">
+                <p className="text-md xl:text-lg text-taupe">
                   Some fat stays no matter how clean you eat or how often you
                   exercise. CoolSculpting offers a safe and modern way to remove
                   these stubborn fat pockets without surgery.
