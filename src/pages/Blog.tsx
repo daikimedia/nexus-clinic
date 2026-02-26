@@ -6,7 +6,6 @@ import { staggerContainer, fadeInUp } from "../lib/animations";
 import Navbar from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { HeroBanner } from "../components/blog/HeroBanner";
-import { CategoryFilter } from "../components/blog/CategoryFilter";
 import { FeaturedCard } from "../components/blog/FeaturedCard";
 import { BlogCard } from "../components/blog/BlogCard";
 import { SidebarCard } from "../components/blog/SidebarCard";
@@ -22,7 +21,7 @@ const LoadingSpinner = () => {
       <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-wine"></div>
     </div>
   );
-}
+};
 import { AlertCircle, RefreshCw } from "lucide-react";
 
 interface ErrorMessageProps {
@@ -34,7 +33,9 @@ const ErrorMessage = ({ message, onRetry }: ErrorMessageProps) => {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
       <AlertCircle size={48} className="mb-4 text-red-500" />
-      <p className="text-lg font-semibold text-brown mb-2">Oops! Something went wrong</p>
+      <p className="text-lg font-semibold text-brown mb-2">
+        Oops! Something went wrong
+      </p>
       <p className="text-sm text-taupe mb-6">{message}</p>
       <button
         onClick={onRetry}
@@ -45,7 +46,7 @@ const ErrorMessage = ({ message, onRetry }: ErrorMessageProps) => {
       </button>
     </div>
   );
-}
+};
 // Data & Constants
 import { categories } from "../constants/blog";
 import type { CategoryValue } from "../types/blog";
@@ -56,26 +57,21 @@ export default function Blogs() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchFocused, setSearchFocused] = useState<boolean>(false);
 
-  const {
-    posts,
-    featuredPost,
-    loading,
-    error,
-    loadMore,
-    hasMore,
-    refetch,
-  } = useBlogData(activeCategory, searchQuery);
+  const { posts, featuredPost, loading, error, loadMore, hasMore, refetch } =
+    useBlogData(activeCategory, searchQuery);
 
   // Filter out featured post from the main list if it exists
-  const filteredPosts = posts.filter(p => p.id !== featuredPost?.id);
+  const filteredPosts = posts.filter((p) => p.id !== featuredPost?.id);
 
-  const activeSectionNumber = activeCategory === "all" && !searchQuery ? "02" : "01";
+  const activeSectionNumber =
+    activeCategory === "all" && !searchQuery ? "02" : "01";
 
   const sectionTitle = searchQuery
     ? `Results for "${searchQuery}"`
     : activeCategory === "all"
-    ? "Latest Articles"
-    : (categories.find((c) => c.value === activeCategory)?.label ?? "Articles");
+      ? "Latest Articles"
+      : (categories.find((c) => c.value === activeCategory)?.label ??
+        "Articles");
 
   if (error) {
     return (
@@ -115,37 +111,40 @@ export default function Blogs() {
           {loading && posts.length === 0 && <LoadingSpinner />}
 
           {/* Featured Section */}
-          {!loading && activeCategory === "all" && !searchQuery && featuredPost && (
-            <motion.section
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="mb-20"
-            >
-              <SectionHeader number="01" title="Featured Story" />
-              
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-                <div className="lg:col-span-3">
-                  <FeaturedCard post={featuredPost} />
-                </div>
+          {!loading &&
+            activeCategory === "all" &&
+            !searchQuery &&
+            featuredPost && (
+              <motion.section
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="mb-20"
+              >
+                <SectionHeader number="01" title="Featured Story" />
 
-                <div className="lg:col-span-2 flex flex-col gap-4">
-                  {posts.slice(1, 3).map((p) => (
-                    <SidebarCard key={p.id} post={p} />
-                  ))}
-                  <PromoCard />
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                  <div className="lg:col-span-3">
+                    <FeaturedCard post={featuredPost} />
+                  </div>
+
+                  <div className="lg:col-span-2 flex flex-col gap-4">
+                    {posts.slice(1, 3).map((p) => (
+                      <SidebarCard key={p.id} post={p} />
+                    ))}
+                    <PromoCard />
+                  </div>
                 </div>
-              </div>
-            </motion.section>
-          )}
+              </motion.section>
+            )}
 
           {/* All Articles Grid */}
           <section>
-            <SectionHeader 
-              number={activeSectionNumber} 
-              title={sectionTitle} 
-              count={filteredPosts.length} 
+            <SectionHeader
+              number={activeSectionNumber}
+              title={sectionTitle}
+              count={filteredPosts.length}
             />
 
             <AnimatePresence mode="wait">
@@ -162,8 +161,8 @@ export default function Blogs() {
                     <BlogCard key={post.id} post={post} index={i} />
                   ))}
                 </motion.div>
-              ) : !loading && (
-                <EmptyState />
+              ) : (
+                !loading && <EmptyState />
               )}
             </AnimatePresence>
           </section>
