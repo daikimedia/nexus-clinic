@@ -24,72 +24,31 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const StemCellLanding = () => {
+const StemCellLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "stemCell");
+
   const images = {
-    hero: "/images/clinic/interior.png", // Modern medical clinic
-    stemCells: "/images/clinic/micro.png", // Microscopic cells
-    consultation: "/images/clinic/consultation.png", // Doctor consultation
+    hero: "/images/clinic/interior.png",
+    stemCells: "/images/clinic/micro.png",
+    consultation: "/images/clinic/consultation.png",
     labResearch:
-      "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080&auto=format&fit=crop", // Lab research
-    patientCare: "/images/clinic/patient-care.png", // Patient care
+      "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2080&auto=format&fit=crop",
+    patientCare: "/images/clinic/patient-care.png",
     medicalTeam:
-      "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=2070&auto=format&fit=crop", // Medical team
-    dna: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop", // DNA/Research
+      "https://images.unsplash.com/photo-1581056771107-24ca5f033842?q=80&w=2070&auto=format&fit=crop",
+    dna: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop",
     clinic:
-      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop", // Clinic interior
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop",
   };
 
-  const faqs = [
-    {
-      q: "What is stem cell therapy?",
-      a: "A treatment that uses stem cells, or cells derived from them, to repair or replace damaged cells or tissues.",
-    },
-    {
-      q: "What conditions are stem cell treatments proven for?",
-      a: "Blood and immune disorders, loss of bone marrow function via blood stem cell transplantation (most established).",
-    },
-    {
-      q: "Is stem cell therapy approved in Malaysia?",
-      a: "MOH notes hematopoietic and cord blood stem cell transplantation are most established; other uses are experimental.",
-    },
-    {
-      q: "Why do some clinics offer stem cells for many diseases?",
-      a: "ISSCR warns that unproven interventions are widely commercialised without sufficient evidence.",
-    },
-    {
-      q: "Is stem cell therapy safe?",
-      a: "No medical treatment is risk-free. Long-term safety can be uncertain; follow-up is important.",
-    },
-    {
-      q: "What are the side effects or risks?",
-      a: "Infection, immune reactions, unknown long-term effects. FDA reports serious harms from unapproved products.",
-    },
-    {
-      q: "How many sessions do I need?",
-      a: "Depends on condition and protocol. Be cautious if someone promises a fixed number for everyone.",
-    },
-    {
-      q: "How long does it take to see results?",
-      a: "Timelines vary. A good clinic defines measurable goals and follow-up points.",
-    },
-    {
-      q: "How much does stem cell therapy cost in Kuala Lumpur?",
-      a: "Some clinics start around RM6,000+. Higher ranges for complexity. Always request itemised quote.",
-    },
-    {
-      q: "Where do the stem cells come from?",
-      a: "Common sources: cord tissue (Wharton's Jelly), adipose tissue, bone marrow.",
-    },
-    {
-      q: "What should I ask a clinic before I book?",
-      a: "Ask for scientific evidence, ethics oversight, regulatory compliance. Be cautious of testimonial-based claims.",
-    },
-    {
-      q: "Are exosome treatments the same as stem cell therapy?",
-      a: "No. FDA includes exosomes among unapproved regenerative products broadly marketed.",
-    },
-  ];
+  const faqs = Array.from({ length: 12 }, (_, i) => ({
+    q: t(`faq.q${i + 1}`),
+    a: t(`faq.a${i + 1}`),
+  }));
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-light to-white overflow-hidden">
@@ -100,7 +59,6 @@ const StemCellLanding = () => {
           animate="visible"
           className="relative min-h-[90vh] flex items-center justify-center px-4 sm:px-6 lg:px-8"
         >
-          {/* Background Image dengan overlay */}
           <div className="absolute inset-0 z-0">
             <img
               src={images.hero}
@@ -116,7 +74,7 @@ const StemCellLanding = () => {
             <motion.div variants={fadeInUp} className="mb-8">
               <span className="inline-flex items-center px-4 py-2 rounded-full bg-wine/10 text-wine font-serif text-sm mb-6 backdrop-blur-sm">
                 <Sparkles className="w-4 h-4 mr-2" />
-                Regenerative Medicine Excellence in KLCC
+                {t("hero.badge")}
               </span>
             </motion.div>
 
@@ -125,12 +83,12 @@ const StemCellLanding = () => {
               className="font-serif text-5xl md:text-7xl font-bold mb-6"
               style={{ color: "var(--color-brown)" }}
             >
-              When your body feels "stuck,"
+              {t("hero.title1")}
               <br />
               <span style={{ color: "var(--color-wine)" }}>
-                regenerative care
+                {t("hero.title2")}
               </span>{" "}
-              can feel like hope.
+              {t("hero.title3")}
             </motion.h1>
 
             <motion.p
@@ -138,7 +96,7 @@ const StemCellLanding = () => {
               className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto font-light"
               style={{ color: "var(--color-taupe)" }}
             >
-              It should also feel safe.
+              {t("hero.subtitle")}
             </motion.p>
 
             <motion.div
@@ -151,7 +109,7 @@ const StemCellLanding = () => {
                 className="px-8 py-4 rounded-full font-medium text-white shadow-lg"
                 style={{ backgroundColor: "var(--color-wine)" }}
               >
-                Schedule Private Consultation
+                {t("hero.cta1")}
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -162,7 +120,7 @@ const StemCellLanding = () => {
                   color: "var(--color-brown)",
                 }}
               >
-                Understand Your Options
+                {t("hero.cta2")}
               </motion.button>
             </motion.div>
 
@@ -177,24 +135,23 @@ const StemCellLanding = () => {
             >
               <p className="text-sm" style={{ color: "var(--color-brown)" }}>
                 <span className="font-semibold">
-                  📍 Nexus Clinic Kuala Lumpur
+                  📍 {t("hero.clinicLabel")}
                 </span>{" "}
-                — LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                Kuala Lumpur
+                {t("hero.clinicAddress")}
                 <br />
                 <span className="inline-flex items-center mt-2 gap-2">
                   <Phone
                     className="w-4 h-4"
                     style={{ color: "var(--color-wine)" }}
                   />{" "}
-                  016-7025699 / 03-21635699
+                  {t("hero.clinicPhone")}
                 </span>
               </p>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* Trust Section dengan Image Card */}
+        {/* Trust Section */}
         <motion.section
           variants={staggerContainer}
           initial="hidden"
@@ -208,19 +165,17 @@ const StemCellLanding = () => {
                 className="font-serif text-4xl md:text-5xl font-bold mb-6"
                 style={{ color: "var(--color-brown)" }}
               >
-                Patient-First, Safety-Focused
+                {t("trust.title")}
               </h2>
               <p
                 className="text-lg max-w-3xl mx-auto"
                 style={{ color: "var(--color-taupe)" }}
               >
-                Where Malaysia's MOH guidelines meet international standards of
-                care
+                {t("trust.desc")}
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Medical Team Image Card */}
               <motion.div
                 variants={scaleIn}
                 className="relative rounded-2xl overflow-hidden group cursor-pointer h-64"
@@ -239,10 +194,10 @@ const StemCellLanding = () => {
                 ></div>
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <h3 className="font-serif text-xl font-bold mb-2">
-                    Expert Team
+                    {t("trust.imageTitle")}
                   </h3>
                   <p className="text-sm text-cream">
-                    Specialized in regenerative medicine
+                    {t("trust.imageDesc")}
                   </p>
                 </div>
               </motion.div>
@@ -250,18 +205,18 @@ const StemCellLanding = () => {
               {[
                 {
                   icon: <MapPin className="w-8 h-8" />,
-                  title: "Central KL Location",
-                  desc: "KLCC area — Wisma UOA II, Jalan Pinang",
+                  title: t("trust.t1Title"),
+                  desc: t("trust.t1Desc"),
                 },
                 {
                   icon: <Users className="w-8 h-8" />,
-                  title: "Private Consultations",
-                  desc: "Patient-first approach with complete privacy",
+                  title: t("trust.t2Title"),
+                  desc: t("trust.t2Desc"),
                 },
                 {
                   icon: <Shield className="w-8 h-8" />,
-                  title: "MOH-Aligned",
-                  desc: "Following Malaysia's guidelines for stem cell therapy",
+                  title: t("trust.t3Title"),
+                  desc: t("trust.t3Desc"),
                 },
               ].map((item, idx) => (
                 <motion.div
@@ -306,16 +261,13 @@ const StemCellLanding = () => {
                 className="text-sm italic"
                 style={{ color: "var(--color-brown)" }}
               >
-                "Malaysia's MOH guideline notes that hematopoietic and cord
-                blood stem cell transplant are the most established forms of
-                stem cell therapy, while many other stem cell applications are
-                considered experimental and require proper oversight."
+                &ldquo;{t("trust.mohQuote")}&rdquo;
               </p>
             </motion.div>
           </div>
         </motion.section>
 
-        {/* What Is Stem Cell Therapy - with Image Split */}
+        {/* What Is Stem Cell Therapy */}
         <motion.section
           variants={staggerContainer}
           initial="hidden"
@@ -335,34 +287,28 @@ const StemCellLanding = () => {
                   className="text-sm uppercase tracking-wider"
                   style={{ color: "var(--color-cream)" }}
                 >
-                  Foundation Knowledge
+                  {t("whatIs.badge")}
                 </span>
                 <h2 className="font-serif text-4xl md:text-5xl font-bold mt-4 mb-6 text-white">
-                  What Is Stem Cell Therapy?
+                  {t("whatIs.title")}
                 </h2>
                 <p
                   className="text-lg leading-relaxed"
                   style={{ color: "var(--color-cream)" }}
                 >
-                  Stem cells are special cells that can self-renew and can
-                  mature into other cell types. Stem cell therapy is any
-                  treatment that uses stem cells, or cells derived from them, to
-                  repair or replace damaged cells or tissues.
+                  {t("whatIs.desc")}
                 </p>
                 <div
                   className="mt-8 p-6 rounded-xl"
                   style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
                 >
                   <p className="font-medium text-white">
-                    That sounds powerful, and it can be. But it is also why stem
-                    cell treatment needs stricter rules than most "wellness"
-                    services.
+                    {t("whatIs.note")}
                   </p>
                 </div>
               </motion.div>
 
               <motion.div variants={fadeInRight} className="relative">
-                {/* Stem Cells Image */}
                 <div className="rounded-3xl overflow-hidden shadow-2xl">
                   <img
                     src={images.stemCells}
@@ -371,7 +317,6 @@ const StemCellLanding = () => {
                   />
                 </div>
 
-                {/* Overlay Card */}
                 <div
                   className="absolute -bottom-6 -left-6 p-6 rounded-2xl backdrop-blur-md"
                   style={{ backgroundColor: "var(--color-glass)" }}
@@ -380,20 +325,16 @@ const StemCellLanding = () => {
                     className="font-serif text-lg font-bold mb-2"
                     style={{ color: "var(--color-wine)" }}
                   >
-                    The Most Important Truth
+                    {t("whatIs.truthTitle")}
                   </h3>
                   <p
                     className="text-sm mb-2"
                     style={{ color: "var(--color-brown)" }}
                   >
-                    Not all "stem cell therapy" is the same.
+                    {t("whatIs.truthDesc")}
                   </p>
                   <div className="space-y-1">
-                    {[
-                      "HSC transplant is most established",
-                      "Other uses are experimental",
-                      "Xenotransplantation prohibited",
-                    ].map((item, idx) => (
+                    {["truth1", "truth2", "truth3"].map((key, idx) => (
                       <div
                         key={idx}
                         className="flex items-center gap-1 text-xs"
@@ -403,7 +344,7 @@ const StemCellLanding = () => {
                           style={{ color: "var(--color-rose)" }}
                         />
                         <span style={{ color: "var(--color-taupe)" }}>
-                          {item}
+                          {t(`whatIs.${key}`)}
                         </span>
                       </div>
                     ))}
@@ -414,7 +355,7 @@ const StemCellLanding = () => {
           </div>
         </motion.section>
 
-        {/* Types of Stem Cells with Image Gallery */}
+        {/* Types of Stem Cells */}
         <motion.section
           variants={staggerContainer}
           initial="hidden"
@@ -429,10 +370,10 @@ const StemCellLanding = () => {
                 className="font-serif text-4xl md:text-5xl font-bold mb-4"
                 style={{ color: "var(--color-brown)" }}
               >
-                Types of Stem Cells in Malaysia
+                {t("types.title")}
               </h2>
               <p className="text-lg" style={{ color: "var(--color-taupe)" }}>
-                Understanding the terminology clinics use
+                {t("types.desc")}
               </p>
             </motion.div>
 
@@ -463,15 +404,13 @@ const StemCellLanding = () => {
                     className="font-serif text-xl font-bold mb-3"
                     style={{ color: "var(--color-brown)" }}
                   >
-                    Hematopoietic Stem Cells (HSCs)
+                    {t("types.hscTitle")}
                   </h3>
                   <p
                     className="text-sm mb-4"
                     style={{ color: "var(--color-taupe)" }}
                   >
-                    "Blood-forming" stem cells used in bone marrow or blood stem
-                    cell transplantation. This is the best-established form
-                    globally.
+                    {t("types.hscDesc")}
                   </p>
                   <div
                     className="p-4 rounded-lg"
@@ -481,7 +420,7 @@ const StemCellLanding = () => {
                       className="text-xs font-semibold"
                       style={{ color: "var(--color-wine)" }}
                     >
-                      ✓ Established by ISSCR & Malaysian guidance
+                      ✓ {t("types.hscBadge")}
                     </span>
                   </div>
                 </div>
@@ -513,15 +452,13 @@ const StemCellLanding = () => {
                     className="font-serif text-xl font-bold mb-3"
                     style={{ color: "var(--color-brown)" }}
                   >
-                    Mesenchymal Stem Cells (MSCs)
+                    {t("types.mscTitle")}
                   </h3>
                   <p
                     className="text-sm mb-4"
                     style={{ color: "var(--color-taupe)" }}
                   >
-                    Often discussed for inflammation and tissue repair. Many KL
-                    providers focus on MSC therapy, frequently from umbilical
-                    cord Wharton's Jelly.
+                    {t("types.mscDesc")}
                   </p>
                   <div
                     className="p-4 rounded-lg"
@@ -531,8 +468,7 @@ const StemCellLanding = () => {
                       className="text-xs"
                       style={{ color: "var(--color-brown)" }}
                     >
-                      ⚠️ Evolving area — ISSCR warns against routine commercial
-                      use
+                      ⚠️ {t("types.mscBadge")}
                     </span>
                   </div>
                 </div>
@@ -564,14 +500,13 @@ const StemCellLanding = () => {
                     className="font-serif text-xl font-bold mb-3"
                     style={{ color: "var(--color-brown)" }}
                   >
-                    Embryonic & iPS Cells
+                    {t("types.ipsTitle")}
                   </h3>
                   <p
                     className="text-sm mb-4"
                     style={{ color: "var(--color-taupe)" }}
                   >
-                    Exist in scientific research and some clinical trials
-                    globally. Not "routine clinic services."
+                    {t("types.ipsDesc")}
                   </p>
                   <div
                     className="p-4 rounded-lg"
@@ -581,8 +516,7 @@ const StemCellLanding = () => {
                       className="text-xs"
                       style={{ color: "var(--color-brown)" }}
                     >
-                      ⚠️ Malaysia treats embryonic stem cell therapy as
-                      experimental
+                      ⚠️ {t("types.ipsBadge")}
                     </span>
                   </div>
                 </div>
@@ -591,7 +525,7 @@ const StemCellLanding = () => {
           </div>
         </motion.section>
 
-        {/* Proven vs Experimental with Image */}
+        {/* Proven vs Experimental */}
         <motion.section
           variants={staggerContainer}
           initial="hidden"
@@ -601,7 +535,6 @@ const StemCellLanding = () => {
         >
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
-              {/* Left side - Text content */}
               <motion.div variants={fadeInLeft}>
                 <div
                   className="rounded-3xl p-8 relative overflow-hidden"
@@ -609,25 +542,21 @@ const StemCellLanding = () => {
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
                   <h3 className="font-serif text-3xl font-bold text-white mb-6">
-                    What's Proven Today
+                    {t("proven.provenTitle")}
                   </h3>
                   <div className="space-y-4">
                     <div className="bg-white/10 rounded-xl p-4">
                       <p className="text-white">
-                        "Best-established stem cell treatments are blood and
-                        immune disorders and loss of bone marrow function,
-                        treated with blood stem cell transplantation."
+                        &ldquo;{t("proven.provenQuote")}&rdquo;
                       </p>
                     </div>
                     <p className="text-white/80 text-sm">
-                      Malaysia's guideline aligns: hematopoietic and cord blood
-                      stem cell transplantation are the most established.
+                      {t("proven.provenNote")}
                     </p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Right side - Image with overlay text */}
               <motion.div variants={fadeInRight} className="relative">
                 <img
                   src={images.labResearch}
@@ -647,19 +576,17 @@ const StemCellLanding = () => {
                       className="font-serif font-bold"
                       style={{ color: "var(--color-brown)" }}
                     >
-                      Being Studied (Mixed Evidence)
+                      {t("proven.studiedTitle")}
                     </h4>
                   </div>
                   <p
                     className="text-sm mb-3"
                     style={{ color: "var(--color-taupe)" }}
                   >
-                    Joints, autoimmune, neuro, metabolic — areas of active
-                    research
+                    {t("proven.studiedDesc")}
                   </p>
                   <p className="text-xs italic">
-                    ISSCR warns: unproven interventions need well-regulated
-                    trials
+                    {t("proven.studiedNote")}
                   </p>
                 </div>
               </motion.div>
@@ -667,7 +594,7 @@ const StemCellLanding = () => {
           </div>
         </motion.section>
 
-        {/* Nexus Clinic Approach with Image */}
+        {/* Nexus Clinic Approach */}
         <motion.section
           variants={staggerContainer}
           initial="hidden"
@@ -683,11 +610,10 @@ const StemCellLanding = () => {
                   className="font-serif text-4xl md:text-5xl font-bold mb-4"
                   style={{ color: "var(--color-brown)" }}
                 >
-                  The Nexus Clinic Approach
+                  {t("approach.title")}
                 </h2>
                 <p className="text-lg" style={{ color: "var(--color-taupe)" }}>
-                  Patient-safe mindset, structured journey, MOH-aligned
-                  procedures
+                  {t("approach.desc")}
                 </p>
               </motion.div>
               <motion.div variants={fadeInRight} className="relative">
@@ -703,33 +629,17 @@ const StemCellLanding = () => {
                     color: "white",
                   }}
                 >
-                  Private & Confidential
+                  {t("approach.badge")}
                 </div>
               </motion.div>
             </div>
 
             <div className="grid md:grid-cols-4 gap-6">
               {[
-                {
-                  step: 1,
-                  title: "Consultation & Screening",
-                  desc: "We start with what you feel, what you've tried, and your actual diagnosis.",
-                },
-                {
-                  step: 2,
-                  title: "Clear Classification",
-                  desc: "Established indication? Investigational? Or redirect to standard care.",
-                },
-                {
-                  step: 3,
-                  title: "Informed Consent",
-                  desc: "Clearly state if treatment is unproven, explain risks and alternatives.",
-                },
-                {
-                  step: 4,
-                  title: "Delivery & Monitoring",
-                  desc: "IV infusion or local injection with proper follow-up plan.",
-                },
+                { step: 1, title: t("approach.step1Title"), desc: t("approach.step1Desc") },
+                { step: 2, title: t("approach.step2Title"), desc: t("approach.step2Desc") },
+                { step: 3, title: t("approach.step3Title"), desc: t("approach.step3Desc") },
+                { step: 4, title: t("approach.step4Title"), desc: t("approach.step4Desc") },
               ].map((item, idx) => (
                 <motion.div key={idx} variants={scaleIn} className="relative">
                   <div className="bg-white rounded-2xl p-6 shadow-lg h-full">
@@ -785,24 +695,23 @@ const StemCellLanding = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
               <motion.div variants={fadeInLeft} className="max-w-xl text-white">
                 <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">
-                  Your Safety Is Our Priority
+                  {t("safety.title")}
                 </h2>
                 <p className="text-xl mb-8 text-cream">
-                  Every patient journey is unique, structured, and
-                  evidence-based.
+                  {t("safety.desc")}
                 </p>
                 <div className="flex gap-4">
                   <div className="text-center">
-                    <div className="text-3xl font-bold">1000+</div>
-                    <div className="text-sm text-cream">Patients Treated</div>
+                    <div className="text-3xl font-bold">{t("safety.stat1")}</div>
+                    <div className="text-sm text-cream">{t("safety.stat1Label")}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold">15+</div>
-                    <div className="text-sm text-cream">Years Experience</div>
+                    <div className="text-3xl font-bold">{t("safety.stat2")}</div>
+                    <div className="text-sm text-cream">{t("safety.stat2Label")}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold">100%</div>
-                    <div className="text-sm text-cream">MOH Compliant</div>
+                    <div className="text-3xl font-bold">{t("safety.stat3")}</div>
+                    <div className="text-sm text-cream">{t("safety.stat3Label")}</div>
                   </div>
                 </div>
               </motion.div>
@@ -810,7 +719,7 @@ const StemCellLanding = () => {
           </div>
         </motion.section>
 
-        {/* Benefits & Risks with Image */}
+        {/* Benefits & Risks */}
         <motion.section
           variants={staggerContainer}
           initial="hidden"
@@ -834,38 +743,30 @@ const StemCellLanding = () => {
                     className="font-serif text-3xl font-bold mb-6"
                     style={{ color: "var(--color-brown)" }}
                   >
-                    Benefits People Hope For
+                    {t("benefits.title")}
                   </h3>
                   <ul className="space-y-4">
-                    {[
-                      "Less pain",
-                      "Better movement",
-                      "Better energy",
-                      "Improved function",
-                      "Slower progression of chronic condition",
-                    ].map((item, idx) => (
+                    {["b1", "b2", "b3", "b4", "b5"].map((key, idx) => (
                       <li key={idx} className="flex items-center gap-3">
                         <CheckCircle
                           className="w-5 h-5"
                           style={{ color: "var(--color-wine)" }}
                         />
                         <span style={{ color: "var(--color-brown)" }}>
-                          {item}
+                          {t(`benefits.${key}`)}
                         </span>
                       </li>
                     ))}
                   </ul>
                   <div className="mt-8 p-4 rounded-lg bg-white">
                     <p className="text-sm italic">
-                      Look for measurable outcomes (pain score, walking
-                      distance, blood markers). Set realistic timeline, plan
-                      follow-up, not "one shot and done."
+                      {t("benefits.note")}
                     </p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Risks with Image */}
+              {/* Risks */}
               <motion.div variants={fadeInRight}>
                 <div className="rounded-3xl overflow-hidden mb-6">
                   <img
@@ -886,24 +787,16 @@ const StemCellLanding = () => {
                     className="font-serif text-3xl font-bold mb-6"
                     style={{ color: "var(--color-brown)" }}
                   >
-                    Risks & Why Safety Matters
+                    {t("risks.title")}
                   </h3>
                   <p
                     className="mb-4 font-medium"
                     style={{ color: "var(--color-brown)" }}
                   >
-                    Stem cells are not vitamins. They are living materials. That
-                    brings real risk.
+                    {t("risks.intro")}
                   </p>
                   <div className="space-y-3 mb-6">
-                    {[
-                      "Infection",
-                      "Immune reactions",
-                      "Fever and inflammatory reactions",
-                      "Clotting risk",
-                      "Unknown long-term effects",
-                      "Financial harm from repeated unproven sessions",
-                    ].map((risk, idx) => (
+                    {["r1", "r2", "r3", "r4", "r5", "r6"].map((key, idx) => (
                       <div key={idx} className="flex items-start gap-2">
                         <XCircle
                           className="w-4 h-4 mt-1 shrink-0"
@@ -913,7 +806,7 @@ const StemCellLanding = () => {
                           className="text-sm"
                           style={{ color: "var(--color-taupe)" }}
                         >
-                          {risk}
+                          {t(`risks.${key}`)}
                         </span>
                       </div>
                     ))}
@@ -950,17 +843,17 @@ const StemCellLanding = () => {
               className="max-w-xl text-white text-right p-8"
             >
               <h2 className="font-serif text-4xl font-bold mb-4">
-                Visit Us at KLCC
+                {t("location.title")}
               </h2>
-              <p className="text-lg mb-6">Wisma UOA II, Jalan Pinang</p>
+              <p className="text-lg mb-6">{t("location.address")}</p>
               <div className="flex justify-end gap-4">
                 <div className="text-center bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
                   <Phone className="w-6 h-6 mx-auto mb-2" />
-                  <p className="text-sm">016-7025699</p>
+                  <p className="text-sm">{t("location.phone")}</p>
                 </div>
                 <div className="text-center bg-white/20 backdrop-blur-sm p-4 rounded-2xl">
                   <MapPin className="w-6 h-6 mx-auto mb-2" />
-                  <p className="text-sm">LG 10</p>
+                  <p className="text-sm">{t("location.unit")}</p>
                 </div>
               </div>
             </motion.div>
@@ -970,7 +863,7 @@ const StemCellLanding = () => {
         {/* FAQ Section */}
         <FAQ data={faqs} />
 
-        {/* Final CTA with Image Background */}
+        {/* Final CTA */}
         <motion.section
           variants={staggerContainer}
           initial="hidden"
@@ -995,27 +888,23 @@ const StemCellLanding = () => {
               variants={fadeInUp}
               className="font-serif text-4xl md:text-5xl font-bold mb-6"
             >
-              Start with Clarity
+              {t("cta.title")}
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-xl mb-12 text-cream">
-              If you're searching for stem cell therapy in Malaysia or
-              regenerative medicine in Kuala Lumpur, start with a private
-              consult focused on your diagnosis, your risks, and what is
-              realistically achievable.
+              {t("cta.desc")}
             </motion.p>
 
             <motion.div variants={fadeInUp} className="space-y-4">
               <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-sm max-w-md mx-auto">
                 <p className="font-serif text-lg mb-2">
-                  Nexus Clinic Kuala Lumpur
+                  {t("cta.clinicName")}
                 </p>
                 <p className="text-sm text-cream mb-4">
-                  LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                  Kuala Lumpur
+                  {t("cta.clinicAddress")}
                 </p>
                 <div className="flex items-center justify-center gap-4">
                   <Phone className="w-5 h-5" />
-                  <span>016-7025699 / 03-21635699</span>
+                  <span>{t("cta.clinicPhone")}</span>
                 </div>
               </div>
 
@@ -1025,7 +914,7 @@ const StemCellLanding = () => {
                 className="px-8 py-4 bg-white rounded-full font-medium text-lg shadow-xl"
                 style={{ color: "var(--color-wine)" }}
               >
-                Schedule Your Private Consultation
+                {t("cta.button")}
               </motion.button>
             </motion.div>
           </div>

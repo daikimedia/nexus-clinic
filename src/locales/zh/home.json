@@ -14,7 +14,20 @@
     "stat2Value": "50+",
     "stat2Label1": "专业资深",
     "stat2Label2": "美容师",
+    "customersVisited": "位客户到访",
     "scroll": "滚动浏览"
+  },
+  "beforeAfter": {
+    "badge": "真实效果",
+    "title1": "治疗前 &",
+    "title2": "治疗后",
+    "desc": "滑动查看我们客户通过 GLP-1 治疗实现的惊人蜕变",
+    "before": "治疗前",
+    "after": "治疗后",
+    "dragToCompare": "拖动以对比",
+    "failedToLoad": "图片加载失败",
+    "disclaimer": "效果因人而异，个人结果取决于多种因素。",
+    "cta": "开启您的蜕变之旅"
   },
   "services": {
     "subtitle": "我们的专长",

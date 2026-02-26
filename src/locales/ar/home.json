@@ -14,7 +14,20 @@
     "stat2Value": "50+",
     "stat2Label1": "خبراء تجميل",
     "stat2Label2": "محترفون",
+    "customersVisited": "عملاء زارونا",
     "scroll": "مرّر"
+  },
+  "beforeAfter": {
+    "badge": "نتائج حقيقية",
+    "title1": "قبل و",
+    "title2": "بعد",
+    "desc": "اسحب لرؤية التحولات المذهلة التي حققها عملاؤنا مع علاج GLP-1",
+    "before": "قبل",
+    "after": "بعد",
+    "dragToCompare": "اسحب للمقارنة",
+    "failedToLoad": "فشل تحميل الصور",
+    "disclaimer": "قد تختلف النتائج. تعتمد النتائج الفردية على عوامل مختلفة.",
+    "cta": "ابدأ تحولك"
   },
   "services": {
     "subtitle": "خبراتنا",

@@ -30,58 +30,94 @@ import {
   scaleIn,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-export default function HormoneTestLanding() {
+export default function HormoneTestLanding({ locale = fallbackLng }: { locale?: string }) {
+  const { t } = useTranslation(locale, "hormoneTest");
+
   const faqs = [
-    {
-      q: "What is a hormone test used for?",
-      a: "A hormone test checks hormone levels to help investigate symptoms like irregular periods, fertility issues, acne and unwanted hair, fatigue, thyroid symptoms, and low libido or ED.",
-    },
-    {
-      q: "How much does a hormone test cost in Malaysia?",
-      a: "It depends on the panel. Some hospitals publish per-test prices (FSH RM65, LH RM65, estradiol RM95, AMH RM559.70), while fertility packages that include ultrasound and specialist review can be around RM699.",
-    },
-    {
-      q: "Which hormone tests should women do for irregular periods?",
-      a: "A KL women's hormone screening guide suggests evaluating thyroid (TSH ± Free T4), prolactin, and FSH/LH/estradiol after excluding pregnancy, with additional tests based on symptoms.",
-    },
-    {
-      q: "Which hormone tests matter for PCOS?",
-      a: "For androgen excess signs like hirsutism or acne, testing may include total testosterone, DHEA-S, and 17-OHP, plus metabolic screening.",
-    },
-    {
-      q: "When is the best time to test female hormones?",
-      a: "FSH, LH, prolactin, and estradiol are often measured around day 3 to 4 of the cycle.",
-    },
-    {
-      q: "When should I do a progesterone test to confirm ovulation?",
-      a: "Many labs recommend testing about 7 days before your expected period (day 21 in a 28-day cycle). ASRM notes progesterone peaks 6 to 8 days after ovulation.",
-    },
-    {
-      q: "Do I need to fast before a hormone blood test?",
-      a: "Many hormone tests do not require fasting, but fasting may be needed if your panel includes glucose or lipid tests. Follow clinic instructions.",
-    },
-    {
-      q: "Can biotin affect hormone test results?",
-      a: "Yes. A KL women's hormone screening guide notes biotin can interfere with results, especially thyroid tests. Tell your clinic if you take biotin.",
-    },
-    {
-      q: "What hormones are checked for low libido or ED in men?",
-      a: "Nexus Clinic's ED and libido pathway mentions hormone level checks as part of assessment, and testosterone testing is commonly included in men's hormone evaluation.",
-    },
-    {
-      q: "Why would my doctor repeat a hormone test?",
-      a: "Hormones fluctuate with cycle day, time of day, stress, and sleep. Repeat testing helps confirm a true pattern, especially for progesterone and testosterone timing.",
-    },
-    {
-      q: "Can I do a hormone test for fatigue and weight gain?",
-      a: "Yes, but it should be targeted. Thyroid tests are commonly used first, and Nexus Clinic discusses hormone assessment as part of medical weight loss evaluation.",
-    },
-    {
-      q: "Do hormone tests diagnose menopause?",
-      a: "Not always. A KL women's hormone screening guide notes that for women aged 45 and above, menopause is usually diagnosed clinically and routine FSH testing is not needed due to fluctuations.",
-    },
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
+    { q: t("faq.q6"), a: t("faq.a6") },
+    { q: t("faq.q7"), a: t("faq.a7") },
+    { q: t("faq.q8"), a: t("faq.a8") },
+    { q: t("faq.q9"), a: t("faq.a9") },
+    { q: t("faq.q10"), a: t("faq.a10") },
+    { q: t("faq.q11"), a: t("faq.a11") },
+    { q: t("faq.q12"), a: t("faq.a12") },
   ];
+
+  const womenReasons = [
+    t("reasons.w1"),
+    t("reasons.w2"),
+    t("reasons.w3"),
+    t("reasons.w4"),
+    t("reasons.w5"),
+  ];
+
+  const menReasons = [
+    t("reasons.m1"),
+    t("reasons.m2"),
+    t("reasons.m3"),
+    t("reasons.m4"),
+  ];
+
+  const pantaiPrices = [
+    { name: t("cost.p1"), price: t("cost.p1Price") },
+    { name: t("cost.p2"), price: t("cost.p2Price") },
+    { name: t("cost.p3"), price: t("cost.p3Price") },
+    { name: t("cost.p4"), price: t("cost.p4Price") },
+    { name: t("cost.p5"), price: t("cost.p5Price") },
+    { name: t("cost.p6"), price: t("cost.p6Price") },
+    { name: t("cost.p7"), price: t("cost.p7Price") },
+  ];
+
+  const tests = [
+    { icon: Thermometer, name: t("tests.t1Name"), sub: t("tests.t1Sub"), desc: t("tests.t1Desc") },
+    { icon: Flower2, name: t("tests.t2Name"), sub: t("tests.t2Sub"), desc: t("tests.t2Desc") },
+    { icon: Flame, name: t("tests.t3Name"), sub: t("tests.t3Sub"), desc: t("tests.t3Desc") },
+    { icon: Activity, name: t("tests.t4Name"), sub: t("tests.t4Sub"), desc: t("tests.t4Desc") },
+    { icon: Brain, name: t("tests.t5Name"), sub: t("tests.t5Sub"), desc: t("tests.t5Desc") },
+  ];
+
+  const timingCards = [
+    { icon: Calendar, title: t("bestTime.womenTimingTitle"), desc: t("bestTime.womenTimingDesc") },
+    { icon: Droplet, title: t("bestTime.progesteroneTitle"), desc: t("bestTime.progesteroneDesc") },
+    { icon: Sun, title: t("bestTime.menTimingTitle"), desc: t("bestTime.menTimingDesc") },
+  ];
+
+  const resultFactors = [
+    t("results.f1"),
+    t("results.f2"),
+    t("results.f3"),
+    t("results.f4"),
+    t("results.f5"),
+    t("results.f6"),
+  ];
+
+  const tips = [
+    t("preparation.tip1"),
+    t("preparation.tip2"),
+    t("preparation.tip3"),
+  ];
+
+  const budgetItems = [
+    t("cost.b1"),
+    t("cost.b2"),
+    t("cost.b3"),
+    t("cost.b4"),
+  ];
+
+  const nexusStandout = [
+    t("market.n1"),
+    t("market.n2"),
+    t("market.n3"),
+  ];
+
   return (
     <>
       <main className="min-h-screen bg-cream font-['Inter',sans-serif]">
@@ -122,7 +158,7 @@ export default function HormoneTestLanding() {
                 <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full">
                   <Shield className="w-4 h-4 text-white mr-2" />
                   <span className="text-sm text-white font-medium">
-                    Medically assessed, blood-test guided programmes
+                    {t("hero.badge")}
                   </span>
                 </span>
               </motion.div>
@@ -131,23 +167,20 @@ export default function HormoneTestLanding() {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-5xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight"
               >
-                Your symptoms are real.
+                {t("hero.title1")}
                 <br />
                 <span className="text-cream">
-                  A hormone test can finally explain
+                  {t("hero.title2")}
                 </span>
                 <br />
-                what's going on.
+                {t("hero.title3")}
               </motion.h1>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
               >
-                When your energy drops, periods change, weight shifts, or your
-                mood feels "not you," it's exhausting to keep guessing. At Nexus
-                Clinic Kuala Lumpur, we use doctor-led, blood-test guided checks
-                to find the pattern, then map out the next steps clearly.
+                {t("hero.desc")}
               </motion.p>
 
               <motion.div
@@ -155,12 +188,12 @@ export default function HormoneTestLanding() {
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
                 <button className="group bg-white text-wine px-8 py-4 rounded-full hover:bg-cream transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center">
-                  Book Your Hormone Test
+                  {t("hero.cta1")}
                   <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button className="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full hover:bg-white/30 transition-all duration-300 border border-white/30 flex items-center justify-center">
                   <Phone className="w-5 h-5 mr-2" />
-                  +6016-7025699
+                  {t("hero.cta2")}
                 </button>
               </motion.div>
 
@@ -169,10 +202,7 @@ export default function HormoneTestLanding() {
                 className="mt-12 flex items-center justify-center gap-4 text-sm text-white/80"
               >
                 <MapPin className="w-4 h-4" />
-                <span>
-                  LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                  Kuala Lumpur
-                </span>
+                <span>{t("hero.address")}</span>
               </motion.div>
             </motion.div>
           </div>
@@ -189,10 +219,10 @@ export default function HormoneTestLanding() {
               >
                 <motion.div variants={fadeInLeft} className="mb-6">
                   <span className="text-wine font-medium mb-2 block">
-                    Understanding Hormones
+                    {t("whatIs.badge")}
                   </span>
                   <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-6">
-                    What Is a Hormone Test?
+                    {t("whatIs.title")}
                   </h2>
                   <div className="w-24 h-1 bg-linear-to-r from-wine to-rose mb-8" />
                 </motion.div>
@@ -201,10 +231,7 @@ export default function HormoneTestLanding() {
                   variants={fadeInUp}
                   className="text-lg text-brown mb-8 leading-relaxed"
                 >
-                  A hormone test is usually a blood test that measures specific
-                  hormones in your body. Hormones act like messages. They
-                  influence energy, sleep, metabolism, periods, fertility, sex
-                  drive, skin, and mood.
+                  {t("whatIs.desc")}
                 </motion.p>
 
                 <motion.div
@@ -214,10 +241,7 @@ export default function HormoneTestLanding() {
                   <div className="flex items-start gap-4">
                     <AlertCircle className="w-6 h-6 text-wine shrink-0 mt-1" />
                     <p className="text-brown">
-                      Some services also offer saliva hormone profiles, but for
-                      many medical decisions, blood testing is the standard
-                      starting point, especially when symptoms are strong or
-                      treatment decisions are being considered.
+                      {t("whatIs.note")}
                     </p>
                   </div>
                 </motion.div>
@@ -253,7 +277,7 @@ export default function HormoneTestLanding() {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-4"
               >
-                Why People Book a Hormone Test
+                {t("reasons.title")}
               </motion.h2>
               <motion.div
                 variants={fadeInUp}
@@ -273,16 +297,10 @@ export default function HormoneTestLanding() {
                     <Flower2 className="w-12 h-12 text-wine" />
                   </div>
                   <h3 className="font-['Georgia',serif] text-2xl text-brown mb-6">
-                    Common reasons women test hormones
+                    {t("reasons.womenTitle")}
                   </h3>
                   <ul className="space-y-4">
-                    {[
-                      "Irregular, delayed, or missed periods",
-                      "PCOS concerns (acne, unwanted hair, stubborn weight gain)",
-                      "Fertility planning, egg reserve questions",
-                      "Perimenopause symptoms, sleep issues, hot flushes",
-                      "Hair thinning, skin changes, mood shifts",
-                    ].map((item, index) => (
+                    {womenReasons.map((item, index) => (
                       <motion.li
                         key={index}
                         initial={{ opacity: 0, x: -20 }}
@@ -307,15 +325,10 @@ export default function HormoneTestLanding() {
                     <Activity className="w-12 h-12 text-wine" />
                   </div>
                   <h3 className="font-['Georgia',serif] text-2xl text-brown mb-6">
-                    Common reasons men test hormones
+                    {t("reasons.menTitle")}
                   </h3>
                   <ul className="space-y-4">
-                    {[
-                      "Low libido, erectile dysfunction, low confidence",
-                      "Fatigue, brain fog, poor recovery from workouts",
-                      "Weight gain, reduced muscle",
-                      "Suspected low testosterone",
-                    ].map((item, index) => (
+                    {menReasons.map((item, index) => (
                       <motion.li
                         key={index}
                         initial={{ opacity: 0, x: -20 }}
@@ -342,10 +355,7 @@ export default function HormoneTestLanding() {
                   />
                   <div className="mt-6 bg-wine/5 p-6 rounded-2xl border border-wine/20">
                     <p className="text-brown text-sm">
-                      Nexus Clinic's men's ED and libido pathway specifically
-                      mentions symptom assessment plus blood tests, hormone
-                      level checks, and cardiovascular evaluation, because ED
-                      can be linked to underlying health issues.
+                      {t("reasons.edNote")}
                     </p>
                   </div>
                 </div>
@@ -380,129 +390,37 @@ export default function HormoneTestLanding() {
               >
                 <motion.div variants={fadeInRight}>
                   <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-4">
-                    The Most Common Hormone Tests in Malaysia
+                    {t("tests.title")}
                   </h2>
                   <p className="text-taupe text-lg mb-8">
-                    What They Check and Why It Matters
+                    {t("tests.subtitle")}
                   </p>
                 </motion.div>
               </motion.div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {/* Thyroid */}
-              <motion.div
-                variants={scaleIn}
-                className="bg-cream p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-              >
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center">
-                    <Thermometer className="w-6 h-6 text-wine" />
-                  </div>
-                </div>
-                <h3 className="font-['Georgia',serif] text-xl text-brown mb-2">
-                  1) Thyroid hormones
-                </h3>
-                <p className="text-sm text-taupe mb-3">
-                  TSH, Free T4 (sometimes Free T3)
-                </p>
-                <p className="text-brown text-sm">
-                  Thyroid imbalance can show up as fatigue, weight change, hair
-                  loss, constipation, anxiety, and menstrual disruption.
-                </p>
-              </motion.div>
-
-              {/* Female Reproductive */}
-              <motion.div
-                variants={scaleIn}
-                className="bg-cream p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-              >
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center">
-                    <Flower2 className="w-6 h-6 text-wine" />
-                  </div>
-                </div>
-                <h3 className="font-['Georgia',serif] text-xl text-brown mb-2">
-                  2) Female reproductive hormones
-                </h3>
-                <p className="text-sm text-taupe mb-3">
-                  FSH, LH, estradiol (E2), progesterone, prolactin, AMH
-                </p>
-                <p className="text-brown text-sm">
-                  Pantai Hospital offers fertility screening packages including
-                  female hormone profile + transvaginal ultrasound + specialist
-                  review.
-                </p>
-              </motion.div>
-
-              {/* Androgen */}
-              <motion.div
-                variants={scaleIn}
-                className="bg-cream p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-              >
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center">
-                    <Flame className="w-6 h-6 text-wine" />
-                  </div>
-                </div>
-                <h3 className="font-['Georgia',serif] text-xl text-brown mb-2">
-                  3) Androgen hormones
-                </h3>
-                <p className="text-sm text-taupe mb-3">
-                  Total testosterone, DHEA-S, androstenedione, 17-OHP
-                </p>
-                <p className="text-brown text-sm">
-                  Often linked to PCOS and acne. A KL women's hormone screening
-                  guide specifically links hirsutism and acne to androgen
-                  testing.
-                </p>
-              </motion.div>
-
-              {/* Male */}
-              <motion.div
-                variants={scaleIn}
-                className="bg-cream p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-              >
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center">
-                    <Activity className="w-6 h-6 text-wine" />
-                  </div>
-                </div>
-                <h3 className="font-['Georgia',serif] text-xl text-brown mb-2">
-                  4) Male hormone testing
-                </h3>
-                <p className="text-sm text-taupe mb-3">
-                  Total testosterone, free testosterone, SHBG, LH/FSH
-                </p>
-                <p className="text-brown text-sm">
-                  Nexus Clinic's TRT page describes testing total serum
-                  testosterone plus other safety labs at baseline and during
-                  follow-up.
-                </p>
-              </motion.div>
-
-              {/* Stress */}
-              <motion.div
-                variants={scaleIn}
-                className="bg-cream p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
-              >
-                <div className="mb-4">
-                  <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center">
-                    <Brain className="w-6 h-6 text-wine" />
-                  </div>
-                </div>
-                <h3 className="font-['Georgia',serif] text-xl text-brown mb-2">
-                  5) Stress and adrenal hormones
-                </h3>
-                <p className="text-sm text-taupe mb-3">
-                  Cortisol, ACTH, DHEA-S
-                </p>
-                <p className="text-brown text-sm">
-                  Selected cases only. In Malaysia, "stress profile" panels are
-                  marketed but should be chosen carefully based on symptoms and
-                  doctor review.
-                </p>
-              </motion.div>
+              {tests.map((test, index) => {
+                const Icon = test.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    variants={scaleIn}
+                    className="bg-cream p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
+                  >
+                    <div className="mb-4">
+                      <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center">
+                        <Icon className="w-6 h-6 text-wine" />
+                      </div>
+                    </div>
+                    <h3 className="font-['Georgia',serif] text-xl text-brown mb-2">
+                      {test.name}
+                    </h3>
+                    <p className="text-sm text-taupe mb-3">{test.sub}</p>
+                    <p className="text-brown text-sm">{test.desc}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -518,79 +436,36 @@ export default function HormoneTestLanding() {
               >
                 <motion.div variants={fadeInLeft} className="mb-8">
                   <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-4">
-                    Best Time to Do a Hormone Test
+                    {t("bestTime.title")}
                   </h2>
                   <p className="text-taupe text-lg">
-                    Timing Matters More Than People Think
+                    {t("bestTime.subtitle")}
                   </p>
                 </motion.div>
 
                 <div className="space-y-6">
-                  {/* Women Timing */}
-                  <motion.div
-                    variants={fadeInUp}
-                    className="bg-white p-6 rounded-2xl shadow-lg"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center shrink-0">
-                        <Calendar className="w-6 h-6 text-wine" />
-                      </div>
-                      <div>
-                        <h3 className="font-['Georgia',serif] text-lg text-brown mb-2">
-                          Women: cycle timing
-                        </h3>
-                        <p className="text-brown text-sm">
-                          FSH, LH, prolactin, and estradiol are often measured
-                          around day 3 to 4 of the menstrual cycle, when
-                          hormones are closer to baseline.
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Progesterone */}
-                  <motion.div
-                    variants={fadeInUp}
-                    className="bg-white p-6 rounded-2xl shadow-lg"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center shrink-0">
-                        <Droplet className="w-6 h-6 text-wine" />
-                      </div>
-                      <div>
-                        <h3 className="font-['Georgia',serif] text-lg text-brown mb-2">
-                          Progesterone testing
-                        </h3>
-                        <p className="text-brown text-sm">
-                          Test mid-luteal, about 7 days before your expected
-                          period. ASRM notes progesterone typically peaks 6 to 8
-                          days after ovulation.
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Men Timing */}
-                  <motion.div
-                    variants={fadeInUp}
-                    className="bg-white p-6 rounded-2xl shadow-lg"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center shrink-0">
-                        <Sun className="w-6 h-6 text-wine" />
-                      </div>
-                      <div>
-                        <h3 className="font-['Georgia',serif] text-lg text-brown mb-2">
-                          Men: morning testing
-                        </h3>
-                        <p className="text-brown text-sm">
-                          Morning sampling is often preferred for testosterone.
-                          Many clinical pathways prefer morning sampling when
-                          diagnosing low testosterone.
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
+                  {timingCards.map((card, index) => {
+                    const Icon = card.icon;
+                    return (
+                      <motion.div
+                        key={index}
+                        variants={fadeInUp}
+                        className="bg-white p-6 rounded-2xl shadow-lg"
+                      >
+                        <div className="flex items-start gap-4">
+                          <div className="w-12 h-12 bg-wine/10 rounded-full flex items-center justify-center shrink-0">
+                            <Icon className="w-6 h-6 text-wine" />
+                          </div>
+                          <div>
+                            <h3 className="font-['Georgia',serif] text-lg text-brown mb-2">
+                              {card.title}
+                            </h3>
+                            <p className="text-brown text-sm">{card.desc}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </motion.div>
 
@@ -613,7 +488,6 @@ export default function HormoneTestLanding() {
           </div>
         </section>
 
-        {/* Rest of the sections remain the same but with adjusted styling */}
         {/* Preparation Section */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -625,10 +499,10 @@ export default function HormoneTestLanding() {
             >
               <motion.div variants={fadeInUp} className="text-center mb-12">
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-4">
-                  How to Prepare for a Hormone Blood Test
+                  {t("preparation.title")}
                 </h2>
                 <p className="text-taupe">
-                  Preparation depends on which hormones you're testing
+                  {t("preparation.subtitle")}
                 </p>
               </motion.div>
 
@@ -644,13 +518,10 @@ export default function HormoneTestLanding() {
                     </div>
                     <div>
                       <h3 className="font-['Georgia',serif] text-lg text-brown mb-2">
-                        Fasting
+                        {t("preparation.fastingTitle")}
                       </h3>
                       <p className="text-brown">
-                        Many hormone tests do not require fasting, but if your
-                        panel includes glucose, insulin, or cholesterol, your
-                        clinic may advise fasting. Always follow the clinic's
-                        instructions.
+                        {t("preparation.fastingDesc")}
                       </p>
                     </div>
                   </div>
@@ -667,13 +538,10 @@ export default function HormoneTestLanding() {
                     </div>
                     <div>
                       <h3 className="font-['Georgia',serif] text-lg text-brown mb-2">
-                        Biotin warning (very important)
+                        {t("preparation.biotinTitle")}
                       </h3>
                       <p className="text-brown">
-                        A KL women's hormone screening guide warns that biotin
-                        supplements may interfere with results for tests like
-                        thyroid panels. If you take biotin (hair, skin, nails
-                        supplements), tell your clinic before testing.
+                        {t("preparation.biotinDesc")}
                       </p>
                     </div>
                   </div>
@@ -685,14 +553,10 @@ export default function HormoneTestLanding() {
                   className="bg-cream p-6 rounded-2xl shadow-lg"
                 >
                   <h3 className="font-['Georgia',serif] text-lg text-brown mb-4">
-                    Other simple tips
+                    {t("preparation.tipsTitle")}
                   </h3>
                   <ul className="space-y-3">
-                    {[
-                      "Bring your cycle dates (first day of last period, usual cycle length)",
-                      "List all medications and supplements",
-                      "Avoid heavy exercise right before certain hormone tests (your clinician will guide you)",
-                    ].map((item, index) => (
+                    {tips.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-rose shrink-0" />
                         <span className="text-brown">{item}</span>
@@ -718,26 +582,18 @@ export default function HormoneTestLanding() {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-6"
               >
-                What Happens After You Get Results?
+                {t("results.title")}
               </motion.h2>
 
               <motion.p variants={fadeInUp} className="text-lg text-taupe mb-8">
-                This is where a lot of people feel lost. A report will show
-                "normal ranges," but hormone ranges change based on:
+                {t("results.desc")}
               </motion.p>
 
               <motion.div
                 variants={staggerContainer}
                 className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8"
               >
-                {[
-                  "age",
-                  "sex",
-                  "cycle day",
-                  "pregnancy status",
-                  "time of day",
-                  "your symptoms",
-                ].map((item, index) => (
+                {resultFactors.map((item, index) => (
                   <motion.div
                     key={index}
                     variants={scaleIn}
@@ -753,16 +609,12 @@ export default function HormoneTestLanding() {
                 className="bg-wine/5 p-8 rounded-3xl"
               >
                 <p className="text-xl text-brown font-medium">
-                  The right question is not "Is it normal?" It's "Does this
-                  result match what I'm feeling, and what should we do next?"
+                  {t("results.keyQuestion")}
                 </p>
               </motion.div>
 
               <motion.p variants={fadeInUp} className="mt-8 text-taupe">
-                Nexus Clinic's approach across services is to use blood-test
-                guided, doctor monitored programmes, and their women's fertility
-                content describes hormone checks as part of a broader clinical
-                picture.
+                {t("results.nexusApproach")}
               </motion.p>
             </motion.div>
           </div>
@@ -779,9 +631,9 @@ export default function HormoneTestLanding() {
             >
               <motion.div variants={fadeInUp} className="text-center mb-12">
                 <h2 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown mb-4">
-                  Hormone Test Cost in Malaysia
+                  {t("cost.title")}
                 </h2>
-                <p className="text-taupe">Kuala Lumpur Pricing Reality</p>
+                <p className="text-taupe">{t("cost.subtitle")}</p>
               </motion.div>
 
               <motion.div
@@ -789,37 +641,26 @@ export default function HormoneTestLanding() {
                 className="bg-cream p-8 rounded-3xl shadow-xl mb-8"
               >
                 <p className="text-brown mb-6">
-                  Costs vary depending on how many hormones you test and whether
-                  imaging or consult is included.
+                  {t("cost.intro")}
                 </p>
 
                 <h3 className="font-['Georgia',serif] text-xl text-brown mb-4">
-                  Real published price references from Malaysia providers:
+                  {t("cost.pantaiTitle")}
                 </h3>
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <h4 className="font-medium text-wine mb-3">
-                      Pantai Hospital individual test prices:
+                      {t("cost.pantaiSubtitle")}
                     </h4>
                     <ul className="space-y-2">
-                      {[
-                        "FSH: RM65",
-                        "LH: RM65",
-                        "Estradiol: RM95",
-                        "AMH: RM559.70",
-                        "Testosterone: RM91.90",
-                        "Androstenedione: RM273",
-                        "DHEA: RM141.20",
-                      ].map((item, index) => (
+                      {pantaiPrices.map((item, index) => (
                         <li
                           key={index}
                           className="flex justify-between text-brown border-b border-taupe/20 py-2"
                         >
-                          <span>{item.split(":")[0]}</span>
-                          <span className="font-medium">
-                            {item.split(":")[1]}
-                          </span>
+                          <span>{item.name}</span>
+                          <span className="font-medium">{item.price}</span>
                         </li>
                       ))}
                     </ul>
@@ -829,29 +670,27 @@ export default function HormoneTestLanding() {
                     <div className="bg-white p-4 rounded-xl">
                       <p className="text-brown">
                         <span className="font-medium text-wine">
-                          Pantai Hospital KL:
+                          {t("cost.pkg1Name")}
                         </span>{" "}
-                        Fertility screening package for women: RM699 including
-                        female hormone profile test, transvaginal ultrasound,
-                        specialist consult/review
+                        {t("cost.pkg1Desc")}
                       </p>
                     </div>
 
                     <div className="bg-white p-4 rounded-xl">
                       <p className="text-brown">
                         <span className="font-medium text-wine">
-                          Sunway Medical Velocity:
+                          {t("cost.pkg2Name")}
                         </span>{" "}
-                        "Comprehensive Blood Profile Female" listed at RM450
+                        {t("cost.pkg2Desc")}
                       </p>
                     </div>
 
                     <div className="bg-white p-4 rounded-xl">
                       <p className="text-brown">
                         <span className="font-medium text-wine">
-                          Rosewood Women's Wellness:
+                          {t("cost.pkg3Name")}
                         </span>{" "}
-                        Advanced hormone blood test listed at RM1,498
+                        {t("cost.pkg3Desc")}
                       </p>
                     </div>
                   </div>
@@ -863,14 +702,13 @@ export default function HormoneTestLanding() {
                 className="bg-wine/5 p-6 rounded-2xl"
               >
                 <h3 className="font-['Georgia',serif] text-xl text-brown mb-3">
-                  How to budget smartly
+                  {t("cost.budgetTitle")}
                 </h3>
-                <p className="text-brown">Ask for a breakdown:</p>
+                <p className="text-brown">{t("cost.budgetIntro")}</p>
                 <ol className="list-decimal list-inside mt-2 space-y-1 text-brown">
-                  <li>consultation</li>
-                  <li>lab panel</li>
-                  <li>repeat tests (if timing needs confirmation)</li>
-                  <li>follow-up review</li>
+                  {budgetItems.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ol>
               </motion.div>
             </motion.div>
@@ -890,56 +728,46 @@ export default function HormoneTestLanding() {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl md:text-5xl text-brown text-center mb-12"
               >
-                Market Positioning in Malaysia
+                {t("market.title")}
               </motion.h2>
 
               <div className="grid md:grid-cols-3 gap-6">
-                {/* Position 1 */}
                 <motion.div
                   variants={fadeInLeft}
                   className="bg-white p-6 rounded-2xl shadow-lg"
                 >
                   <Search className="w-10 h-10 text-wine mb-4" />
                   <h3 className="font-['Georgia',serif] text-lg text-brown mb-2">
-                    Symptom-Driven Screening
+                    {t("market.m1Title")}
                   </h3>
                   <p className="text-brown text-sm">
-                    Clinics position "hormone imbalance tests" as symptom-driven
-                    screening. Example: Prinz Klinik promotes hormone imbalance
-                    testing to identify root causes of symptoms.
+                    {t("market.m1Desc")}
                   </p>
                 </motion.div>
 
-                {/* Position 2 */}
                 <motion.div
                   variants={fadeInUp}
                   className="bg-white p-6 rounded-2xl shadow-lg"
                 >
                   <ClipboardList className="w-10 h-10 text-wine mb-4" />
                   <h3 className="font-['Georgia',serif] text-lg text-brown mb-2">
-                    Transparent Test Menus
+                    {t("market.m2Title")}
                   </h3>
                   <p className="text-brown text-sm">
-                    Hospitals publish transparent test menus and packages. Panti
-                    publishes hormone test price lists and fertility screening
-                    packages that combine hormones plus ultrasound and
-                    specialist review.
+                    {t("market.m2Desc")}
                   </p>
                 </motion.div>
 
-                {/* Position 3 */}
                 <motion.div
                   variants={fadeInRight}
                   className="bg-white p-6 rounded-2xl shadow-lg"
                 >
                   <Sparkles className="w-10 h-10 text-wine mb-4" />
                   <h3 className="font-['Georgia',serif] text-lg text-brown mb-2">
-                    Premium Wellness Bundles
+                    {t("market.m3Title")}
                   </h3>
                   <p className="text-brown text-sm">
-                    Wellness clinics sell bigger "advanced hormone" bundles.
-                    Rosewood promotes a premium hormone blood test bundle at a
-                    higher price point.
+                    {t("market.m3Desc")}
                   </p>
                 </motion.div>
               </div>
@@ -950,14 +778,10 @@ export default function HormoneTestLanding() {
                 className="mt-12 bg-linear-to-r from-wine to-rose p-8 rounded-3xl text-white"
               >
                 <h3 className="font-['Georgia',serif] text-2xl mb-4">
-                  How Nexus Clinic Kuala Lumpur can stand out
+                  {t("market.nexusTitle")}
                 </h3>
                 <ul className="space-y-3">
-                  {[
-                    "Make timing clear (cycle day testing, mid-luteal progesterone, morning testosterone)",
-                    "Link symptoms to practical next steps, not just a long list of tests",
-                    "Keep it medical and guided, since Nexus highlights blood-test guided programmes and doctor monitoring",
-                  ].map((item, index) => (
+                  {nexusStandout.map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-white/80 shrink-0" />
                       <span>{item}</span>
@@ -985,32 +809,29 @@ export default function HormoneTestLanding() {
                 variants={fadeInUp}
                 className="font-['Georgia',serif] text-4xl md:text-5xl mb-6"
               >
-                Ready to Understand Your Hormones?
+                {t("cta.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-lg mb-8 text-white/90"
               >
-                If you're searching for a hormone test in Kuala Lumpur or a
-                hormone blood test in Malaysia, start with the right test, on
-                the right day, for the right reason.
+                {t("cta.desc")}
               </motion.p>
 
               <motion.div variants={fadeInUp} className="space-y-4">
                 <button className="bg-white text-wine px-8 py-4 rounded-full font-medium hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                  Schedule Your Consultation
+                  {t("cta.button")}
                 </button>
 
                 <div className="pt-6 text-white/80">
                   <p className="flex items-center justify-center gap-2">
                     <MapPin className="w-4 h-4" />
-                    LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                    Kuala Lumpur
+                    {t("cta.address")}
                   </p>
                   <p className="flex items-center justify-center gap-2 mt-2">
                     <Phone className="w-4 h-4" />
-                    +6016-7025699 / +603-21635699
+                    {t("cta.phone")}
                   </p>
                 </div>
               </motion.div>

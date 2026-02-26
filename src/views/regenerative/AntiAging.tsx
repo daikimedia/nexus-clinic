@@ -26,69 +26,39 @@ import {
   fadeInUp,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const AntiAgingLanding = () => {
+const AntiAgingLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "antiAging");
+
   const images = {
-    hero: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Woman at skincare clinic
+    hero: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     consultation:
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Doctor consultation
+      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     treatment:
-      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Facial treatment
-    results: "/images/treatment/happy-patient.png", // Happy client
+      "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    results: "/images/treatment/happy-patient.png",
     clinic:
-      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Modern clinic interior
+      "https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     skincare:
-      "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80", // Skincare products
+      "https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80",
     beforeAfter:
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Beauty comparison concept
+      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     facial:
-      "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80", // Facial massage
+      "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
   };
 
-  const faqs = [
-    {
-      q: "What is the best anti aging treatment in Malaysia?",
-      a: "The best treatment depends on your specific concerns. A combination of prevention, collagen support, and targeted correction usually works best.",
-    },
-    {
-      q: "When should I start anti aging treatments?",
-      a: "Many clinics frame it as prevention first, then correction. Some people start in their late 20s or early 30s with skincare and gentle treatments, and add devices or injectables when signs become visible.",
-    },
-    {
-      q: "Does sunscreen really prevent ageing?",
-      a: "Yes. Sunscreen helps prevent premature skin ageing like wrinkles and age spots caused by UV exposure.",
-    },
-    {
-      q: "How long does Botox last?",
-      a: "Commonly about 3 to 4 months, with full effect developing over about 2 weeks.",
-    },
-    {
-      q: "Will Botox make my face look frozen?",
-      a: "It shouldn't when done conservatively and placed correctly. The goal is softer movement and smoother lines, not no expression.",
-    },
-    {
-      q: "How long does HIFU last?",
-      a: "Many Malaysia-based clinic resources describe HIFU results lasting around 12 to 18 months for many people, with maintenance depending on age and skin condition.",
-    },
-    {
-      q: "Does HIFU hurt?",
-      a: "Sensitivity varies. Many people describe it as warm or tingly with short bursts. Clinics often adjust settings for comfort.",
-    },
-    {
-      q: "What is better: HIFU or RF microneedling?",
-      a: "They do different jobs. HIFU targets deeper lifting and tightening. RF microneedling is strong for pores, texture, acne scars, and collagen remodeling.",
-    },
-    {
-      q: "How many sessions do I need?",
-      a: "It depends. HIFU may be 1 session with maintenance later, while RF microneedling and lasers often work best as a series.",
-    },
-  ];
+  const faqs = Array.from({ length: 9 }, (_, i) => ({
+    q: t(`faq.q${i + 1}`),
+    a: t(`faq.a${i + 1}`),
+  }));
+
   return (
     <>
       <main className="bg-light font-[--font-inter] overflow-hidden">
         {/* Hero Section with Image */}
         <section className="relative min-h-screen flex items-center">
-          {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <img
               src={images.hero}
@@ -98,7 +68,6 @@ const AntiAgingLanding = () => {
             <div className="absolute inset-0 bg-linear-to-r from-light via-light/90 to-transparent" />
           </div>
 
-          {/* Background Pattern */}
           <div className="absolute inset-0 opacity-20 z-0">
             <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-rose blur-3xl" />
             <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-wine blur-3xl" />
@@ -114,19 +83,16 @@ const AntiAgingLanding = () => {
               <motion.div variants={fadeInLeft} className="space-y-8">
                 <motion.div variants={scaleIn} className="inline-block">
                   <span className="bg-glass backdrop-blur-sm px-4 py-2 rounded-full text-wine border border-wine/20">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </motion.div>
 
                 <h1 className="text-5xl lg:text-6xl font-[--font-georgia] leading-tight">
-                  Look refreshed, <span className="text-wine">not "done."</span>
+                  {t("hero.title1")} <span className="text-wine">{t("hero.title2")}</span>
                 </h1>
 
                 <p className="text-xl text-brown/80 leading-relaxed bg-glass backdrop-blur-sm p-6 rounded-2xl">
-                  Fine lines, sagging, dull skin, and tired-looking eyes build
-                  up quietly, then suddenly feel obvious in photos and mirrors.
-                  At Nexus Clinic Kuala Lumpur, anti aging therapy is a
-                  personalised plan, not a random menu of treatments.
+                  {t("hero.desc")}
                 </p>
 
                 <motion.div
@@ -134,11 +100,11 @@ const AntiAgingLanding = () => {
                   className="flex flex-wrap gap-4"
                 >
                   <button className="group bg-wine text-white px-8 py-4 rounded-full hover:bg-rose transition-all duration-300 flex items-center gap-2">
-                    Book Consultation
+                    {t("hero.cta1")}
                     <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </button>
                   <button className="border-2 border-wine text-wine px-8 py-4 rounded-full hover:bg-wine hover:text-white transition-all duration-300">
-                    View Treatments
+                    {t("hero.cta2")}
                   </button>
                 </motion.div>
               </motion.div>
@@ -149,28 +115,25 @@ const AntiAgingLanding = () => {
                   <div className="space-y-6">
                     <div className="flex items-center gap-4">
                       <MapPin className="text-wine" />
-                      <p className="text-brown">
-                        LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang,
-                        50450 Kuala Lumpur
-                      </p>
+                      <p className="text-brown">{t("hero.address")}</p>
                     </div>
                     <div className="flex items-center gap-4">
                       <Phone className="text-wine" />
-                      <p className="text-brown">016-702 5699 / 03-2163 5699</p>
+                      <p className="text-brown">{t("hero.phone")}</p>
                     </div>
                     <div className="border-t border-taupe/20 pt-6">
                       <h3 className="font-[--font-georgia] text-lg mb-4">
-                        Personalised anti aging programmes using:
+                        {t("hero.programmeTitle")}
                       </h3>
                       <div className="flex flex-wrap gap-2">
                         <span className="bg-white/50 px-3 py-1 rounded-full text-sm">
-                          Non-surgical face lift techniques
+                          {t("hero.tag1")}
                         </span>
                         <span className="bg-white/50 px-3 py-1 rounded-full text-sm">
-                          Collagen-stimulating treatments
+                          {t("hero.tag2")}
                         </span>
                         <span className="bg-white/50 px-3 py-1 rounded-full text-sm">
-                          Advanced laser treatments
+                          {t("hero.tag3")}
                         </span>
                       </div>
                     </div>
@@ -202,9 +165,9 @@ const AntiAgingLanding = () => {
                 <div className="absolute inset-0 bg-linear-to-t from-brown/50 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-2xl font-[--font-georgia]">
-                    State-of-the-art Facility
+                    {t("trust.img1Title")}
                   </h3>
-                  <p>KLCC area location</p>
+                  <p>{t("trust.img1Desc")}</p>
                 </div>
               </motion.div>
 
@@ -220,9 +183,9 @@ const AntiAgingLanding = () => {
                 <div className="absolute inset-0 bg-linear-to-t from-wine/50 to-transparent" />
                 <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-2xl font-[--font-georgia]">
-                    Expert Consultation
+                    {t("trust.img2Title")}
                   </h3>
-                  <p>MOH certified practitioners</p>
+                  <p>{t("trust.img2Desc")}</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -234,22 +197,10 @@ const AntiAgingLanding = () => {
               className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
             >
               {[
-                {
-                  icon: MapPin,
-                  text: "Central Kuala Lumpur location (KLCC area)",
-                },
-                {
-                  icon: Shield,
-                  text: "Personalised anti aging programmes using non-surgical face lift techniques",
-                },
-                {
-                  icon: Sparkles,
-                  text: "Focus on non-surgical aesthetic procedures and advanced laser treatments",
-                },
-                {
-                  icon: Heart,
-                  text: "Safety-first mindset with MOH guidance and LCP pathway",
-                },
+                { icon: MapPin, key: "t1" },
+                { icon: Shield, key: "t2" },
+                { icon: Sparkles, key: "t3" },
+                { icon: Heart, key: "t4" },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -257,14 +208,14 @@ const AntiAgingLanding = () => {
                   className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all"
                 >
                   <item.icon className="w-10 h-10 text-wine mb-4" />
-                  <p className="text-brown">{item.text}</p>
+                  <p className="text-brown">{t(`trust.${item.key}`)}</p>
                 </motion.div>
               ))}
             </motion.div>
           </div>
         </section>
 
-        {/* What Anti Aging Really Means with Image */}
+        {/* What Anti Aging Really Means */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <motion.div
@@ -277,40 +228,31 @@ const AntiAgingLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl font-[--font-georgia] mb-8 text-center"
               >
-                What "Anti Aging Therapy"{" "}
-                <span className="text-wine">Really Means</span>
+                {t("whatIs.title1")}{" "}
+                <span className="text-wine">{t("whatIs.title2")}</span>
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-xl text-brown mb-12 text-center"
               >
-                Anti aging therapy is not about "stopping time." It's about
-                improving the things that make you look tired or older than you
-                feel.
+                {t("whatIs.desc")}
               </motion.p>
 
               <div className="grid md:grid-cols-2 gap-8">
                 <motion.div variants={fadeInLeft} className="space-y-4">
                   <h3 className="text-2xl font-[--font-georgia] mb-4">
-                    Common Concerns:
+                    {t("whatIs.concernsTitle")}
                   </h3>
                   <ul className="space-y-3">
-                    {[
-                      "fine lines and deeper wrinkles",
-                      "loss of firmness (skin laxity)",
-                      "volume loss in cheeks and under-eyes",
-                      "uneven tone, sun spots, pigmentation",
-                      "large pores, rough texture, acne marks",
-                      "dullness and dryness",
-                    ].map((item, index) => (
+                    {["c1", "c2", "c3", "c4", "c5", "c6"].map((key, index) => (
                       <motion.li
                         key={index}
                         variants={scaleIn}
                         className="flex items-center gap-3 text-brown"
                       >
                         <CheckCircle2 className="w-5 h-5 text-wine" />
-                        {item}
+                        {t(`whatIs.${key}`)}
                       </motion.li>
                     ))}
                   </ul>
@@ -319,23 +261,23 @@ const AntiAgingLanding = () => {
                 <motion.div variants={fadeInRight} className="space-y-4">
                   <div className="bg-cream p-8 rounded-3xl">
                     <h3 className="text-2xl font-[--font-georgia] mb-4">
-                      A good plan does two things:
+                      {t("whatIs.planTitle")}
                     </h3>
                     <div className="space-y-4">
                       <div className="bg-white p-4 rounded-xl">
                         <p className="font-semibold mb-2">
-                          1. Prevents fast ageing
+                          {t("whatIs.plan1Title")}
                         </p>
                         <p className="text-sm text-brown/70">
-                          mostly from UV and lifestyle
+                          {t("whatIs.plan1Desc")}
                         </p>
                       </div>
                       <div className="bg-white p-4 rounded-xl">
                         <p className="font-semibold mb-2">
-                          2. Repairs what has already changed
+                          {t("whatIs.plan2Title")}
                         </p>
                         <p className="text-sm text-brown/70">
-                          collagen, texture, volume, and expression lines
+                          {t("whatIs.plan2Desc")}
                         </p>
                       </div>
                     </div>
@@ -354,7 +296,7 @@ const AntiAgingLanding = () => {
           </div>
         </section>
 
-        {/* Why Skin Ages Faster in Malaysia with Image */}
+        {/* Why Skin Ages Faster in Malaysia */}
         <section className="py-20 bg-wine text-white relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <img
@@ -374,16 +316,14 @@ const AntiAgingLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl font-[--font-georgia] mb-8"
               >
-                Why Skin Ages Faster in Malaysia
+                {t("whyFaster.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-xl mb-12 opacity-90"
               >
-                Malaysia's sun and heat are not gentle. UV exposure is a major
-                driver of premature ageing, and daily sunscreen helps prevent
-                wrinkles and age spots linked to unprotected UV exposure.
+                {t("whyFaster.desc")}
               </motion.p>
 
               <motion.div
@@ -391,19 +331,10 @@ const AntiAgingLanding = () => {
                 className="grid md:grid-cols-2 gap-6"
               >
                 {[
-                  {
-                    icon: Sun,
-                    text: "humidity and sweat (clogged pores, congestion)",
-                  },
-                  {
-                    icon: Clock,
-                    text: "high screen time (sleep disruption and dull skin)",
-                  },
-                  { icon: Zap, text: "stress (tension lines and breakouts)" },
-                  {
-                    icon: Feather,
-                    text: "inconsistent routines (skin can't 'settle')",
-                  },
+                  { icon: Sun, key: "f1" },
+                  { icon: Clock, key: "f2" },
+                  { icon: Zap, key: "f3" },
+                  { icon: Feather, key: "f4" },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -411,14 +342,13 @@ const AntiAgingLanding = () => {
                     className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20"
                   >
                     <item.icon className="w-8 h-8 mb-3" />
-                    <p>{item.text}</p>
+                    <p>{t(`whyFaster.${item.key}`)}</p>
                   </motion.div>
                 ))}
               </motion.div>
 
               <motion.p variants={fadeInUp} className="mt-8 text-lg italic">
-                So the best anti aging treatment in Malaysia is usually a mix of
-                prevention + collagen support + targeted correction.
+                {t("whyFaster.note")}
               </motion.p>
             </motion.div>
           </div>
@@ -436,13 +366,13 @@ const AntiAgingLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl font-[--font-georgia] mb-4 text-center"
               >
-                Treatment Menu
+                {t("treatments.title")}
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-center mb-12 text-brown"
               >
-                What's Commonly Used in KL, and How It Feels
+                {t("treatments.subtitle")}
               </motion.p>
 
               <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -458,9 +388,9 @@ const AntiAgingLanding = () => {
                   <div className="absolute inset-0 bg-linear-to-t from-brown/70 to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
                     <h3 className="text-2xl font-[--font-georgia">
-                      Advanced Treatments
+                      {t("treatments.img1Title")}
                     </h3>
-                    <p>RF Microneedling • Lasers • HIFU</p>
+                    <p>{t("treatments.img1Desc")}</p>
                   </div>
                 </motion.div>
 
@@ -476,9 +406,9 @@ const AntiAgingLanding = () => {
                   <div className="absolute inset-0 bg-linear-to-t from-wine/70 to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
                     <h3 className="text-2xl font-[--font-georgia">
-                      Natural Results
+                      {t("treatments.img2Title")}
                     </h3>
-                    <p>Refreshed, not "done"</p>
+                    <p>{t("treatments.img2Desc")}</p>
                   </div>
                 </motion.div>
               </div>
@@ -486,41 +416,41 @@ const AntiAgingLanding = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
                   {
-                    name: "Wrinkle Relaxers",
-                    type: "Botox-type",
-                    best: "forehead lines, frown lines, crow's feet",
-                    downtime: "low, maybe mild swelling or bruising",
                     icon: Feather,
+                    nameKey: "t1Name",
+                    typeKey: "t1Type",
+                    bestKey: "t1Best",
+                    downtimeKey: "t1Downtime",
                   },
                   {
-                    name: "Fillers",
-                    best: "under-eyes, cheeks, smile lines, chin, jawline balance",
-                    downtime: "mild swelling or bruising possible",
-                    longevity: "months, varies by area and product",
                     icon: Gem,
+                    nameKey: "t2Name",
+                    bestKey: "t2Best",
+                    downtimeKey: "t2Downtime",
+                    longevityKey: "t2Longevity",
                   },
                   {
-                    name: "HIFU / Ultrasound Lifting",
-                    best: "mild to moderate sagging, jawline, cheeks, brows",
-                    downtime: "minimal",
-                    results: "gradual tightening, 12-18 months",
                     icon: Zap,
+                    nameKey: "t3Name",
+                    bestKey: "t3Best",
+                    downtimeKey: "t3Downtime",
+                    resultsKey: "t3Results",
                   },
                   {
-                    name: "RF Microneedling",
-                    best: "pores, acne scars, fine lines, texture, firmness",
-                    downtime: "few days of redness",
                     icon: Sparkle,
+                    nameKey: "t4Name",
+                    bestKey: "t4Best",
+                    downtimeKey: "t4Downtime",
                   },
                   {
-                    name: "Lasers",
-                    type: "Pico, fractional CO2",
-                    best: "pigmentation, sun damage, texture, scars",
-                    downtime: "depends on laser type",
                     icon: Sun,
+                    nameKey: "t5Name",
+                    typeKey: "t5Type",
+                    bestKey: "t5Best",
+                    downtimeKey: "t5Downtime",
                   },
-                ].map((treatment, index) => {
-                  const Icon = treatment.icon;
+                ].map((item, index) => {
+                  const Icon = item.icon;
                   return (
                     <motion.div
                       key={index}
@@ -529,31 +459,31 @@ const AntiAgingLanding = () => {
                     >
                       <Icon className="w-8 h-8 text-wine mb-3" />
                       <h3 className="text-xl font-[--font-georgia] mb-2 text-wine">
-                        {treatment.name}
+                        {t(`treatments.${item.nameKey}`)}
                       </h3>
-                      {treatment.type && (
+                      {item.typeKey && (
                         <p className="text-sm text-taupe mb-3">
-                          {treatment.type}
+                          {t(`treatments.${item.typeKey}`)}
                         </p>
                       )}
                       <p className="text-sm mb-2">
-                        <span className="font-semibold">Best for:</span>{" "}
-                        {treatment.best}
+                        <span className="font-semibold">{t("treatments.bestFor")}</span>{" "}
+                        {t(`treatments.${item.bestKey}`)}
                       </p>
                       <p className="text-sm mb-2">
-                        <span className="font-semibold">Downtime:</span>{" "}
-                        {treatment.downtime}
+                        <span className="font-semibold">{t("treatments.downtime")}</span>{" "}
+                        {t(`treatments.${item.downtimeKey}`)}
                       </p>
-                      {treatment.longevity && (
+                      {item.longevityKey && (
                         <p className="text-sm">
-                          <span className="font-semibold">Longevity:</span>{" "}
-                          {treatment.longevity}
+                          <span className="font-semibold">{t("treatments.longevity")}</span>{" "}
+                          {t(`treatments.${item.longevityKey}`)}
                         </p>
                       )}
-                      {treatment.results && (
+                      {item.resultsKey && (
                         <p className="text-sm">
-                          <span className="font-semibold">Results:</span>{" "}
-                          {treatment.results}
+                          <span className="font-semibold">{t("treatments.results")}</span>{" "}
+                          {t(`treatments.${item.resultsKey}`)}
                         </p>
                       )}
                     </motion.div>
@@ -564,7 +494,7 @@ const AntiAgingLanding = () => {
           </div>
         </section>
 
-        {/* Before & After Concept with Image */}
+        {/* Before & After Concept */}
         <section className="py-20 bg-cream">
           <div className="container mx-auto px-4">
             <motion.div
@@ -577,7 +507,7 @@ const AntiAgingLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl font-[--font-georgia] mb-8 text-center"
               >
-                Natural Results You Can Expect
+                {t("naturalResults.title")}
               </motion.h2>
 
               <motion.div
@@ -592,7 +522,7 @@ const AntiAgingLanding = () => {
                 <div className="absolute inset-0 bg-linear-to-r from-wine/30 to-rose/30 flex items-center justify-center">
                   <div className="bg-white/90 backdrop-blur-sm p-6 rounded-2xl text-center">
                     <p className="text-wine font-[--font-georgia] text-xl">
-                      Subtle • Natural • Refreshed
+                      {t("naturalResults.motto")}
                     </p>
                   </div>
                 </div>
@@ -602,14 +532,13 @@ const AntiAgingLanding = () => {
                 variants={fadeInUp}
                 className="text-center text-brown text-lg"
               >
-                The goal is softer movement and smoother lines, not no
-                expression.
+                {t("naturalResults.desc")}
               </motion.p>
             </motion.div>
           </div>
         </section>
 
-        {/* Consultation Section with Image */}
+        {/* Consultation Section */}
         <section className="py-20 bg-wine text-white relative overflow-hidden">
           <div className="absolute inset-0 opacity-20">
             <img
@@ -629,16 +558,11 @@ const AntiAgingLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl font-[--font-georgia] mb-8 text-center"
               >
-                What to Expect at Your Consultation
+                {t("consultation.title")}
               </motion.h2>
 
               <motion.div variants={staggerContainer} className="space-y-4">
-                {[
-                  "You explain what bothers you (photos help)",
-                  "The doctor checks skin quality, facial structure, and movement lines",
-                  "You get a plan that matches your budget, timeline, and comfort level",
-                  "You understand downtime and aftercare before you commit",
-                ].map((step, index) => (
+                {["s1", "s2", "s3", "s4"].map((key, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInLeft}
@@ -647,7 +571,7 @@ const AntiAgingLanding = () => {
                     <span className="w-8 h-8 rounded-full bg-white text-wine flex items-center justify-center font-bold">
                       {index + 1}
                     </span>
-                    <p>{step}</p>
+                    <p>{t(`consultation.${key}`)}</p>
                   </motion.div>
                 ))}
               </motion.div>
@@ -658,11 +582,11 @@ const AntiAgingLanding = () => {
               >
                 <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl text-center">
                   <Award className="w-8 h-8 mx-auto mb-2" />
-                  <p className="text-sm">MOH Certified</p>
+                  <p className="text-sm">{t("consultation.badge1")}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm p-4 rounded-xl text-center">
                   <Star className="w-8 h-8 mx-auto mb-2" />
-                  <p className="text-sm">KLCC Location</p>
+                  <p className="text-sm">{t("consultation.badge2")}</p>
                 </div>
               </motion.div>
             </motion.div>
@@ -682,14 +606,14 @@ const AntiAgingLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl font-[--font-georgia] mb-8 text-center"
               >
-                Cost of Anti Aging Therapy in Malaysia
+                {t("cost.title")}
               </motion.h2>
 
               <motion.p
                 variants={fadeInUp}
                 className="text-center mb-8 text-brown"
               >
-                Kuala Lumpur Price Reality
+                {t("cost.subtitle")}
               </motion.p>
 
               <motion.div
@@ -697,28 +621,19 @@ const AntiAgingLanding = () => {
                 className="grid md:grid-cols-2 gap-4"
               >
                 {[
-                  { treatment: "HIFU", range: "RM1,500 - RM4,000+" },
-                  { treatment: "Ultherapy", range: "RM4,000 - RM15,000" },
-                  {
-                    treatment: "Botox-type injections",
-                    range: "RM500 - RM2,000",
-                  },
-                  {
-                    treatment: "Dermal fillers",
-                    range: "RM1,200 - RM3,500 per syringe",
-                  },
-                  {
-                    treatment: "RF microneedling",
-                    range: "RM2,800+ per session",
-                  },
+                  { tKey: "p1Treatment", rKey: "p1Range" },
+                  { tKey: "p2Treatment", rKey: "p2Range" },
+                  { tKey: "p3Treatment", rKey: "p3Range" },
+                  { tKey: "p4Treatment", rKey: "p4Range" },
+                  { tKey: "p5Treatment", rKey: "p5Range" },
                 ].map((item, index) => (
                   <motion.div
                     key={index}
                     variants={fadeInUp}
                     className="flex justify-between items-center p-4 bg-cream rounded-xl"
                   >
-                    <span className="font-semibold">{item.treatment}</span>
-                    <span className="text-wine">{item.range}</span>
+                    <span className="font-semibold">{t(`cost.${item.tKey}`)}</span>
+                    <span className="text-wine">{t(`cost.${item.rKey}`)}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -728,13 +643,9 @@ const AntiAgingLanding = () => {
                 className="mt-8 bg-wine text-white p-6 rounded-2xl"
               >
                 <h3 className="text-xl font-[--font-georgia] mb-3">
-                  Budget Planning
+                  {t("cost.budgetTitle")}
                 </h3>
-                <p>
-                  Ask the clinic to break it into: "today" (quick win), "next 3
-                  months" (collagen plan), and "maintenance" (how often you'll
-                  repeat).
-                </p>
+                <p>{t("cost.budgetDesc")}</p>
               </motion.div>
             </motion.div>
           </div>
@@ -743,7 +654,7 @@ const AntiAgingLanding = () => {
         {/* FAQs */}
         <FAQ data={faqs} />
 
-        {/* Final CTA with Image */}
+        {/* Final CTA */}
         <section className="py-20 relative overflow-hidden">
           <div className="absolute inset-0 z-0">
             <img
@@ -765,28 +676,22 @@ const AntiAgingLanding = () => {
                 variants={fadeInUp}
                 className="text-4xl font-[--font-georgia] mb-6"
               >
-                Ready for Your Personalised Plan?
+                {t("cta.title")}
               </motion.h2>
 
               <motion.p variants={fadeInUp} className="text-xl mb-8 opacity-90">
-                Start with a consult that builds a plan around your face, not a
-                package around a machine.
+                {t("cta.desc")}
               </motion.p>
 
               <motion.div variants={scaleIn} className="space-y-4">
                 <p className="text-2xl font-[--font-georgia]">
-                  Nexus Clinic Kuala Lumpur
+                  {t("cta.clinicName")}
                 </p>
-                <p>
-                  LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang, 50450
-                  Kuala Lumpur
-                </p>
-                <p className="text-3xl font-semibold">
-                  016-702 5699 / 03-2163 5699
-                </p>
+                <p>{t("cta.address")}</p>
+                <p className="text-3xl font-semibold">{t("cta.phone")}</p>
 
                 <button className="mt-8 bg-white text-wine px-12 py-4 rounded-full text-lg font-semibold hover:bg-cream transition-all duration-300 transform hover:scale-105 shadow-xl">
-                  Book Your Consultation Today
+                  {t("cta.button")}
                 </button>
               </motion.div>
             </motion.div>

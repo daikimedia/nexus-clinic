@@ -15,11 +15,15 @@ const ImageComparisonSlider = ({
   afterImage,
   beforeLabel = "Before",
   afterLabel = "After",
+  dragToCompare = "Drag to compare",
+  failedToLoad = "Failed to load images",
 }: {
   beforeImage: string;
   afterImage: string;
   beforeLabel?: string;
   afterLabel?: string;
+  dragToCompare?: string;
+  failedToLoad?: string;
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPosition, setSliderPosition] = useState(50);
@@ -120,7 +124,7 @@ const ImageComparisonSlider = ({
         <div className="absolute inset-0 flex items-center justify-center bg-brown/50 z-30">
           <div className="text-center text-light/70">
             <ImageOff className="w-12 h-12 mx-auto mb-2 opacity-50" />
-            <p className="text-sm font-inter">Failed to load images</p>
+            <p className="text-sm font-inter">{failedToLoad}</p>
           </div>
         </div>
       )}
@@ -222,7 +226,7 @@ const ImageComparisonSlider = ({
         <div className="bg-brown/80 backdrop-blur-sm px-4 py-2 rounded-full">
           <p className="text-light text-sm font-inter flex items-center gap-2">
             <MoveHorizontal className="w-4 h-4" />
-            Drag to compare
+            {dragToCompare}
           </p>
         </div>
       </div>
@@ -236,10 +240,12 @@ type BeforeAfterFaceSectionProps = {
     before: string;
     after: string;
   }[];
+  t?: (key: string) => string;
 };
 
 const SectionBeforeAfter = ({
   transformations,
+  t,
 }: BeforeAfterFaceSectionProps) => {
   return (
     <section className="py-24 bg-cream relative overflow-hidden">
@@ -270,20 +276,19 @@ const SectionBeforeAfter = ({
             className="inline-flex items-center gap-2 px-4 py-2 bg-wine/30 text-rose rounded-full text-sm font-inter font-medium mb-4"
           >
             <Sparkles className="w-4 h-4" />
-            Real Results
+            {t ? t("beforeAfter.badge") : "Real Results"}
           </motion.span>
           <motion.h2
             variants={fadeInUp}
             className="font-georgia text-3xl sm:text-4xl lg:text-5xl text-wine mb-4"
           >
-            Before & <span className="italic text-rose">After</span>
+            {t ? t("beforeAfter.title1") : "Before &"} <span className="italic text-rose">{t ? t("beforeAfter.title2") : "After"}</span>
           </motion.h2>
           <motion.p
             variants={fadeInUp}
             className="text-wine/70 font-inter max-w-2xl mx-auto"
           >
-            Slide to see the incredible transformations achieved by our clients
-            with GLP-1 treatment
+            {t ? t("beforeAfter.desc") : "Slide to see the incredible transformations achieved by our clients with GLP-1 treatment"}
           </motion.p>
         </motion.div>
 
@@ -309,6 +314,10 @@ const SectionBeforeAfter = ({
                 <ImageComparisonSlider
                   beforeImage={item.before}
                   afterImage={item.after}
+                  beforeLabel={t ? t("beforeAfter.before") : "Before"}
+                  afterLabel={t ? t("beforeAfter.after") : "After"}
+                  dragToCompare={t ? t("beforeAfter.dragToCompare") : "Drag to compare"}
+                  failedToLoad={t ? t("beforeAfter.failedToLoad") : "Failed to load images"}
                 />
 
                 {/* Card Info */}
@@ -337,7 +346,7 @@ const SectionBeforeAfter = ({
           className="text-center mt-16"
         >
           <p className="text-wine/60 font-inter mb-6">
-            Results may vary. Individual results depend on various factors.
+            {t ? t("beforeAfter.disclaimer") : "Results may vary. Individual results depend on various factors."}
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -345,7 +354,7 @@ const SectionBeforeAfter = ({
             className="px-8 py-4 bg-wine text-light rounded-full font-inter font-medium inline-flex items-center gap-2 shadow-lg shadow-wine/30 hover:bg-wine/90 transition-colors"
           >
             <Sparkles className="w-5 h-5" />
-            Start Your Transformation
+            {t ? t("beforeAfter.cta") : "Start Your Transformation"}
           </motion.button>
         </motion.div>
       </div>

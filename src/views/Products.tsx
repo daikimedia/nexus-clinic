@@ -22,110 +22,8 @@ import {
   CheckCircle2,
   TrendingDown,
 } from "lucide-react";
-
-const treatments = [
-  {
-    id: 1,
-    name: "Mounjaro",
-    subtitle: "Tirzepatide Injection",
-    price: "RM 1,588",
-    badge: "Most Advanced",
-    description:
-      "Dual-action GLP-1 & GIP receptor agonist for superior weight loss results.",
-    tag: "2.5mg · 4-pen box",
-    href: "https://www.nexus-clinic.com/en/buy-mounjaro-malaysia-2-5mg-pre-filled-pen-4s-box/",
-    linear: "from-wine to-brown",
-    loss: "Up to 22.5%",
-  },
-  {
-    id: 2,
-    name: "Ozempic",
-    subtitle: "Semaglutide Injection",
-    price: "RM 1,800",
-    badge: "Doctor Guided",
-    description:
-      "Clinically proven GLP-1 receptor agonist trusted by physicians worldwide.",
-    tag: "1mg dose · pre-filled pen",
-    href: "https://www.nexus-clinic.com/en/buy-ozempic-online-malaysia-1mg-dose-pre-filled-pen/",
-    linear: "from-taupe to-wine",
-    loss: "Up to 15%",
-  },
-  {
-    id: 3,
-    name: "Wegovy",
-    subtitle: "High-Dose Semaglutide",
-    price: "RM 1,850",
-    badge: "FDA Approved",
-    description:
-      "Higher-dose semaglutide specifically approved for chronic weight management.",
-    tag: "0.25mg · pre-filled pen",
-    href: "https://www.nexus-clinic.com/en/buy-wegovy-malaysia-0-25mg-pre-filled-pen/",
-    linear: "from-rose to-brown",
-    loss: "Up to 17%",
-  },
-  {
-    id: 4,
-    name: "Saxenda",
-    subtitle: "Liraglutide Injection",
-    price: "RM 1,650",
-    badge: "Proven & Trusted",
-    description:
-      "Daily GLP-1 analogue with a solid clinical track record in weight reduction.",
-    tag: "6mg · 3ml × 3 pens",
-    href: "https://www.nexus-clinic.com/en/buy-saxenda-flextouch-malaysia-6mg-pre-filled-pen-3ml-x3/",
-    linear: "from-brown to-taupe",
-    loss: "Up to 8%",
-  },
-];
-
-const stats = [
-  { value: "20+", label: "Years of Excellence", icon: Award },
-  { value: "50K+", label: "Happy Patients", icon: Users },
-  { value: "98%", label: "Satisfaction Rate", icon: Star },
-  { value: "15+", label: "Specialist Doctors", icon: Shield },
-];
-
-const steps = [
-  {
-    num: "01",
-    title: "Online Consultation",
-    desc: "Chat with our doctors via WhatsApp or book a clinic visit.",
-  },
-  {
-    num: "02",
-    title: "Personalised Assessment",
-    desc: "Your BMI, health history and goals are carefully reviewed.",
-  },
-  {
-    num: "03",
-    title: "Medical Prescription",
-    desc: "Receive a tailored treatment plan with the right medication.",
-  },
-  {
-    num: "04",
-    title: "Ongoing Monitoring",
-    desc: "Regular follow-ups ensure safe, sustained weight loss progress.",
-  },
-];
-
-const faqs = [
-  {
-    q: "Are these weight loss injections safe?",
-    a: "Yes. All medications we prescribe are approved by regulatory authorities and administered under the supervision of licensed physicians at Nexus Clinic.",
-  },
-  {
-    q: "How quickly will I see results?",
-    a: "Most patients notice measurable weight loss within 4–8 weeks. Results vary depending on the medication and individual metabolic factors.",
-  },
-  {
-    q: "Do I need to visit the clinic in person?",
-    a: "An initial in-person consultation is recommended, but follow-ups can be done via telehealth for your convenience.",
-  },
-  {
-    q: "Is there a consultation fee?",
-    a: "We offer a complimentary first chat via WhatsApp. Formal medical consultations are charged separately and can be offset by our RM 100 voucher.",
-  },
-];
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
 function DecorLine({ className = "" }) {
   return (
@@ -139,7 +37,7 @@ function DecorLine({ className = "" }) {
   );
 }
 
-function TreatmentCard({ t }: { t: (typeof treatments)[0] }) {
+function TreatmentCard({ t: treatment, bodyWeight, learnMore }: { t: (typeof treatmentsDef)[0] & { badge: string; subtitle: string; description: string; tag: string; loss: string }; bodyWeight: string; learnMore: string }) {
   const [hovered, setHovered] = useState(false);
   return (
     <motion.div
@@ -149,55 +47,80 @@ function TreatmentCard({ t }: { t: (typeof treatments)[0] }) {
       onHoverEnd={() => setHovered(false)}
       className="relative group rounded-2xl overflow-hidden border border-taupe/20 bg-light cursor-pointer"
     >
-      {/* linear stripe top */}
-      <div className={`h-1 w-full bg-linear-to-r ${t.linear}`} />
+      <div className={`h-1 w-full bg-linear-to-r ${treatment.linear}`} />
 
       <div className="p-7 flex flex-col gap-4">
-        {/* Badge */}
         <span className="self-start text-xs font-semibold tracking-widest uppercase text-wine bg-wine/10 px-3 py-1 rounded-full">
-          {t.badge}
+          {treatment.badge}
         </span>
 
-        {/* Name */}
         <div>
           <h3 className="font-georgia text-2xl text-brown leading-tight">
-            {t.name}
+            {treatment.name}
           </h3>
-          <p className="text-taupe text-sm mt-1">{t.subtitle}</p>
+          <p className="text-taupe text-sm mt-1">{treatment.subtitle}</p>
         </div>
 
-        {/* Weight loss pill */}
         <div className="flex items-center gap-2">
           <TrendingDown size={14} className="text-wine" />
           <span className="text-xs text-wine font-semibold">
-            {t.loss} body weight
+            {treatment.loss} {bodyWeight}
           </span>
         </div>
 
-        {/* Description */}
-        <p className="text-brown/70 text-sm leading-relaxed">{t.description}</p>
+        <p className="text-brown/70 text-sm leading-relaxed">{treatment.description}</p>
 
         <DecorLine />
 
-        {/* Footer */}
         <div className="flex items-end justify-between">
           <div>
-            <p className="text-xs text-taupe mb-1">{t.tag}</p>
-            <p className="font-georgia text-xl text-brown">{t.price}</p>
+            <p className="text-xs text-taupe mb-1">{treatment.tag}</p>
+            <p className="font-georgia text-xl text-brown">{treatment.price}</p>
           </div>
           <motion.a
-            href={t.href}
+            href={treatment.href}
             animate={{ x: hovered ? 4 : 0 }}
             transition={{ type: "spring", stiffness: 400 }}
             className="flex items-center gap-1 text-xs font-semibold text-wine hover:text-brown transition-colors"
           >
-            Learn more <ArrowRight size={13} />
+            {learnMore} <ArrowRight size={13} />
           </motion.a>
         </div>
       </div>
     </motion.div>
   );
 }
+
+const treatmentsDef = [
+  {
+    id: 1,
+    name: "Mounjaro",
+    price: "RM 1,588",
+    href: "https://www.nexus-clinic.com/en/buy-mounjaro-malaysia-2-5mg-pre-filled-pen-4s-box/",
+    linear: "from-wine to-brown",
+  },
+  {
+    id: 2,
+    name: "Ozempic",
+    price: "RM 1,800",
+    href: "https://www.nexus-clinic.com/en/buy-ozempic-online-malaysia-1mg-dose-pre-filled-pen/",
+    linear: "from-taupe to-wine",
+  },
+  {
+    id: 3,
+    name: "Wegovy",
+    price: "RM 1,850",
+    href: "https://www.nexus-clinic.com/en/buy-wegovy-malaysia-0-25mg-pre-filled-pen/",
+    linear: "from-rose to-brown",
+  },
+  {
+    id: 4,
+    name: "Saxenda",
+    price: "RM 1,650",
+    href: "https://www.nexus-clinic.com/en/buy-saxenda-flextouch-malaysia-6mg-pre-filled-pen-3ml-x3/",
+    linear: "from-brown to-taupe",
+  },
+];
 
 function StatCard({
   stat,
@@ -249,7 +172,8 @@ function FaqItem({ item }: { item: { q: string; a: string } }) {
   );
 }
 
-export default function Products() {
+export default function Products({ locale = fallbackLng }: { locale?: string }) {
+  const { t } = useTranslation(locale, "products");
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -257,6 +181,70 @@ export default function Products() {
   });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+
+  const treatments = [
+    {
+      ...treatmentsDef[0],
+      badge: t("treatments.t1Badge"),
+      subtitle: t("treatments.t1Subtitle"),
+      description: t("treatments.t1Desc"),
+      tag: t("treatments.t1Tag"),
+      loss: t("treatments.t1Loss"),
+    },
+    {
+      ...treatmentsDef[1],
+      badge: t("treatments.t2Badge"),
+      subtitle: t("treatments.t2Subtitle"),
+      description: t("treatments.t2Desc"),
+      tag: t("treatments.t2Tag"),
+      loss: t("treatments.t2Loss"),
+    },
+    {
+      ...treatmentsDef[2],
+      badge: t("treatments.t3Badge"),
+      subtitle: t("treatments.t3Subtitle"),
+      description: t("treatments.t3Desc"),
+      tag: t("treatments.t3Tag"),
+      loss: t("treatments.t3Loss"),
+    },
+    {
+      ...treatmentsDef[3],
+      badge: t("treatments.t4Badge"),
+      subtitle: t("treatments.t4Subtitle"),
+      description: t("treatments.t4Desc"),
+      tag: t("treatments.t4Tag"),
+      loss: t("treatments.t4Loss"),
+    },
+  ];
+
+  const stats = [
+    { value: t("stats.s1Value"), label: t("stats.s1Label"), icon: Award },
+    { value: t("stats.s2Value"), label: t("stats.s2Label"), icon: Users },
+    { value: t("stats.s3Value"), label: t("stats.s3Label"), icon: Star },
+    { value: t("stats.s4Value"), label: t("stats.s4Label"), icon: Shield },
+  ];
+
+  const steps = [
+    { num: t("howItWorks.s1Num"), title: t("howItWorks.s1Title"), desc: t("howItWorks.s1Desc") },
+    { num: t("howItWorks.s2Num"), title: t("howItWorks.s2Title"), desc: t("howItWorks.s2Desc") },
+    { num: t("howItWorks.s3Num"), title: t("howItWorks.s3Title"), desc: t("howItWorks.s3Desc") },
+    { num: t("howItWorks.s4Num"), title: t("howItWorks.s4Title"), desc: t("howItWorks.s4Desc") },
+  ];
+
+  const faqs = [
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+  ];
+
+  const whyPoints = [
+    t("hero.w1"),
+    t("hero.w2"),
+    t("hero.w3"),
+    t("hero.w4"),
+    t("hero.w5"),
+  ];
 
   return (
     <>
@@ -316,12 +304,12 @@ export default function Products() {
             className="absolute top-0 left-0 right-0 bg-light hidden backdrop-blur-sm border-b border-light/10 py-2.5 text-center"
           >
             <p className="text-cream/80 text-xs tracking-widest">
-              ✦ &nbsp; CLAIM YOUR RM 100 VOUCHER — CHAT WITH A DOCTOR NOW &nbsp;
+              ✦ &nbsp; {t("hero.announcement")} &nbsp;
               <a
                 href="https://wa.link/q64h1l"
                 className="underline text-light font-semibold"
               >
-                WhatsApp Us
+                {t("hero.whatsapp")}
               </a>
               &nbsp; ✦
             </p>
@@ -345,27 +333,25 @@ export default function Products() {
                   className="text-taupe text-xs tracking-[0.3em] uppercase mb-6 flex items-center gap-2 justify-center lg:justify-start"
                 >
                   <Sparkles size={12} className="text-rose" />
-                  Nexus Clinic · Est. 2001 · Kuala Lumpur
+                  {t("hero.badge")}
                 </motion.p>
 
                 <motion.h1
                   variants={fadeInUp}
                   className="font-georgia text-5xl sm:text-6xl lg:text-7xl text-taupe leading-[1.05] mb-8"
                 >
-                  Your <span className="italic text-rose">Slimmer</span>
+                  {t("hero.title1")} <span className="italic text-rose">{t("hero.title2")}</span>
                   <br />
-                  Self, Medically
+                  {t("hero.title3")}
                   <br />
-                  <span className="italic">Guided.</span>
+                  <span className="italic">{t("hero.title4")}</span>
                 </motion.h1>
 
                 <motion.p
                   variants={fadeInUp}
                   className="text-wine/70 text-base leading-relaxed max-w-md mx-auto lg:mx-0 mb-10"
                 >
-                  Advanced GLP-1 weight loss injections — Mounjaro, Ozempic,
-                  Wegovy & Saxenda — prescribed and monitored by specialist
-                  doctors at Nexus Clinic KL.
+                  {t("hero.desc")}
                 </motion.p>
 
                 <motion.div
@@ -379,7 +365,7 @@ export default function Products() {
                     className="inline-flex items-center justify-center gap-2 bg-light text-brown px-8 py-4 rounded-full font-semibold text-sm tracking-wide hover:bg-white transition-colors"
                   >
                     <Phone size={15} />
-                    Free Consultation
+                    {t("hero.cta1")}
                   </motion.a>
                   <motion.a
                     href="#treatments"
@@ -387,7 +373,7 @@ export default function Products() {
                     whileTap={{ scale: 0.97 }}
                     className="inline-flex items-center justify-center gap-2 border border-brown/30 text-brown px-8 py-4 rounded-full font-semibold text-sm tracking-wide transition-colors"
                   >
-                    View Treatments <ChevronRight size={15} />
+                    {t("hero.cta2")} <ChevronRight size={15} />
                   </motion.a>
                 </motion.div>
               </div>
@@ -399,15 +385,9 @@ export default function Products() {
               >
                 <div className="bg-linear-to-br from-wine/10 to-rose/10 backdrop-blur-md rounded-3xl border border-light/15 p-7 space-y-5">
                   <p className="text-wine text-xs uppercase tracking-widest">
-                    Why GLP-1 Therapy?
+                    {t("hero.whyTitle")}
                   </p>
-                  {[
-                    "Clinically proven weight loss",
-                    "Reduces appetite naturally",
-                    "Improves metabolic health",
-                    "Doctor-supervised programme",
-                    "Discreet & confidential care",
-                  ].map((point, i) => (
+                  {whyPoints.map((point, i) => (
                     <motion.div
                       key={i}
                       initial={{ x: 20, opacity: 0 }}
@@ -447,9 +427,9 @@ export default function Products() {
                         </div>
                       </div>
                       <p className="text-cream/70 text-xs leading-tight">
-                        50,000+ patients
+                        {t("hero.patients")}
                         <br />
-                        <span className="text-rose">trust Nexus Clinic</span>
+                        <span className="text-rose">{t("hero.trustNexus")}</span>
                       </p>
                     </div>
                   </div>
@@ -500,26 +480,22 @@ export default function Products() {
               variants={fadeInUp}
               className="text-taupe text-xs tracking-[0.3em] uppercase mb-6"
             >
-              The Nexus Difference
+              {t("intro.badge")}
             </motion.p>
             <motion.h2
               variants={fadeInUp}
               className="font-georgia text-4xl sm:text-5xl text-brown leading-tight mb-6"
             >
-              More than a prescription —<br />
+              {t("intro.title1")}<br />
               <span className="italic text-wine">
-                a complete transformation.
+                {t("intro.title2")}
               </span>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-taupe leading-relaxed max-w-2xl mx-auto"
             >
-              At Nexus Clinic, every weight loss journey is individually
-              designed. Our specialist physicians assess your unique physiology,
-              lifestyle and goals before recommending the optimal GLP-1 protocol
-              — ensuring you lose weight safely, effectively and for the long
-              term.
+              {t("intro.desc")}
             </motion.p>
           </motion.div>
         </section>
@@ -538,13 +514,13 @@ export default function Products() {
                 variants={fadeInUp}
                 className="text-taupe text-xs tracking-[0.3em] uppercase mb-4"
               >
-                GLP-1 Weight Loss Medications
+                {t("treatments.badge")}
               </motion.p>
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl text-brown"
               >
-                Choose Your Treatment
+                {t("treatments.title")}
               </motion.h2>
             </motion.div>
 
@@ -557,8 +533,8 @@ export default function Products() {
               viewport={{ once: true, margin: "-60px" }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
             >
-              {treatments.map((t) => (
-                <TreatmentCard key={t.id} t={t} />
+              {treatments.map((item) => (
+                <TreatmentCard key={item.id} t={item} bodyWeight={t("treatments.bodyWeight")} learnMore={t("treatments.learnMore")} />
               ))}
             </motion.div>
           </div>
@@ -566,7 +542,6 @@ export default function Products() {
 
         {/* ── HOW IT WORKS ──────────────────────────────────────────────────── */}
         <section className="py-28 px-6 bg-brown relative overflow-hidden">
-          {/* Decorative ring */}
           <div className="absolute -left-40 top-1/2 -translate-y-1/2 w-80 h-80 rounded-full border border-wine/20 pointer-events-none" />
           <div className="absolute -left-24 top-1/2 -translate-y-1/2 w-48 h-48 rounded-full border border-wine/10 pointer-events-none" />
 
@@ -582,13 +557,13 @@ export default function Products() {
                 variants={fadeInUp}
                 className="text-taupe text-xs tracking-[0.3em] uppercase mb-4"
               >
-                Simple · Personalised · Effective
+                {t("howItWorks.badge")}
               </motion.p>
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl text-light"
               >
-                Your Journey, Step by Step
+                {t("howItWorks.title")}
               </motion.h2>
             </motion.div>
 
@@ -605,7 +580,6 @@ export default function Products() {
                   variants={fadeInUp}
                   className="relative flex flex-col gap-4"
                 >
-                  {/* Connector line */}
                   {i < steps.length - 1 && (
                     <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-linear-to-r from-wine/40 to-transparent z-0" />
                   )}
@@ -636,13 +610,13 @@ export default function Products() {
                 variants={fadeInUp}
                 className="text-taupe text-xs tracking-[0.3em] uppercase mb-4"
               >
-                Common Questions
+                {t("faq.badge")}
               </motion.p>
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl text-brown"
               >
-                Frequently Asked
+                {t("faq.title")}
               </motion.h2>
             </motion.div>
 
@@ -673,7 +647,6 @@ export default function Products() {
               background: "linear-linear(135deg,brown0%,wine100%)",
             }}
           >
-            {/* Decorative ring */}
             <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full border border-light/10" />
             <div className="absolute -right-8 -top-8 w-40 h-40 rounded-full border border-light/08" />
 
@@ -682,22 +655,21 @@ export default function Products() {
                 variants={fadeInUp}
                 className="text-taupe text-xs tracking-[0.3em] uppercase"
               >
-                Begin Today
+                {t("cta.badge")}
               </motion.p>
               <motion.h2
                 variants={fadeInUp}
                 className="font-georgia text-4xl sm:text-5xl text-light leading-tight"
               >
-                Ready to start your
+                {t("cta.title1")}
                 <br />
-                <span className="italic text-rose">transformation?</span>
+                <span className="italic text-rose">{t("cta.title2")}</span>
               </motion.h2>
               <motion.p
                 variants={fadeInUp}
                 className="text-cream/70 max-w-md leading-relaxed"
               >
-                Claim your complimentary RM 100 voucher and chat with one of our
-                specialist doctors today. No obligation, just clarity.
+                {t("cta.desc")}
               </motion.p>
               <motion.div
                 variants={fadeInUp}
@@ -710,23 +682,22 @@ export default function Products() {
                   className="inline-flex items-center gap-2 bg-light text-brown px-9 py-4 rounded-full font-semibold text-sm tracking-wide hover:bg-white transition-colors"
                 >
                   <Phone size={15} />
-                  Claim RM 100 Voucher
+                  {t("cta.button")}
                 </motion.a>
               </motion.div>
 
-              {/* Location & hours pills */}
               <motion.div
                 variants={fadeInUp}
                 className="flex flex-wrap justify-center gap-4 text-cream/60 text-xs"
               >
                 <span className="flex items-center gap-1.5">
-                  <MapPin size={12} /> LG 10, Wisma UOA II, Jalan Pinang, KL
+                  <MapPin size={12} /> {t("cta.address")}
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Clock size={12} /> Mon–Sat · 9:00am – 6:00pm
+                  <Clock size={12} /> {t("cta.hours")}
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Phone size={12} /> 016-702 5699
+                  <Phone size={12} /> {t("cta.phone")}
                 </span>
               </motion.div>
             </div>

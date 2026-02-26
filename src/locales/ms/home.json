@@ -14,7 +14,20 @@
     "stat2Value": "50+",
     "stat2Label1": "Pakar Kecantikan",
     "stat2Label2": "Profesional",
+    "customersVisited": "Pelanggan Melawat Kami",
     "scroll": "TATAL"
+  },
+  "beforeAfter": {
+    "badge": "Hasil Sebenar",
+    "title1": "Sebelum &",
+    "title2": "Selepas",
+    "desc": "Leret untuk melihat transformasi luar biasa yang dicapai oleh pelanggan kami dengan rawatan GLP-1",
+    "before": "Sebelum",
+    "after": "Selepas",
+    "dragToCompare": "Seret untuk membandingkan",
+    "failedToLoad": "Gagal memuatkan imej",
+    "disclaimer": "Keputusan mungkin berbeza. Hasil individu bergantung pada pelbagai faktor.",
+    "cta": "Mulakan Transformasi Anda"
   },
   "services": {
     "subtitle": "Kepakaran Kami",

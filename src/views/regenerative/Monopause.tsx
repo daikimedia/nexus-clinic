@@ -27,8 +27,102 @@ import {
   fadeInUp,
 } from "../../lib/animations";
 import FAQ from "../../components/FAQ";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
-const MonopauseLanding = () => {
+const MonopauseLanding = ({ locale = fallbackLng }: { locale?: string }) => {
+  const { t } = useTranslation(locale, "menopause");
+
+  const faqs = [
+    { q: t("faq.q1"), a: t("faq.a1") },
+    { q: t("faq.q2"), a: t("faq.a2") },
+    { q: t("faq.q3"), a: t("faq.a3") },
+    { q: t("faq.q4"), a: t("faq.a4") },
+    { q: t("faq.q5"), a: t("faq.a5") },
+    { q: t("faq.q6"), a: t("faq.a6") },
+    { q: t("faq.q7"), a: t("faq.a7") },
+    { q: t("faq.q8"), a: t("faq.a8") },
+    { q: t("faq.q9"), a: t("faq.a9") },
+    { q: t("faq.q10"), a: t("faq.a10") },
+    { q: t("faq.q11"), a: t("faq.a11") },
+    { q: t("faq.q12"), a: t("faq.a12") },
+  ];
+
+  const trustItems = [
+    { icon: MapPin, text: t("hero.trust1") },
+    { icon: FileText, text: t("hero.trust2") },
+    { icon: Shield, text: t("hero.trust3") },
+  ];
+
+  const symptoms = [
+    { icon: Thermometer, title: t("symptoms.s1Title"), desc: t("symptoms.s1Desc") },
+    { icon: Moon, title: t("symptoms.s2Title"), desc: t("symptoms.s2Desc") },
+    { icon: Droplets, title: t("symptoms.s3Title"), desc: t("symptoms.s3Desc") },
+    { icon: Bone, title: t("symptoms.s4Title"), desc: t("symptoms.s4Desc") },
+  ];
+
+  const methods = [
+    t("types.m1"),
+    t("types.m2"),
+    t("types.m3"),
+    t("types.m4"),
+  ];
+
+  const consultSteps = [
+    { num: t("consultation.s1Num"), title: t("consultation.s1Title"), desc: t("consultation.s1Desc") },
+    { num: t("consultation.s2Num"), title: t("consultation.s2Title"), desc: t("consultation.s2Desc") },
+    { num: t("consultation.s3Num"), title: t("consultation.s3Title"), desc: t("consultation.s3Desc") },
+    { num: t("consultation.s4Num"), title: t("consultation.s4Title"), desc: t("consultation.s4Desc") },
+  ];
+
+  const goodCandidateItems = [
+    t("candidate.g1"),
+    t("candidate.g2"),
+    t("candidate.g3"),
+  ];
+
+  const cautionItems = [
+    t("candidate.c1"),
+    t("candidate.c2"),
+    t("candidate.c3"),
+    t("candidate.c4"),
+  ];
+
+  const riskCards = [
+    { title: t("risks.r1Title"), desc: t("risks.r1Desc") },
+    { title: t("risks.r2Title"), desc: t("risks.r2Desc") },
+    { title: t("risks.r3Title"), desc: t("risks.r3Desc") },
+  ];
+
+  const hrtBenefits = [
+    t("comparison.h1"),
+    t("comparison.h2"),
+    t("comparison.h3"),
+  ];
+
+  const nonHrtBenefits = [
+    t("comparison.nh1"),
+    t("comparison.nh2"),
+    t("comparison.nh3"),
+    t("comparison.nh4"),
+  ];
+
+  const costFactors = [
+    t("cost.c1"),
+    t("cost.c2"),
+    t("cost.c3"),
+    t("cost.c4"),
+    t("cost.c5"),
+    t("cost.c6"),
+  ];
+
+  const nexusStandout = [
+    t("competitor.n1"),
+    t("competitor.n2"),
+    t("competitor.n3"),
+    t("competitor.n4"),
+  ];
+
   return (
     <>
       <main className="bg-light font-['Inter'] overflow-hidden">
@@ -55,23 +149,19 @@ const MonopauseLanding = () => {
                 <div className="inline-flex items-center gap-2 bg-wine/10 backdrop-blur-sm px-4 py-2 rounded-full">
                   <Heart className="w-4 h-4 text-wine" />
                   <span className="text-sm text-brown">
-                    Nexus Clinic Kuala Lumpur
+                    {t("hero.badge")}
                   </span>
                 </div>
 
                 <h1 className="font-['Georgia'] text-5xl lg:text-6xl text-brown leading-tight">
-                  Menopause should not steal your sleep,
+                  {t("hero.title1")}
                   <span className="text-wine block mt-2">
-                    your confidence, or your comfort.
+                    {t("hero.title2")}
                   </span>
                 </h1>
 
                 <p className="text-lg text-taupe leading-relaxed bg-white/50 backdrop-blur-sm p-6 rounded-2xl">
-                  Hot flushes, night sweats, mood swings, and vaginal dryness
-                  can make you feel like you're not in control of your own body.
-                  At Nexus Clinic Kuala Lumpur, we help you understand your
-                  symptoms, your options, and what "safe, personalised HRT"
-                  actually looks like.
+                  {t("hero.desc")}
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -80,7 +170,7 @@ const MonopauseLanding = () => {
                     whileTap={{ scale: 0.98 }}
                     className="bg-wine text-white px-8 py-4 rounded-full font-medium flex items-center justify-center gap-2 hover:bg-rose transition-colors shadow-lg hover:shadow-xl"
                   >
-                    Schedule a Private Consultation
+                    {t("hero.cta1")}
                     <ArrowRight className="w-5 h-5" />
                   </motion.button>
 
@@ -90,7 +180,7 @@ const MonopauseLanding = () => {
                     className="border-2 border-wine text-brown px-8 py-4 rounded-full font-medium flex items-center justify-center gap-2 hover:bg-wine hover:text-white transition-colors bg-white/50 backdrop-blur-sm"
                   >
                     <Phone className="w-5 h-5" />
-                    +6016 702 5699
+                    {t("hero.cta2")}
                   </motion.button>
                 </div>
               </motion.div>
@@ -102,24 +192,20 @@ const MonopauseLanding = () => {
                     <div className="flex items-center gap-4 pb-4 border-b border-cream">
                       <MapPin className="w-5 h-5 text-wine" />
                       <span className="text-brown">
-                        LG 10, Lower Ground Floor, Wisma UOA II, Jalan Pinang,
-                        50450 Kuala Lumpur
+                        {t("hero.address")}
                       </span>
                     </div>
 
                     <div className="grid gap-4">
-                      <TrustItem
-                        icon={MapPin}
-                        text="Central Kuala Lumpur location for discreet visits"
-                      />
-                      <TrustItem
-                        icon={FileText}
-                        text="Step by step decision making based on your symptoms, health history, and comfort level"
-                      />
-                      <TrustItem
-                        icon={Shield}
-                        text="Evidence-based care: major menopause guidance consistently states hormone therapy is the most effective treatment"
-                      />
+                      {trustItems.map((item, idx) => {
+                        const Icon = item.icon;
+                        return (
+                          <motion.div key={idx} whileHover={{ x: 5 }} className="flex items-start gap-3">
+                            <Icon className="w-5 h-5 text-wine mt-1 shrink-0" />
+                            <span className="text-sm text-brown">{item.text}</span>
+                          </motion.div>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -139,21 +225,16 @@ const MonopauseLanding = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <motion.div variants={fadeInLeft}>
                 <h2 className="font-['Georgia'] text-4xl text-brown mb-6">
-                  What is menopause and perimenopause{" "}
-                  <span className="text-wine">(in real life)</span>
+                  {t("understanding.title")}{" "}
+                  <span className="text-wine">{t("understanding.titleSpan")}</span>
                 </h2>
 
                 <div className="space-y-6">
                   <p className="text-lg text-brown leading-relaxed">
-                    Menopause is officially diagnosed after 12 months without a
-                    period, and many women go through a transition phase called
-                    perimenopause before that. During perimenopause, hormones
-                    can swing. That is why symptoms can feel random.
+                    {t("understanding.p1")}
                   </p>
                   <p className="text-taupe">
-                    Hospitals in Malaysia commonly explain that menopause often
-                    happens between about 45 and 55, but it can occur earlier or
-                    later.
+                    {t("understanding.p2")}
                   </p>
                 </div>
               </motion.div>
@@ -166,9 +247,9 @@ const MonopauseLanding = () => {
                   className="rounded-3xl shadow-2xl w-full h-100 object-cover"
                 />
                 <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl">
-                  <p className="text-wine font-medium">45-55 years</p>
+                  <p className="text-wine font-medium">{t("understanding.ageRange")}</p>
                   <p className="text-sm text-taupe">
-                    Typical menopause age range
+                    {t("understanding.ageLabel")}
                   </p>
                 </div>
               </motion.div>
@@ -191,12 +272,12 @@ const MonopauseLanding = () => {
               <div className="inline-flex items-center justify-center gap-2 bg-rose/10 px-6 py-3 rounded-full mb-8">
                 <Sparkles className="w-5 h-5 text-rose" />
                 <span className="text-brown font-medium">
-                  First, a simple clarification
+                  {t("hrtMht.badge")}
                 </span>
               </div>
 
               <h2 className="font-['Georgia'] text-4xl text-brown mb-8">
-                HRT vs MHT
+                {t("hrtMht.title")}
               </h2>
 
               <div className="grid md:grid-cols-2 gap-8 text-left">
@@ -208,9 +289,9 @@ const MonopauseLanding = () => {
                     <Pill className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-['Georgia'] text-2xl text-brown mb-2">
-                    HRT
+                    {t("hrtMht.hrtTitle")}
                   </h3>
-                  <p className="text-taupe">Hormone Replacement Therapy</p>
+                  <p className="text-taupe">{t("hrtMht.hrtDesc")}</p>
                 </motion.div>
 
                 <motion.div
@@ -221,19 +302,14 @@ const MonopauseLanding = () => {
                     <Activity className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="font-['Georgia'] text-2xl text-brown mb-2">
-                    MHT
+                    {t("hrtMht.mhtTitle")}
                   </h3>
-                  <p className="text-taupe">Menopause Hormone Therapy</p>
+                  <p className="text-taupe">{t("hrtMht.mhtDesc")}</p>
                 </motion.div>
               </div>
 
               <p className="mt-8 text-brown bg-white p-6 rounded-2xl shadow-lg">
-                They usually mean the same idea: replacing hormones (mainly
-                oestrogen, and sometimes progestogen) to reduce menopause
-                symptoms and protect long term health when appropriate. Pantai
-                KL describes Menopause Hormone Therapy as oestrogen therapy in
-                different forms, and notes women with an intact uterus need
-                additional progestogen therapy.
+                {t("hrtMht.explanation")}
               </p>
             </motion.div>
           </div>
@@ -252,39 +328,35 @@ const MonopauseLanding = () => {
               className="text-center max-w-2xl mx-auto mb-16"
             >
               <h2 className="font-['Georgia'] text-4xl text-brown mb-4">
-                Symptoms that make women search
+                {t("symptoms.title")}
               </h2>
               <p className="text-xl text-wine font-medium">
-                "menopause HRT Kuala Lumpur"
+                {t("symptoms.subtitle")}
               </p>
               <p className="text-taupe mt-4">
-                If you are reading this and thinking "that's me," you're not
-                alone.
+                {t("symptoms.note")}
               </p>
             </motion.div>
 
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
               <div className="grid md:grid-cols-2 gap-6">
-                <SymptomCard
-                  icon={Thermometer}
-                  title="Hot flushes and night sweats"
-                  description="This is the number one reason women start HRT. The North American Menopause Society notes hormone therapy remains the most effective treatment."
-                />
-                <SymptomCard
-                  icon={Moon}
-                  title="Sleep disturbance"
-                  description="Waking up exhausted, mood changes, anxiety, irritability"
-                />
-                <SymptomCard
-                  icon={Droplets}
-                  title="Vaginal dryness"
-                  description="Pain during intimacy, urinary symptoms like urgency or leakage. Many women suffer quietly here."
-                />
-                <SymptomCard
-                  icon={Bone}
-                  title="Bone loss prevention"
-                  description="Menopause hormone therapy can help prevent bone loss and reduce fracture risk in appropriate women."
-                />
+                {symptoms.map((symptom, idx) => {
+                  const Icon = symptom.icon;
+                  return (
+                    <motion.div
+                      key={idx}
+                      variants={scaleIn}
+                      whileHover={{ y: -5 }}
+                      className="bg-cream p-6 rounded-2xl hover:shadow-xl transition-all h-full"
+                    >
+                      <div className="bg-wine w-12 h-12 rounded-xl flex items-center justify-center mb-4">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="font-['Georgia'] text-xl text-brown mb-2">{symptom.title}</h3>
+                      <p className="text-taupe text-sm">{symptom.desc}</p>
+                    </motion.div>
+                  );
+                })}
               </div>
 
               <motion.div variants={fadeInRight} className="relative">
@@ -294,8 +366,8 @@ const MonopauseLanding = () => {
                   className="rounded-3xl shadow-2xl w-full h-125 object-cover"
                 />
                 <div className="absolute -bottom-6 -right-6 bg-wine text-white p-6 rounded-2xl shadow-xl">
-                  <p className="text-3xl font-bold">80%</p>
-                  <p className="text-sm">experience hot flushes</p>
+                  <p className="text-3xl font-bold">{t("symptoms.stat")}</p>
+                  <p className="text-sm">{t("symptoms.statLabel")}</p>
                 </div>
               </motion.div>
             </div>
@@ -304,8 +376,7 @@ const MonopauseLanding = () => {
               variants={fadeInUp}
               className="text-center mt-8 text-taupe bg-cream p-4 rounded-2xl"
             >
-              Pantai's HRT page lists these exact types of symptoms as reasons
-              women consider HRT.
+              {t("symptoms.pantaiNote")}
             </motion.p>
           </div>
         </motion.section>
@@ -321,28 +392,25 @@ const MonopauseLanding = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
               <motion.div variants={fadeInLeft}>
                 <h2 className="font-['Georgia'] text-4xl text-brown mb-8">
-                  Types of Menopause HRT in Malaysia
+                  {t("types.title")}
                 </h2>
 
                 <div className="space-y-6">
                   <div className="bg-white p-6 rounded-2xl shadow-lg">
                     <h3 className="font-['Georgia'] text-xl text-wine mb-2">
-                      Oestrogen-only HRT
+                      {t("types.oestrogenTitle")}
                     </h3>
                     <p className="text-taupe">
-                      Usually used if you have had a hysterectomy (uterus
-                      removed). Gleneagles notes oestrogen-only HRT is typically
-                      recommended for women who have had their uterus removed.
+                      {t("types.oestrogenDesc")}
                     </p>
                   </div>
 
                   <div className="bg-white p-6 rounded-2xl shadow-lg">
                     <h3 className="font-['Georgia'] text-xl text-rose mb-2">
-                      Combined HRT (Oestrogen + Progestogen)
+                      {t("types.combinedTitle")}
                     </h3>
                     <p className="text-taupe">
-                      Used if you still have a uterus. Pantai KL explains women
-                      with an intact uterus need additional progestogen therapy.
+                      {t("types.combinedDesc")}
                     </p>
                   </div>
                 </div>
@@ -360,16 +428,11 @@ const MonopauseLanding = () => {
             {/* Administration Methods */}
             <motion.div variants={fadeInUp} className="mt-16">
               <h3 className="font-['Georgia'] text-2xl text-brown mb-8 text-center">
-                Ways to take HRT (and why this matters)
+                {t("types.methodsTitle")}
               </h3>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-                {[
-                  "Tablets",
-                  "Patches",
-                  "Gels, creams, sprays",
-                  "Vaginal preparations",
-                ].map((method, idx) => (
+                {methods.map((method, idx) => (
                   <motion.div
                     key={idx}
                     whileHover={{ y: -5 }}
@@ -381,8 +444,7 @@ const MonopauseLanding = () => {
               </div>
 
               <p className="text-center mt-6 text-taupe">
-                Pantai KL lists multiple oestrogen forms such as tablets, gels,
-                creams, or sprays.
+                {t("types.methodsNote")}
               </p>
 
               <motion.div
@@ -390,12 +452,8 @@ const MonopauseLanding = () => {
                 className="mt-8 bg-wine/5 p-6 rounded-2xl border-l-4 border-wine max-w-3xl mx-auto"
               >
                 <p className="text-brown">
-                  <span className="font-bold">A key safety point:</span> The
-                  Menopause Society Australia summary of NAMS 2022 highlights
-                  that transdermal routes and lower doses may decrease risk of
-                  venous thromboembolism and stroke. In plain words: for many
-                  women, a patch or gel may be a safer fit than a tablet,
-                  depending on health history.
+                  <span className="font-bold">{t("types.safetyPoint")}</span>{" "}
+                  {t("types.safetyDesc")}
                 </p>
               </motion.div>
             </motion.div>
@@ -413,34 +471,28 @@ const MonopauseLanding = () => {
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
               <motion.div variants={fadeInLeft}>
                 <h2 className="font-['Georgia'] text-4xl text-brown mb-6">
-                  What happens at a Menopause HRT consultation
+                  {t("consultation.title")}
                 </h2>
                 <p className="text-xl text-wine mb-8">
-                  A good clinic does not start with a prescription. It starts
-                  with clarity.
+                  {t("consultation.subtitle")}
                 </p>
 
                 <div className="space-y-4">
-                  <ConsultationStep
-                    number="01"
-                    title="Symptom mapping"
-                    description="We talk about what you feel, when it started, what triggers it, and what you have tried."
-                  />
-                  <ConsultationStep
-                    number="02"
-                    title="Health and risk screening"
-                    description="Your history matters: breast cancer family history, clot risk, blood pressure, migraines, smoking, and your uterus status."
-                  />
-                  <ConsultationStep
-                    number="03"
-                    title="Choosing your best-fit plan"
-                    description="Non-hormonal first steps, local vaginal therapy, systemic HRT, route choice based on risk profile."
-                  />
-                  <ConsultationStep
-                    number="04"
-                    title="Follow-up"
-                    description="HRT should be reviewed regularly. Personalisation and periodic re-evaluation are core themes."
-                  />
+                  {consultSteps.map((step, idx) => (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ x: 10 }}
+                      className="flex items-start gap-4 bg-cream p-4 rounded-2xl"
+                    >
+                      <div className="bg-wine w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shrink-0">
+                        {step.num}
+                      </div>
+                      <div>
+                        <h3 className="font-['Georgia'] text-lg text-brown mb-1">{step.title}</h3>
+                        <p className="text-taupe text-sm">{step.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
 
@@ -452,7 +504,7 @@ const MonopauseLanding = () => {
                 />
                 <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl">
                   <Stethoscope className="w-8 h-8 text-wine mb-2" />
-                  <p className="text-sm text-brown">Personalized care</p>
+                  <p className="text-sm text-brown">{t("consultation.personalizedCare")}</p>
                 </div>
               </motion.div>
             </div>
@@ -473,19 +525,13 @@ const MonopauseLanding = () => {
                 className="bg-white p-8 rounded-3xl shadow-xl"
               >
                 <h2 className="font-['Georgia'] text-3xl text-brown mb-6">
-                  Who is a good candidate for Menopause HRT?
+                  {t("candidate.goodTitle")}
                 </h2>
                 <p className="text-taupe mb-6">
-                  Guidance consistently supports a favourable benefit-risk ratio
-                  for healthy symptomatic women under 60, or within about 10
-                  years of menopause onset, assuming no contraindications.
+                  {t("candidate.goodDesc")}
                 </p>
                 <ul className="space-y-4">
-                  {[
-                    "Symptoms are affecting daily life (sleep, work, relationships)",
-                    "You understand the benefits and risks",
-                    "You are ready for follow-up reviews and monitoring",
-                  ].map((item, idx) => (
+                  {goodCandidateItems.map((item, idx) => (
                     <motion.li
                       key={idx}
                       whileHover={{ x: 5 }}
@@ -503,26 +549,17 @@ const MonopauseLanding = () => {
                 className="bg-white p-8 rounded-3xl shadow-xl"
               >
                 <h2 className="font-['Georgia'] text-3xl text-brown mb-6">
-                  Who should avoid HRT?
+                  {t("candidate.avoidTitle")}
                 </h2>
                 <p className="text-taupe mb-6">
-                  NHS guidance notes HRT can slightly increase breast cancer
-                  risk and is usually avoided in women who have had breast
-                  cancer. Pantai's cancer risk article also notes HRT may not be
-                  recommended for women with a history of breast cancer, blood
-                  clots, or certain cardiovascular conditions.
+                  {t("candidate.avoidDesc")}
                 </p>
                 <div className="bg-cream p-6 rounded-2xl">
                   <p className="font-medium text-brown mb-4">
-                    Other situations needing careful review:
+                    {t("candidate.cautionTitle")}
                   </p>
                   <ul className="space-y-3">
-                    {[
-                      "Prior blood clots",
-                      "Stroke or severe cardiovascular disease history",
-                      "Certain liver conditions",
-                      "Unexplained vaginal bleeding",
-                    ].map((item, idx) => (
+                    {cautionItems.map((item, idx) => (
                       <motion.li
                         key={idx}
                         whileHover={{ x: 5 }}
@@ -551,31 +588,27 @@ const MonopauseLanding = () => {
               variants={fadeInUp}
               className="font-['Georgia'] text-4xl text-brown mb-4 text-center"
             >
-              Side effects and risks, explained without fear
+              {t("risks.title")}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-center text-taupe mb-12 max-w-2xl mx-auto"
             >
-              Most women tolerate HRT well, but you deserve honest expectations.
+              {t("risks.subtitle")}
             </motion.p>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              <RiskCard
-                title="Common side effects (usually settle)"
-                description="Breast tenderness, mild bloating, headaches, spotting or bleeding in early months"
-                bgColor="bg-cream"
-              />
-              <RiskCard
-                title="Breast cancer risk"
-                description="NHS explains combined HRT can slightly increase breast cancer risk, with risk rising with longer duration and falling after stopping. Breast Cancer Now also notes vaginal HRT with low-dose oestrogen does not increase breast cancer risk."
-                bgColor="bg-cream"
-              />
-              <RiskCard
-                title="Blood clots and stroke"
-                description="Risk depends on your baseline risk factors and the HRT route. Transdermal routes may reduce VTE and stroke risk compared with oral, according to NAMS 2022 summaries."
-                bgColor="bg-cream"
-              />
+              {riskCards.map((card, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={scaleIn}
+                  whileHover={{ y: -5 }}
+                  className="bg-cream p-6 rounded-2xl shadow-lg"
+                >
+                  <h3 className="font-['Georgia'] text-lg text-brown mb-3">{card.title}</h3>
+                  <p className="text-taupe text-sm">{card.desc}</p>
+                </motion.div>
+              ))}
             </div>
 
             {/* FDA Update */}
@@ -584,16 +617,10 @@ const MonopauseLanding = () => {
               className="mt-12 max-w-3xl mx-auto bg-linear-to-r from-wine to-rose p-8 rounded-3xl shadow-xl text-white"
             >
               <h3 className="font-['Georgia'] text-2xl mb-4">
-                A very recent update you might have seen online
+                {t("risks.fdaTitle")}
               </h3>
               <p className="text-white/90 leading-relaxed">
-                In November 2025, the FDA announced it removed the long-standing
-                boxed warning from many hormone-based menopause medicines in the
-                US, arguing newer evidence supports more personalised risk
-                discussions. This change is still debated by experts. This does
-                not automatically change Malaysian practice, but it shows the
-                global conversation has moved toward "right patient, right
-                timing, right route" rather than fear-based avoidance.
+                {t("risks.fdaDesc")}
               </p>
             </motion.div>
           </div>
@@ -608,7 +635,7 @@ const MonopauseLanding = () => {
         >
           <div className="container mx-auto px-4 md:px-8">
             <h2 className="font-['Georgia'] text-4xl text-brown mb-12 text-center">
-              HRT vs non-hormonal treatments
+              {t("comparison.title")}
             </h2>
 
             <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
@@ -617,15 +644,18 @@ const MonopauseLanding = () => {
                 className="bg-white p-8 rounded-3xl shadow-xl"
               >
                 <h3 className="font-['Georgia'] text-2xl text-wine mb-4">
-                  Hormone Therapy
+                  {t("comparison.hrtTitle")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  Most effective treatment for vasomotor symptoms and GSM
+                  {t("comparison.hrtDesc")}
                 </p>
                 <div className="space-y-3">
-                  <BenefitItem text="Hot flushes and night sweats" />
-                  <BenefitItem text="Vaginal dryness and intimacy pain" />
-                  <BenefitItem text="Bone loss prevention" />
+                  {hrtBenefits.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-wine" />
+                      <span className="text-sm text-brown">{item}</span>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
 
@@ -634,19 +664,18 @@ const MonopauseLanding = () => {
                 className="bg-white p-8 rounded-3xl shadow-xl"
               >
                 <h3 className="font-['Georgia'] text-2xl text-rose mb-4">
-                  Non-hormonal options
+                  {t("comparison.nonHrtTitle")}
                 </h3>
                 <p className="text-taupe mb-4">
-                  The Asia-Pacific Menopause Federation consensus notes
-                  non-hormonal options like SSRIs, SNRIs, clonidine, and
-                  gabapentin can help symptoms, but they are generally less
-                  effective than MHT.
+                  {t("comparison.nonHrtDesc")}
                 </p>
                 <div className="space-y-3">
-                  <BenefitItem text="Cooler sleep environment" />
-                  <BenefitItem text="Limiting alcohol and spicy foods" />
-                  <BenefitItem text="Strength training for bone and mood" />
-                  <BenefitItem text="Stress support and counselling" />
+                  {nonHrtBenefits.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-wine" />
+                      <span className="text-sm text-brown">{item}</span>
+                    </div>
+                  ))}
                 </div>
               </motion.div>
             </div>
@@ -665,14 +694,14 @@ const MonopauseLanding = () => {
               variants={fadeInUp}
               className="font-['Georgia'] text-4xl text-brown mb-8 text-center"
             >
-              Cost of Menopause HRT in Malaysia
+              {t("cost.title")}
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-taupe text-center mb-8"
             >
-              There is no single "HRT price" because the cost depends on:
+              {t("cost.subtitle")}
             </motion.p>
 
             <motion.div
@@ -680,14 +709,7 @@ const MonopauseLanding = () => {
               className="bg-cream p-8 rounded-3xl"
             >
               <div className="grid md:grid-cols-2 gap-6">
-                {[
-                  "Consultation fees",
-                  "Blood tests if needed",
-                  "Type of HRT (patch vs pill vs gel)",
-                  "Follow-up frequency",
-                  "Additional care for vaginal symptoms",
-                  "Bone health or metabolic issues",
-                ].map((item, idx) => (
+                {costFactors.map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-wine" />
                     <span className="text-brown">{item}</span>
@@ -696,9 +718,8 @@ const MonopauseLanding = () => {
               </div>
 
               <p className="mt-6 text-brown border-t border-taupe/20 pt-6">
-                <span className="font-bold">Practical tip:</span> ask for an
-                itemised plan (consult + tests + monthly medication + follow-up
-                review). That is the fairest way to compare clinics.
+                <span className="font-bold">{t("cost.tipLabel")}</span>{" "}
+                {t("cost.tipDesc")}
               </p>
             </motion.div>
           </div>
@@ -716,15 +737,14 @@ const MonopauseLanding = () => {
               variants={fadeInUp}
               className="font-['Georgia'] text-4xl text-brown mb-4 text-center"
             >
-              Menopause HRT in Malaysia
+              {t("competitor.title")}
             </motion.h2>
 
             <motion.p
               variants={fadeInUp}
               className="text-center text-taupe mb-12"
             >
-              When people search "menopause HRT Malaysia" or "menopause hormone
-              therapy Kuala Lumpur"
+              {t("competitor.subtitle")}
             </motion.p>
 
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -734,11 +754,10 @@ const MonopauseLanding = () => {
                 className="bg-white p-6 rounded-2xl shadow-lg"
               >
                 <h3 className="font-['Georgia'] text-xl text-wine mb-3">
-                  Pantai Hospitals
+                  {t("competitor.comp1Title")}
                 </h3>
                 <p className="text-sm text-taupe">
-                  Strong educational content. Clear description of MHT, need for
-                  progestogen if uterus intact, and bone benefits.
+                  {t("competitor.comp1Desc")}
                 </p>
               </motion.div>
 
@@ -748,11 +767,10 @@ const MonopauseLanding = () => {
                 className="bg-white p-6 rounded-2xl shadow-lg"
               >
                 <h3 className="font-['Georgia'] text-xl text-wine mb-3">
-                  Gleneagles Malaysia
+                  {t("competitor.comp2Title")}
                 </h3>
                 <p className="text-sm text-taupe">
-                  Clear structure, explains oestrogen-only vs combined, and
-                  offers easy-to-read FAQs.
+                  {t("competitor.comp2Desc")}
                 </p>
               </motion.div>
 
@@ -762,11 +780,10 @@ const MonopauseLanding = () => {
                 className="bg-white p-6 rounded-2xl shadow-lg"
               >
                 <h3 className="font-['Georgia'] text-xl text-wine mb-3">
-                  Premium & Anti-aging Clinics
+                  {t("competitor.comp3Title")}
                 </h3>
                 <p className="text-sm text-taupe">
-                  Market BHRT as personalised hormone optimisation with varying
-                  price ranges.
+                  {t("competitor.comp3Desc")}
                 </p>
               </motion.div>
             </div>
@@ -776,15 +793,10 @@ const MonopauseLanding = () => {
               className="mt-12 bg-wine text-white p-8 rounded-3xl"
             >
               <h3 className="font-['Georgia'] text-2xl mb-4">
-                How Nexus Clinic Kuala Lumpur stands out
+                {t("competitor.nexusTitle")}
               </h3>
               <ul className="grid md:grid-cols-2 gap-4">
-                {[
-                  "Make the 'right route' decision simple (patch vs pill and why)",
-                  "Give clear 'who should not take HRT' guidance in plain language",
-                  "Add practical lifestyle tips that match KL life",
-                  "Provide a structured follow-up plan, not just a one-time prescription",
-                ].map((item, idx) => (
+                {nexusStandout.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2">
                     <CheckCircle2 className="w-5 h-5 text-white shrink-0 mt-1" />
                     <span>{item}</span>
@@ -820,15 +832,13 @@ const MonopauseLanding = () => {
               variants={fadeInUp}
               className="font-['Georgia'] text-4xl text-white mb-6"
             >
-              Ready to take control of your menopause journey?
+              {t("cta.title")}
             </motion.h2>
             <motion.p
               variants={fadeInUp}
               className="text-white/90 mb-8 max-w-2xl mx-auto text-lg"
             >
-              If you're searching for menopause hormone replacement therapy in
-              Kuala Lumpur or menopause HRT in Malaysia, start with a private
-              consult and a plan that feels safe, clear, and realistic.
+              {t("cta.desc")}
             </motion.p>
 
             <motion.div
@@ -837,10 +847,10 @@ const MonopauseLanding = () => {
             >
               <button className="bg-white text-wine px-8 py-4 rounded-full font-medium hover:shadow-xl transition-all flex items-center justify-center gap-2 text-lg">
                 <Phone className="w-5 h-5" />
-                +6016 702 5699
+                {t("cta.phone")}
               </button>
               <button className="border-2 border-white text-white px-8 py-4 rounded-full font-medium hover:bg-white hover:text-wine transition-all text-lg">
-                Book Your Consultation
+                {t("cta.button")}
               </button>
             </motion.div>
 
@@ -849,8 +859,7 @@ const MonopauseLanding = () => {
               className="text-white/80 mt-8 flex items-center justify-center gap-2"
             >
               <MapPin className="w-5 h-5" />
-              Nexus Clinic Kuala Lumpur • LG 10, Lower Ground Floor, Wisma UOA
-              II, Jalan Pinang, 50450 Kuala Lumpur
+              {t("cta.address")}
             </motion.p>
           </div>
         </motion.section>
@@ -858,111 +867,5 @@ const MonopauseLanding = () => {
     </>
   );
 };
-
-const TrustItem = ({ icon: Icon, text }: any) => (
-  <motion.div whileHover={{ x: 5 }} className="flex items-start gap-3">
-    <Icon className="w-5 h-5 text-wine mt-1 shrink-0" />
-    <span className="text-sm text-brown">{text}</span>
-  </motion.div>
-);
-
-const SymptomCard = ({ icon: Icon, title, description }: any) => (
-  <motion.div
-    variants={scaleIn}
-    whileHover={{ y: -5 }}
-    className="bg-cream p-6 rounded-2xl hover:shadow-xl transition-all h-full"
-  >
-    <div className="bg-wine w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-      <Icon className="w-6 h-6 text-white" />
-    </div>
-    <h3 className="font-['Georgia'] text-xl text-brown mb-2">{title}</h3>
-    <p className="text-taupe text-sm">{description}</p>
-  </motion.div>
-);
-
-const RiskCard = ({ title, description, bgColor }: any) => (
-  <motion.div
-    variants={scaleIn}
-    whileHover={{ y: -5 }}
-    className={`${bgColor} p-6 rounded-2xl shadow-lg`}
-  >
-    <h3 className="font-['Georgia'] text-lg text-brown mb-3">{title}</h3>
-    <p className="text-taupe text-sm">{description}</p>
-  </motion.div>
-);
-
-const ConsultationStep = ({ number, title, description }: any) => (
-  <motion.div
-    whileHover={{ x: 10 }}
-    className="flex items-start gap-4 bg-cream p-4 rounded-2xl"
-  >
-    <div className="bg-wine w-10 h-10 rounded-full flex items-center justify-center text-white font-bold shrink-0">
-      {number}
-    </div>
-    <div>
-      <h3 className="font-['Georgia'] text-lg text-brown mb-1">{title}</h3>
-      <p className="text-taupe text-sm">{description}</p>
-    </div>
-  </motion.div>
-);
-
-const BenefitItem = ({ text }: { text: string }) => (
-  <div className="flex items-center gap-2">
-    <CheckCircle2 className="w-4 h-4 text-wine" />
-    <span className="text-sm text-brown">{text}</span>
-  </div>
-);
-
-// FAQ Data
-const faqs = [
-  {
-    q: "Is menopause HRT safe?",
-    a: "For many healthy women under 60 or within about 10 years of menopause onset, the benefit-risk profile is favourable when there are no contraindications and therapy is reviewed regularly.",
-  },
-  {
-    q: "What symptoms does HRT help the most?",
-    a: "HRT is the most effective treatment for hot flushes and night sweats, and it is also highly effective for vaginal and urinary menopause symptoms (GSM).",
-  },
-  {
-    q: "Do I need progesterone with oestrogen?",
-    a: "If you still have a uterus, yes, you usually need a progestogen to protect the womb lining. Pantai KL states women with an intact uterus need additional progestogen therapy.",
-  },
-  {
-    q: "What is the safest type of HRT?",
-    a: "There is no single safest option for everyone. Route and dose matter. Summaries of NAMS 2022 state transdermal routes and lower doses may reduce clot and stroke risk.",
-  },
-  {
-    q: "Will HRT cause weight gain?",
-    a: "Weight change often happens around menopause due to hormonal shifts and ageing. Many women feel better on HRT because sleep improves and activity becomes easier, but HRT is not a weight loss drug.",
-  },
-  {
-    q: "How quickly does HRT start working?",
-    a: "Some women feel improvements within days to a couple of weeks, especially for hot flushes and sleep, though it varies. Pantai's HRT cancer risk FAQ notes symptom improvement can be seen within several days to a couple of weeks for some women.",
-  },
-  {
-    q: "Does HRT increase breast cancer risk?",
-    a: "Combined HRT slightly increases breast cancer risk, and risk increases with longer use. Risk generally falls again after stopping.",
-  },
-  {
-    q: "Can I use vaginal oestrogen if I cannot take systemic HRT?",
-    a: "Many guidance sources note low-dose vaginal oestrogen is treated differently from systemic HRT, and Breast Cancer Now states vaginal HRT does not increase breast cancer risk in the general population. Always confirm with your doctor for your personal history.",
-  },
-  {
-    q: "What if I cannot take HRT?",
-    a: "Non-hormonal options such as SSRIs, SNRIs, clonidine, and gabapentin may help, though they are generally less effective than MHT.",
-  },
-  {
-    q: "How long can I stay on HRT?",
-    a: "Duration is personalised. Major position statements emphasise shared decision making and periodic review to reassess benefits and risks.",
-  },
-  {
-    q: "Do I need blood tests to start HRT?",
-    a: "Not always for menopause diagnosis, but clinicians may order tests based on symptoms and risk factors. Many providers in Malaysia combine clinical evaluation with appropriate screening.",
-  },
-  {
-    q: "Where can I get menopause HRT in Kuala Lumpur?",
-    a: "Menopause care is offered by hospitals and clinics in Malaysia. If you want a central KL option, Nexus Clinic Kuala Lumpur is listed at Wisma UOA II, Jalan Pinang, with a published contact number.",
-  },
-];
 
 export default MonopauseLanding;

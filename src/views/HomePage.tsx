@@ -19,6 +19,8 @@ import {
   Scan,
 } from "lucide-react";
 import SectionBeforeAfter from "../components/BeforeAfterCustomize";
+import { useTranslation } from "@/src/i18n/client";
+import { fallbackLng } from "@/src/i18n/settings";
 
 const GlassCard = ({
   children,
@@ -40,7 +42,7 @@ const GlassCard = ({
   </motion.div>
 );
 
-const HeroSection = () => {
+const HeroSection = ({ t }: { t: (key: string) => string }) => {
   const [count, setCount] = useState(23456);
 
   useEffect(() => {
@@ -92,7 +94,7 @@ const HeroSection = () => {
                 transition={{ delay: 0.3 }}
                 className="md:inline-block hidden text-6xl lg:text-8xl mb-4 opacity-20 font-georgia text-wine"
               >
-                "
+                &ldquo;
               </motion.span>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 font-georgia text-brown">
@@ -108,9 +110,9 @@ const HeroSection = () => {
                     transition={{ delay: 0.3 }}
                     className="inline-block md:hidden text-6xl lg:text-8xl mb-4 opacity-20 font-georgia text-wine"
                   >
-                    "
+                    &ldquo;
                   </motion.span>
-                  Redefine Your
+                  {t("hero.heading1")}
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, y: 30 }}
@@ -118,7 +120,7 @@ const HeroSection = () => {
                   transition={{ delay: 0.4, duration: 0.8 }}
                   className="block text-wine"
                 >
-                  Natural Beauty
+                  {t("hero.heading2")}
                 </motion.span>
               </h1>
 
@@ -128,8 +130,7 @@ const HeroSection = () => {
                 transition={{ delay: 0.6, duration: 0.8 }}
                 className="text-base lg:text-lg mb-10 max-w-md mx-auto lg:mx-0 text-taupe leading-relaxed"
               >
-                We specialize in enhancing your natural beauty, creating
-                timeless radiance with a harmony of science & artistry.
+                {t("hero.description")}
               </motion.p>
 
               {/* CTA Buttons */}
@@ -147,7 +148,7 @@ const HeroSection = () => {
                   whileTap={{ scale: 0.98 }}
                   className=" px-4 py-2 lg:px-8 lg:py-4 rounded-full text-white text-sm tracking-wider flex items-center gap-3 bg-brown hover:bg-wine transition-colors"
                 >
-                  Arrange Schedule
+                  {t("hero.cta1")}
                 </motion.button>
 
                 <motion.button
@@ -158,7 +159,7 @@ const HeroSection = () => {
                   <span className="w-12 h-12 rounded-full border-2 border-brown flex items-center justify-center hover:bg-brown hover:text-white transition-colors">
                     <Play size={16} className="fill-current" />
                   </span>
-                  View Your Treatment
+                  {t("hero.cta2")}
                 </motion.button>
               </motion.div>
             </motion.div>
@@ -172,23 +173,23 @@ const HeroSection = () => {
             >
               <div className="text-center lg:text-left">
                 <span className="text-5xl lg:text-6xl font-light font-georgia text-brown">
-                  35
+                  {t("hero.stat1Value")}
                 </span>
                 <p className="text-sm mt-2 text-taupe">
-                  Traditional & Modern
+                  {t("hero.stat1Label1")}
                   <br />
-                  Beauty Treatments
+                  {t("hero.stat1Label2")}
                 </p>
               </div>
               <div className="w-px h-16 bg-taupe/30" />
               <div className="text-center lg:text-left">
                 <span className="text-5xl lg:text-6xl font-light font-georgia text-brown">
-                  50+
+                  {t("hero.stat2Value")}
                 </span>
                 <p className="text-sm mt-2 text-taupe">
-                  Professional Expert
+                  {t("hero.stat2Label1")}
                   <br />
-                  Beauticians
+                  {t("hero.stat2Label2")}
                 </p>
               </div>
             </motion.div>
@@ -230,7 +231,7 @@ const HeroSection = () => {
                       <Scan size={20} className="text-wine" />
                     </div>
                     <span className="text-sm font-medium pr-2 text-brown">
-                      Scan Your Face
+                      {t("hero.scanFace")}
                     </span>
                   </div>
                 </GlassCard>
@@ -250,10 +251,10 @@ const HeroSection = () => {
                       ))}
                     </div>
                     <span className="font-semibold text-brown">5.0</span>
-                    <span className="text-sm text-taupe">(500+ Reviews)</span>
+                    <span className="text-sm text-taupe">{t("testimonials.reviews")}</span>
                   </div>
                   <div className="text-sm text-taupe mt-2">
-                    {count.toLocaleString()}+ Customers Visited Us
+                    {count.toLocaleString()}+ {t("hero.customersVisited")}
                   </div>
                 </GlassCard>
 
@@ -264,7 +265,7 @@ const HeroSection = () => {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <span className="font-semibold text-brown">
-                      Natural Skin Treatment
+                      {t("hero.skinTreatment")}
                     </span>
                     <ChevronRight size={18} className="text-taupe" />
                   </div>
@@ -294,7 +295,7 @@ const HeroSection = () => {
                     whileHover={{ scale: 1.02 }}
                     className="w-full py-2 rounded-full text-sm border border-taupe text-brown text-center hover:bg-brown hover:text-white hover:border-brown transition-colors"
                   >
-                    View Recommendations
+                    {t("hero.viewRecommendations")}
                   </motion.button>
                 </GlassCard>
               </motion.div>
@@ -310,7 +311,7 @@ const HeroSection = () => {
         transition={{ delay: 2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs tracking-widest text-taupe">SCROLL</span>
+        <span className="text-xs tracking-widest text-taupe">{t("hero.scroll")}</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
@@ -327,33 +328,33 @@ const HeroSection = () => {
   );
 };
 
-const ServicesSection = () => {
+const ServicesSection = ({ t }: { t: (key: string) => string }) => {
   const services = [
     {
-      title: "Facial Rejuvenation",
-      subtitle: "Anti-Aging & Contouring",
-      description: "Botox, fillers, and advanced lifting treatments",
+      title: t("services.items.facial.title"),
+      subtitle: t("services.items.facial.subtitle"),
+      description: t("services.items.facial.description"),
       image: "/images/treatment/facial.png",
       span: "lg:col-span-2 lg:row-span-2",
     },
     {
-      title: "Medical Weight Loss",
-      subtitle: "Science-Based Programs",
-      description: "Ozempic, Mounjaro & body contouring",
+      title: t("services.items.weightLoss.title"),
+      subtitle: t("services.items.weightLoss.subtitle"),
+      description: t("services.items.weightLoss.description"),
       image: "/images/treatment/weight-loss.png?w=400&auto=format&fit=crop",
       span: "",
     },
     {
-      title: "Skin Treatments",
-      subtitle: "Acne & Pigmentation",
-      description: "Laser therapy & chemical peels",
+      title: t("services.items.skin.title"),
+      subtitle: t("services.items.skin.subtitle"),
+      description: t("services.items.skin.description"),
       image: "/images/treatment/face-scan.png?w=400&auto=format&fit=crop",
       span: "",
     },
     {
-      title: "Hair Restoration",
-      subtitle: "PRP & Mesotherapy",
-      description: "Advanced hair loss solutions",
+      title: t("services.items.hair.title"),
+      subtitle: t("services.items.hair.subtitle"),
+      description: t("services.items.hair.description"),
       image:
         "/images/treatment/hair-restoration.png?w=600&auto=format&fit=crop",
       span: "lg:col-span-2",
@@ -373,16 +374,15 @@ const ServicesSection = () => {
         >
           <div>
             <span className="text-sm tracking-widest uppercase mb-4 block text-wine">
-              Our Expertise
+              {t("services.subtitle")}
             </span>
             <h2 className="text-3xl lg:text-5xl font-georgia text-brown">
-              Specialized <br className="hidden lg:block" />
-              <span className="text-wine">Treatments</span>
+              {t("services.title")} <br className="hidden lg:block" />
+              <span className="text-wine">{t("services.titleHighlight")}</span>
             </h2>
           </div>
           <p className="max-w-md mt-6 lg:mt-0 text-taupe">
-            Discover our comprehensive range of medical aesthetic services, each
-            tailored to your unique needs.
+            {t("services.description")}
           </p>
         </motion.div>
 
@@ -431,7 +431,7 @@ const ServicesSection = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   className="flex items-center gap-2 text-white text-sm group-hover:gap-4 transition-all"
                 >
-                  <span>Explore</span>
+                  <span>{t("services.explore")}</span>
                   <ArrowRight size={16} />
                 </motion.div>
               </div>
@@ -443,27 +443,27 @@ const ServicesSection = () => {
   );
 };
 
-const WhyChooseSection = () => {
+const WhyChooseSection = ({ t }: { t: (key: string) => string }) => {
   const features = [
     {
       icon: Shield,
-      title: "MOH Registered",
-      desc: "Fully compliant with medical standards",
+      title: t("whyChoose.features.moh.title"),
+      desc: t("whyChoose.features.moh.desc"),
     },
     {
       icon: Award,
-      title: "Doctor-Led Care",
-      desc: "Licensed medical professionals",
+      title: t("whyChoose.features.doctor.title"),
+      desc: t("whyChoose.features.doctor.desc"),
     },
     {
       icon: Heart,
-      title: "Personalized Plans",
-      desc: "Tailored to your unique needs",
+      title: t("whyChoose.features.personalized.title"),
+      desc: t("whyChoose.features.personalized.desc"),
     },
     {
       icon: Sparkles,
-      title: "Premium Products",
-      desc: "FDA approved treatments",
+      title: t("whyChoose.features.premium.title"),
+      desc: t("whyChoose.features.premium.desc"),
     },
   ];
 
@@ -499,12 +499,12 @@ const WhyChooseSection = () => {
               >
                 <div className="text-center">
                   <span className="text-5xl font-light font-georgia text-wine">
-                    15+
+                    {t("whyChoose.yearsValue")}
                   </span>
                   <p className="text-sm mt-2 text-taupe">
-                    Years of
+                    {t("whyChoose.yearsLabel1")}
                     <br />
-                    Excellence
+                    {t("whyChoose.yearsLabel2")}
                   </p>
                 </div>
               </GlassCard>
@@ -526,15 +526,13 @@ const WhyChooseSection = () => {
             transition={{ duration: 0.8 }}
           >
             <span className="text-sm tracking-widest uppercase mb-4 block text-wine">
-              Why Nexus Clinic
+              {t("whyChoose.subtitle")}
             </span>
             <h2 className="text-3xl lg:text-5xl mb-6 font-georgia text-brown">
-              Where Science Meets <span className="text-wine">Artistry</span>
+              {t("whyChoose.title")} <span className="text-wine">{t("whyChoose.titleHighlight")}</span>
             </h2>
             <p className="text-lg mb-12 text-taupe leading-relaxed">
-              At Nexus Clinic, we believe in enhancing your natural beauty
-              through evidence-based treatments. Our doctor-led approach ensures
-              safety, efficacy, and results you'll love.
+              {t("whyChoose.description")}
             </p>
 
             {/* Feature Grid */}
@@ -564,26 +562,23 @@ const WhyChooseSection = () => {
   );
 };
 
-const TestimonialsSection = () => {
+const TestimonialsSection = ({ t }: { t: (key: string) => string }) => {
   const [current, setCurrent] = useState(0);
   const testimonials = [
     {
-      quote:
-        "Nexus Clinic transformed not just my appearance, but my confidence. The doctors truly listen and create personalized solutions.",
-      author: "Sarah Chen",
-      role: "Business Executive",
+      quote: t("testimonials.items.0.quote"),
+      author: t("testimonials.items.0.author"),
+      role: t("testimonials.items.0.role"),
     },
     {
-      quote:
-        "I was impressed by their transparent approach. They never push unnecessary treatments. A clinic you can truly trust.",
-      author: "Michael Tan",
-      role: "Entrepreneur",
+      quote: t("testimonials.items.1.quote"),
+      author: t("testimonials.items.1.author"),
+      role: t("testimonials.items.1.role"),
     },
     {
-      quote:
-        "The weight loss program changed my life. With proper medical guidance, I achieved my goals safely and sustainably.",
-      author: "Emily Wong",
-      role: "Creative Director",
+      quote: t("testimonials.items.2.quote"),
+      author: t("testimonials.items.2.author"),
+      role: t("testimonials.items.2.role"),
     },
   ];
 
@@ -601,10 +596,10 @@ const TestimonialsSection = () => {
           {/* Left - Content */}
           <div>
             <span className="text-sm tracking-widest uppercase mb-4 block text-wine">
-              Testimonials
+              {t("testimonials.subtitle")}
             </span>
             <h2 className="text-3xl lg:text-5xl mb-12 font-georgia text-brown">
-              What Our <span className="text-wine">Patients</span> Say
+              {t("testimonials.title")} <span className="text-wine">{t("testimonials.titleHighlight")}</span> {t("testimonials.titleEnd")}
             </h2>
 
             <AnimatePresence mode="wait">
@@ -617,7 +612,7 @@ const TestimonialsSection = () => {
               >
                 <Quote size={48} className="text-wine mb-6 opacity-30" />
                 <p className="text-xl lg:text-2xl mb-8 leading-relaxed font-georgia text-brown">
-                  "{testimonials[current].quote}"
+                  &ldquo;{testimonials[current].quote}&rdquo;
                 </p>
                 <div>
                   <p className="font-semibold text-brown">
@@ -672,7 +667,7 @@ const TestimonialsSection = () => {
                   ))}
                 </div>
                 <span className="font-semibold text-brown">5.0</span>
-                <span className="text-sm text-taupe">(500+ Reviews)</span>
+                <span className="text-sm text-taupe">{t("testimonials.reviews")}</span>
               </div>
             </GlassCard>
           </motion.div>
@@ -682,7 +677,7 @@ const TestimonialsSection = () => {
   );
 };
 
-const ContactSection = () => {
+const ContactSection = ({ t }: { t: (key: string) => string }) => {
   return (
     <section id="contact" className="py-24 lg:py-32 bg-brown">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -694,17 +689,17 @@ const ContactSection = () => {
             viewport={{ once: true }}
           >
             <span className="text-sm tracking-widest uppercase mb-4 block text-rose">
-              Get in Touch
+              {t("contact.subtitle")}
             </span>
             <h2 className="text-3xl lg:text-5xl text-white mb-8 font-georgia">
-              Visit <span className="text-rose">Nexus Clinic</span>
+              {t("contact.title")} <span className="text-rose">{t("contact.titleHighlight")}</span>
             </h2>
 
             <div className="space-y-6 mb-12">
               {[
-                { icon: MapPin, text: "LG 10, Wisma UOA II, Jalan Pinang, KL" },
-                { icon: Phone, text: "016-702 5699 / 03-2163 5699" },
-                { icon: Clock, text: "Mon - Sat: 9:00 AM - 6:00 PM" },
+                { icon: MapPin, text: t("contact.address") },
+                { icon: Phone, text: t("contact.phone") },
+                { icon: Clock, text: t("contact.hours") },
               ].map((item, i) => (
                 <motion.div
                   key={i}
@@ -746,37 +741,37 @@ const ContactSection = () => {
           >
             <div className="bg-white rounded-3xl p-8 lg:p-10">
               <h3 className="text-2xl mb-8 font-georgia text-brown">
-                Book Your Consultation
+                {t("contact.formTitle")}
               </h3>
 
               <form className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <input
                     type="text"
-                    placeholder="Your Name"
+                    placeholder={t("contact.placeholderName")}
                     className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine transition-colors text-brown placeholder:text-taupe"
                   />
                   <input
                     type="email"
-                    placeholder="Email Address"
+                    placeholder={t("contact.placeholderEmail")}
                     className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine transition-colors text-brown placeholder:text-taupe"
                   />
                 </div>
                 <input
                   type="tel"
-                  placeholder="Phone Number"
+                  placeholder={t("contact.placeholderPhone")}
                   className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine transition-colors text-brown placeholder:text-taupe"
                 />
                 <select className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine transition-colors text-taupe">
-                  <option>Select Treatment Interest</option>
-                  <option>Facial & Anti-Aging</option>
-                  <option>Weight Loss Program</option>
-                  <option>Skin Treatments</option>
-                  <option>Hair Restoration</option>
+                  <option>{t("contact.selectTreatment")}</option>
+                  <option>{t("contact.optionFacial")}</option>
+                  <option>{t("contact.optionWeightLoss")}</option>
+                  <option>{t("contact.optionSkin")}</option>
+                  <option>{t("contact.optionHair")}</option>
                 </select>
                 <textarea
                   rows={4}
-                  placeholder="Your Message"
+                  placeholder={t("contact.placeholderMessage")}
                   className="w-full px-5 py-4 rounded-xl border border-cream bg-cream focus:outline-none focus:border-wine resize-none transition-colors text-brown placeholder:text-taupe"
                 />
                 <motion.button
@@ -785,7 +780,7 @@ const ContactSection = () => {
                   whileTap={{ scale: 0.98 }}
                   className="w-full py-4 rounded-xl text-white font-medium tracking-wide bg-wine hover:bg-rose transition-colors"
                 >
-                  Submit Enquiry
+                  {t("contact.submitButton")}
                 </motion.button>
               </form>
             </div>
@@ -796,7 +791,8 @@ const ContactSection = () => {
   );
 };
 
-export default function HomePageNexus({ locale }: { locale?: string }) {
+export default function HomePageNexus({ locale = fallbackLng }: { locale?: string }) {
+  const { t } = useTranslation(locale, "home");
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
@@ -840,12 +836,12 @@ export default function HomePageNexus({ locale }: { locale?: string }) {
   ];
   return (
     <div className="min-h-screen overflow-hidden bg-cream font-inter">
-      <HeroSection />
-      <SectionBeforeAfter transformations={transformations} />
-      <ServicesSection />
-      <WhyChooseSection />
-      <TestimonialsSection />
-      <ContactSection />
+      <HeroSection t={t} />
+      <SectionBeforeAfter transformations={transformations} t={t} />
+      <ServicesSection t={t} />
+      <WhyChooseSection t={t} />
+      <TestimonialsSection t={t} />
+      <ContactSection t={t} />
 
       <motion.a
         href="https://wa.me/60167025699"

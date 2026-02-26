@@ -14,7 +14,20 @@
     "stat2Value": "50+",
     "stat2Label1": "Professional Expert",
     "stat2Label2": "Beauticians",
+    "customersVisited": "Customers Visited Us",
     "scroll": "SCROLL"
+  },
+  "beforeAfter": {
+    "badge": "Real Results",
+    "title1": "Before &",
+    "title2": "After",
+    "desc": "Slide to see the incredible transformations achieved by our clients with GLP-1 treatment",
+    "before": "Before",
+    "after": "After",
+    "dragToCompare": "Drag to compare",
+    "failedToLoad": "Failed to load images",
+    "disclaimer": "Results may vary. Individual results depend on various factors.",
+    "cta": "Start Your Transformation"
   },
   "services": {
     "subtitle": "Our Expertise",
