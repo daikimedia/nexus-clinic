@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "../lib/animations";
 import { ChevronDown } from "lucide-react";

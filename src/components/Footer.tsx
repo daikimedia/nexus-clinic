@@ -1,6 +1,8 @@
+"use client";
+
 import { motion } from "framer-motion";
 
-export const Footer = () => {
+export const Footer = ({ locale }: { locale?: string }) => {
   return (
     <footer className="bg-light">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16">

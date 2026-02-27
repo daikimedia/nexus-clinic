@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "weightLoss": "إنقاص الوزن",
+    "aestheticTreatments": "العلاجات التجميلية",
+    "products": "المنتجات",
+    "blogs": "المدونة",
+    "bookNow": "احجز الآن",
+    "bookConsultation": "احجز استشارتك",
+    "selectLanguage": "اختر اللغة"
+  },
+  "footer": {
+    "description": "عيادة متقدمة للتجميل وإنقاص الوزن الطبي في كوالالمبور. حيث يلتقي العلم بالفن من أجل جمالك الطبيعي.",
+    "quickLinks": "روابط سريعة",
+    "aboutUs": "من نحن",
+    "services": "الخدمات",
+    "treatments": "العلاجات",
+    "blog": "المدونة",
+    "contact": "اتصل بنا",
+    "contactTitle": "اتصل بنا",
+    "address": "Wisma UOA II, KL",
+    "phone": "016-702 5699",
+    "email": "info@nexusclinic.com",
+    "copyright": "© 2026 Nexus Clinic. جميع الحقوق محفوظة.",
+    "privacyPolicy": "سياسة الخصوصية",
+    "termsOfUse": "شروط الاستخدام"
+  },
+  "common": {
+    "learnMore": "اعرف المزيد",
+    "getStarted": "ابدأ الآن",
+    "contactUs": "اتصل بنا",
+    "readMore": "اقرأ المزيد",
+    "startTransformation": "ابدأ تحولك",
+    "loading": "جار التحميل..."
+  }
+}

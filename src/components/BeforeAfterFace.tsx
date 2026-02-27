@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, GripVertical, ImageOff, MoveHorizontal } from "lucide-react";

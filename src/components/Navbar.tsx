@@ -1,4 +1,7 @@
+"use client";
+
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -108,11 +111,11 @@ const navItems = [
 ];
 
 const languages = [
-  { code: "EN", label: "English", flag: "🇺🇸", href: "/en/" },
-  { code: "ID", label: "Indonesia", flag: "🇮🇩", href: "/id/" },
-  { code: "MS", label: "Melayu", flag: "🇲🇾", href: "/ms/" },
-  { code: "ZH", label: "中文", flag: "🇨🇳", href: "/zh/" },
-  { code: "AR", label: "العربية", flag: "🇸🇦", href: "/ar/" },
+  { code: "EN", label: "English", flag: "🇺🇸" },
+  { code: "ID", label: "Indonesia", flag: "🇮🇩" },
+  { code: "MS", label: "Melayu", flag: "🇲🇾" },
+  { code: "ZH", label: "中文", flag: "🇨🇳" },
+  { code: "AR", label: "العربية", flag: "🇸🇦" },
 ];
 
 const categoryLabels: Record<string, string> = {
@@ -164,7 +167,13 @@ const highlightMatch = (text: string, query: string) => {
 };
 
 // ── Desktop Search Box
-const DesktopSearchBox = ({ isScrolled }: { isScrolled: boolean }) => {
+const DesktopSearchBox = ({
+  isScrolled,
+  locale,
+}: {
+  isScrolled: boolean;
+  locale?: string;
+}) => {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -206,7 +215,9 @@ const DesktopSearchBox = ({ isScrolled }: { isScrolled: boolean }) => {
   }, []);
 
   const handleSelect = (href: string) => {
-    window.location.href = href;
+    const localizedHref =
+      locale && locale !== "en" ? `/${locale}${href}` : href;
+    window.location.href = localizedHref;
     setQuery("");
     setDebouncedQuery("");
     setIsOpen(false);
@@ -306,9 +317,11 @@ const DesktopSearchBox = ({ isScrolled }: { isScrolled: boolean }) => {
 const MobileInlineSearch = ({
   onClose,
   isScrolled,
+  locale,
 }: {
   onClose: () => void;
   isScrolled: boolean;
+  locale?: string;
 }) => {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -358,7 +371,9 @@ const MobileInlineSearch = ({
   }, []);
 
   const handleSelect = (href: string) => {
-    window.location.href = href;
+    const localizedHref =
+      locale && locale !== "en" ? `/${locale}${href}` : href;
+    window.location.href = localizedHref;
   };
 
   const handleClearOrClose = () => {
@@ -445,7 +460,7 @@ const MobileInlineSearch = ({
 };
 
 // ── Main Navbar ──────────
-const Navbar = () => {
+const Navbar = ({ locale }: { locale?: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -455,6 +470,31 @@ const Navbar = () => {
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const [isActive, setIsActive] = useState(false);
+
+  const pathname = usePathname() ?? "/";
+
+  // Build locale-aware href for language switcher (preserves current page path)
+  const getLocaleHref = (langCode: string) => {
+    // Strip any existing locale prefix from pathname
+    const localePrefix = /^\/(en|id|ar|ms|zh)(\/|$)/;
+    const match = pathname.match(localePrefix);
+    const basePath = match ? pathname.replace(localePrefix, "/") : pathname;
+    const cleanPath = basePath === "" ? "/" : basePath;
+
+    // English is the default language (no prefix needed)
+    if (langCode === "en") {
+      return cleanPath;
+    }
+
+    // Other languages get locale prefix
+    return cleanPath === "/" ? `/${langCode}` : `/${langCode}${cleanPath}`;
+  };
+
+  // Build locale-aware href for nav links
+  const getNavHref = (path: string) => {
+    if (!locale || locale === "en") return path;
+    return `/${locale}${path}`;
+  };
 
   useEffect(() => {
     const checkTime = () => {
@@ -577,7 +617,7 @@ const Navbar = () => {
             <AnimatePresence>
               {!isMobileSearchOpen && (
                 <motion.a
-                  href="/"
+                  href={getNavHref("/")}
                   whileTap={{ scale: 0.98 }}
                   initial={{ opacity: 1 }}
                   animate={{ opacity: 1 }}
@@ -606,7 +646,7 @@ const Navbar = () => {
                   onMouseLeave={handleMouseLeave}
                 >
                   <a
-                    href={item.submenu ? undefined : item.href}
+                    href={item.submenu ? undefined : getNavHref(item.href)}
                     className={`group flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-inter font-medium transition-all duration-300 cursor-pointer ${
                       isScrolled
                         ? activeDropdown === item.label
@@ -649,7 +689,7 @@ const Navbar = () => {
                         onMouseLeave={handleMouseLeave}
                       >
                         <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-light rotate-45 rounded-sm shadow-lg" />
-                        <div className="relative bg-light md:w-5xl rounded-2xl shadow-2xl shadow-brown/10 border border-cream overflow-hidden">
+                        <div className="relative bg-light rounded-2xl shadow-2xl shadow-brown/10 border border-cream overflow-hidden">
                           <div className="p-6">
                             <div
                               className={`grid gap-8 ${
@@ -672,9 +712,9 @@ const Navbar = () => {
                                         (subItem, idx) => (
                                           <li key={idx}>
                                             <motion.a
-                                              href={toSlug(subItem)}
+                                              href={getNavHref(toSlug(subItem))}
                                               whileHover={{ x: 4 }}
-                                              className="group/item flex items-center gap-2 text-taupe hover:text-wine text-sm py-1.5 md:w-52 transition-all duration-200"
+                                              className="group/item flex items-center gap-2 text-taupe hover:text-wine text-sm py-1.5 transition-all duration-200"
                                             >
                                               <span className="w-1.5 h-1.5 rounded-full bg-taupe/30 group-hover/item:bg-wine group-hover/item:scale-125 transition-all duration-200" />
                                               <span>{subItem}</span>
@@ -690,7 +730,7 @@ const Navbar = () => {
                           </div>
                           <div className="bg-linear-to-r from-cream to-cream/50 px-6 py-4 border-t border-rose/10">
                             <a
-                              href="/contact-us"
+                              href={getNavHref("/contact-us")}
                               className="flex items-center justify-between group"
                             >
                               <div className="flex items-center gap-3">
@@ -724,7 +764,7 @@ const Navbar = () => {
 
               {/* Desktop Search */}
               <div className="ml-2">
-                <DesktopSearchBox isScrolled={isScrolled} />
+                <DesktopSearchBox isScrolled={isScrolled} locale={locale} />
               </div>
 
               {/* Language Selector */}
@@ -769,7 +809,7 @@ const Navbar = () => {
                         {languages.map((lang, idx) => (
                           <motion.a
                             key={lang.code}
-                            href={lang.href}
+                            href={getLocaleHref(lang.code.toLowerCase())}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: idx * 0.03 }}
@@ -795,7 +835,7 @@ const Navbar = () => {
 
               {/* CTA */}
               <motion.a
-                href="/contact-us"
+                href={getNavHref("/contact-us")}
                 whileHover={{
                   scale: 1.03,
                   boxShadow: "0 8px 30px rgba(140, 79, 88, 0.3)",
@@ -825,6 +865,7 @@ const Navbar = () => {
                     <MobileInlineSearch
                       isScrolled={isScrolled}
                       onClose={closeMobileSearch}
+                      locale={locale}
                     />
                   </motion.div>
                 ) : (
@@ -972,7 +1013,9 @@ const Navbar = () => {
                                             (subItem, idx) => (
                                               <motion.a
                                                 key={idx}
-                                                href={toSlug(subItem)}
+                                                href={getNavHref(
+                                                  toSlug(subItem),
+                                                )}
                                                 initial={{ opacity: 0, x: -10 }}
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{
@@ -996,7 +1039,7 @@ const Navbar = () => {
                         </>
                       ) : (
                         <a
-                          href={item.href}
+                          href={getNavHref(item.href)}
                           className="flex items-center gap-3 text-brown hover:text-wine hover:bg-cream/50 py-3.5 px-4 rounded-xl font-inter font-medium transition-all duration-200"
                         >
                           {item.label}
@@ -1021,7 +1064,7 @@ const Navbar = () => {
                       {languages.map((lang, idx) => (
                         <motion.a
                           key={lang.code}
-                          href={lang.href}
+                          href={getLocaleHref(lang.code.toLowerCase())}
                           initial={{ opacity: 0, scale: 0.9 }}
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: 0.35 + idx * 0.03 }}
@@ -1043,7 +1086,7 @@ const Navbar = () => {
                     className="pt-6 space-y-3"
                   >
                     <a
-                      href="/contact-us"
+                      href={getNavHref("/contact-us")}
                       className="flex max-w-[93%] items-center justify-center gap-2 bg-wine text-light px-6 py-4 rounded-xl font-inter font-semibold text-center shadow-lg shadow-wine/20 hover:bg-wine/90 transition-all duration-200"
                     >
                       <Calendar size={18} />
