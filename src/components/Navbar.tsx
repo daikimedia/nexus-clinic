@@ -106,7 +106,6 @@ const navItems = [
     },
   },
   { label: "Products", href: "/products" },
-  { label: "Blogs", href: "/blogs" },
   // { label: "Cart", href: "/cart", icon: ShoppingCart },
 ];
 

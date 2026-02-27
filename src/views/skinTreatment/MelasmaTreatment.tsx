@@ -29,6 +29,7 @@ import {
 } from "../../lib/animations";
 import { useTranslation } from "@/src/i18n/client";
 import { fallbackLng } from "@/src/i18n/settings";
+import SectionBeforeAfter from "@/src/components/BeforeAfterCustomize";
 
 const MelasmaLanding = ({ locale = fallbackLng }: { locale?: string }) => {
   const { t } = useTranslation(locale, "melasmaTreatment");
@@ -180,6 +181,24 @@ const MelasmaLanding = ({ locale = fallbackLng }: { locale?: string }) => {
     },
   ];
 
+      const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-skin/B&A-melasma-treatment1.webp",
+      after: "/images/B&A-skin/B&A-melasma-treatment1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-skin/B&A-melasma-treatment2.webp",
+      after: "/images/B&A-skin/B&A-melasma-treatment2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-skin/B&A-melasma-treatment3.webp",
+      after: "/images/B&A-skin/B&A-melasma-treatment3.webp",
+    },
+  ];
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-light via-cream/50 to-light">
@@ -318,6 +337,16 @@ const MelasmaLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                       {t("understanding.title")}
                     </h2>
                   </div>
+
+                <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                 <img
+                   src="/images/skin/melasma-treament.webp"
+                   alt="Melasma Treatment"
+                   className="w-full h-auto"
+                 />
+                 <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+               </div>
+
 
                   <p className="text-lg text-taupe leading-relaxed">
                     {t("understanding.desc")}
@@ -599,6 +628,9 @@ const MelasmaLanding = ({ locale = fallbackLng }: { locale?: string }) => {
             </motion.div>
           </div>
         </section>
+        
+        {/* BEFORE & AFTER */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* Prevention Tips */}
         <section className="py-24 relative">
