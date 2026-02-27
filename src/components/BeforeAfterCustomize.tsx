@@ -294,7 +294,7 @@ const SectionBeforeAfter = ({
           >
             {t
               ? t("beforeAfter.desc")
-              : "Slide to see the incredible transformations achieved by our clients with GLP-1 treatment"}
+              : "Slide to see the incredible transformations achieved by our clients"}
           </motion.p>
         </motion.div>
 

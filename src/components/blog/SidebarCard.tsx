@@ -2,8 +2,7 @@ import { motion } from "framer-motion";
 import type { Post } from "../../types/blog";
 import { TagBadge } from "./TagBadge";
 import { fadeInRight } from "../../lib/animations";
-import { Link } from 'react-router-dom';
-
+import Link from "next/link";
 interface SidebarCardProps {
   post: Post;
 }
@@ -23,7 +22,7 @@ export function SidebarCard({ post }: SidebarCardProps) {
         borderColor: "rgba(172,153,144,0.2)",
       }}
     >
-      <Link to={`/blogs/${slug}`} className="flex gap-4 w-full"> 
+      <Link href={`/blogs/${slug}`} className="flex gap-4 w-full"> 
         <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden">
           <img
             src={post.image}

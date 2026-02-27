@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import {ChevronRight } from "lucide-react";
-import { Link } from 'react-router-dom'; // Make sure this is imported
 import type { Post } from "../../types/blog";
 import { TagBadge } from "./TagBadge";
 import { fadeInUp } from "../../lib/animations";
+import Link from "next/link";
 
 interface BlogCardProps {
   post: Post;
@@ -26,7 +26,7 @@ export function BlogCard({ post, index }: BlogCardProps) {
         borderColor: "rgba(172,153,144,0.2)",
       }}
     >
-      <Link to={`/blogs/${slug}`} className="flex flex-col h-full">
+      <Link href={`/blogs/${slug}`} className="flex flex-col h-full">
         {/* Rest of your component remains the same */}
         <div className="relative overflow-hidden h-48">
           <img

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Calendar, Clock } from "lucide-react";
-import { Link } from "react-router-dom";
 import type { Post } from "../../types/blog";
+import Link from "next/link";
 import { TagBadge } from "./TagBadge";
 import { scaleIn } from "../../lib/animations";
 
@@ -21,7 +21,7 @@ export function FeaturedCard({ post }: FeaturedCardProps) {
       className="group relative overflow-hidden rounded-3xl cursor-pointer"
       style={{ background: "var(--color-cream)" }}
     >
-      <Link to={`/blogs/${slug}`} className="block">
+      <Link href={`/blogs/${slug}`} className="block">
         <div className="relative overflow-hidden h-72 lg:h-80">
           <img
             src={post.image}

@@ -32,6 +32,7 @@ import {
 } from "../../lib/animations";
 import { useTranslation } from "@/src/i18n/client";
 import { fallbackLng } from "@/src/i18n/settings";
+import SectionBeforeAfter from "@/src/components/BeforeAfterCustomize";
 
 const AcneScarLanding = ({ locale = fallbackLng }: { locale?: string }) => {
   const { t } = useTranslation(locale, "acneScarTreatment");
@@ -233,6 +234,24 @@ const AcneScarLanding = ({ locale = fallbackLng }: { locale?: string }) => {
     t("whyNexus.point4"),
   ];
 
+    const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-skin/B&A-acne-scar-treatment1.webp",
+      after: "/images/B&A-skin/B&A-acne-scar-treatment1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-skin/B&A-acne-scar-treatment2.webp",
+      after: "/images/B&A-skin/B&A-acne-scar-treatment2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-skin/B&A-acne-scar-treatment3.webp",
+      after: "/images/B&A-skin/B&A-acne-scar-treatment3.webp",
+    },
+  ];
+
   return (
     <>
       <main className="min-h-screen bg-cream">
@@ -245,7 +264,7 @@ const AcneScarLanding = ({ locale = fallbackLng }: { locale?: string }) => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-taupe rounded-full blur-3xl opacity-20" />
           </div>
 
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4 relative z-10 my-8 lg:my-0">
             <motion.div
               variants={staggerContainer}
               initial="hidden"
@@ -265,7 +284,7 @@ const AcneScarLanding = ({ locale = fallbackLng }: { locale?: string }) => {
 
                 <motion.h1
                   variants={fadeInUp}
-                  className="font-georgia text-5xl lg:text-7xl text-brown leading-tight"
+                  className="font-georgia text-5xl lg:text-6xl text-brown leading-tight"
                 >
                   {t("hero.title1")}
                   <span className="text-wine block italic">{t("hero.title2")}</span>
@@ -300,7 +319,7 @@ const AcneScarLanding = ({ locale = fallbackLng }: { locale?: string }) => {
 
                 <motion.div
                   variants={fadeInUp}
-                  className="grid grid-cols-2 gap-6 pt-8"
+                  className="grid grid-cols-2 gap-6 -mt-24 lg:-mt-16"
                 >
                   {stats.map((stat, index) => (
                     <motion.div
@@ -329,6 +348,14 @@ const AcneScarLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                         {t("hero.honestNote")}
                       </span>
                     </div>
+                <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                 <img
+                   src="/images/skin/acne-scar-treatment.webp"
+                   alt="acne scar treatment"
+                   className="w-full h-full object-cover"
+                 />
+                 <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+               </div>
                     <p className="font-georgia text-brown text-xl italic">
                       {t("hero.honestQuote")}
                     </p>
@@ -489,6 +516,9 @@ const AcneScarLanding = ({ locale = fallbackLng }: { locale?: string }) => {
             </motion.div>
           </div>
         </section>
+
+        {/* Before & After */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* Who It's For */}
         <section className="py-24 bg-light">

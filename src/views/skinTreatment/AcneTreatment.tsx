@@ -26,6 +26,7 @@ import {
 import FAQ from "../../components/FAQ";
 import { useTranslation } from "@/src/i18n/client";
 import { fallbackLng } from "@/src/i18n/settings";
+import SectionBeforeAfter from "@/src/components/BeforeAfterCustomize";
 
 export default function AcneLandingPage({ locale = fallbackLng }: { locale?: string }) {
   const { t } = useTranslation(locale, "acneTreatment");
@@ -135,6 +136,25 @@ export default function AcneLandingPage({ locale = fallbackLng }: { locale?: str
     t("prosCons.con1"),
     t("prosCons.con2"),
     t("prosCons.con3"),
+  ];
+
+
+  const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-skin/B&A-acne-treatment1.webp",
+      after: "/images/B&A-skin/B&A-acne-treatment1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-skin/B&A-acne-treatment2.webp",
+      after: "/images/B&A-skin/B&A-acne-treatment2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-skin/B&A-acne-treatment3.webp",
+      after: "/images/B&A-skin/B&A-acne-treatment3.webp",
+    },
   ];
 
   return (
@@ -339,6 +359,14 @@ export default function AcneLandingPage({ locale = fallbackLng }: { locale?: str
                 </span>{" "}
                 {t("klReality.title2")}
               </h2>
+                <div className="relative rounded-3xl overflow-hidden shadow-xl mb-4">
+                 <img
+                   src="/images/skin/acne-treatment.webp"
+                   alt="acne-treatment"
+                   className="w-full h-auto"
+                 />
+                 <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+               </div>
               <p
                 className="leading-relaxed mb-4 text-sm md:text-base"
                 style={{
@@ -347,15 +375,6 @@ export default function AcneLandingPage({ locale = fallbackLng }: { locale?: str
                 }}
               >
                 {t("klReality.desc1")}
-              </p>
-              <p
-                className="leading-relaxed text-sm md:text-base"
-                style={{
-                  color: "var(--color-taupe)",
-                  fontFamily: "var(--font-inter)",
-                }}
-              >
-                {t("klReality.desc2")}
               </p>
             </motion.div>
 
@@ -402,6 +421,15 @@ export default function AcneLandingPage({ locale = fallbackLng }: { locale?: str
                   </span>
                 </motion.div>
               ))}
+              <p
+                className="leading-relaxed text-sm md:text-base italic"
+                style={{
+                  color: "var(--color-taupe)",
+                  fontFamily: "var(--font-inter)",
+                }}
+              >
+                "{t("klReality.desc2")}"
+              </p>
             </motion.div>
           </div>
         </section>
@@ -751,6 +779,9 @@ export default function AcneLandingPage({ locale = fallbackLng }: { locale?: str
             </motion.div>
           </div>
         </section>
+
+        {/* BEFORE & AFTER */}
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* WHAT TO EXPECT AT NEXUS */}
         <section

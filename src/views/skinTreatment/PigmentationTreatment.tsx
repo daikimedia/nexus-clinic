@@ -27,6 +27,7 @@ import {
 } from "../../lib/animations";
 import { useTranslation } from "@/src/i18n/client";
 import { fallbackLng } from "@/src/i18n/settings";
+import SectionBeforeAfter from "@/src/components/BeforeAfterCustomize";
 
 const PigmentationLanding = ({ locale = fallbackLng }: { locale?: string }) => {
   const { t } = useTranslation(locale, "pigmentationTreatment");
@@ -175,6 +176,24 @@ const PigmentationLanding = ({ locale = fallbackLng }: { locale?: string }) => {
     },
   ];
 
+    const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-skin/B&A-pigmentation-treatment1.webp",
+      after: "/images/B&A-skin/B&A-pigmentation-treatment1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-skin/B&A-pigmentation-treatment2.webp",
+      after: "/images/B&A-skin/B&A-pigmentation-treatment2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-skin/B&A-pigmentation-treatment3.webp",
+      after: "/images/B&A-skin/B&A-pigmentation-treatment3.webp",
+    },
+  ];
+
   return (
     <>
       <main className="w-full bg-light font-['Inter',sans-serif] overflow-hidden">
@@ -251,8 +270,8 @@ const PigmentationLanding = ({ locale = fallbackLng }: { locale?: string }) => {
               <motion.div variants={fadeInRight} className="relative">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                   <img
-                    src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80"
-                    alt="Nexus Clinic KL"
+                    src="/images/skin/pigmentation-treatment.webp"
+                    alt="pigmentation treatment"
                     className="w-full h-auto"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-brown/20 to-transparent" />
@@ -751,6 +770,9 @@ const PigmentationLanding = ({ locale = fallbackLng }: { locale?: string }) => {
             </motion.div>
           </div>
         </section>
+
+        {/* BEFORE AFTER */}
+        <SectionBeforeAfter transformations={transformations}/>
 
         {/* Results & Downtime */}
         <section className="relative py-24 bg-cream">
