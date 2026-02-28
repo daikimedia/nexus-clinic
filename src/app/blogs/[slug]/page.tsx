@@ -6,6 +6,11 @@ import { SingleBlogPost } from "@/src/components/blog/SingleBlogPost";
 import Link from "next/link";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import { ShareButton } from "@/src/components/blog/ShareButton"; 
+import { languages } from "@/src/i18n/settings";
+
+export async function generateStaticParams() {
+  return languages.map((locale: string) => ({ locale }));
+}
 
 // This must be at the top level, not inside any function
 export async function generateMetadata({ 
