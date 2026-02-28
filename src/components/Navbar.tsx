@@ -106,6 +106,7 @@ const navItems = [
     },
   },
   { label: "Products", href: "/products" },
+  { label: "Blogs", href: "/blogs" },
   // { label: "Cart", href: "/cart", icon: ShoppingCart },
 ];
 
@@ -471,6 +472,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
   const [isActive, setIsActive] = useState(false);
 
   const pathname = usePathname() ?? "/";
+  const isBlogsPage = pathname?.startsWith('/blogs');
 
   // Build locale-aware href for language switcher (preserves current page path)
   const getLocaleHref = (langCode: string) => {
@@ -766,71 +768,73 @@ const Navbar = ({ locale }: { locale?: string }) => {
                 <DesktopSearchBox isScrolled={isScrolled} locale={locale} />
               </div>
 
-              {/* Language Selector */}
-              <div className="relative ml-2">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setIsLangOpen(!isLangOpen)}
-                  className={`flex cursor-pointer items-center gap-2 px-3 py-2.5 rounded-full transition-all duration-300 ${
-                    isScrolled
-                      ? "text-brown hover:bg-cream"
-                      : "text-brown/90 hover:text-brown hover:bg-light/10"
-                  }`}
-                >
-                  <Globe size={16} />
-                  <span className="text-sm font-inter font-medium">EN</span>
-                  <ChevronDown size={12} />
-                </motion.button>
+              {/* Language Selector - Hidden on blog pages */}
+              {!isBlogsPage && (
+                <div className="relative ml-2">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setIsLangOpen(!isLangOpen)}
+                    className={`flex cursor-pointer items-center gap-2 px-3 py-2.5 rounded-full transition-all duration-300 ${
+                      isScrolled
+                        ? "text-brown hover:bg-cream"
+                        : "text-brown/90 hover:text-brown hover:bg-light/10"
+                    }`}
+                  >
+                    <Globe size={16} />
+                    <span className="text-sm font-inter font-medium">EN</span>
+                    <ChevronDown size={12} />
+                  </motion.button>
 
-                <AnimatePresence>
-                  {isLangOpen && (
-                    <>
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0"
-                        onClick={() => setIsLangOpen(false)}
-                      />
-                      <motion.div
-                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute top-full right-0 mt-3 bg-light rounded-xl shadow-xl shadow-brown/10 py-2 min-w-44 border border-cream overflow-hidden"
-                      >
-                        <div className="px-3 pb-2 mb-2 border-b border-cream">
-                          <p className="text-taupe text-xs font-inter">
-                            Select Language
-                          </p>
-                        </div>
-                        {languages.map((lang, idx) => (
-                          <motion.a
-                            key={lang.code}
-                            href={getLocaleHref(lang.code.toLowerCase())}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: idx * 0.03 }}
-                            whileHover={{ backgroundColor: "#F3EFEE" }}
-                            className="flex items-center gap-3 px-4 py-2.5 text-brown hover:text-wine transition-colors"
-                          >
-                            <span className="text-lg">{lang.flag}</span>
-                            <div>
-                              <span className="text-sm font-inter font-medium block">
-                                {lang.code}
-                              </span>
-                              <span className="text-xs text-taupe">
-                                {lang.label}
-                              </span>
-                            </div>
-                          </motion.a>
-                        ))}
-                      </motion.div>
-                    </>
-                  )}
-                </AnimatePresence>
-              </div>
+                  <AnimatePresence>
+                    {isLangOpen && (
+                      <>
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="fixed inset-0"
+                          onClick={() => setIsLangOpen(false)}
+                        />
+                        <motion.div
+                          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute top-full right-0 mt-3 bg-light rounded-xl shadow-xl shadow-brown/10 py-2 min-w-44 border border-cream overflow-hidden"
+                        >
+                          <div className="px-3 pb-2 mb-2 border-b border-cream">
+                            <p className="text-taupe text-xs font-inter">
+                              Select Language
+                            </p>
+                          </div>
+                          {languages.map((lang, idx) => (
+                            <motion.a
+                              key={lang.code}
+                              href={getLocaleHref(lang.code.toLowerCase())}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: idx * 0.03 }}
+                              whileHover={{ backgroundColor: "#F3EFEE" }}
+                              className="flex items-center gap-3 px-4 py-2.5 text-brown hover:text-wine transition-colors"
+                            >
+                              <span className="text-lg">{lang.flag}</span>
+                              <div>
+                                <span className="text-sm font-inter font-medium block">
+                                  {lang.code}
+                                </span>
+                                <span className="text-xs text-taupe">
+                                  {lang.label}
+                                </span>
+                              </div>
+                            </motion.a>
+                          ))}
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
 
               {/* CTA */}
               <motion.a
@@ -1050,32 +1054,34 @@ const Navbar = ({ locale }: { locale?: string }) => {
                   {/* Divider */}
                   <div className="my-6 h-px bg-linear-to-r from-transparent via-taupe/20 to-transparent" />
 
-                  {/* Mobile Language Selector */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <p className="text-taupe text-xs font-inter uppercase tracking-wider mb-3 px-4">
-                      Select Language
-                    </p>
-                    <div className="flex flex-wrap gap-2 px-2">
-                      {languages.map((lang, idx) => (
-                        <motion.a
-                          key={lang.code}
-                          href={getLocaleHref(lang.code.toLowerCase())}
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: 0.35 + idx * 0.03 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="flex items-center gap-2 bg-cream hover:bg-rose/10 px-4 py-2.5 rounded-xl text-brown hover:text-wine text-sm font-inter transition-all duration-200"
-                        >
-                          <span>{lang.flag}</span>
-                          <span className="font-medium">{lang.code}</span>
-                        </motion.a>
-                      ))}
-                    </div>
-                  </motion.div>
+                  {/* Mobile Language Selector - Hidden on blog pages */}
+                  {!isBlogsPage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      <p className="text-taupe text-xs font-inter uppercase tracking-wider mb-3 px-4">
+                        Select Language
+                      </p>
+                      <div className="flex flex-wrap gap-2 px-2">
+                        {languages.map((lang, idx) => (
+                          <motion.a
+                            key={lang.code}
+                            href={getLocaleHref(lang.code.toLowerCase())}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.35 + idx * 0.03 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex items-center gap-2 bg-cream hover:bg-rose/10 px-4 py-2.5 rounded-xl text-brown hover:text-wine text-sm font-inter transition-all duration-200"
+                          >
+                            <span>{lang.flag}</span>
+                            <span className="font-medium">{lang.code}</span>
+                          </motion.a>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
 
                   {/* Mobile CTA */}
                   <motion.div

@@ -7,10 +7,13 @@ acceptLanguage.languages(languages);
 
 const cookieName = "i18next";
 
+const nonLocalizedPaths = ["/sitemap.xml", "/robots.txt", "/blogs"];
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
-  // Skip internal paths and static files
+   if (nonLocalizedPaths.some(path => pathname.startsWith(path))) {
+    return NextResponse.next();
+  }
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
