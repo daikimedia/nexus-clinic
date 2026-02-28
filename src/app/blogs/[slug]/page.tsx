@@ -38,16 +38,24 @@ export async function generateMetadata({
     }
     
     const post = adaptWordPressPost(wordPressPost, 0);
+    // console.log('Generating metadata for post:', post);
     
     return {
       title: post.title.replace(/<[^>]*>/g, ''),
-      description: post.content ? post.content.substring(0, 160).replace(/<[^>]*>/g, '') : "Read our latest blog post",
+      description: post.content ? post.content.substring(0, 300).replace(/<[^>]*>/g, '') : "Read our latest blog post",
+      // alternates: {
+      //   canonical: `https://www.nexus-clinic.com/blogs/${slug}`,
+      // },
       openGraph: {
         title: post.title.replace(/<[^>]*>/g, ''),
-        description: post.content ? post.content.substring(0, 160).replace(/<[^>]*>/g, '') : "Read our latest blog post",
+        description: post.content ? post.content.substring(0, 400).replace(/<[^>]*>/g, '') : "Read our latest blog post",
         images: post.image ? [post.image] : [],
       },
-    };
+      other: {
+          'published_date': post.date,
+          'modified_date': post.date,
+        }
+      }
   } catch (error) {
     console.error('Error in generateMetadata:', error);
     return {
@@ -80,11 +88,9 @@ export default async function Page({
     }
 
     const post = adaptWordPressPost(wordPressPost, 0);
-
     return (
       <>
         <main className="min-h-screen bg-cream">
-          {/* Hero Section */}
           <section className="relative h-[60vh] min-h-[500px] overflow-hidden">
             <img 
               src={post.image} 
@@ -114,14 +120,13 @@ export default async function Page({
                 </span>
               </div>
               
-              <h1 
+              <span 
                 className="text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight"
-                style={{ fontFamily: 'Georgia, serif' }}
                 dangerouslySetInnerHTML={{ __html: post.title }}
               />
               
               <div className="flex items-center gap-2">
-                <span className="px-3 py-1 bg-rose-600 text-white text-xs font-semibold rounded-full">
+                <span className="px-4 py-2 bg-wine text-white text-xs font-semibold rounded-full">
                   {post.tag}
                 </span>
               </div>

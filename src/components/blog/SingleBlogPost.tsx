@@ -61,7 +61,8 @@ export function SingleBlogPost({ content }: SingleBlogPostProps) {
                 'transition-all',
                 'duration-300',
                 'hover:shadow-xl',
-                'hover:scale-105'
+                'hover:scale-105',
+                
               );
               img.loading = 'lazy';
             }
@@ -151,7 +152,8 @@ export function SingleBlogPost({ content }: SingleBlogPostProps) {
             'shadow-xl',
             'transition-transform',
             'duration-500',
-            'hover:scale-105'
+            'hover:scale-102',
+            'my-8'
           );
 
           if (img.parentElement?.tagName !== 'FIGURE') {
@@ -429,7 +431,47 @@ export function SingleBlogPost({ content }: SingleBlogPostProps) {
         }
       });
     };
+    const processFAQs = () => {
+      const container = contentRef.current;
+      if (!container) return;
 
+      const faqQuestions = Array.from(container.querySelectorAll('p')).filter(p => {
+        const strong = p.querySelector('strong');
+        if (!strong) return false;
+        const text = strong.textContent || '';
+        return /^\d+\./.test(text.trim());
+      });
+
+      faqQuestions.forEach((p, index) => {
+        const strong = p.querySelector('strong');
+        if (!strong) return;
+
+        const questionText = strong.textContent || '';
+        const cleanQuestionText = questionText.replace(/^\d+\.\s*/, '');
+        const h3 = document.createElement('h3');
+        h3.className = 'font-bold text-xl lg:text-2xl mt-8';
+        h3.textContent = cleanQuestionText;
+        p.parentNode?.insertBefore(h3, p);
+        
+        // const answer = p.nextElementSibling;
+        // if (answer && answer.tagName === 'P') {
+        //   answer.classList.add(
+        //     'faq-answer',
+        //     'ml-6',
+        //     'mb-6',
+        //     'p-4',
+        //     'bg-cream/30',
+        //     'rounded-xl',
+        //     'border-l-4',
+        //     'border-rose',
+        //     'text-brown/80',
+        //     'relative'
+        //   );
+        // }
+        strong.remove();
+      });
+      
+    };
     // Add animation styles
     addAnimationStyles();
 
@@ -439,6 +481,7 @@ export function SingleBlogPost({ content }: SingleBlogPostProps) {
     processFancyHeadings();
     processLists();
     processParagraphs();
+    processFAQs();
 
   }, [content]);
 

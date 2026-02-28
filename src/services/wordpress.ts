@@ -5,7 +5,7 @@ const API_BASE_URL = 'https://blog.nexus-clinic.com/wp-json/wp/v2';
 class WordPressService {
   private async fetchWithEmbedded<T>(endpoint: string): Promise<{ data: T; total: number }> {
     const url = `${API_BASE_URL}${endpoint}&_embed=true`;
-    console.log('Fetching from WordPress:', url); // Debug log
+    // console.log('Fetching from WordPress:', url);
     
     const response = await fetch(url);
     if (!response.ok) {
@@ -37,7 +37,7 @@ class WordPressService {
     }
     
     const { data } = await this.fetchWithEmbedded<WordPressPost[]>(endpoint);
-    console.log(`Fetched ${data.length} posts from WordPress`); // Debug log
+    // console.log(`Fetched ${data.length} posts from WordPress`);
     return data;
   }
 
