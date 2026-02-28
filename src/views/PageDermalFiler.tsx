@@ -24,6 +24,8 @@ import {
   staggerContainer,
 } from "../lib/animations";
 import FAQ from "../components/FAQ";
+import { fallbackLng } from "@/src/i18n/settings";
+import { useTranslation } from "@/src/i18n/client";
 
 function AnimatedCounter({ target, suffix = "" }: any) {
   const [count, setCount] = useState(0);
@@ -76,7 +78,9 @@ function FillerCard({ icon: Icon, title, desc }: any) {
   );
 }
 
-export default function PageDermalFiler() {
+export default function PageDermalFiler({ locale = fallbackLng }: { locale?: string }) {
+    const { t } = useTranslation(locale, "dermal-fillers");
+  
   const faqs = [
     {
       q: "How do dermal fillers work?",

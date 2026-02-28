@@ -9,6 +9,7 @@ import {
   fadeInRight,
   scaleIn,
 } from "../lib/animations";
+import { fallbackLng } from "@/src/i18n/settings";
 
 
 const treatments = [
@@ -403,7 +404,7 @@ const AccordionItem = ({
   );
 };
 
-export default function PageActiveAcne() {
+export default function PageActiveAcne({ locale = fallbackLng }: { locale?: string }) {
   return (
     <>
       <section className="relative min-h-screen bg-light overflow-hidden">

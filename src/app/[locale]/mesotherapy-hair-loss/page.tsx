@@ -1,4 +1,9 @@
 import HairMesotherapyLanding from "@/src/views/hairTreatment/HairMesotherapy";
+import { languages } from "@/src/i18n/settings";
+
+export async function generateStaticParams() {
+  return languages.map((locale: string) => ({ locale }));
+}
 
 export default async function Page({
   params,

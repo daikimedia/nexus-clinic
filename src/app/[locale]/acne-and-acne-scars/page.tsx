@@ -1,5 +1,16 @@
 import PageActiveAcne from "@/src/views/PageActiveAcne";
+import { languages } from "@/src/i18n/settings";
 
-export default function Page() {
-  return <PageActiveAcne />;
+export async function generateStaticParams() {
+  return languages.map((locale: string) => ({ locale }));
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  return <PageActiveAcne locale={locale} />;
 }
