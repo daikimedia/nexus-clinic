@@ -22,7 +22,7 @@ export function PromoCard() {
       <p className="text-taupe/80 text-xs font-semibold tracking-widest uppercase mb-2">
         Limited Offer
       </p>
-      <p className="text-taupe font-bold text-lg leading-snug" style={{ fontFamily: "Georgia, serif" }}>
+      <p className="text-taupe font-bold text-lg leading-snug">
         Claim your RM100 Voucher
       </p>
       <a
