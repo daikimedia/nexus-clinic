@@ -228,7 +228,7 @@ const MelasmaLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                   </div>
 
                   {/* Main Heading */}
-                  <h1 className="font-georgia text-5xl lg:text-6xl text-brown leading-tight">
+                  <h1 className="font-georgia text-5xl lg:text-5xl text-brown leading-tight">
                     {t("hero.title1")}
                     <span className="block text-wine">{t("hero.title2")}</span>
                   </h1>

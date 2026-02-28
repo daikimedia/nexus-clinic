@@ -30,9 +30,29 @@ import {
 } from "../../lib/animations";
 import { useTranslation } from "@/src/i18n/client";
 import { fallbackLng } from "@/src/i18n/settings";
+import SectionBeforeAfter from "@/src/components/BeforeAfterCustomize";
 
 const HydraFacialLandingPage = ({ locale = fallbackLng }: { locale?: string }) => {
   const { t } = useTranslation(locale, "hydrafacial");
+
+
+   const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-skin/B&A-hydrafacial1.webp",
+      after: "/images/B&A-skin/B&A-hydrafacial1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-skin/B&A-hydrafacial2.webp",
+      after: "/images/B&A-skin/B&A-hydrafacial2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-skin/B&A-hydrafacial3.webp",
+      after: "/images/B&A-skin/B&A-hydrafacial3.webp",
+    },
+  ];
 
   return (
     <>
@@ -60,7 +80,7 @@ const HydraFacialLandingPage = ({ locale = fallbackLng }: { locale?: string }) =
                     {t("hero.badge")}
                   </span>
 
-                  <h1 className="font-georgia text-5xl lg:text-6xl text-brown leading-tight">
+                  <h1 className="font-georgia text-5xl lg:text-5xl text-brown leading-tight">
                     {t("hero.title1")}
                     <span className="text-wine">
                       {" "}
@@ -68,7 +88,7 @@ const HydraFacialLandingPage = ({ locale = fallbackLng }: { locale?: string }) =
                     </span>
                   </h1>
 
-                  <p className="text-xl text-taupe font-inter leading-relaxed">
+                  <p className="text-lg text-taupe font-inter leading-relaxed">
                     {t("hero.desc")}
                   </p>
                 </motion.div>
@@ -130,7 +150,7 @@ const HydraFacialLandingPage = ({ locale = fallbackLng }: { locale?: string }) =
               >
                 <div className="relative rounded-3xl overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=800&q=80"
+                    src="/images/skin/hydrafacial.webp"
                     alt="HydraFacial treatment"
                     className="w-full h-auto rounded-3xl"
                   />
@@ -576,6 +596,8 @@ const HydraFacialLandingPage = ({ locale = fallbackLng }: { locale?: string }) =
             </motion.div>
           </div>
         </section>
+
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* Pros & Cons Section */}
         <section className="py-24 px-4">

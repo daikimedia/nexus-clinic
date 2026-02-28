@@ -27,10 +27,10 @@ import {
   fadeInRight,
   scaleIn,
 } from "../../lib/animations";
-import BeforeAfterFaceSection from "../../components/BeforeAfterFace";
 import FAQ from "../../components/FAQ";
 import { useTranslation } from "@/src/i18n/client";
 import { fallbackLng } from "@/src/i18n/settings";
+import SectionBeforeAfter from "@/src/components/BeforeAfterCustomize";
 
 const DarkEyeCircleLanding = ({ locale = fallbackLng }: { locale?: string }) => {
   const { t } = useTranslation(locale, "darkEyeCircle");
@@ -55,6 +55,24 @@ const DarkEyeCircleLanding = ({ locale = fallbackLng }: { locale?: string }) => 
     {
       q: t("faq.q5"),
       a: t("faq.a5"),
+    },
+  ];
+
+     const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-skin/B&A-dark-eye-treatment1.webp",
+      after: "/images/B&A-skin/B&A-dark-eye-treatment1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-skin/B&A-dark-eye-treatment2.webp",
+      after: "/images/B&A-skin/B&A-dark-eye-treatment2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-skin/B&A-dark-eye-treatment3.webp",
+      after: "/images/B&A-skin/B&A-dark-eye-treatment3.webp",
     },
   ];
   return (
@@ -426,22 +444,20 @@ const DarkEyeCircleLanding = ({ locale = fallbackLng }: { locale?: string }) => 
                   {t("safety.title")}
                 </motion.h2>
 
+                <div className="relative rounded-3xl overflow-hidden shadow-xl mb-4">
+                 <img
+                   src="/images/skin/dark-eye-circle-treatment.webp"
+                   alt="dark eye circle treatment"
+                   className="w-full h-auto"
+                 />
+                 <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+               </div>
+
+
                 <motion.p variants={fadeInLeft} className="text-cream/80 mb-8">
                   {t("safety.desc")}
                 </motion.p>
 
-                <motion.div variants={fadeInLeft} className="space-y-4">
-                  {[
-                    t("safety.point1"),
-                    t("safety.point2"),
-                    t("safety.point3"),
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-rose shrink-0" />
-                      <span className="text-cream">{item}</span>
-                    </div>
-                  ))}
-                </motion.div>
               </motion.div>
 
               <motion.div
@@ -472,13 +488,25 @@ const DarkEyeCircleLanding = ({ locale = fallbackLng }: { locale?: string }) => 
 
                 {/* Decorative Elements */}
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-rose/20 rounded-full blur-2xl"></div>
+                <motion.div variants={fadeInLeft} className="space-y-4 mt-4">
+                  {[
+                    t("safety.point1"),
+                    t("safety.point2"),
+                    t("safety.point3"),
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-rose shrink-0" />
+                      <span className="text-cream">{item}</span>
+                    </div>
+                  ))}
+                </motion.div>
               </motion.div>
             </div>
           </div>
         </section>
 
         {/* Before & After Grid - Visual Showcase */}
-        <BeforeAfterFaceSection />
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* FAQ Section */}
         <FAQ data={faqs} />

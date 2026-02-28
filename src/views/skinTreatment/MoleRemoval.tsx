@@ -32,6 +32,7 @@ import {
 } from "../../lib/animations";
 import { useTranslation } from "@/src/i18n/client";
 import { fallbackLng } from "@/src/i18n/settings";
+import SectionBeforeAfter from "@/src/components/BeforeAfterCustomize";
 
 const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
   const { t } = useTranslation(locale, "moleRemoval");
@@ -115,6 +116,24 @@ const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
     { q: t("faq.q5"), a: t("faq.a5") },
   ];
 
+   const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-skin/B&A-mole-removal1.webp",
+      after: "/images/B&A-skin/B&A-mole-removal1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-skin/B&A-mole-removal2.webp",
+      after: "/images/B&A-skin/B&A-mole-removal2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-skin/B&A-mole-removal3.webp",
+      after: "/images/B&A-skin/B&A-mole-removal3.webp",
+    },
+  ];
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-b from-cream via-white to-light">
@@ -142,7 +161,7 @@ const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                   </span>
                 </div>
 
-                <h1 className="font-georgia text-4xl md:text-5xl lg:text-6xl leading-tight text-brown">
+                <h1 className="font-georgia text-4xl md:text-5xl lg:text-5xl leading-tight text-brown">
                   {t("hero.title1")}{" "}
                   <span className="text-wine italic">{t("hero.title2")}</span>{" "}
                   {t("hero.title3")}
@@ -166,37 +185,11 @@ const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                 </motion.button>
 
                 {/* Trust Strip */}
-                <motion.div
-                  variants={fadeInUp}
-                  className="bg-light backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/60"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="flex items-center gap-3">
-                      <MapPin className="w-5 h-5 text-wine" />
-                      <span className="text-sm text-brown">
-                        {t("hero.trust1")}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Zap className="w-5 h-5 text-wine" />
-                      <span className="text-sm text-brown">
-                        {t("hero.trust2")}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <ShieldCheck className="w-5 h-5 text-wine" />
-                      <span className="text-sm text-brown">
-                        {t("hero.trust3")}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
               </motion.div>
 
               {/* Right Column - Visual Elements */}
               <motion.div variants={fadeInRight} className="relative">
                 <div className="relative aspect-square max-w-md mx-auto">
-                  <div className="absolute inset-0 bg-linear-to-tr from-wine/20 to-rose/20 rounded-full animate-pulse"></div>
                   <div className="relative bg-white/70 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-white">
                     <div className="space-y-4">
                       <div className="flex items-center gap-3 border-b border-cream pb-4">
@@ -222,6 +215,31 @@ const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                       </div>
                     </div>
                   </div>
+                                    <motion.div
+                  variants={fadeInUp}
+                  className="bg-light backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/60 mt-4"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="flex items-center gap-3">
+                      <MapPin className="w-5 h-5 text-wine" />
+                      <span className="text-sm text-brown">
+                        {t("hero.trust1")}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Zap className="w-5 h-5 text-wine" />
+                      <span className="text-sm text-brown">
+                        {t("hero.trust2")}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <ShieldCheck className="w-5 h-5 text-wine" />
+                      <span className="text-sm text-brown">
+                        {t("hero.trust3")}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
                 </div>
               </motion.div>
             </div>
@@ -294,6 +312,15 @@ const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                   {t("understanding.title1")}{" "}
                   <span className="text-wine italic">{t("understanding.title2")}</span>
                 </h2>
+               <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                 <img
+                   src="/images/skin/mole-removal.webp"
+                   alt="mole removal"
+                   className="w-full h-auto"
+                 />
+                 <div className="absolute inset-0 bg-linear-to-t from-brown/40 to-transparent"></div>
+               </div>
+
                 <p className="text-taupe">
                   {t("understanding.desc")}
                 </p>
@@ -307,7 +334,30 @@ const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                   ))}
                 </div>
 
-                <div className="bg-white rounded-2xl p-6 shadow-lg border border-cream">
+              </motion.div>
+
+              <motion.div variants={fadeInRight} className="relative">
+                <div className="bg-wine/5 rounded-3xl p-8">
+                  <h3 className="font-georgia text-2xl text-brown mb-6">
+                    {t("understanding.removalTitle")}
+                  </h3>
+                  <div className="space-y-4">
+                    {removalReasons.map((reason, i) => (
+                      <motion.div
+                        key={i}
+                        whileHover={{ x: 5 }}
+                        className="flex items-center gap-3 bg-white rounded-xl p-4 shadow-sm"
+                      >
+                        <div className="w-8 h-8 rounded-full bg-cream flex items-center justify-center text-wine">
+                          {i + 1}
+                        </div>
+                        <p className="text-brown">{reason}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-2xl p-6 shadow-lg border border-cream mt-4">
                   <h3 className="font-georgia text-brown mb-4">
                     {t("understanding.comparisonTitle")}
                   </h3>
@@ -335,28 +385,6 @@ const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                         {t("understanding.wartDesc")}
                       </p>
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div variants={fadeInRight} className="relative">
-                <div className="bg-wine/5 rounded-3xl p-8">
-                  <h3 className="font-georgia text-2xl text-brown mb-6">
-                    {t("understanding.removalTitle")}
-                  </h3>
-                  <div className="space-y-4">
-                    {removalReasons.map((reason, i) => (
-                      <motion.div
-                        key={i}
-                        whileHover={{ x: 5 }}
-                        className="flex items-center gap-3 bg-white rounded-xl p-4 shadow-sm"
-                      >
-                        <div className="w-8 h-8 rounded-full bg-cream flex items-center justify-center text-wine">
-                          {i + 1}
-                        </div>
-                        <p className="text-brown">{reason}</p>
-                      </motion.div>
-                    ))}
                   </div>
                 </div>
               </motion.div>
@@ -543,6 +571,9 @@ const MoleRemovalLanding = ({ locale = fallbackLng }: { locale?: string }) => {
             </motion.div>
           </div>
         </section>
+
+        {/* Before & After */}
+        <SectionBeforeAfter transformations={transformations}/>
 
         {/* Pros & Cons */}
         <section className="py-20 bg-white">

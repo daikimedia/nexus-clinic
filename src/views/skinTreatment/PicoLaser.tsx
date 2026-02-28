@@ -25,6 +25,7 @@ import {
 import FAQ from "../../components/FAQ";
 import { useTranslation } from "@/src/i18n/client";
 import { fallbackLng } from "@/src/i18n/settings";
+import SectionBeforeAfter from "@/src/components/BeforeAfterCustomize";
 
 const PicoLaserLanding = ({ locale = fallbackLng }: { locale?: string }) => {
   const { t } = useTranslation(locale, "picoLaser");
@@ -49,6 +50,24 @@ const PicoLaserLanding = ({ locale = fallbackLng }: { locale?: string }) => {
     {
       q: t("faq.q5"),
       a: t("faq.a5"),
+    },
+  ];
+
+     const transformations = [
+    {
+      id: 1,
+      before: "/images/B&A-skin/B&A-pico-laser1.webp",
+      after: "/images/B&A-skin/B&A-pico-laser1.webp",
+    },
+    {
+      id: 2,
+      before: "/images/B&A-skin/B&A-pico-laser2.webp",
+      after: "/images/B&A-skin/B&A-pico-laser2.webp",
+    },
+    {
+      id: 3,
+      before: "/images/B&A-skin/B&A-pico-laser3.webp",
+      after: "/images/B&A-skin/B&A-pico-laser3.webp",
     },
   ];
   return (
@@ -80,7 +99,7 @@ const PicoLaserLanding = ({ locale = fallbackLng }: { locale?: string }) => {
 
                 <motion.h1
                   variants={fadeInUp}
-                  className="text-5xl lg:text-6xl xl:text-7xl font-light leading-tight"
+                  className="text-5xl lg:text-6xl xl:text-5xl font-light leading-tight"
                 >
                   {t("hero.title1")}{" "}
                   <span className="font-serif italic text-wine relative">
@@ -152,7 +171,7 @@ const PicoLaserLanding = ({ locale = fallbackLng }: { locale?: string }) => {
                 viewport={{ once: true }}
                 className="relative"
               >
-                <div className="relative aspect-square rounded-2xl overflow-hidden bg-[url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?w=800&q=80')] backdrop-blur-sm border border-white/50 shadow-2xl">
+                <div className="relative aspect-square rounded-2xl overflow-hidden bg-[url('/images/skin/pico-laser.webp')] bg-cover bg-center backdrop-blur-sm border border-white/50 shadow-2xl">
                   <div className="absolute inset-0 flex items-center justify-center"></div>
                   {/* Decorative Dots */}
                   <div className="absolute top-10 left-10 w-20 h-20 border-2 border-light/50 rounded-full" />
@@ -475,6 +494,8 @@ const PicoLaserLanding = ({ locale = fallbackLng }: { locale?: string }) => {
             </div>
           </div>
         </section>
+
+        <SectionBeforeAfter transformations={transformations} />
 
         {/* Pros & Cons */}
         <section className="py-24 bg-white">
