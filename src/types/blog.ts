@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { FAQItem } from "../utils/faqExtractor";
 
 export type CategoryValue = "all" | "skincare" | "weight" | "aging" | "treatments";
 
@@ -32,6 +33,7 @@ export interface Post {
     twitterImage: string;
     robots?: string;
   };
+  faqs?: FAQItem[];
 }
 
 export interface TagColorConfig {

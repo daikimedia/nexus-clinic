@@ -37,13 +37,12 @@ export async function generateMetadata({
     
     const post = adaptWordPressPost(wordPressPost, 0);
     
-    // If Yoast SEO data is available, use it
     if (post.seo) {
       return {
         title: post.seo.title,
         description: post.seo.description,
         alternates: {
-          // canonical: post.seo.canonical || `https://www.nexus-clinic.com/blogs/${slug}`,
+          canonical: post.seo.canonical || `https://nexus-clinic-malaysia.vercel.app/blogs/${slug}`,
         },
         openGraph: {
           title: post.seo.ogTitle,
@@ -52,7 +51,7 @@ export async function generateMetadata({
           type: 'article',
           publishedTime: wordPressPost.date,
           modifiedTime: wordPressPost.modified,
-          // url: `https://www.nexus-clinic.com/blogs/${slug}`,
+          url: `https://nexus-clinic-malaysia.vercel.app/blogs/${slug}`,
         },
         twitter: {
           card: 'summary_large_image',
@@ -64,7 +63,7 @@ export async function generateMetadata({
       };
     }
     
-    // Fallback to default metadata if no Yoast data
+
     return {
       title: post.title.replace(/<[^>]*>/g, ''),
       description: post.content ? post.content.substring(0, 300).replace(/<[^>]*>/g, '') : "Read our latest blog post",
@@ -96,7 +95,6 @@ export default async function Page({
 }: { 
   params: Promise<{ slug: string }> 
 }) {
-  // Add null check for params
   if (!params) {
     notFound();
   }
@@ -115,8 +113,30 @@ export default async function Page({
     }
 
     const post = adaptWordPressPost(wordPressPost, 0);
+
+    const faqSchema = post.faqs && post.faqs.length > 0 ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": post.faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      })),
+      "url": `https://nexus-clinic-malaysia.vercel.app/blogs/${slug}`
+    } : null;
     return (
       <>
+            {faqSchema && (
+        <script
+          type="application/ld+json"
+          id="faq-schema"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema, null, 2) }}
+        />
+      )}
+
         <main className="min-h-screen bg-cream">
           <section className="relative h-[60vh] min-h-[500px] overflow-hidden">
             <img 
@@ -160,13 +180,14 @@ export default async function Page({
             </div>
           </section>
 
-          {/* Content Section */}
           <section className="max-w-7xl mx-auto px-6 lg:px-12 py-16">
             <article>
-              <SingleBlogPost content={post.content || ''} />
+              <SingleBlogPost content={post.content || ''} 
+              faqs={post.faqs} 
+              postSlug={slug}
+              />
             </article>
 
-            {/* Share Section */}
             <div className="mt-16 pt-8 border-t border-taupe/20">
               <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
                 <Link 
