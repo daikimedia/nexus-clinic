@@ -154,9 +154,10 @@ const buildSearchIndex = (getText: (key: string, fallback: string) => string): S
     if (item.submenu) {
       Object.entries(item.submenu).forEach(([category, categoryData]: [string, any]) => {
         categoryData.items.forEach((subItem: { key: string; fallback: string }) => {
+          const englishText = subItem.fallback;
           results.push({
             label: getText(subItem.key, subItem.fallback),
-            href: toSlug(getText(subItem.key, subItem.fallback)),
+            href: englishText ? toSlug(englishText) : "#",
             category: category,
           });
         });
@@ -782,7 +783,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                         (subItem: { key: string; fallback: string }, idx: number) => (
                                           <li key={idx}>
                                             <motion.a
-                                              href={getNavHref(toSlug(getText(subItem.key, subItem.fallback)))}
+                                              href={getNavHref(toSlug(subItem.fallback))}
                                               whileHover={{ x: 4 }}
                                               className="group/item flex items-center gap-2 text-taupe hover:text-wine text-sm py-1.5 transition-all duration-200"
                                             >
