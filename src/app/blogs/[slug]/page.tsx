@@ -7,13 +7,11 @@ import Link from "next/link";
 import { Calendar, Clock, ArrowLeft } from "lucide-react";
 import { ShareButton } from "@/src/components/blog/ShareButton"; 
 
-// This must be at the top level, not inside any function
 export async function generateMetadata({ 
   params 
 }: { 
   params: Promise<{ slug: string }> 
 }): Promise<Metadata> {
-  // Add error handling for params
   if (!params) {
     return {
       title: "Blog Post Not Found",
@@ -38,24 +36,53 @@ export async function generateMetadata({
     }
     
     const post = adaptWordPressPost(wordPressPost, 0);
-    // console.log('Generating metadata for post:', post);
     
+    // If Yoast SEO data is available, use it
+    if (post.seo) {
+      return {
+        title: post.seo.title,
+        description: post.seo.description,
+        alternates: {
+          // canonical: post.seo.canonical || `https://www.nexus-clinic.com/blogs/${slug}`,
+        },
+        openGraph: {
+          title: post.seo.ogTitle,
+          description: post.seo.ogDescription,
+          images: post.seo.ogImage ? [{ url: post.seo.ogImage }] : [],
+          type: 'article',
+          publishedTime: wordPressPost.date,
+          modifiedTime: wordPressPost.modified,
+          // url: `https://www.nexus-clinic.com/blogs/${slug}`,
+        },
+        twitter: {
+          card: 'summary_large_image',
+          title: post.seo.twitterTitle,
+          description: post.seo.twitterDescription,
+          images: post.seo.twitterImage ? [post.seo.twitterImage] : [],
+        },
+        robots: post.seo.robots || 'index, follow',
+      };
+    }
+    
+    // Fallback to default metadata if no Yoast data
     return {
       title: post.title.replace(/<[^>]*>/g, ''),
       description: post.content ? post.content.substring(0, 300).replace(/<[^>]*>/g, '') : "Read our latest blog post",
-      // alternates: {
-      //   canonical: `https://www.nexus-clinic.com/blogs/${slug}`,
-      // },
       openGraph: {
         title: post.title.replace(/<[^>]*>/g, ''),
         description: post.content ? post.content.substring(0, 400).replace(/<[^>]*>/g, '') : "Read our latest blog post",
         images: post.image ? [post.image] : [],
+        type: 'article',
+        publishedTime: wordPressPost.date,
+        modifiedTime: wordPressPost.modified,
       },
-      other: {
-          'published_date': post.date,
-          'modified_date': post.date,
-        }
-      }
+      twitter: {
+        card: 'summary_large_image',
+        title: post.title.replace(/<[^>]*>/g, ''),
+        description: post.content ? post.content.substring(0, 400).replace(/<[^>]*>/g, '') : "Read our latest blog post",
+        images: post.image ? [post.image] : [],
+      },
+    };
   } catch (error) {
     console.error('Error in generateMetadata:', error);
     return {
