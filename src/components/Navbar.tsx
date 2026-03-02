@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect,useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -14,7 +14,7 @@ import {
   Calendar,
   Search,
 } from "lucide-react";
-import { useTranslation } from "react-i18next"; // or your custom translation hook
+import { useTranslation } from "react-i18next";
 
 const toSlug = (name: string): string => {
   return (
@@ -32,82 +32,102 @@ const toSlug = (name: string): string => {
 const navItems = [
   {
     label: "nav.weightLoss",
+    fallback: "Weight Loss",
     href: "#",
     submenu: {
-      weightLoss: [
-        "submenu.weightLoss.ozempic",
-        "submenu.weightLoss.wegovy",
-        "submenu.weightLoss.mounjaro",
-        "submenu.weightLoss.duromine",
-        "submenu.weightLoss.doctorMonitored",
-        "submenu.weightLoss.hcgWeightLoss",
-        "submenu.weightLoss.fatFreezing",
-        "submenu.weightLoss.coolSculpting",
-        "submenu.weightLoss.glp1",
-        "submenu.weightLoss.zepbound",
-        "submenu.weightLoss.semaglutide",
-        "submenu.weightLoss.tirzepatide",
-      ],
+      weightLoss: {
+        items: [
+          { key: "submenu.weightLoss.ozempic", fallback: "Ozempic Malaysia" },
+          { key: "submenu.weightLoss.wegovy", fallback: "Wegovy Malaysia" },
+          { key: "submenu.weightLoss.mounjaro", fallback: "Mounjaro Malaysia" },
+          { key: "submenu.weightLoss.duromine", fallback: "Duromine Malaysia" },
+          { key: "submenu.weightLoss.doctorMonitored", fallback: "Doctor Monitored Malaysia" },
+          { key: "submenu.weightLoss.hcgWeightLoss", fallback: "HCG Weight Loss Malaysia" },
+          { key: "submenu.weightLoss.fatFreezing", fallback: "Fat Freezing Malaysia" },
+          { key: "submenu.weightLoss.coolSculpting", fallback: "CoolSculpting Malaysia" },
+          { key: "submenu.weightLoss.glp1", fallback: "GLP-1 Programme Malaysia" },
+          { key: "submenu.weightLoss.zepbound", fallback: "ZepBound Malaysia" },
+          { key: "submenu.weightLoss.semaglutide", fallback: "Semaglutide Malaysia" },
+          { key: "submenu.weightLoss.tirzepatide", fallback: "Tirzepatide Malaysia" },
+        ],
+      },
     },
   },
   {
     label: "nav.aestheticTreatments",
+    fallback: "Aesthetic Treatments",
     href: "#",
     submenu: {
-      skin: [
-        "submenu.skin.acneTreatment",
-        "submenu.skin.acneScar",
-        "submenu.skin.pigmentation",
-        "submenu.skin.melasma",
-        "submenu.skin.moleRemoval",
-        "submenu.skin.hydrafacial",
-        "submenu.skin.picoLaser",
-        "submenu.skin.darkCircle",
-        "submenu.skin.whitening",
-        "submenu.skin.eczema",
-        "submenu.skin.keloid",
-        "submenu.skin.rosacea",
-        "submenu.skin.stretchMark",
-        "submenu.skin.laserHair",
-        "submenu.skin.tattooRemoval",
-      ],
-      face: [
-        "submenu.face.dermalFiller",
-        "submenu.face.lipFiller",
-        "submenu.face.chinFiller",
-        "submenu.face.jawlineFiller",
-        "submenu.face.noseThread",
-        "submenu.face.masseterBotox",
-      ],
-      hair: [
-        "submenu.hair.transplant",
-        "submenu.hair.fue",
-        "submenu.hair.prp",
-        "submenu.hair.lossTreatment",
-        "submenu.hair.beard",
-        "submenu.hair.mesotherapy",
-        "submenu.hair.exosome",
-        "submenu.hair.minoxidil",
-        "submenu.hair.finasteride",
-      ],
-      regenerative: [
-        "submenu.regenerative.testosterone",
-        "submenu.regenerative.ed",
-        "submenu.regenerative.hormoneReplacement",
-        "submenu.regenerative.pcos",
-        "submenu.regenerative.hypothyroidism",
-        "submenu.regenerative.stemCell",
-        "submenu.regenerative.antiAging",
-        "submenu.regenerative.hormoneTest",
-        "submenu.regenerative.menopause",
-        "submenu.regenerative.pShot",
-        "submenu.regenerative.oShot",
-        "submenu.regenerative.shockwave",
-      ],
+      skin: {
+        label: "categories.skin",
+        fallback: "Skin",
+        items: [
+          { key: "submenu.skin.acneTreatment", fallback: "Acne Treatment KL" },
+          { key: "submenu.skin.acneScar", fallback: "Acne Scar Treatment KL" },
+          { key: "submenu.skin.pigmentation", fallback: "Pigmentation Treatment KL" },
+          { key: "submenu.skin.melasma", fallback: "Melasma Treatment KL" },
+          { key: "submenu.skin.moleRemoval", fallback: "Mole Removal KL" },
+          { key: "submenu.skin.hydrafacial", fallback: "HydraFacial KL" },
+          { key: "submenu.skin.picoLaser", fallback: "Pico Laser KL" },
+          { key: "submenu.skin.darkCircle", fallback: "Dark Eye Circle Treatment KL" },
+          { key: "submenu.skin.whitening", fallback: "Skin Whitening Treatment KL" },
+          { key: "submenu.skin.eczema", fallback: "Eczema Treatment KL" },
+          { key: "submenu.skin.keloid", fallback: "Keloid Treatment Malaysia" },
+          { key: "submenu.skin.rosacea", fallback: "Rosacea Treatment Malaysia" },
+          { key: "submenu.skin.stretchMark", fallback: "Stretch Mark Removal Malaysia" },
+          { key: "submenu.skin.laserHair", fallback: "Laser Hair Removal Malaysia" },
+          { key: "submenu.skin.tattooRemoval", fallback: "Tattoo Removal Malaysia" },
+        ],
+      },
+      face: {
+        label: "categories.face",
+        fallback: "Face",
+        items: [
+          { key: "submenu.face.dermalFiller", fallback: "Dermal Filler" },
+          { key: "submenu.face.lipFiller", fallback: "Lip Filler" },
+          { key: "submenu.face.chinFiller", fallback: "Chin Filler" },
+          { key: "submenu.face.jawlineFiller", fallback: "Jawline Filler" },
+          { key: "submenu.face.noseThread", fallback: "Nose Thread Lift" },
+          { key: "submenu.face.masseterBotox", fallback: "Masseter Botox" },
+        ],
+      },
+      hair: {
+        label: "categories.hair",
+        fallback: "Hair",
+        items: [
+          { key: "submenu.hair.transplant", fallback: "Hair Transplant" },
+          { key: "submenu.hair.fue", fallback: "Fue Hair Transplant" },
+          { key: "submenu.hair.prp", fallback: "PRP Hair Treatment" },
+          { key: "submenu.hair.lossTreatment", fallback: "Hair Loss Treatment" },
+          { key: "submenu.hair.beard", fallback: "Beard Transplant" },
+          { key: "submenu.hair.mesotherapy", fallback: "Mesotherapy Hair Loss" },
+          { key: "submenu.hair.exosome", fallback: "Exosome Hair Treatment" },
+          { key: "submenu.hair.minoxidil", fallback: "Minoxidil Treatment" },
+          { key: "submenu.hair.finasteride", fallback: "Finasteride" },
+        ],
+      },
+      regenerative: {
+        label: "categories.regenerative",
+        fallback: "Regenerative",
+        items: [
+          { key: "submenu.regenerative.testosterone", fallback: "Testosterone Therapy Malaysia" },
+          { key: "submenu.regenerative.ed", fallback: "ED Treatment Malaysia" },
+          { key: "submenu.regenerative.hormoneReplacement", fallback: "Hormone Replacement Therapy Malaysia" },
+          { key: "submenu.regenerative.pcos", fallback: "PCOS Treatment Malaysia" },
+          { key: "submenu.regenerative.hypothyroidism", fallback: "Hypothyroidism Treatment Malaysia" },
+          { key: "submenu.regenerative.stemCell", fallback: "Stem Cell Therapy Malaysia" },
+          { key: "submenu.regenerative.antiAging", fallback: "Anti-Aging Therapy Malaysia" },
+          { key: "submenu.regenerative.hormoneTest", fallback: "Hormone Test Malaysia" },
+          { key: "submenu.regenerative.menopause", fallback: "Menopause Hormone Replacement Malaysia" },
+          { key: "submenu.regenerative.pShot", fallback: "P Shot Malaysia" },
+          { key: "submenu.regenerative.oShot", fallback: "O Shot Malaysia" },
+          { key: "submenu.regenerative.shockwave", fallback: "Shockwave Therapy Malaysia" },
+        ],
+      },
     },
   },
-  { label: "nav.products", href: "/products" },
-  { label: "nav.blogs", href: "/blogs" },
+  { label: "nav.products", fallback: "Products", href: "/products" },
+  { label: "nav.blogs", fallback: "Blogs", href: "/blogs" },
 ];
 
 const languages = [
@@ -118,32 +138,32 @@ const languages = [
   { code: "AR", label: "العربية", flag: "🇸🇦" },
 ];
 
-const categoryLabels: Record<string, string> = {
-  weightLoss: "categories.weightLoss",
-  skin: "categories.skin",
-  face: "categories.face",
-  hair: "categories.hair",
-  regenerative: "categories.regenerative",
+const categoryLabels: Record<string, { key: string; fallback: string }> = {
+  weightLoss: { key: "categories.weightLoss", fallback: "Fat & Weight Loss" },
+  skin: { key: "categories.skin", fallback: "Skin" },
+  face: { key: "categories.face", fallback: "Face" },
+  hair: { key: "categories.hair", fallback: "Hair" },
+  regenerative: { key: "categories.regenerative", fallback: "Regenerative" },
 };
 
 type SearchResult = { label: string; href: string; category: string };
 
-const buildSearchIndex = (t: (key: string) => string): SearchResult[] => {
+const buildSearchIndex = (getText: (key: string, fallback: string) => string): SearchResult[] => {
   const results: SearchResult[] = [];
   navItems.forEach((item) => {
     if (item.submenu) {
-      Object.entries(item.submenu).forEach(([category, items]) => {
-        (items as string[]).forEach((subItemKey) => {
+      Object.entries(item.submenu).forEach(([category, categoryData]: [string, any]) => {
+        categoryData.items.forEach((subItem: { key: string; fallback: string }) => {
           results.push({
-            label: t(subItemKey),
-            href: toSlug(t(subItemKey)),
+            label: getText(subItem.key, subItem.fallback),
+            href: toSlug(getText(subItem.key, subItem.fallback)),
             category: category,
           });
         });
       });
     } else if (item.href && item.href !== "#") {
       results.push({ 
-        label: t(item.label), 
+        label: getText(item.label, item.fallback), 
         href: item.href, 
         category: "page" 
       });
@@ -152,7 +172,7 @@ const buildSearchIndex = (t: (key: string) => string): SearchResult[] => {
   return results;
 };
 
-// ── Highlight helper ─────
+
 const highlightMatch = (text: string, query: string) => {
   if (!query) return <>{text}</>;
   const idx = text.toLowerCase().indexOf(query.toLowerCase());
@@ -168,16 +188,16 @@ const highlightMatch = (text: string, query: string) => {
   );
 };
 
-// ── Desktop Search Box
+
 const DesktopSearchBox = ({
   isScrolled,
   locale,
-  t,
+  getText,
   searchIndex,
 }: {
   isScrolled: boolean;
   locale?: string;
-  t: (key: string) => string;
+  getText: (key: string, fallback: string) => string;
   searchIndex: SearchResult[];
 }) => {
   const [query, setQuery] = useState("");
@@ -248,7 +268,7 @@ const DesktopSearchBox = ({
           value={query}
           onChange={handleChange}
           onFocus={() => results.length > 0 && setIsOpen(true)}
-          placeholder={t("search.placeholder")}
+          placeholder={getText("search.placeholder", "Search treatments...")}
           className="bg-transparent outline-none text-sm font-inter w-36 md:w-36 placeholder:text-taupe/60 transition-all duration-300 text-brown"
         />
         {query && (
@@ -301,7 +321,10 @@ const DesktopSearchBox = ({
                         {highlightMatch(item.label, debouncedQuery)}
                       </p>
                       <p className="text-taupe/70 text-xs font-inter">
-                        {t(categoryLabels[item.category] || item.category)}
+                        {getText(
+                          categoryLabels[item.category]?.key || item.category,
+                          categoryLabels[item.category]?.fallback || item.category
+                        )}
                       </p>
                     </div>
                     <ChevronRight
@@ -324,13 +347,13 @@ const MobileInlineSearch = ({
   onClose,
   isScrolled,
   locale,
-  t,
+  getText,
   searchIndex,
 }: {
   onClose: () => void;
   isScrolled: boolean;
   locale?: string;
-  t: (key: string) => string;
+  getText: (key: string, fallback: string) => string;
   searchIndex: SearchResult[];
 }) => {
   const [query, setQuery] = useState("");
@@ -411,7 +434,7 @@ const MobileInlineSearch = ({
           value={query}
           onChange={handleChange}
           onFocus={() => results.length > 0 && setIsOpen(true)}
-          placeholder={t("search.placeholder")}
+          placeholder={getText("search.placeholder", "Search treatments...")}
           className="bg-transparent outline-none text-sm font-inter text-brown placeholder:text-taupe/50 flex-1 min-w-0"
         />
         <button
@@ -452,7 +475,10 @@ const MobileInlineSearch = ({
                         {highlightMatch(item.label, debouncedQuery)}
                       </p>
                       <p className="text-taupe/70 text-xs">
-                        {t(categoryLabels[item.category] || item.category)}
+                        {getText(
+                          categoryLabels[item.category]?.key || item.category,
+                          categoryLabels[item.category]?.fallback || item.category
+                        )}
                       </p>
                     </div>
                     <ChevronRight size={14} className="text-taupe shrink-0" />
@@ -476,22 +502,43 @@ const Navbar = ({ locale }: { locale?: string }) => {
   const [mobileSubmenu, setMobileSubmenu] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const [isBlogsPage, setIsBlogsPage] = useState(false);
+  const [currentLocale, setCurrentLocale] = useState(locale);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
   const [isActive, setIsActive] = useState(false);
 
   const pathname = usePathname() ?? "/";
-  const isBlogsPage = pathname?.startsWith('/blogs');
 
-  // Build search index with translations
+  // Check if current page is blogs page
+  useEffect(() => {
+    const isBlogs = pathname.includes('/blogs');
+    setIsBlogsPage(isBlogs);
+    
+    // On blogs page, force locale to 'en' for display
+    if (isBlogs) {
+      setCurrentLocale('en');
+    } else {
+      setCurrentLocale(locale);
+    }
+  }, [pathname, locale]);
+
+  const getText = useCallback((key: string, fallback: string) => {
+    if (isBlogsPage) {
+      return fallback; // Always return English fallback on blogs page
+    }
+    const translated = t(key);
+    return translated === key ? fallback : translated;
+  }, [isBlogsPage, t]);
+
   const [searchIndex, setSearchIndex] = useState<SearchResult[]>([]);
 
   useEffect(() => {
-    setSearchIndex(buildSearchIndex(t));
-  }, [t]);
+    const newSearchIndex = buildSearchIndex(getText);
+    setSearchIndex(newSearchIndex);
+  }, [getText]); // Only depend on getText, remove isBlogsPage
 
   // Build locale-aware href for language switcher
-  const getLocaleHref = (langCode: string) => {
+  const getLocaleHref = useCallback((langCode: string) => {
     const localePrefix = /^\/(en|id|ar|ms|zh)(\/|$)/;
     const match = pathname.match(localePrefix);
     const basePath = match ? pathname.replace(localePrefix, "/") : pathname;
@@ -502,13 +549,19 @@ const Navbar = ({ locale }: { locale?: string }) => {
     }
 
     return cleanPath === "/" ? `/${langCode}` : `/${langCode}${cleanPath}`;
-  };
+  }, [pathname]);
 
-  // Build locale-aware href for nav links
-  const getNavHref = (path: string) => {
-    if (!locale || locale === "en") return path;
-    return `/${locale}${path}`;
-  };
+  // Build locale-aware href for nav links - blogs always go to /blogs without locale
+  const getNavHref = useCallback((path: string) => {
+    // If it's the blogs link, always go to /blogs without locale prefix
+    if (path === '/blogs') {
+      return '/blogs';
+    }
+    
+    // For other paths, add locale prefix if not English
+    if (!currentLocale || currentLocale === "en") return path;
+    return `/${currentLocale}${path}`;
+  }, [currentLocale]);
 
   useEffect(() => {
     const checkTime = () => {
@@ -671,7 +724,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                           : "text-wine/90 hover:bg-light/10"
                     }`}
                   >
-                    <span>{t(item.label)}</span>
+                    <span>{getText(item.label, item.fallback)}</span>
                     {item.submenu && (
                       <motion.div
                         animate={{
@@ -713,25 +766,28 @@ const Navbar = ({ locale }: { locale?: string }) => {
                               }`}
                             >
                               {Object.entries(item.submenu).map(
-                                ([category, items]) => (
+                                ([category, categoryData]: [string, any]) => (
                                   <div key={category}>
                                     <div className="flex items-center gap-2 mb-4">
                                       <h4 className="text-brown font-georgia font-semibold text-sm">
-                                        {t(categoryLabels[category])}
+                                        {getText(
+                                          categoryData.label || categoryLabels[category]?.key || category,
+                                          categoryData.fallback || categoryLabels[category]?.fallback || category
+                                        )}
                                       </h4>
                                     </div>
                                     <div className="h-px bg-linear-to-r from-wine/20 to-transparent mb-3" />
                                     <ul className="space-y-0.5">
-                                      {(items as string[]).map(
-                                        (subItemKey, idx) => (
+                                      {categoryData.items.map(
+                                        (subItem: { key: string; fallback: string }, idx: number) => (
                                           <li key={idx}>
                                             <motion.a
-                                              href={getNavHref(toSlug(t(subItemKey)))}
+                                              href={getNavHref(toSlug(getText(subItem.key, subItem.fallback)))}
                                               whileHover={{ x: 4 }}
                                               className="group/item flex items-center gap-2 text-taupe hover:text-wine text-sm py-1.5 transition-all duration-200"
                                             >
                                               <span className="w-1.5 h-1.5 rounded-full bg-taupe/30 group-hover/item:bg-wine group-hover/item:scale-125 transition-all duration-200" />
-                                              <span>{t(subItemKey)}</span>
+                                              <span>{getText(subItem.key, subItem.fallback)}</span>
                                             </motion.a>
                                           </li>
                                         ),
@@ -753,10 +809,10 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                 </div>
                                 <div>
                                   <p className="text-brown font-inter font-medium text-sm">
-                                    {t("common.startTransformation")}
+                                    {getText("common.startTransformation", "Start Your Transformation")}
                                   </p>
                                   <p className="text-taupe text-xs">
-                                    {t("nav.bookConsultation")}
+                                    {getText("nav.bookConsultation", "Book Your Consultation")}
                                   </p>
                                 </div>
                               </div>
@@ -764,7 +820,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                 whileHover={{ x: 4 }}
                                 className="flex items-center gap-1 text-wine font-inter font-semibold text-sm"
                               >
-                                <span>{t("nav.bookNow")}</span>
+                                <span>{getText("nav.bookNow", "Book Now")}</span>
                                 <ChevronRight size={16} />
                               </motion.div>
                             </a>
@@ -780,13 +836,13 @@ const Navbar = ({ locale }: { locale?: string }) => {
               <div className="ml-2">
                 <DesktopSearchBox 
                   isScrolled={isScrolled} 
-                  locale={locale} 
-                  t={t}
+                  locale={currentLocale} 
+                  getText={getText}
                   searchIndex={searchIndex}
                 />
               </div>
 
-              {/* Language Selector */}
+              {/* Language Selector - Hide on blogs page */}
               {!isBlogsPage && (
                 <div className="relative ml-2">
                   <motion.button
@@ -801,7 +857,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                   >
                     <Globe size={16} />
                     <span className="text-sm font-inter font-medium">
-                      {locale?.toUpperCase() || "EN"}
+                      {currentLocale?.toUpperCase() || "EN"}
                     </span>
                     <ChevronDown size={12} />
                   </motion.button>
@@ -825,7 +881,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                         >
                           <div className="px-3 pb-2 mb-2 border-b border-cream">
                             <p className="text-taupe text-xs font-inter">
-                              {t("nav.selectLanguage")}
+                              {getText("nav.selectLanguage", "Select Language")}
                             </p>
                           </div>
                           {languages.map((lang, idx) => (
@@ -838,7 +894,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                               whileHover={{ backgroundColor: "#F3EFEE",borderColor: "#8C4F58",scale: 1.02 }}
                               className="flex items-center gap-3 px-4 py-2.5 text-brown border-b border-cream transition-colors"
                             >
-                              {/* <span className="text-lg">{lang.flag}</span> */}
+                              <span className="text-lg">{lang.flag}</span>
                               <div>
                                 <span className="text-sm font-inter font-medium block">
                                   {lang.code}
@@ -867,7 +923,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                 className="ml-4 bg-wine text-light px-6 py-2.5 rounded-full font-inter font-semibold text-sm shadow-lg shadow-wine/20 hover:bg-wine/90 transition-all duration-300 flex items-center gap-2"
               >
                 <Calendar size={16} />
-                <span>{t("nav.bookNow")}</span>
+                <span>{getText("nav.bookNow", "Book Now")}</span>
               </motion.a>
             </nav>
 
@@ -887,8 +943,8 @@ const Navbar = ({ locale }: { locale?: string }) => {
                     <MobileInlineSearch
                       isScrolled={isScrolled}
                       onClose={closeMobileSearch}
-                      locale={locale}
-                      t={t}
+                      locale={currentLocale}
+                      getText={getText}
                       searchIndex={searchIndex}
                     />
                   </motion.div>
@@ -994,7 +1050,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                             }`}
                           >
                             <span className="font-inter font-medium">
-                              {t(item.label)}
+                              {getText(item.label, item.fallback)}
                             </span>
                             <motion.div
                               animate={{
@@ -1017,7 +1073,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                               >
                                 <div className="bg-cream/30 rounded-xl mt-2 mb-3 p-4 space-y-6">
                                   {Object.entries(item.submenu).map(
-                                    ([category, items], catIdx) => (
+                                    ([category, categoryData]: [string, any], catIdx) => (
                                       <motion.div
                                         key={category}
                                         initial={{ opacity: 0, y: 10 }}
@@ -1026,16 +1082,19 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                       >
                                         <div className="flex items-center gap-2 mb-3">
                                           <h5 className="text-wine font-georgia font-semibold text-sm">
-                                            {t(categoryLabels[category])}
+                                            {getText(
+                                              categoryData.label || categoryLabels[category]?.key || category,
+                                              categoryData.fallback || categoryLabels[category]?.fallback || category
+                                            )}
                                           </h5>
                                         </div>
                                         <div className="grid grid-cols-1 gap-1">
-                                          {(items as string[]).map(
-                                            (subItemKey, idx) => (
+                                          {categoryData.items.map(
+                                            (subItem: { key: string; fallback: string }, idx: number) => (
                                               <motion.a
                                                 key={idx}
                                                 href={getNavHref(
-                                                  toSlug(t(subItemKey)),
+                                                  toSlug(getText(subItem.key, subItem.fallback)),
                                                 )}
                                                 initial={{ opacity: 0, x: -10 }}
                                                 animate={{ opacity: 1, x: 0 }}
@@ -1045,7 +1104,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                                 className="text-taupe hover:text-wine text-sm py-2.5 px-3 rounded-lg hover:bg-light transition-all duration-200 flex items-center gap-2"
                                               >
                                                 <span className="w-1.5 h-1.5 rounded-full bg-taupe/30" />
-                                                {t(subItemKey)}
+                                                {getText(subItem.key, subItem.fallback)}
                                               </motion.a>
                                             ),
                                           )}
@@ -1063,7 +1122,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                           href={getNavHref(item.href)}
                           className="flex items-center gap-3 text-brown hover:text-wine hover:bg-cream/50 py-3.5 px-4 rounded-xl font-inter font-medium transition-all duration-200"
                         >
-                          {t(item.label)}
+                          {getText(item.label, item.fallback)}
                         </a>
                       )}
                     </motion.div>
@@ -1072,7 +1131,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                   {/* Divider */}
                   <div className="my-6 h-px bg-linear-to-r from-transparent via-taupe/20 to-transparent" />
 
-                  {/* Mobile Language Selector */}
+                  {/* Mobile Language Selector - Hide on blogs page */}
                   {!isBlogsPage && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
@@ -1080,7 +1139,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                       transition={{ delay: 0.3 }}
                     >
                       <p className="text-taupe text-xs font-inter uppercase tracking-wider mb-3 px-4">
-                        {t("nav.selectLanguage")}
+                        {getText("nav.selectLanguage", "Select Language")}
                       </p>
                       <div className="flex flex-wrap gap-2 px-2">
                         {languages.map((lang, idx) => (
@@ -1093,7 +1152,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                             whileTap={{ scale: 0.95 }}
                             className="flex items-center gap-2 bg-cream hover:bg-rose/10 px-4 py-2.5 rounded-xl text-brown hover:text-wine text-sm font-inter transition-all duration-200"
                           >
-                            {/* <span>{lang.flag}</span> */}
+                            <span>{lang.flag}</span>
                             <span className="font-medium">{lang.code}</span>
                           </motion.a>
                         ))}
@@ -1113,7 +1172,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                       className="flex max-w-[93%] items-center justify-center gap-2 bg-wine text-light px-6 py-4 rounded-xl font-inter font-semibold text-center shadow-lg shadow-wine/20 hover:bg-wine/90 transition-all duration-200"
                     >
                       <Calendar size={18} />
-                      <span>{t("nav.bookConsultation")}</span>
+                      <span>{getText("nav.bookConsultation", "Book Your Consultation")}</span>
                     </a>
                     <a
                       href="tel:0167025699"
@@ -1135,7 +1194,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                       Mon - Sat: 9:00 AM - 6:00 PM
                     </p>
                     <p className="text-taupe/60 text-xs font-inter mt-1">
-                      {t("footer.address")}
+                      {getText("footer.address", "Wisma UOA II, KL")}
                     </p>
                   </motion.div>
                 </div>
