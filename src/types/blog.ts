@@ -19,6 +19,19 @@ export interface Post {
   image: string;
   href: string;
   featured: boolean;
+  
+    seo?: {
+    title: string;
+    description: string;
+    canonical: string;
+    ogTitle: string;
+    ogDescription: string;
+    ogImage: string;
+    twitterTitle: string;
+    twitterDescription: string;
+    twitterImage: string;
+    robots?: string;
+  };
 }
 
 export interface TagColorConfig {

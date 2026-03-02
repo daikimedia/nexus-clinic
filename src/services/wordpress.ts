@@ -4,7 +4,9 @@ const API_BASE_URL = 'https://blog.nexus-clinic.com/wp-json/wp/v2';
 
 class WordPressService {
   private async fetchWithEmbedded<T>(endpoint: string): Promise<{ data: T; total: number }> {
-    const url = `${API_BASE_URL}${endpoint}&_embed=true`;
+    // Add yoast_head=1 to include Yoast SEO data in the response
+    const separator = endpoint.includes('?') ? '&' : '?';
+    const url = `${API_BASE_URL}${endpoint}${separator}_embed=true&yoast_head=1`;
     // console.log('Fetching from WordPress:', url);
     
     const response = await fetch(url);
