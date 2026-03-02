@@ -14,6 +14,7 @@ import {
   Calendar,
   Search,
 } from "lucide-react";
+import { useTranslation } from "react-i18next"; // or your custom translation hook
 
 const toSlug = (name: string): string => {
   return (
@@ -30,88 +31,87 @@ const toSlug = (name: string): string => {
 
 const navItems = [
   {
-    label: "Weight Loss",
+    label: "nav.weightLoss",
     href: "#",
     submenu: {
       weightLoss: [
-        "Ozempic Malaysia",
-        "Wegovy Malaysia",
-        "Mounjaro Malaysia",
-        "Duromine Malaysia",
-        "Doctor Monitored Malaysia",
-        "HCG Weight Loss Malaysia",
-        "Fat Freezing Malaysia",
-        "CoolSculpting Malaysia",
-        "GLP-1 Programme Malaysia",
-        "ZepBound Malaysia",
-        "Semaglutide Malaysia",
-        "Tirzepatide Malaysia",
+        "submenu.weightLoss.ozempic",
+        "submenu.weightLoss.wegovy",
+        "submenu.weightLoss.mounjaro",
+        "submenu.weightLoss.duromine",
+        "submenu.weightLoss.doctorMonitored",
+        "submenu.weightLoss.hcgWeightLoss",
+        "submenu.weightLoss.fatFreezing",
+        "submenu.weightLoss.coolSculpting",
+        "submenu.weightLoss.glp1",
+        "submenu.weightLoss.zepbound",
+        "submenu.weightLoss.semaglutide",
+        "submenu.weightLoss.tirzepatide",
       ],
     },
   },
   {
-    label: "Aesthetic Treatments",
+    label: "nav.aestheticTreatments",
     href: "#",
     submenu: {
       skin: [
-        "Acne Treatment KL",
-        "Acne Scar Treatment KL",
-        "Pigmentation Treatment KL",
-        "Melasma Treatment KL",
-        "Mole Removal KL",
-        "HydraFacial KL",
-        "Pico Laser KL",
-        "Dark Eye Circle Treatment KL",
-        "Skin Whitening Treatment KL",
-        "Eczema Treatment KL",
-        "Keloid Treatment Malaysia",
-        "Rosacea Treatment Malaysia",
-        "Stretch Mark Removal Malaysia",
-        "Laser Hair Removal Malaysia",
-        "Tattoo Removal Malaysia",
+        "submenu.skin.acneTreatment",
+        "submenu.skin.acneScar",
+        "submenu.skin.pigmentation",
+        "submenu.skin.melasma",
+        "submenu.skin.moleRemoval",
+        "submenu.skin.hydrafacial",
+        "submenu.skin.picoLaser",
+        "submenu.skin.darkCircle",
+        "submenu.skin.whitening",
+        "submenu.skin.eczema",
+        "submenu.skin.keloid",
+        "submenu.skin.rosacea",
+        "submenu.skin.stretchMark",
+        "submenu.skin.laserHair",
+        "submenu.skin.tattooRemoval",
       ],
       face: [
-        "Dermal Filler",
-        "Lip Filler",
-        "Chin Filler",
-        "Jawline Filler",
-        "Nose Thread Lift",
-        "Masseter Botox",
+        "submenu.face.dermalFiller",
+        "submenu.face.lipFiller",
+        "submenu.face.chinFiller",
+        "submenu.face.jawlineFiller",
+        "submenu.face.noseThread",
+        "submenu.face.masseterBotox",
       ],
       hair: [
-        "Hair Transplant",
-        "Fue Hair Transplant",
-        "PRP Hair Treatment",
-        "Hair Loss Treatment",
-        "Beard Transplant",
-        "Mesotherapy Hair Loss",
-        "Exosome Hair Treatment",
-        "Minoxidil Treatment",
-        "Finasteride",
+        "submenu.hair.transplant",
+        "submenu.hair.fue",
+        "submenu.hair.prp",
+        "submenu.hair.lossTreatment",
+        "submenu.hair.beard",
+        "submenu.hair.mesotherapy",
+        "submenu.hair.exosome",
+        "submenu.hair.minoxidil",
+        "submenu.hair.finasteride",
       ],
       regenerative: [
-        "Testosterone Therapy Malaysia",
-        "ED Treatment Malaysia",
-        "Hormone Replacement Therapy Malaysia",
-        "PCOS Treatment Malaysia",
-        "Hypothyroidism Treatment Malaysia",
-        "Stem Cell Therapy Malaysia",
-        "Anti-Aging Therapy Malaysia",
-        "Hormone Test Malaysia",
-        "Menopause Hormone Replacement Malaysia",
-        "P Shot Malaysia",
-        "O Shot Malaysia",
-        "Shockwave Therapy Malaysia",
+        "submenu.regenerative.testosterone",
+        "submenu.regenerative.ed",
+        "submenu.regenerative.hormoneReplacement",
+        "submenu.regenerative.pcos",
+        "submenu.regenerative.hypothyroidism",
+        "submenu.regenerative.stemCell",
+        "submenu.regenerative.antiAging",
+        "submenu.regenerative.hormoneTest",
+        "submenu.regenerative.menopause",
+        "submenu.regenerative.pShot",
+        "submenu.regenerative.oShot",
+        "submenu.regenerative.shockwave",
       ],
     },
   },
-  { label: "Products", href: "/products" },
-  { label: "Blogs", href: "/blogs" },
-  // { label: "Cart", href: "/cart", icon: ShoppingCart },
+  { label: "nav.products", href: "/products" },
+  { label: "nav.blogs", href: "/blogs" },
 ];
 
 const languages = [
-  { code: "EN", label: "English", flag: "🇺🇸" },
+  { code: "EN", label: "English", flag: "🇺🇸" },  
   { code: "ID", label: "Indonesia", flag: "🇮🇩" },
   { code: "MS", label: "Melayu", flag: "🇲🇾" },
   { code: "ZH", label: "中文", flag: "🇨🇳" },
@@ -119,36 +119,38 @@ const languages = [
 ];
 
 const categoryLabels: Record<string, string> = {
-  weightLoss: "Fat & Weight Loss",
-  skin: "Skin",
-  face: "Face",
-  hair: "Hair",
-  regenerative: "Regenerative",
+  weightLoss: "categories.weightLoss",
+  skin: "categories.skin",
+  face: "categories.face",
+  hair: "categories.hair",
+  regenerative: "categories.regenerative",
 };
 
 type SearchResult = { label: string; href: string; category: string };
 
-const buildSearchIndex = (): SearchResult[] => {
+const buildSearchIndex = (t: (key: string) => string): SearchResult[] => {
   const results: SearchResult[] = [];
   navItems.forEach((item) => {
     if (item.submenu) {
       Object.entries(item.submenu).forEach(([category, items]) => {
-        (items as string[]).forEach((subItem) => {
+        (items as string[]).forEach((subItemKey) => {
           results.push({
-            label: subItem,
-            href: toSlug(subItem),
-            category: categoryLabels[category] ?? category,
+            label: t(subItemKey),
+            href: toSlug(t(subItemKey)),
+            category: category,
           });
         });
       });
     } else if (item.href && item.href !== "#") {
-      results.push({ label: item.label, href: item.href, category: "Page" });
+      results.push({ 
+        label: t(item.label), 
+        href: item.href, 
+        category: "page" 
+      });
     }
   });
   return results;
 };
-
-const searchIndex = buildSearchIndex();
 
 // ── Highlight helper ─────
 const highlightMatch = (text: string, query: string) => {
@@ -170,9 +172,13 @@ const highlightMatch = (text: string, query: string) => {
 const DesktopSearchBox = ({
   isScrolled,
   locale,
+  t,
+  searchIndex,
 }: {
   isScrolled: boolean;
   locale?: string;
+  t: (key: string) => string;
+  searchIndex: SearchResult[];
 }) => {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -242,7 +248,7 @@ const DesktopSearchBox = ({
           value={query}
           onChange={handleChange}
           onFocus={() => results.length > 0 && setIsOpen(true)}
-          placeholder="Search treatments..."
+          placeholder={t("search.placeholder")}
           className="bg-transparent outline-none text-sm font-inter w-36 md:w-36 placeholder:text-taupe/60 transition-all duration-300 text-brown"
         />
         {query && (
@@ -295,7 +301,7 @@ const DesktopSearchBox = ({
                         {highlightMatch(item.label, debouncedQuery)}
                       </p>
                       <p className="text-taupe/70 text-xs font-inter">
-                        {item.category}
+                        {t(categoryLabels[item.category] || item.category)}
                       </p>
                     </div>
                     <ChevronRight
@@ -313,15 +319,19 @@ const DesktopSearchBox = ({
   );
 };
 
-// ── Mobile Inline Search (renders inside the navbar bar, not the menu) ────────
+// ── Mobile Inline Search
 const MobileInlineSearch = ({
   onClose,
   isScrolled,
   locale,
+  t,
+  searchIndex,
 }: {
   onClose: () => void;
   isScrolled: boolean;
   locale?: string;
+  t: (key: string) => string;
+  searchIndex: SearchResult[];
 }) => {
   const [query, setQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -330,7 +340,6 @@ const MobileInlineSearch = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Auto-focus on mount
   useEffect(() => {
     const t = setTimeout(() => inputRef.current?.focus(), 80);
     return () => clearTimeout(t);
@@ -356,7 +365,6 @@ const MobileInlineSearch = ({
     setIsOpen(results.length > 0);
   }, [results.length]);
 
-  // Click outside → close suggestions (not the bar itself)
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (
@@ -389,7 +397,6 @@ const MobileInlineSearch = ({
 
   return (
     <div ref={containerRef} className="relative w-full">
-      {/* Input row */}
       <div
         className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all duration-200 ${
           isScrolled
@@ -404,7 +411,7 @@ const MobileInlineSearch = ({
           value={query}
           onChange={handleChange}
           onFocus={() => results.length > 0 && setIsOpen(true)}
-          placeholder="Search treatments..."
+          placeholder={t("search.placeholder")}
           className="bg-transparent outline-none text-sm font-inter text-brown placeholder:text-taupe/50 flex-1 min-w-0"
         />
         <button
@@ -415,7 +422,6 @@ const MobileInlineSearch = ({
         </button>
       </div>
 
-      {/* Suggestions dropdown — positioned below the navbar bar */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -427,7 +433,7 @@ const MobileInlineSearch = ({
           >
             <div className="px-4 py-2.5 border-b border-cream">
               <p className="text-taupe text-xs font-inter">
-                {results.length} result{results.length !== 1 ? "s" : ""} untuk
+                {results.length} result{results.length !== 1 ? "s" : ""} for
                 &ldquo;{debouncedQuery}&rdquo;
               </p>
             </div>
@@ -445,7 +451,9 @@ const MobileInlineSearch = ({
                       <p className="text-brown text-sm font-inter truncate">
                         {highlightMatch(item.label, debouncedQuery)}
                       </p>
-                      <p className="text-taupe/70 text-xs">{item.category}</p>
+                      <p className="text-taupe/70 text-xs">
+                        {t(categoryLabels[item.category] || item.category)}
+                      </p>
                     </div>
                     <ChevronRight size={14} className="text-taupe shrink-0" />
                   </button>
@@ -461,6 +469,7 @@ const MobileInlineSearch = ({
 
 // ── Main Navbar ──────────
 const Navbar = ({ locale }: { locale?: string }) => {
+  const { t } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangOpen, setIsLangOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -474,20 +483,24 @@ const Navbar = ({ locale }: { locale?: string }) => {
   const pathname = usePathname() ?? "/";
   const isBlogsPage = pathname?.startsWith('/blogs');
 
-  // Build locale-aware href for language switcher (preserves current page path)
+  // Build search index with translations
+  const [searchIndex, setSearchIndex] = useState<SearchResult[]>([]);
+
+  useEffect(() => {
+    setSearchIndex(buildSearchIndex(t));
+  }, [t]);
+
+  // Build locale-aware href for language switcher
   const getLocaleHref = (langCode: string) => {
-    // Strip any existing locale prefix from pathname
     const localePrefix = /^\/(en|id|ar|ms|zh)(\/|$)/;
     const match = pathname.match(localePrefix);
     const basePath = match ? pathname.replace(localePrefix, "/") : pathname;
     const cleanPath = basePath === "" ? "/" : basePath;
 
-    // English is the default language (no prefix needed)
     if (langCode === "en") {
       return cleanPath;
     }
 
-    // Other languages get locale prefix
     return cleanPath === "/" ? `/${langCode}` : `/${langCode}${cleanPath}`;
   };
 
@@ -614,7 +627,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
         {/* Main Nav */}
         <div className="max-w-screen mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center h-16 lg:h-20 gap-3">
-            {/* Logo — hidden when mobile search is open to give space */}
+            {/* Logo */}
             <AnimatePresence>
               {!isMobileSearchOpen && (
                 <motion.a
@@ -658,7 +671,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                           : "text-wine/90 hover:bg-light/10"
                     }`}
                   >
-                    <span>{item.label}</span>
+                    <span>{t(item.label)}</span>
                     {item.submenu && (
                       <motion.div
                         animate={{
@@ -704,21 +717,21 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                   <div key={category}>
                                     <div className="flex items-center gap-2 mb-4">
                                       <h4 className="text-brown font-georgia font-semibold text-sm">
-                                        {categoryLabels[category]}
+                                        {t(categoryLabels[category])}
                                       </h4>
                                     </div>
                                     <div className="h-px bg-linear-to-r from-wine/20 to-transparent mb-3" />
                                     <ul className="space-y-0.5">
                                       {(items as string[]).map(
-                                        (subItem, idx) => (
+                                        (subItemKey, idx) => (
                                           <li key={idx}>
                                             <motion.a
-                                              href={getNavHref(toSlug(subItem))}
+                                              href={getNavHref(toSlug(t(subItemKey)))}
                                               whileHover={{ x: 4 }}
                                               className="group/item flex items-center gap-2 text-taupe hover:text-wine text-sm py-1.5 transition-all duration-200"
                                             >
                                               <span className="w-1.5 h-1.5 rounded-full bg-taupe/30 group-hover/item:bg-wine group-hover/item:scale-125 transition-all duration-200" />
-                                              <span>{subItem}</span>
+                                              <span>{t(subItemKey)}</span>
                                             </motion.a>
                                           </li>
                                         ),
@@ -740,10 +753,10 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                 </div>
                                 <div>
                                   <p className="text-brown font-inter font-medium text-sm">
-                                    Ready to transform?
+                                    {t("common.startTransformation")}
                                   </p>
                                   <p className="text-taupe text-xs">
-                                    Book your free consultation today
+                                    {t("nav.bookConsultation")}
                                   </p>
                                 </div>
                               </div>
@@ -751,7 +764,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                 whileHover={{ x: 4 }}
                                 className="flex items-center gap-1 text-wine font-inter font-semibold text-sm"
                               >
-                                <span>Book Now</span>
+                                <span>{t("nav.bookNow")}</span>
                                 <ChevronRight size={16} />
                               </motion.div>
                             </a>
@@ -765,10 +778,15 @@ const Navbar = ({ locale }: { locale?: string }) => {
 
               {/* Desktop Search */}
               <div className="ml-2">
-                <DesktopSearchBox isScrolled={isScrolled} locale={locale} />
+                <DesktopSearchBox 
+                  isScrolled={isScrolled} 
+                  locale={locale} 
+                  t={t}
+                  searchIndex={searchIndex}
+                />
               </div>
 
-              {/* Language Selector - Hidden on blog pages */}
+              {/* Language Selector */}
               {!isBlogsPage && (
                 <div className="relative ml-2">
                   <motion.button
@@ -782,7 +800,9 @@ const Navbar = ({ locale }: { locale?: string }) => {
                     }`}
                   >
                     <Globe size={16} />
-                    <span className="text-sm font-inter font-medium">EN</span>
+                    <span className="text-sm font-inter font-medium">
+                      {locale?.toUpperCase() || "EN"}
+                    </span>
                     <ChevronDown size={12} />
                   </motion.button>
 
@@ -805,7 +825,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                         >
                           <div className="px-3 pb-2 mb-2 border-b border-cream">
                             <p className="text-taupe text-xs font-inter">
-                              Select Language
+                              {t("nav.selectLanguage")}
                             </p>
                           </div>
                           {languages.map((lang, idx) => (
@@ -815,10 +835,10 @@ const Navbar = ({ locale }: { locale?: string }) => {
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: idx * 0.03 }}
-                              whileHover={{ backgroundColor: "#F3EFEE" }}
-                              className="flex items-center gap-3 px-4 py-2.5 text-brown hover:text-wine transition-colors"
+                              whileHover={{ backgroundColor: "#F3EFEE",borderColor: "#8C4F58",scale: 1.02 }}
+                              className="flex items-center gap-3 px-4 py-2.5 text-brown border-b border-cream transition-colors"
                             >
-                              <span className="text-lg">{lang.flag}</span>
+                              {/* <span className="text-lg">{lang.flag}</span> */}
                               <div>
                                 <span className="text-sm font-inter font-medium block">
                                   {lang.code}
@@ -847,15 +867,14 @@ const Navbar = ({ locale }: { locale?: string }) => {
                 className="ml-4 bg-wine text-light px-6 py-2.5 rounded-full font-inter font-semibold text-sm shadow-lg shadow-wine/20 hover:bg-wine/90 transition-all duration-300 flex items-center gap-2"
               >
                 <Calendar size={16} />
-                <span>Book Now</span>
+                <span>{t("nav.bookNow")}</span>
               </motion.a>
             </nav>
 
-            {/* ── Mobile: Right Actions ── */}
+            {/* Mobile: Right Actions */}
             <div className="flex items-center gap-1 ml-auto lg:hidden">
               <AnimatePresence mode="wait">
                 {isMobileSearchOpen ? (
-                  /* Full-width inline search bar */
                   <motion.div
                     key="search-open"
                     initial={{ opacity: 0, scaleX: 0.8 }}
@@ -869,10 +888,11 @@ const Navbar = ({ locale }: { locale?: string }) => {
                       isScrolled={isScrolled}
                       onClose={closeMobileSearch}
                       locale={locale}
+                      t={t}
+                      searchIndex={searchIndex}
                     />
                   </motion.div>
                 ) : (
-                  /* Search icon + hamburger */
                   <motion.div
                     key="icons"
                     initial={{ opacity: 0 }}
@@ -881,7 +901,6 @@ const Navbar = ({ locale }: { locale?: string }) => {
                     transition={{ duration: 0.15 }}
                     className="flex items-center gap-1"
                   >
-                    {/* Search button */}
                     <motion.button
                       whileTap={{ scale: 0.9 }}
                       onClick={openMobileSearch}
@@ -895,7 +914,6 @@ const Navbar = ({ locale }: { locale?: string }) => {
                       <Search size={20} />
                     </motion.button>
 
-                    {/* Hamburger / Close */}
                     <motion.button
                       whileTap={{ scale: 0.9 }}
                       onClick={() => {
@@ -940,7 +958,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
           </div>
         </div>
 
-        {/* ── Mobile Menu ── */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -976,7 +994,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                             }`}
                           >
                             <span className="font-inter font-medium">
-                              {item.label}
+                              {t(item.label)}
                             </span>
                             <motion.div
                               animate={{
@@ -1008,16 +1026,16 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                       >
                                         <div className="flex items-center gap-2 mb-3">
                                           <h5 className="text-wine font-georgia font-semibold text-sm">
-                                            {categoryLabels[category]}
+                                            {t(categoryLabels[category])}
                                           </h5>
                                         </div>
                                         <div className="grid grid-cols-1 gap-1">
                                           {(items as string[]).map(
-                                            (subItem, idx) => (
+                                            (subItemKey, idx) => (
                                               <motion.a
                                                 key={idx}
                                                 href={getNavHref(
-                                                  toSlug(subItem),
+                                                  toSlug(t(subItemKey)),
                                                 )}
                                                 initial={{ opacity: 0, x: -10 }}
                                                 animate={{ opacity: 1, x: 0 }}
@@ -1027,7 +1045,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                                                 className="text-taupe hover:text-wine text-sm py-2.5 px-3 rounded-lg hover:bg-light transition-all duration-200 flex items-center gap-2"
                                               >
                                                 <span className="w-1.5 h-1.5 rounded-full bg-taupe/30" />
-                                                {subItem}
+                                                {t(subItemKey)}
                                               </motion.a>
                                             ),
                                           )}
@@ -1045,7 +1063,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                           href={getNavHref(item.href)}
                           className="flex items-center gap-3 text-brown hover:text-wine hover:bg-cream/50 py-3.5 px-4 rounded-xl font-inter font-medium transition-all duration-200"
                         >
-                          {item.label}
+                          {t(item.label)}
                         </a>
                       )}
                     </motion.div>
@@ -1054,7 +1072,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                   {/* Divider */}
                   <div className="my-6 h-px bg-linear-to-r from-transparent via-taupe/20 to-transparent" />
 
-                  {/* Mobile Language Selector - Hidden on blog pages */}
+                  {/* Mobile Language Selector */}
                   {!isBlogsPage && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
@@ -1062,7 +1080,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                       transition={{ delay: 0.3 }}
                     >
                       <p className="text-taupe text-xs font-inter uppercase tracking-wider mb-3 px-4">
-                        Select Language
+                        {t("nav.selectLanguage")}
                       </p>
                       <div className="flex flex-wrap gap-2 px-2">
                         {languages.map((lang, idx) => (
@@ -1075,7 +1093,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                             whileTap={{ scale: 0.95 }}
                             className="flex items-center gap-2 bg-cream hover:bg-rose/10 px-4 py-2.5 rounded-xl text-brown hover:text-wine text-sm font-inter transition-all duration-200"
                           >
-                            <span>{lang.flag}</span>
+                            {/* <span>{lang.flag}</span> */}
                             <span className="font-medium">{lang.code}</span>
                           </motion.a>
                         ))}
@@ -1095,7 +1113,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                       className="flex max-w-[93%] items-center justify-center gap-2 bg-wine text-light px-6 py-4 rounded-xl font-inter font-semibold text-center shadow-lg shadow-wine/20 hover:bg-wine/90 transition-all duration-200"
                     >
                       <Calendar size={18} />
-                      <span>Book Your Consultation</span>
+                      <span>{t("nav.bookConsultation")}</span>
                     </a>
                     <a
                       href="tel:0167025699"
@@ -1117,7 +1135,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                       Mon - Sat: 9:00 AM - 6:00 PM
                     </p>
                     <p className="text-taupe/60 text-xs font-inter mt-1">
-                      Wisma UOA II, Kuala Lumpur
+                      {t("footer.address")}
                     </p>
                   </motion.div>
                 </div>
