@@ -1,10 +1,14 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { FAQItem } from '@/src/utils/faqExtractor'; 
 interface SingleBlogPostProps {
   content: string;
+  faqs?: FAQItem[];
+  postSlug?: string;
+
 }
 
-export function SingleBlogPost({ content }: SingleBlogPostProps) {
+export function SingleBlogPost({ content, faqs, postSlug }: SingleBlogPostProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -227,7 +231,6 @@ export function SingleBlogPost({ content }: SingleBlogPostProps) {
       });
     };
 
-    // Add animation styles to the document
     const addAnimationStyles = () => {
       const style = document.createElement('style');
       style.textContent = `
@@ -248,7 +251,6 @@ export function SingleBlogPost({ content }: SingleBlogPostProps) {
       document.head.appendChild(style);
     };
 
-    // Rest of the functions remain the same...
     const processHeadings = () => {
       const headings = contentRef.current?.querySelectorAll('h1, h2, h3, h4, h5, h6');
       if (!headings) return;
@@ -472,10 +474,8 @@ export function SingleBlogPost({ content }: SingleBlogPostProps) {
       });
       
     };
-    // Add animation styles
-    addAnimationStyles();
 
-    // Execute all processing functions
+    addAnimationStyles();
     processImages();
     processHeadings();
     processFancyHeadings();
