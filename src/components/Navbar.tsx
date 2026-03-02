@@ -894,7 +894,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                               whileHover={{ backgroundColor: "#F3EFEE",borderColor: "#8C4F58",scale: 1.02 }}
                               className="flex items-center gap-3 px-4 py-2.5 text-brown border-b border-cream transition-colors"
                             >
-                              <span className="text-lg">{lang.flag}</span>
+                              {/* <span className="text-lg">{lang.flag}</span> */}
                               <div>
                                 <span className="text-sm font-inter font-medium block">
                                   {lang.code}
@@ -1152,7 +1152,7 @@ const Navbar = ({ locale }: { locale?: string }) => {
                             whileTap={{ scale: 0.95 }}
                             className="flex items-center gap-2 bg-cream hover:bg-rose/10 px-4 py-2.5 rounded-xl text-brown hover:text-wine text-sm font-inter transition-all duration-200"
                           >
-                            <span>{lang.flag}</span>
+                            {/* <span>{lang.flag}</span> */}
                             <span className="font-medium">{lang.code}</span>
                           </motion.a>
                         ))}
